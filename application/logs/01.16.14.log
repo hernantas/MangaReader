@@ -1,0 +1,1100 @@
+================== Initalize ==================
+Do SQL: select manga_chapter.*, manga_name.name as name_manga, 
+					manga_name.id as id_manga, manga_name.add_time as add_manga, 
+					manga_name.last_update as update_manga from manga_name, 
+					manga_chapter where manga_name.id=manga_chapter.id_manga and 
+					manga_chapter.date_add > 1389277692 and 
+					manga_chapter.date_add < 1389882492 group by 
+					manga_chapter.id order by manga_chapter.id desc
+SQL succes
+Do SQL: select manga_chapter.*, manga_name.name as name_manga, 
+					manga_name.id as id_manga, manga_name.add_time as add_manga, 
+					manga_name.last_update as update_manga from manga_name, 
+					manga_chapter where manga_name.id=manga_chapter.id_manga and 
+					manga_chapter.date_add > 1388672892 and 
+					manga_chapter.date_add < 1389277692 group by 
+					manga_chapter.id order by manga_chapter.id desc
+SQL succes
+Do SQL: select manga_chapter.*, manga_name.name as name_manga, 
+					manga_name.id as id_manga, manga_name.add_time as add_manga, 
+					manga_name.last_update as update_manga from manga_name, 
+					manga_chapter where manga_name.id=manga_chapter.id_manga and 
+					manga_chapter.date_add > 1388068092 and 
+					manga_chapter.date_add < 1388672892 group by 
+					manga_chapter.id order by manga_chapter.id desc
+SQL succes
+Do SQL: select manga_chapter.*, manga_name.name as name_manga, 
+					manga_name.id as id_manga, manga_name.add_time as add_manga, 
+					manga_name.last_update as update_manga from manga_name, 
+					manga_chapter where manga_name.id=manga_chapter.id_manga and 
+					manga_chapter.date_add > 1387463292 and 
+					manga_chapter.date_add < 1388068092 group by 
+					manga_chapter.id order by manga_chapter.id desc
+SQL succes
+Do SQL: select manga_chapter.*, manga_name.name as name_manga, 
+					manga_name.id as id_manga, manga_name.add_time as add_manga, 
+					manga_name.last_update as update_manga from manga_name, 
+					manga_chapter where manga_name.id=manga_chapter.id_manga and 
+					manga_chapter.date_add > 1386858492 and 
+					manga_chapter.date_add < 1387463292 group by 
+					manga_chapter.id order by manga_chapter.id desc
+SQL succes
+Do SQL: select * from manga_pict where (id_chapter='23842' or id_chapter='23841' or id_chapter='23840' or id_chapter='23839' or id_chapter='23838' or id_chapter='23837' or id_chapter='23836' or id_chapter='23835' or id_chapter='23834' or id_chapter='23833' or id_chapter='23832' or id_chapter='23831' or id_chapter='23830' or id_chapter='23829' or id_chapter='23828' or id_chapter='23827' or id_chapter='23826' or id_chapter='23825' or id_chapter='23824' or id_chapter='23823' or id_chapter='23822' or id_chapter='23821' or id_chapter='23820' or id_chapter='23819' or id_chapter='23818' or id_chapter='23817' or id_chapter='23816' or id_chapter='23815') 
+				group by id_chapter
+SQL succes
+Script took 1.0387899875641s to complete
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='557091' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='557068' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='557031' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='557092' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='557030' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='557067' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556986' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556987' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556956' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556945' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556957' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556923' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556924' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556946' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556903' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556904' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556881' group by manga_pict.id limit 0,1
+================== Initalize ==================
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556872' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556861' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556862' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556818' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556873' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556809' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556810' group by manga_pict.id limit 0,1
+================== Initalize ==================
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556776' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556777' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556743' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556819' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556744' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556717' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556718' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556697' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556678' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556645' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556618' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556677' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556698' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556646' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556619' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556593' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556594' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556576' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556577' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556558' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556559' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556542' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556502' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556503' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556430' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556541' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556431' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556410' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556411' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556384' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+================== Initalize ==================
+Do SQL: select * from manga_name
+SQL succes
+Do SQL: select manga_name.*, count(manga_chapter.id) 
+			as chapter_count from manga_name, manga_chapter where 
+			manga_name.id=manga_chapter.id_manga group by manga_name.id order 
+			by name asc limit 0,12
+SQL succes
+Do SQL: select * from manga_pict where id_manga in (0,186,308,162,1,314,2,3,4,206,218,139,140) group by id_manga
+SQL succes
+Script took 0.27837800979614s to complete
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='3' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='389' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='2930' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='3549' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='494934' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='480748' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='10875' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='11757' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='13178' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344432' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='354760' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='13140' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Script took 0.015139102935791s to complete
+================== Initalize ==================
+Script took 0.013968944549561s to complete
+================== Initalize ==================
+Do SQL: select * from manga_name
+SQL succes
+Do SQL: select manga_name.*, count(manga_chapter.id) 
+			as chapter_count from manga_name, manga_chapter where 
+			manga_name.id=manga_chapter.id_manga group by manga_name.id order 
+			by name asc limit 0,12
+SQL succes
+Do SQL: select * from manga_pict where id_manga in (0,186,308,162,1,314,2,3,4,206,218,139,140) group by id_manga
+SQL succes
+Script took 0.10136008262634s to complete
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='480748' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='3' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='389' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='2930' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='494934' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='3549' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='10875' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='11757' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344432' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='354760' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='13140' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='13178' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select * from manga_name
+SQL succes
+Do SQL: select manga_name.*, count(manga_chapter.id) 
+			as chapter_count from manga_name, manga_chapter where 
+			manga_name.id=manga_chapter.id_manga group by manga_name.id order 
+			by name asc limit 12,12
+SQL succes
+Do SQL: select * from manga_pict where id_manga in (0,141,142,143,144,145,146,147,187,5,298,6,316) group by id_manga
+SQL succes
+Script took 0.088135004043579s to complete
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='13307' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='13506' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='13675' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='13779' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='14286' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='14444' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='15031' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='16132' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='16707' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='470487' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='497301' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='17336' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_chapter.*, manga_name.name as name_manga, 
+					manga_name.id as id_manga, manga_name.add_time as add_manga, 
+					manga_name.last_update as update_manga from manga_name, 
+					manga_chapter where manga_name.id=manga_chapter.id_manga and 
+					manga_chapter.date_add > 1389277811 and 
+					manga_chapter.date_add < 1389882611 group by 
+					manga_chapter.id order by manga_chapter.id desc
+SQL succes
+Do SQL: select manga_chapter.*, manga_name.name as name_manga, 
+					manga_name.id as id_manga, manga_name.add_time as add_manga, 
+					manga_name.last_update as update_manga from manga_name, 
+					manga_chapter where manga_name.id=manga_chapter.id_manga and 
+					manga_chapter.date_add > 1388673011 and 
+					manga_chapter.date_add < 1389277811 group by 
+					manga_chapter.id order by manga_chapter.id desc
+SQL succes
+Do SQL: select manga_chapter.*, manga_name.name as name_manga, 
+					manga_name.id as id_manga, manga_name.add_time as add_manga, 
+					manga_name.last_update as update_manga from manga_name, 
+					manga_chapter where manga_name.id=manga_chapter.id_manga and 
+					manga_chapter.date_add > 1388068211 and 
+					manga_chapter.date_add < 1388673011 group by 
+					manga_chapter.id order by manga_chapter.id desc
+SQL succes
+Do SQL: select manga_chapter.*, manga_name.name as name_manga, 
+					manga_name.id as id_manga, manga_name.add_time as add_manga, 
+					manga_name.last_update as update_manga from manga_name, 
+					manga_chapter where manga_name.id=manga_chapter.id_manga and 
+					manga_chapter.date_add > 1387463411 and 
+					manga_chapter.date_add < 1388068211 group by 
+					manga_chapter.id order by manga_chapter.id desc
+SQL succes
+Do SQL: select manga_chapter.*, manga_name.name as name_manga, 
+					manga_name.id as id_manga, manga_name.add_time as add_manga, 
+					manga_name.last_update as update_manga from manga_name, 
+					manga_chapter where manga_name.id=manga_chapter.id_manga and 
+					manga_chapter.date_add > 1386858611 and 
+					manga_chapter.date_add < 1387463411 group by 
+					manga_chapter.id order by manga_chapter.id desc
+SQL succes
+Do SQL: select * from manga_pict where (id_chapter='23842' or id_chapter='23841' or id_chapter='23840' or id_chapter='23839' or id_chapter='23838' or id_chapter='23837' or id_chapter='23836' or id_chapter='23835' or id_chapter='23834' or id_chapter='23833' or id_chapter='23832' or id_chapter='23831' or id_chapter='23830' or id_chapter='23829' or id_chapter='23828' or id_chapter='23827' or id_chapter='23826' or id_chapter='23825' or id_chapter='23824' or id_chapter='23823' or id_chapter='23822' or id_chapter='23821' or id_chapter='23820' or id_chapter='23819' or id_chapter='23818' or id_chapter='23817' or id_chapter='23816' or id_chapter='23815') 
+				group by id_chapter
+SQL succes
+Script took 0.16602993011475s to complete
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='557092' group by manga_pict.id limit 0,1
+================== Initalize ==================
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='557067' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='557068' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='557030' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='557031' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='557091' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556986' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556957' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556945' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556946' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556987' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556956' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556923' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556924' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556903' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556904' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556872' group by manga_pict.id limit 0,1
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556873' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556881' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556862' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556882' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556818' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556819' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556809' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556810' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556776' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556777' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556743' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556744' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556717' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556697' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556718' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556678' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556645' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556646' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556618' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556698' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556677' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556619' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556593' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556594' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556577' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556576' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556558' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556559' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556541' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556542' group by manga_pict.id limit 0,1
+================== Initalize ==================
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556502' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556503' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556430' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556431' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556410' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556411' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556384' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556385' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select * from manga_name
+SQL succes
+Do SQL: select manga_name.*, count(manga_chapter.id) 
+			as chapter_count from manga_name, manga_chapter where 
+			manga_name.id=manga_chapter.id_manga group by manga_name.id order 
+			by name asc limit 0,12
+SQL succes
+Do SQL: select * from manga_pict where id_manga in (0,186,308,162,1,314,2,3,4,206,218,139,140) group by id_manga
+SQL succes
+Script took 0.20104002952576s to complete
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='3' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='389' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='2930' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='494934' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='3549' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='480748' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='10875' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='11757' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344432' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='354760' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='13140' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='13178' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_chapter.*, manga_name.name as manganame 
+									from manga_chapter, manga_name where manga_chapter.id_manga='206' 
+									and manga_name.id=manga_chapter.id_manga
+									group by manga_chapter.id 
+									order by manga_chapter.name desc
+SQL succes
+Script took 0.08105206489563s to complete
+================== Initalize ==================
+Do SQL: select manga_chapter.*, manga_name.name as manganame 
+									from manga_chapter, manga_name where manga_chapter.id_manga='206' 
+									and manga_name.id=manga_chapter.id_manga
+									group by manga_chapter.id 
+									order by manga_chapter.name desc
+SQL succes
+Do SQL: select * from manga_pict where id_manga='206' and id_chapter='15687'
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344430' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344431' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344433' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344434' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344435' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344436' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344437' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344438' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344439' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344440' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344441' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344442' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344443' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344444' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344445' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344446' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344447' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344448' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344449' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344450' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344451' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344452' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344454' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344453' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344456' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344455' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344457' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344458' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344459' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344460' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344461' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344462' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344463' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344464' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344465' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344466' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344467' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344468' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344469' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344470' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_chapter.*, manga_name.name as manganame 
+									from manga_chapter, manga_name where manga_chapter.id_manga='206' 
+									and manga_name.id=manga_chapter.id_manga
+									group by manga_chapter.id 
+									order by manga_chapter.name desc
+SQL succes
+Script took 0.02391505241394s to complete
+================== Initalize ==================
+Do SQL: select manga_chapter.*, manga_name.name as manganame 
+									from manga_chapter, manga_name where manga_chapter.id_manga='206' 
+									and manga_name.id=manga_chapter.id_manga
+									group by manga_chapter.id 
+									order by manga_chapter.name desc
+SQL succes
+Do SQL: select * from manga_pict where id_manga='206' and id_chapter='15687'
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344430' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344431' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344432' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344433' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344434' group by manga_pict.id limit 0,1
+================== Initalize ==================
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344435' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344436' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344437' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344441' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344442' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344443' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344444' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344445' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344446' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344447' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344448' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344449' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344450' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344451' group by manga_pict.id limit 0,1
+================== Initalize ==================
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344454' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344439' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344452' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344453' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344440' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344455' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344456' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344457' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344458' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344459' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344460' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344462' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344463' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344464' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344465' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344466' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344467' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344468' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344469' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='344470' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_chapter.*, manga_name.name as name_manga, 
+					manga_name.id as id_manga, manga_name.add_time as add_manga, 
+					manga_name.last_update as update_manga from manga_name, 
+					manga_chapter where manga_name.id=manga_chapter.id_manga and 
+					manga_chapter.date_add > 1389289791 and 
+					manga_chapter.date_add < 1389894591 group by 
+					manga_chapter.id order by manga_chapter.id desc
+SQL succes
+Do SQL: select manga_chapter.*, manga_name.name as name_manga, 
+					manga_name.id as id_manga, manga_name.add_time as add_manga, 
+					manga_name.last_update as update_manga from manga_name, 
+					manga_chapter where manga_name.id=manga_chapter.id_manga and 
+					manga_chapter.date_add > 1388684991 and 
+					manga_chapter.date_add < 1389289791 group by 
+					manga_chapter.id order by manga_chapter.id desc
+SQL succes
+Do SQL: select manga_chapter.*, manga_name.name as name_manga, 
+					manga_name.id as id_manga, manga_name.add_time as add_manga, 
+					manga_name.last_update as update_manga from manga_name, 
+					manga_chapter where manga_name.id=manga_chapter.id_manga and 
+					manga_chapter.date_add > 1388080191 and 
+					manga_chapter.date_add < 1388684991 group by 
+					manga_chapter.id order by manga_chapter.id desc
+SQL succes
+Do SQL: select manga_chapter.*, manga_name.name as name_manga, 
+					manga_name.id as id_manga, manga_name.add_time as add_manga, 
+					manga_name.last_update as update_manga from manga_name, 
+					manga_chapter where manga_name.id=manga_chapter.id_manga and 
+					manga_chapter.date_add > 1387475391 and 
+					manga_chapter.date_add < 1388080191 group by 
+					manga_chapter.id order by manga_chapter.id desc
+SQL succes
+Do SQL: select manga_chapter.*, manga_name.name as name_manga, 
+					manga_name.id as id_manga, manga_name.add_time as add_manga, 
+					manga_name.last_update as update_manga from manga_name, 
+					manga_chapter where manga_name.id=manga_chapter.id_manga and 
+					manga_chapter.date_add > 1386870591 and 
+					manga_chapter.date_add < 1387475391 group by 
+					manga_chapter.id order by manga_chapter.id desc
+SQL succes
+Do SQL: select * from manga_pict where (id_chapter='23842' or id_chapter='23841' or id_chapter='23840' or id_chapter='23839' or id_chapter='23838' or id_chapter='23837' or id_chapter='23836' or id_chapter='23835' or id_chapter='23834' or id_chapter='23833' or id_chapter='23832' or id_chapter='23831' or id_chapter='23830' or id_chapter='23829' or id_chapter='23828' or id_chapter='23827' or id_chapter='23826' or id_chapter='23825' or id_chapter='23824' or id_chapter='23823' or id_chapter='23822' or id_chapter='23821' or id_chapter='23820' or id_chapter='23819' or id_chapter='23818' or id_chapter='23817' or id_chapter='23816' or id_chapter='23815') 
+				group by id_chapter
+SQL succes
+Script took 1.4388389587402s to complete
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='557091' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='557092' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='557067' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='557068' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='557030' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='557031' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556986' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556987' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556956' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556957' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556946' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556945' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556924' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556923' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556903' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556904' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556881' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556882' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556872' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556873' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556862' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556861' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556818' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556819' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556809' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556810' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556776' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556777' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556743' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556744' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556717' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556718' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556697' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556698' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556677' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556678' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556645' group by manga_pict.id limit 0,1
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556618' group by manga_pict.id limit 0,1
+SQL succes
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556646' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556619' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556593' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556594' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556576' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556577' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556558' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556559' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556542' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556541' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556502' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556503' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556430' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556431' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556410' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556411' group by manga_pict.id limit 0,1
+SQL succes
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556384' group by manga_pict.id limit 0,1
+SQL succes
+================== Initalize ==================
+Do SQL: select manga_name.name as name_manga, manga_chapter.name as name_chapter, manga_pict.name as name_pict from manga_name, manga_chapter, manga_pict where manga_name.id=manga_pict.id_manga and manga_chapter.id=manga_pict.id_chapter and manga_pict.id='556385' group by manga_pict.id limit 0,1
+SQL succes
