@@ -27,7 +27,7 @@ if (ENVIRONMENT == "development")
 	$log->enable();
 
 $router = &load_class("router");
-$router->folder = "newmanga";
+$router->folder = "mangareader";
 $db = &load_class("db");
 
 // Load base class controller

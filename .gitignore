@@ -1,0 +1,17 @@
+*.ipch
+*.exe
+#*.vcxproj
+#*.filters
+*.vcxproj.user
+*.pdb
+*.ilk
+*.tlog
+*.obj
+*.rule
+*.sdf
+*.log
+*.manifest
+*.lastbuildstate
+*.cache
+*.idb
+*.unsuccessfulbuild
