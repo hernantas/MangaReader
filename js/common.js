@@ -1,7 +1,6 @@
+// JavaScript Document
 
-var bpath="",
-	newsFeed = Array(),
-	newsFeedPage = 1,
+var newsFeed = Array(),
 	newsFeedSection = Array(),
 	newsFeedBodyWidth = 500,
 	newsFeedCurWidth = 0,
@@ -30,7 +29,7 @@ function newsFeedConstruct() {
 	// Create new section
 	for(var i=0;i<newsFeedBodyWidth/newsFeedWidth;i++) {
 		newsFeedSection[i] = $("<div></div>").addClass("section");
-		newsFeedSection[i].css("width",(newsFeedWidth)+"px");
+		newsFeedSection[i].css("width",(newsFeedWidth-newFeedMargin)+"px");
 		article.append(newsFeedSection[i]);
 	}
 	
@@ -54,47 +53,167 @@ function newsFeedConstruct() {
 	
 	return true;
 }
-
-function body_resize()
-{
-	newsFeedBodyWidth = $(window).width()>newsFeedWidth?($(window).width()-($(window).width()%newsFeedWidth)):newsFeedWidth;
-	if (newsFeedBodyWidth > newsFeedWidth*3) newsFeedBodyWidth = newsFeedWidth*3;
-	if (newsFeedCurWidth != newsFeedBodyWidth) {
-		newsFeedCurWidth = newsFeedBodyWidth; 
-		$("#body").width(newsFeedBodyWidth);
-		
-		newsFeedConstruct();
-	}	
+// Automatic more in newsfeed
+function btnMore() {
+	// Handle if button is triggered when ajax is still not complete loading
+	if (btnMoreEvent) return false;
+	btnMoreEvent = true;
+	
+	var btnmore = $("#nfmore");
+	
+	// Handle when btnmore not found (when not in home)
+	if (!btnmore) return false;
+	
+	btnmore.html("Loading...");
+	$.ajax({
+		url:"application/news_feed.php",
+		data:{
+			index: newsFeedPage
+		},
+		success: function(e) {
+			btnMoreEvent = false;
+			$("#article").append($("<div></div>").html(e));
+			newsFeedConstruct();
+			newsFeedPage++;
+			btnmore.html("More");
+		}
+	});
 }
 
-$(document).ready(function() 
-{
-	body_resize();
-	$(window).resize(function() { body_resize(); });
+$(document).ready(function(e) {
 	
-	var loadingfeed = false;
-	$("#newsfeedmore").click(function(evt)
-	{
-		if (!loadingfeed) {
-			loadingfeed = true;
-			$(this).html("Loading");
-			newsFeedPage++;
+	// Prevent href with link # to work
+	$("a[href=\"#\"]").click(function(e) {
+        e.preventDefault();
+    });
+	
+	// Resize body multiple 440
+	newsFeedBodyWidth = $(window).width()>newsFeedWidth?($(window).width()-($(window).width()%newsFeedWidth)):newsFeedWidth;
+	if (newsFeedBodyWidth > newsFeedWidth*3) newsFeedBodyWidth = newsFeedWidth*3;
+	newsFeedCurWidth = newsFeedBodyWidth;
+	$("#body").width(newsFeedBodyWidth);
+	
+	// Construct News Feed
+	newsFeedConstruct();
+	
+    // handle when window is resized
+	$(window).resize(function(e) {
+		newsFeedBodyWidth = $(window).width()>newsFeedWidth?($(window).width()-($(window).width()%newsFeedWidth)):newsFeedWidth;
+		if (newsFeedBodyWidth > newsFeedWidth*3) newsFeedBodyWidth = newsFeedWidth*3;
+		if (newsFeedCurWidth != newsFeedBodyWidth) {
+			newsFeedCurWidth = newsFeedBodyWidth; 
+			$("#body").width(newsFeedBodyWidth);
+			
+			newsFeedConstruct();
+		}
+    });
+	
+	$("#nfmore").click(function(e) {
+	// Handle btn more in news feed
+        btnMore();
+    });
+	
+	// Handle error check
+	$("*#err-img-chk").click(function(e) {
+        if ($(this).is(":checked"))
+		{
 			$.ajax({
-				url: "newsfeed/page/"+newsFeedPage+"/ajax",
-				success: function(e) {
-					$("#article").append();
-					$("#article").append($("<div></div>").html(e));
-					newsFeedConstruct();
-					$(this).html("More...");
-					loadingfeed = false;
-				}
+				url:"handler/pict_error_report.php?id="+$(this).attr("data-id")+"&chk=1"
+			});		
+		}
+		else
+		{
+			$.ajax({
+				url:"handler/pict_error_report.php?id="+$(this).attr("data-id")+"&chk=0"
 			});
 		}
-		evt.preventDefault();
+    });
+	
+	// Handle when scrolling
+	$(window).scroll(function(e) {
+		if ($("#nfmore").length != 0)
+			if ($(window).scrollTop()+$(window).height() >= $("#nfmore").offset().top) {
+				btnMore();	
+			}
+    });
+	
+	// Handle control panel close click
+	$(".controlpanel a[href=\"#close\"]").click(function(e) {
+        e.preventDefault();
+		$(".controlpanel").mouseleave();
+    });
+	// Handle Control panel mouseenter
+	var controlpanelTimer = null;
+	$(".controlpanel a").click(function(e) {
+    	if (!$(".controlpanel").hasClass("hover")) {
+			return false;	
+		}
+    });
+	$(".controlpanel").hover(function(e) {
+		controlpanelTimer = setTimeout(function() {
+		if (!controlpanelmoving && !controlpanelopen) {
+			controlpanelmoving = true;
+			$(".controlpanel").addClass("hover");
+			$(".controlpanel").css('margin-left',-$(".controlpanel").outerWidth()).animate({
+				'margin-left':'0px'
+			},200, function() {
+				controlpanelopen = true;
+				controlpanelmoving = false;	
+			});
+		}}, 200);
+	}, function(e) {
+		if (controlpanelTimer != null) { clearTimeout(controlpanelTimer); controlpanelTimer = null; }
+		if (!controlpanelmoving && controlpanelopen) {
+			controlpanelmoving = true;
+			controlpanelopen = false;
+			
+			$(".controlpanel").css('margin-left',0).animate({
+				'margin-left':-$(".controlpanel").outerWidth()
+			},200, function() {
+				$(".controlpanel").css("display","block");
+				$(".controlpanel").removeClass("hover");
+				$(".controlpanel").css('margin-left',0);
+				controlpanelmoving = false;	
+			});
+		}
 	});
 	
-	$("#selectnavigation").change(function()
-	{
-		window.location = bpath+"/manga/"+$(this).val();
+	/*$(".controlpanel").mouseenter(function(e) {
+		if (!controlpanelmoving && !controlpanelopen) {
+			controlpanelmoving = true;
+			controlpanelopen = true;
+			
+			$(".controlpanel").addClass("hover");
+			$(".controlpanel").css('margin-left',-$(".controlpanel").outerWidth()).animate({
+				'margin-left':'0px'
+			},200, function() {
+				controlpanelmoving = false;	
+			});
+		}
+    });
+	*/
+	/*
+	// Handle Control panel mouseleave
+	$(".controlpanel").mouseleave(function(e) {
+		if (!controlpanelmoving && controlpanelopen) {
+			controlpanelmoving = true;
+			controlpanelopen = false;
+			
+			$(".controlpanel").css('margin-left',0).animate({
+				'margin-left':-$(".controlpanel").outerWidth()
+			},200, function() {
+				$(".controlpanel").removeClass("hover");
+				$(".controlpanel").css('margin-left',0);
+				controlpanelmoving = false;	
+			});
+		}
 	});
+	*/
+	// Handle when image is error
+	$("*[data-report=\"error\"]").error(function(e) {
+        console.log("Error on: "+$(this).attr("data-id"));
+		$.ajax({
+			url:"handler/pict_error_report.php?id="+$(this).attr("data-id")
+		});
+    });
 });
