@@ -15,58 +15,63 @@
 	$query = NULL;
 	
 	// $query = $db->Query("select manga_chapter.*, manga_name.name as name_manga, manga_name.id as id_manga, manga_name.add_time as add_manga, manga_name.last_update as update_manga from manga_name, manga_chapter where manga_name.id=manga_chapter.id_manga and manga_chapter.date_add > ".($start)." group by manga_chapter.id order by manga_chapter.id desc");
-	$contQ = 0;
-	for ($i=0;true;$i++) {
-		$beforeStart = strtotime("-".$i." week", $start);
-		$beforeEnd = strtotime("+7 days", $beforeStart);
-		
-		$sql = "select manga_chapter.*, manga_name.name as name_manga, manga_name.id as id_manga, manga_name.add_time as add_manga, manga_name.last_update as update_manga from manga_name, manga_chapter where manga_name.id=manga_chapter.id_manga and manga_chapter.date_add > ".($beforeStart)." and manga_chapter.date_add < ".($beforeEnd)." group by manga_chapter.id order by manga_chapter.id desc";
-		$query = $db->Query($sql);
-		
-		$contQ = mysql_num_rows($query);
-		if ($contQ > 0) break;
-	}
+	$query = $db->Query("select * from manga_name");
 	
-	$hAdd = NULL;
-	$iAdd = NULL;
-	while ($dat = mysql_fetch_array($query)) {
-		if ($hAdd == NULL) 
-			$hAdd = "history.id_chapter='".$dat['id']."'";
-		else
-			$hAdd .= " or history.id_chapter='".$dat['id']."'";	
+	if (mysql_num_rows($query) > 0)
+	{
+	
+		$contQ = 0;
+		for ($i=0;true;$i++) {
+			$beforeStart = strtotime("-".$i." week", $start);
+			$beforeEnd = strtotime("+7 days", $beforeStart);
 			
-		if ($iAdd == NULL)
-			$iAdd = "id_chapter='".$dat['id']."'";
-		else
-			$iAdd .= " or id_chapter='".$dat['id']."'";
-		
-	}
-	$hQuery = "";
-	$hDat = array();
-	if (isset($dUser)) {
-		$hQuery = $db->Query("select history.id_chapter from history where (".$hAdd.") and history.user='".$dUser['id']."'");
-	
-		$hDat = array();
-		while ($dat = mysql_fetch_array($hQuery)) {
-			$hDat[$dat['id_chapter']] = true;	
+			$sql = "select manga_chapter.*, manga_name.name as name_manga, manga_name.id as id_manga, manga_name.add_time as add_manga, manga_name.last_update as update_manga from manga_name, manga_chapter where manga_name.id=manga_chapter.id_manga and manga_chapter.date_add > ".($beforeStart)." and manga_chapter.date_add < ".($beforeEnd)." group by manga_chapter.id order by manga_chapter.id desc";
+			$query = $db->Query($sql);
+			
+			$contQ = mysql_num_rows($query);
+			if ($contQ > 0) break;
 		}
-	}
-	
-	/*
-	$iQuery = $db->query("select * from manga_pict where (".$iAdd.") and page='1' group by id_chapter");
-	$iDat1 = array();
-	while ($dat = mysql_fetch_array($iQuery)) {
-		$iDat1[$dat['id_chapter']] = $dat['name'];
-	}
-	
-	$iQuery = $db->query("select * from manga_pict where (".$iAdd.") and page='2' group by id_chapter");
-	$iDat2 = array();
-	while ($dat = mysql_fetch_array($iQuery)) {
-		$iDat2[$dat['id_chapter']] = $dat['name'];
-	}
-	*/
-	
-	mysql_data_seek($query,0);
+		
+		$hAdd = NULL;
+		$iAdd = NULL;
+		while ($dat = mysql_fetch_array($query)) {
+			if ($hAdd == NULL) 
+				$hAdd = "history.id_chapter='".$dat['id']."'";
+			else
+				$hAdd .= " or history.id_chapter='".$dat['id']."'";	
+				
+			if ($iAdd == NULL)
+				$iAdd = "id_chapter='".$dat['id']."'";
+			else
+				$iAdd .= " or id_chapter='".$dat['id']."'";
+			
+		}
+		$hQuery = "";
+		$hDat = array();
+		if (isset($dUser)) {
+			$hQuery = $db->Query("select history.id_chapter from history where (".$hAdd.") and history.user='".$dUser['id']."'");
+		
+			$hDat = array();
+			while ($dat = mysql_fetch_array($hQuery)) {
+				$hDat[$dat['id_chapter']] = true;	
+			}
+		}
+		
+		/*
+		$iQuery = $db->query("select * from manga_pict where (".$iAdd.") and page='1' group by id_chapter");
+		$iDat1 = array();
+		while ($dat = mysql_fetch_array($iQuery)) {
+			$iDat1[$dat['id_chapter']] = $dat['name'];
+		}
+		
+		$iQuery = $db->query("select * from manga_pict where (".$iAdd.") and page='2' group by id_chapter");
+		$iDat2 = array();
+		while ($dat = mysql_fetch_array($iQuery)) {
+			$iDat2[$dat['id_chapter']] = $dat['name'];
+		}
+		*/
+		
+		mysql_data_seek($query,0);
 ?>
 <div id="article" class="clearfix">
 <?php
@@ -142,5 +147,19 @@
 		$dat = $datNext;
 	}
 	//echo "</div>";
+	
+	}
+	else
+	{
+		?>
+		
+		<div class="dt panel">
+			<div class="warp">
+				No manga available, add more to in directory and <a href="?sk=sc">Scan Directory</a> to add it.
+			</div>
+		</div>
+		
+		<?php
+	}
 ?>
 </div>
