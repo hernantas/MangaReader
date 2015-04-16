@@ -13,8 +13,6 @@ This web is for Manga that placed on folder based structur like this:
 		- Chapter Name 2
 		- Chapter Name etc
 
-Check my project development at Trello: https://trello.com/b/q5llo6Ud/manga-read-web
-
 Feature(s)
 ----------
 - News Feed
@@ -24,15 +22,27 @@ Feature(s)
 - Folder Scanning
 - Server Status
 
+Installation
+------------
+1. Copy to your web directory. For example if you use xampp, copy to htdoc folder.
+2. Open phpmyadmin
+4. Create database named manga
+5. import manga.sql to database
+6. open config.php and edit $CFG['MANGA_PATH'] = "D:/Manga"; to your manga directory
+7. done. you can open the web using (ex: localhost/yourfolder)
+
 Bug/Issue report
 ----------------
 Please use issue page to report any bug or issue. Don't email me.
 
 Commercial Use
 --------------
-
 Any kind of damage or security issue not contributor vault and not guaranteed, so use at your own risk.
 
 Want to Contribute?
 -------------------
 Please email me at hernantas@gmail.com
+
+Next Version
+------------
+At the next version this application will be more faster (at my system it's up to 4x faster) & more stable. I have my college and jobs so don't expect the next version come fast and i can't really set ETA. If you want to try you can get it from development branch
