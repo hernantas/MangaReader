@@ -17,12 +17,14 @@
 						<td class=\"first-column\" colspan=\"3\">Today</td>
 					</tr>";
 		$nDate = "";
-		if (mysql_num_rows($qH) == 0) {
+		if (mysql_num_rows($qH) == 0) 
+		{
 			echo "<tr class=\"blk\">
 					<td class=\"first-column\" colspan=\"3\">No history yet for this manga</td>
 				</tr>";	
 		}
-        while ($dat = mysql_fetch_array($qH)) {
+        while ($dat = mysql_fetch_array($qH)) 
+		{
 			$f = false;
 			if ($nDate != date("d/m/Y",$dat['time']) && $nDate != "") {
 				echo "<tr class=\"blk\">
