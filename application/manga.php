@@ -61,7 +61,7 @@
 	    <table class="table-list" cellpadding="0" cellspacing="0" border="0" width="100%">
 	        <tr>
 	            <td><b>Name</b></td>
-	            <td align="center"><b>Date Add</b></td>
+	            <td align="center" width="125"><b>Date Add</b></td>
 	        </tr>
 	        <?php
 	            $timeLimit = time()-(6*24*3600);
