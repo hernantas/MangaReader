@@ -15,5 +15,6 @@
 *.cache
 *.idb
 *.unsuccessfulbuild
+.project
 log/
 thumb/
