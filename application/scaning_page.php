@@ -36,12 +36,27 @@
         <div class="warp desc">
             <?php echo L_TOOLTIP_CHOSE_SCAN_; ?>
         </div>
-        <div>
-            <b>Scan option</b>
-            <label><input type="radio" name="mode" value="mode-fast" /> Fast</label>
-            <label><input checked="checked" type="radio" name="mode" /> Medium</label>
-            <label><input type="radio" name="mode" /> Slow</label>
-            <span class="desc">(Experimental, not enabled by default)</span>
+        <div class="warp" id="scan-option">
+            <b>Scan option: [ <a href="#" id="check-all">Check All</a> / <a id="uncheck-all" href="#">Uncheck All</a> ] </b><span class="desc">(Experimental)</span>
+			<div>
+				<label>
+					<input id="mode-fast" type="radio" name="mode" value="mode-fast" /> Fast <span class="desc">Only check if there is new manga</span>
+				</label><br />
+				<label>
+					<input id="mode-medium" checked="checked" type="radio" name="mode" value="mode-medium" /> Medium <span class="desc">Check if there is a new manga or chapter, but will not check picture</span>
+				</label><br />
+				<label>
+					<input id="mode-slow" type="radio" name="mode" value="mode-slow" /> Slow <span class="desc">Check for everything, slower but all the database index will be same as your folder</span>
+				</label><br />
+            </div>
+			<!--
+			<div>
+				<label>
+					<input type="checkbox" id="img-flush" value="Flush" /> Flush
+					<span class="desc">Destroy all image index, you won't be able to read when scan in this mode</span>
+				</label>
+			</div>
+			-->
         </div>
         <div id="loading" class="loading-box" style="display:none;">
             <div id="load_box" class="loading"></div>
@@ -51,7 +66,8 @@
 		        <?php	
 		            $inc = 0;
 		            foreach($folder as $fld) {
-		                if (is_dir($CFG['MANGA_PATH'] . "\\" . $fld) && $fld != '.' && $fld != '..') {
+		                if (is_dir($CFG['MANGA_PATH'] . "\\" . $fld) && $fld != '.' && $fld != '..') 
+						{
 		                    $inc++;
 		                    //$qs = $db->Query("select * from `manga_name` where `name`=\"" . $fld . "\" limit 0,1");
 		                    // $mNum = mysql_num_rows($qs);
@@ -59,7 +75,8 @@
 		                    // $isNew = 1;
 		                    // ($mId['scan']||$mNum == 0?"checked=\"checked\"":"")
 							$bchek = false;
-							if (array_key_exists($fld,$manga_data)) {
+							if (array_key_exists($fld,$manga_data)) 
+							{
 								$bchek = $manga_data[$fld]['completed'];
 							}
 		                    echo "<div class=\"opt\"><input type=\"checkbox\" ".(!$bchek?"checked=\"checked\" style=\"visibility:hidden;\"":"")." id=\"chk_" . $inc . "\" name=\"folder\" value=\"" . $fld . "\" /><label id=\"lbl_" . $inc . "\" for=\"chk_" . $inc . "\">" . $fld . "</label></div>";
