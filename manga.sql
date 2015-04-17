@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2015 at 06:17 AM
+-- Generation Time: Apr 17, 2015 at 01:53 PM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.3
 
@@ -35,8 +35,10 @@ CREATE TABLE IF NOT EXISTS `history` (
   `id_page` int(11) NOT NULL,
   `user` int(64) NOT NULL,
   `time` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=122637 ;
+  PRIMARY KEY (`id`),
+  KEY `id_manga` (`id_manga`),
+  KEY `id_chapter` (`id_chapter`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=124272 ;
 
 -- --------------------------------------------------------
 
@@ -63,8 +65,9 @@ CREATE TABLE IF NOT EXISTS `manga_chapter` (
   `id_manga` int(11) NOT NULL,
   `date_add` int(11) NOT NULL,
   `valid` enum('0','1') NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=48928 ;
+  PRIMARY KEY (`id`),
+  KEY `id_manga` (`id_manga`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50524 ;
 
 -- --------------------------------------------------------
 
@@ -95,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `manga_name` (
   `completed` enum('0','1') NOT NULL DEFAULT '1',
   `valid` enum('0','1') NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=476 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=487 ;
 
 -- --------------------------------------------------------
 
@@ -110,9 +113,8 @@ CREATE TABLE IF NOT EXISTS `manga_pict` (
   `id_chapter` int(11) NOT NULL,
   `page` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_chapter` (`id_chapter`),
-  KEY `id_chapter_2` (`id_chapter`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1088738 ;
+  KEY `id_chapter` (`id_chapter`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2180315 ;
 
 -- --------------------------------------------------------
 
