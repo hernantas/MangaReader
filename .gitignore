@@ -16,5 +16,7 @@
 *.idb
 *.unsuccessfulbuild
 .project
-log/
-thumb/
+log/*
+thumb/*
+!log/index.html
+!thumb/index.html
