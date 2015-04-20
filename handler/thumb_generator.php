@@ -19,8 +19,6 @@
 			$skip = true;
 		}
 		
-		$skip = true;
-		
 		$fileNumCheck = 1;
 		while (file_exists("../thumb/thumb-".$fileNumCheck.".css"))
 		{
