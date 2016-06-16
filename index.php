@@ -34,6 +34,27 @@
     $environment = 'development';
 
     /**
+     * Path to System directory where framework is located.
+     *
+     * @var string
+     */
+    $systemPath = 'system';
+
+    /**
+     * Path to App directory where your application is located.
+     *
+     * @var string
+     */
+    $appPath = 'app';
+
+    /**
+     * Path to Public directory where your public file is located (CSS, JS, Images, etc).
+     *
+     * @var string
+     */
+    $publicPath = 'public';
+
+    /**
      * STOP, DO NOT MODIFY BELLOW THIS LINE.
      *
      * This is the end of core configuration.
@@ -54,9 +75,20 @@
     }
 
     /**
+     * Clean and fix path variable.
+     */
+    $systemPath = rtrim(str_replace('\\', '/', $systemPath),'/') . '/';
+    $appPath = rtrim(str_replace('\\', '/', $appPath),'/') . '/';
+    $publicPath = rtrim(str_replace('\\', '/', $publicPath),'/') . '/';
+
+    /**
      * GLOBAL CONSTANT
      *
      * Define global constant variable for later use.
      */
     define('ENVIRONMENT', $environment);
+    define('BASE_PATH', rtrim(str_replace('\\', '/', dirname(__FILE__)),'/') . '/');
+    define('SYSTEM_PATH', $systemPath);
+    define('APP_PATH', $appPath);
+    define('PUBLIC_PATH', $publicPath);
 ?>
