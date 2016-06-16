@@ -68,10 +68,12 @@
         case 'development':
         case 'testing':
             error_reporting(E_ALL);
+            break;
 
         case 'release':
         default:
             error_reporting(0);
+            break;
     }
 
     /**
