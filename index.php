@@ -16,4 +16,47 @@
      * @link http://www.hernantas.com
      */
 
+    /**
+     * Core Configuration
+     *
+     * BECAREFUL WHEN MODIFYING BELLOW THIS LINE.
+     *
+     * This is core configuration to determine basic behaviour such as environment
+     * settings, framework location and default app location. Invalid configuration
+     * will break the project.
+     */
+
+    /**
+     * Set project environment settings.
+     *
+     * @var string
+     */
+    $environment = 'development';
+
+    /**
+     * STOP, DO NOT MODIFY BELLOW THIS LINE.
+     *
+     * This is the end of core configuration.
+     */
+
+    /**
+     * Set PHP error reporting based on environment settings.
+     */
+    switch ($environment)
+    {
+        case 'development':
+        case 'testing':
+            error_reporting(E_ALL);
+
+        case 'release':
+        default:
+            error_reporting(0);
+    }
+
+    /**
+     * GLOBAL CONSTANT
+     *
+     * Define global constant variable for later use.
+     */
+    define('ENVIRONMENT', $environment);
 ?>
