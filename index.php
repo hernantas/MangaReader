@@ -27,7 +27,7 @@
      */
 
     /**
-     * Set project environment settings.
+     * Project environment settings.
      *
      * @var string
      */
