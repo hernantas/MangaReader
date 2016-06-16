@@ -91,4 +91,9 @@
     define('SYSTEM_PATH', $systemPath);
     define('APP_PATH', $appPath);
     define('PUBLIC_PATH', $publicPath);
+
+    /**
+     * Begin Bootstraping necessary file.
+     */
+    include(SYSTEM_PATH . 'core/Core.php');
 ?>
