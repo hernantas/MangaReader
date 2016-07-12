@@ -2,7 +2,7 @@
 
     if (!function_exists('loadClass'))
     {
-        function loadClass($className, $package='library', $vendors=[APP_PATH, SYSTEM_PATH])
+        function &loadClass($className, $package='library', $vendors=[APP_PATH, SYSTEM_PATH])
         {
             static $instance = array();
 
