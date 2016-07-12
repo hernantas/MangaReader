@@ -39,6 +39,53 @@
         }
 
         /**
+         * Safe Array Configuration to a config file.
+         *
+         * @param  string $name   Config name
+         * @param  array  $config Config array
+         */
+        public function save($name, $config)
+        {
+            $fp = fopen(APP_PATH . 'config/'.$name.'.php', "w");
+            fwrite($fp, '<?php' . PHP_EOL);
+            fwrite($fp, "\t// Config Generated At: " . date('d-M-Y H:i:s') . PHP_EOL . PHP_EOL);
+            fwrite($fp, "\treturn");
+            $this->writeToConfig($fp, $config);
+            fwrite($fp, PHP_EOL . '?>');
+            fclose($fp);
+        }
+
+        /**
+         * Write Array to the config file.
+         *
+         * @param  object $handler File Handler
+         * @param  array  $arr     Array to be written to config file
+         * @param  int    $offset  Tab offset
+         */
+        private function writeToConfig($handler, $arr, $offset=1)
+        {
+            fwrite($handler, '[');
+            $first = true;
+            foreach ($arr as $key=>$val)
+            {
+                fwrite($handler, ($first === false?',':'') . PHP_EOL .
+                    str_repeat("\t", $offset+1) . '"' . $key . '" => ');
+
+                if (is_array($val))
+                {
+                    $this->writeToConfig($handler, $val, $offset+1);
+                }
+                else
+                {
+                    fwrite($handler, ' "' . $val . '"');
+                }
+                $first = false;
+            }
+            fwrite($handler, PHP_EOL . str_repeat("\t", $offset) .
+                ']' . ($offset==1?';':''));
+        }
+
+        /**
          * Get configuration by key in config file.
          *
          * @param  string $name    Config file name
