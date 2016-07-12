@@ -97,5 +97,5 @@
     /**
      * Begin Bootstraping neccessary file.
      */
-    include(SYSTEM_PATH . 'core/Core.php');
+    require(SYSTEM_PATH . 'core/Core.php');
 ?>
