@@ -34,21 +34,21 @@
     $environment = 'development';
 
     /**
-     * Path to System directory where framework is located.
+     * Path to System directory where framework vendor is located.
      *
      * @var string
      */
     $systemPath = 'system';
 
     /**
-     * Path to App directory where your application is located.
+     * Path to App directory where your application vendor is located.
      *
      * @var string
      */
     $appPath = 'app';
 
     /**
-     * Path to Public directory where your public file is located (CSS, JS, Images, etc).
+     * Path to Public directory where your public files is located (CSS, JS, Images, etc).
      *
      * @var string
      */
@@ -95,7 +95,7 @@
     define('PUBLIC_PATH', $publicPath);
 
     /**
-     * Begin Bootstraping necessary file.
+     * Begin Bootstraping neccessary file.
      */
     include(SYSTEM_PATH . 'core/Core.php');
 ?>
