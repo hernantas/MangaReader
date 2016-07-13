@@ -68,10 +68,20 @@
         {
             fwrite($handler, '[');
             $first = true;
+            $prevNumber = -1;
             foreach ($arr as $key=>$val)
             {
                 fwrite($handler, ($first === false?',':'') . PHP_EOL .
-                    str_repeat("\t", $offset+1) . '"' . $key . '" => ');
+                    str_repeat("\t", $offset+1));
+
+                if (is_numeric($key) && $prevNumber === $key-1)
+                {
+                    $prevNumber = $key;
+                }
+                else
+                {
+                    fwrite($handler, '"' . $key . '" => ');
+                }
 
                 if (is_array($val))
                 {
@@ -79,7 +89,7 @@
                 }
                 else
                 {
-                    fwrite($handler, ' "' . $val . '"');
+                    fwrite($handler, '"' . $val . '"');
                 }
                 $first = false;
             }
