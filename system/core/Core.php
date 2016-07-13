@@ -4,4 +4,5 @@
 
     $config =& loadClass('Config', 'Core');
     $vendor =& loadClass('Vendor', 'Core');
+    $uri =& loadClass('URI', 'Core');
 ?>
