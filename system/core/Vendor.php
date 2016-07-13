@@ -11,20 +11,23 @@
     {
         public function __construct()
         {
-            $dirs = scandir(BASE_PATH);
-            $length = count($dirs);
-            $arr = array();
-            for ($i=0;$i<count($dirs);$i++)
+            if (ENVIRONMENT == 'testing' || ENVIRONMENT == 'development')
             {
-                if ($dirs[$i] != '.' && $dirs[$i] != '..' && $dirs[$i] != '.git' &&
-                    is_dir($dirs[$i]))
+                $dirs = scandir(BASE_PATH);
+                $length = count($dirs);
+                $arr = array();
+                for ($i = 0 ; $i < count($dirs) ; $i++)
                 {
-                    $arr[] = $dirs[$i];
+                    if ($dirs[$i] != '.' && $dirs[$i] != '..' && $dirs[$i] != '.git' &&
+                        is_dir($dirs[$i]))
+                    {
+                        $arr[] = $dirs[$i];
+                    }
                 }
-            }
 
-            $config =& loadClass('Config', 'Core');
-            $config->save('Vendor', $arr);
+                $config =& loadClass('Config', 'Core');
+                $config->save('Vendor', $arr);
+            }
         }
     }
 
