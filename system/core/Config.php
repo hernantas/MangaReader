@@ -53,6 +53,8 @@
             $this->writeToConfig($fp, $config);
             fwrite($fp, PHP_EOL . '?>');
             fclose($fp);
+
+            $this->cache[$name] = $config;
         }
 
         /**
