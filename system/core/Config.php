@@ -49,7 +49,7 @@
             $fp = fopen(APP_PATH . 'config/'.$name.'.php', "w");
             fwrite($fp, '<?php' . PHP_EOL);
             fwrite($fp, "\t// Config Generated At: " . date('d-M-Y H:i:s') . PHP_EOL . PHP_EOL);
-            fwrite($fp, "\treturn");
+            fwrite($fp, "\treturn ");
             $this->writeToConfig($fp, $config);
             fwrite($fp, PHP_EOL . '?>');
             fclose($fp);
