@@ -9,6 +9,8 @@
      */
     class Vendor
     {
+        private $vendors = array();
+
         public function __construct()
         {
             if (ENVIRONMENT == 'testing' || ENVIRONMENT == 'development')
@@ -27,7 +29,13 @@
 
                 $config =& loadClass('Config', 'Core');
                 $config->save('Vendor', $arr);
+                $this->vendors = $arr;
             }
+        }
+
+        public function lists()
+        {
+            return $this->vendors;
         }
     }
 
