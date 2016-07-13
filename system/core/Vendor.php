@@ -31,6 +31,16 @@
                 $config->save('Vendor', $arr);
                 $this->vendors = $arr;
             }
+            else
+            {
+                $config =& loadClass('Config', 'Core');
+                $arr = $config->load('Vendor');
+
+                if ($arr !== false)
+                {
+                    $this->vendors = $arr;
+                }
+            }
         }
 
         public function lists()
