@@ -31,7 +31,7 @@
             $url = $url['path'];
             $url = rtrim($url, '/');
 
-            $dirname = '/'.basename(BASE_PATH);
+            $dirname = '/' . basename(BASE_PATH);
 
             if (strpos($url, $dirname) === 0)
             {
