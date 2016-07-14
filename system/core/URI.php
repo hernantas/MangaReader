@@ -11,6 +11,7 @@
     {
         private $dirname = '';
 
+        private $urlString = '';
         private $urlSegment = array();
         private $urlSegmentPair = array();
 
@@ -40,6 +41,7 @@
 
             if ($url === '') $url = '/';
 
+            $this->urlString = $url;
             $ex = explode('/', $url);
             $this->urlSegment = $ex;
         }
@@ -95,6 +97,16 @@
 
             return isset($this->urlSegmentPair[$offset][$key]) ?
                 $this->urlSegmentPair[$offset][$key] : $default;
+        }
+
+        /**
+         * Get Requested URL as string
+         *
+         * @return string URL
+         */
+        public function string()
+        {
+            return $this->urlString;
         }
     }
 
