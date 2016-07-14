@@ -39,7 +39,7 @@
                 $url = substr($url, strlen($dirname));
             }
 
-            if ($url === '') $url = '/';
+            if ($url === '' || $url === false) $url = '/';
 
             $this->urlString = $url;
             $ex = explode('/', $url);
