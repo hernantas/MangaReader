@@ -57,4 +57,16 @@
         }
     }
 
+    if (!function_exists('not_found'))
+    {
+        function not_found($page='')
+        {
+            echo "<div>";
+                echo "<h1>Requested page not found</h1>";
+                echo '<span>Your Requested page' . ($page==='' ? '' : '"'.$page.'"') .
+                    ' not found on this server and return 404 error response.</span>';
+            echo "</div>";
+            exit(0);
+        }
+    }
 ?>
