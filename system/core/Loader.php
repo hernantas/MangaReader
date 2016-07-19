@@ -4,6 +4,20 @@
     {
         private $instance = array();
 
+        public function page($name, $method='index')
+        {
+            $page = $this->loadClass($name, 'Page');
+
+            if ($page === false || method_exists($page, $method) === false)
+            {
+                not_found();
+            }
+            else
+            {
+                $page->$method();
+            }
+        }
+
         private function loadFile($name, $package='library', $data=array())
         {
             $vendors =& loadClass('Vendor', 'Core');
