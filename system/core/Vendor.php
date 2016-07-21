@@ -2,8 +2,6 @@
     namespace Core;
 
     /**
-     * Vendor Class
-     *
      * Manage vendor and can automatically detect vendor.
      *
      * @package Core

@@ -2,8 +2,6 @@
     namespace Core;
 
     /**
-     * Config Class
-     *
      * Provide method to read, write and cache configuration file.
      *
      * @package Core

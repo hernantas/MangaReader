@@ -1,9 +1,7 @@
 <?php
     namespace Core;
-    
+
     /**
-     * URI Class
-     *
      * Change user requested URL to be more easy to use.
      *
      * @package Core
