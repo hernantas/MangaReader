@@ -1,4 +1,5 @@
 <?php
+    namespace Core;
 
     /**
      * Vendor Class
@@ -13,7 +14,7 @@
 
         public function __construct()
         {
-            if (ENVIRONMENT == 'testing' || ENVIRONMENT == 'development')
+            if (ENVIRONMENT == 'development')
             {
                 $dirs = scandir(BASE_PATH);
                 $length = count($dirs);
