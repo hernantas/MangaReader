@@ -1,6 +1,12 @@
 <?php
     namespace DB\Driver;
 
+    /**
+     * Database driver for MYSQL using MYSQLI rather than default and deprecated
+     * MYSQL which is recommended by most PHP developer.
+     *
+     * @package Core
+     */
     class MYSQLI implements IDriver
     {
         private $mysqli;
