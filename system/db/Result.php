@@ -11,6 +11,11 @@
             $this->sql = $sql;
             $this->data = $data;
         }
+
+        public function syntax()
+        {
+            return $this->sql;
+        }
     }
 
 ?>
