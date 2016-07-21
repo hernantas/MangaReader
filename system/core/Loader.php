@@ -1,6 +1,12 @@
 <?php
     namespace Core;
 
+    /**
+     * Provide method to load specific class or file from recognized package like
+     * library, page, etc.
+     *
+     * @package Core
+     */
     class Loader
     {
         private $instance = array();
