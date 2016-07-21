@@ -15,7 +15,7 @@
 
             if ($page === false || method_exists($page, $method) === false)
             {
-                not_found();
+                not_found($name . ($method!='index'?'/'.$method:''));
             }
             else
             {
