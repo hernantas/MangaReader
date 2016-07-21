@@ -1,4 +1,5 @@
 <?php
+    namespace DB;
 
     include (SYSTEM_PATH . 'db/IDriver.php');
 
