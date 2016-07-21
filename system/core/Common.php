@@ -57,9 +57,9 @@
         }
     }
 
-    if (!function_exists('not_found'))
+    if (!function_exists('notFound'))
     {
-        function not_found($page='')
+        function notFound($page='')
         {
             echo "<div>";
                 echo "<h1>404 Page not found</h1>";
