@@ -6,4 +6,6 @@
     $vendor =& loadClass('Vendor', 'Core');
     $uri =& loadClass('URI', 'Core');
     $router =& loadClass('Router', 'Core');
+
+    $router->routing();
 ?>
