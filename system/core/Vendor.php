@@ -8,6 +8,11 @@
      */
     class Vendor
     {
+        /**
+         * Cache vendor list
+         *
+         * @var array
+         */
         private $vendors = array();
 
         public function __construct()
