@@ -2,7 +2,7 @@
 
     if (!function_exists('loadClass'))
     {
-        function &loadClass($className, $package='library', $vendors=[APP_PATH, SYSTEM_PATH])
+        function &loadClass($name, $package='library', $vendors=[APP_PATH, SYSTEM_PATH])
         {
             static $instance = array();
 
@@ -11,33 +11,36 @@
                 $vendors = array($vendors);
             }
 
-            $className = strtolower($className);
-            $class = false;
+            $package = strtolower($package);
+            $name = strtolower($name);
+            $class = $package.'\\'.$name;
 
-            if (isset($instance[$package]) && isset($instance[$package][$className]))
+            if (isset($instance[$class]))
             {
-                return $instance[$package][$className];
+                return $instance[$class];
             }
 
+            $fileFound = false;
             foreach ($vendors as $vendor)
             {
                 $vendor = rtrim(strtolower($vendor), '/') . '/';
 
-                if (file_exists($vendor . $package . '/' . $className . '.php'))
+                if (file_exists($vendor . $package . '/' . $name . '.php'))
                 {
-                    include ($vendor . $package . '/' . $className . '.php');
-                    $class = $className;
+                    include ($vendor . $package . '/' . $name . '.php');
+                    $fileFound = true;
                     break;
                 }
             }
 
-            if ($class === false)
+            if ($fileFound === false || class_exists($class) === false)
             {
-                exit('Class "'.$className.'" is not found on "'.$package.'" package.');
+                exit('Class "'.$name.'" is not found on "'.$package.'" package.');
             }
 
-            $class = new $class();
-            $instance[$package][$className] = $class;
+            $name = $class;
+            $class = new $name();
+            $instance[$name] = $class;
             return $class;
         }
     }
