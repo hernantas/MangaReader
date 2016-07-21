@@ -8,10 +8,32 @@
      */
     class URI
     {
+        /**
+         * Directory name which this project is located. Relative from host url.
+         *
+         * @var string
+         */
         private $dirname = '';
 
+        /**
+         * URL string
+         *
+         * @var string
+         */
         private $urlString = '';
+
+        /**
+         * URL splitted into segment
+         *
+         * @var array
+         */
         private $urlSegment = array();
+
+        /**
+         * URL splitted into segment but paired as key value pair
+         *
+         * @var array
+         */
         private $urlSegmentPair = array();
 
         public function __construct()
