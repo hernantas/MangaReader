@@ -1,4 +1,5 @@
 <?php
+    namespace DB\Driver;
 
     interface IDriver
     {
