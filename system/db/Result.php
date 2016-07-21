@@ -1,6 +1,12 @@
 <?php
     namespace DB;
 
+    /**
+     * Database result when Query is performed regardless query is successful or
+     * failed.
+     *
+     * @package Core
+     */
     class Result
     {
         private $sql;
