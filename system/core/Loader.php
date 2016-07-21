@@ -47,26 +47,11 @@
             return false;
         }
 
-        private function loadClass($name, $package='library')
+        private function &loadClass($name, $package='library')
         {
-            $package = strtolower($package);
-            $name = strtolower($name);
-
-            if (isset($this->instance[$package]) && isset($this->instance[$package][$name]))
-            {
-                return $this->instance[$package][$name];
-            }
-
-            $hasFile = $this->loadFile($name, $package);
-
-            if ($hasFile === false || class_exists($name) === false)
-            {
-                return false;
-            }
-
-            $class = new $name();
-            $this->instance[$package][$name] = $class;
-            return $class;
+            $vendors =& loadClass('Vendor', 'Core');
+            $list = $vendors->lists();
+            return loadClass($name, $package, $list);
         }
     }
 
