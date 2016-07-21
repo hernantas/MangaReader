@@ -6,6 +6,11 @@
 
         public function page($name, $method='index')
         {
+            if ($name==='')
+            {
+                $name = 'home';
+            }
+
             $page = $this->loadClass($name, 'Page');
 
             if ($page === false || method_exists($page, $method) === false)
