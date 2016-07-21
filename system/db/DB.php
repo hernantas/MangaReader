@@ -14,13 +14,13 @@
 
             if ($cfg !== false)
             {
-                $this->driver($cfg['driver']);
+                $this->selectDriver($cfg['driver']);
                 $this->connect($cfg['host'], $cfg['user'], $cfg['password']);
                 $this->database($cfg['database'], false);
             }
         }
 
-        public function driver($name)
+        public function selectDriver($name)
         {
             $loader =& loadClass('Loader', 'Core');
             $this->driver = $loader->dbDriver($name);
