@@ -38,7 +38,14 @@
 
         public function query($sql, $data=[])
         {
-
+            if (count($data) > 0)
+            {
+                return $this->dbDriver->bind($sql, $data);
+            }
+            else
+            {
+                return $this->dbDriver->query($sql);
+            }
         }
     }
 
