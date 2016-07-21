@@ -19,31 +19,47 @@
         {
             if (ENVIRONMENT == 'development')
             {
-                $dirs = scandir(BASE_PATH);
-                $length = count($dirs);
-                $arr = array();
-                for ($i = 0 ; $i < count($dirs) ; $i++)
-                {
-                    if ($dirs[$i] != '.' && $dirs[$i] != '..' && $dirs[$i] != '.git' &&
-                        is_dir($dirs[$i]))
-                    {
-                        $arr[] = $dirs[$i];
-                    }
-                }
-
-                $config =& loadClass('Config', 'Core');
-                $config->save('Vendor', $arr);
-                $this->vendors = $arr;
+                $this->generateConfig();
             }
             else
             {
-                $config =& loadClass('Config', 'Core');
-                $arr = $config->load('Vendor');
+                $this->loadConfig();
+            }
+        }
 
-                if ($arr !== false)
+        /**
+         * Generate Config that contain vendor list
+         */
+        private function generateConfig()
+        {
+            $dirs = scandir(BASE_PATH);
+            $length = count($dirs);
+            $arr = array();
+            for ($i = 0 ; $i < count($dirs) ; $i++)
+            {
+                if ($dirs[$i] != '.' && $dirs[$i] != '..' && $dirs[$i] != '.git' &&
+                    is_dir($dirs[$i]))
                 {
-                    $this->vendors = $arr;
+                    $arr[] = $dirs[$i];
                 }
+            }
+
+            $config =& loadClass('Config', 'Core');
+            $config->save('Vendor', $arr);
+            $this->vendors = $arr;
+        }
+
+        /**
+         * Load vendor list from config
+         */
+        private function loadConfig()
+        {
+            $config =& loadClass('Config', 'Core');
+            $arr = $config->load('Vendor');
+
+            if ($arr !== false)
+            {
+                $this->vendors = $arr;
             }
         }
 
