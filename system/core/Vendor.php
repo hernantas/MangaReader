@@ -43,6 +43,11 @@
             }
         }
 
+        /**
+         * Get vendor list
+         *
+         * @return array Vendor list as an array
+         */
         public function lists()
         {
             return $this->vendors;
