@@ -1,19 +1,18 @@
 <?php
+    namespace DB\Driver;
 
-    class DB_MYSQLI implements IDriver
+    class MYSQLI implements IDriver
     {
         private $mysqli;
 
         public function connect($host, $user, $password)
         {
-            $this->mysqli = new mysqli($host, $user, $password);
-            return !((bool)$this->mysqli->connect_error);
+            $this->mysqli = new \mysqli($host, $user, $password);
         }
 
         public function database($name)
         {
             $this->mysqli->select_db($name);
-            return !((bool)$this->mysqli->connect_error);
         }
 
         public function query($sql)
