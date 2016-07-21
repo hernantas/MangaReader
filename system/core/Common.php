@@ -52,7 +52,7 @@
             {
                 return $loaded;
             }
-            
+
             $loaded[$package][$name] = strtolower($name);
         }
     }
