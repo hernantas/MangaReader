@@ -1,5 +1,11 @@
 <?php
+    namespace Core;
 
+    /**
+     * Provide access routing from user requested page to the specific handler page.
+     *
+     * @package Core
+     */
     class Router
     {
         private $route = array();
