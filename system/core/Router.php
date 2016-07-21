@@ -8,6 +8,11 @@
      */
     class Router
     {
+        /**
+         * Route configuration.
+         *
+         * @var array
+         */
         private $route = array();
 
         public function __construct()
