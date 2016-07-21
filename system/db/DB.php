@@ -21,12 +21,8 @@
 
         public function driver($name)
         {
-            $vendor =& loadClass('Vendor', 'Core');
-
-            if (file_exists(SYSTEM_PATH.'db/driver/'.$name.'.php'))
-            {
-                include (SYSTEM_PATH.'db/driver/'.$name.'.php');
-            }
+            $loader =& loadClass('Loader', 'Core');
+            $this->dbDriver = $loader->dbDriver($name);
         }
 
         public function connect($host, $user, $password='')
