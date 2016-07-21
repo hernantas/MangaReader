@@ -60,7 +60,9 @@
             $uri =& loadClass('Uri', 'Core');
             $url = $this->findRoute($uri->string());
 
-            echo $url;
+            $urls = explode('/', trim($url, '/'));
+            $loader =& loadClass('Loader', 'Core');
+            $loader->page($urls[0], isset($urls[1])?$urls[1]:'index');
         }
     }
 
