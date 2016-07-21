@@ -33,13 +33,15 @@
                 }
             }
 
+            $class = str_replace('/', '\\', $class);
             if ($fileFound === false || class_exists($class) === false)
             {
-                exit('Class "'.$name.'" is not found on "'.$package.'" package.');
+                echo ('Class "'.$name.'" is not found on "'.$package.'" package.');
+                exit(-1);
             }
 
             $name = $class;
-            $class = new $name();
+            $class = new $class();
             $instance[$name] = $class;
             return $class;
         }
