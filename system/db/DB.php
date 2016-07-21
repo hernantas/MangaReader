@@ -5,7 +5,7 @@
 
     class DB
     {
-        private $dbDriver;
+        private $driver;
 
         public function __construct()
         {
@@ -23,28 +23,28 @@
         public function driver($name)
         {
             $loader =& loadClass('Loader', 'Core');
-            $this->dbDriver = $loader->dbDriver($name);
+            $this->driver = $loader->dbDriver($name);
         }
 
         public function connect($host, $user, $password='')
         {
-            $this->dbDriver->connect($host, $user, $password);
+            $this->driver->connect($host, $user, $password);
         }
 
         public function database($name, $create=false)
         {
-            $this->dbDriver->database($name);
+            $this->driver->database($name);
         }
 
         public function query($sql, $data=[])
         {
             if (count($data) > 0)
             {
-                return $this->dbDriver->bind($sql, $data);
+                return $this->driver->bind($sql, $data);
             }
             else
             {
-                return $this->dbDriver->query($sql);
+                return $this->driver->query($sql);
             }
         }
     }
