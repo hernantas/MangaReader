@@ -28,13 +28,21 @@
         /**
          * Perform Query based on the driver.
          *
-         * @param  [type] $sql [description]
+         * @param  string $sql SQL that need to be run
          *
-         * @return [type]      [description]
+         * @return \DB\Result  Database query result
          */
         public function query($sql);
+
+        /**
+         * Perform database query by binding the data to query syntax.
+         *
+         * @param  string $sql  SQL
+         * @param  array  $data Data that will be binded to query
+         *
+         * @return \DB\Result   Database query result
+         */
         public function bind($sql, $data=[]);
-        public function lastError();
     }
 
 ?>

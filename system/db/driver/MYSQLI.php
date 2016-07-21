@@ -37,11 +37,6 @@
 
             return $sql;
         }
-
-        public function lastError()
-        {
-            return '';
-        }
     }
 
 ?>
