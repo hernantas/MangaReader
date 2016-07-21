@@ -9,8 +9,6 @@
      */
     class Loader
     {
-        private $instance = array();
-
         /**
          * Load a page. This function shouldn't be called normally and only be used
          * on routing class which will call specific handler page.
