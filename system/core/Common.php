@@ -62,9 +62,9 @@
         function not_found($page='')
         {
             echo "<div>";
-                echo "<h1>Requested page not found</h1>";
-                echo '<span>Your Requested page' . ($page==='' ? '' : '"'.$page.'"') .
-                    ' not found on this server and return 404 error response.</span>';
+                echo "<h1>404 Page not found</h1>";
+                echo '<span>Your requested page ' . ($page==='' ? '' : '"'.$page.'"') .
+                    ' can not be found on this server thus return 404 error response.</span>';
             echo "</div>";
             exit(0);
         }
