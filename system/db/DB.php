@@ -31,7 +31,7 @@
             $this->driver->connect($host, $user, $password);
         }
 
-        public function database($name, $create=false)
+        public function database($name)
         {
             $this->driver->database($name);
         }
