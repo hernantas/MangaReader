@@ -9,10 +9,32 @@
      */
     class Result
     {
+        /**
+         * SQL Syntax
+         *
+         * @var string
+         */
         private $sql;
+
+        /**
+         * Query result data
+         *
+         * @var array
+         */
         private $data;
+
+        /**
+         * Query result data length
+         *
+         * @var int
+         */
         private $dataLength = 0;
 
+        /**
+         * Result pointer
+         *
+         * @var int
+         */
         private $pos = 0;
 
         public function __construct($sql, $data)
