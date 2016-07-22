@@ -2,7 +2,18 @@
 
     if (!function_exists('loadClass'))
     {
-        function &loadClass($name, $package='library', $vendors=[APP_PATH, SYSTEM_PATH])
+        /**
+         * Find and load class if class and it's file is exists. Class file name
+         * must be same with Class name and class must contain namespace with the
+         * with the same package it located.
+         *
+         * @param  string $name    Class name to load
+         * @param  string $package Package name where the class is
+         * @param  array  $vendors Vendor list to search
+         *
+         * @return object          Instance of the class
+         */
+        function &loadClass($name, $package='library', $vendors=array(APP_PATH, SYSTEM_PATH))
         {
             static $instance = array();
 
@@ -49,6 +60,15 @@
 
     if (!function_exists('isLoaded'))
     {
+        /**
+         * Register class as loaded or get all loaded class.
+         *
+         * @param  string $package Package name where class is located
+         * @param  string $name    Class name
+         *
+         * @return array           If using empty parameter, return all list of
+         *                         loaded class. Nothing otherwise.
+         */
         function isLoaded($package='', $name='')
         {
             static $loaded = array();
@@ -64,6 +84,11 @@
 
     if (!function_exists('notFound'))
     {
+        /**
+         * Display 404 not found to the user browser and exiting.
+         *
+         * @param  string $page Page name to display in the message
+         */
         function notFound($page='')
         {
             echo "<div>";
