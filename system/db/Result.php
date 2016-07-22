@@ -5,7 +5,7 @@
      * Database result when Query is performed regardless query is successful or
      * failed.
      *
-     * @package Core
+     * @package DB
      */
     class Result
     {
