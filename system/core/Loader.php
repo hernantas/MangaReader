@@ -100,6 +100,8 @@
                 }
             }
 
+            $instance->load =& $instance->loader;
+
             return $instance;
         }
     }
