@@ -42,7 +42,7 @@
                 $subs++;
             }
 
-            return $sql;
+            return $this->query($sql);
         }
     }
 
