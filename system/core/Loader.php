@@ -47,6 +47,14 @@
         {
             $this->loadFile($name, 'View', $data);
         }
+
+        /**
+         * Load Database driver
+         *
+         * @param  string $name Driver name
+         *
+         * @return object       Instance of database driver
+         */
         public function dbDriver($name)
         {
             return $this->loadClass($name, 'DB/Driver');
