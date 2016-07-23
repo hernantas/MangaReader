@@ -36,6 +36,17 @@
             }
         }
 
+        /**
+         * Load a view. View contain html element and will be displayed to user
+         * browser.
+         *
+         * @param  string $name View name
+         * @param  array  $data Data to pass to view
+         */
+        public function view($name, $data=array())
+        {
+            $this->loadFile($name, 'View', $data);
+        }
         public function dbDriver($name)
         {
             return $this->loadClass($name, 'DB/Driver');
