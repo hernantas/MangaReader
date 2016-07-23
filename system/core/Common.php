@@ -53,9 +53,8 @@
 
             isLoaded($package, $name);
             $name = $class;
-            $class = new $class();
-            $instance[$name] = $class;
-            return $class;
+            $instance[$name] = new $class();
+            return $instance[$name];
         }
     }
 
