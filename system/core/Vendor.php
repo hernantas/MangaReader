@@ -47,11 +47,11 @@
         }
 
         /**
-         * List file and it's package paired with vendor name it's placed
+         * Get list file and package for easy file search. Work recursively.
          *
-         * @param  string $path Relative path to list
+         * @param  string $path Relative path to directory
          *
-         * @return array       Package File list with vendor as it value
+         * @return array        Package File list with vendor as it value
          */
         private function listFilePackage($path='')
         {
@@ -84,7 +84,7 @@
         }
 
         /**
-         * Get all file and directory that is valid and not ignored.
+         * Get all file and directory that is valid and is not ignored.
          *
          * @param  string $path Path of directory
          *
