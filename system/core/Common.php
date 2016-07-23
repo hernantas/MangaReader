@@ -99,4 +99,20 @@
             exit(0);
         }
     }
+
+    if (!function_exists('printArray'))
+    {
+        /**
+         * Utility function to print array with prefix and suffix <pre> so it can
+         * look more friendly on user browser for debug purpose.
+         *
+         * @param  string $arr Array to print
+         */
+        function printArray($arr)
+        {
+            echo "<pre>";
+            print_r($arr);
+            echo "</pre>";
+        }
+    }
 ?>
