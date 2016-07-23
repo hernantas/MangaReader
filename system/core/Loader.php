@@ -31,6 +31,7 @@
             }
             else
             {
+                $this->mergeClass($page);
                 $page->$method();
             }
         }
