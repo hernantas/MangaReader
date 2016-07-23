@@ -22,7 +22,7 @@
                 $vendors = array($vendors);
             }
 
-            $package = strtolower($package);
+            $package = str_replace('/', '\\', strtolower($package));
             $name = strtolower($name);
             $class = $package.'\\'.$name;
 
