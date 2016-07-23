@@ -52,7 +52,12 @@
         private function loadFile($name, $package='library', $data=array())
         {
             $vendors =& loadClass('Vendor', 'Core');
-            $list = $vendors->lists();
+            $vendor = $vendors->findVendor($package, $name);
+
+            if (!is_array($vendor))
+            {
+                $vendor = array($vendor);
+            }
 
             foreach ($list as $vendor)
             {
@@ -77,8 +82,8 @@
         private function &loadClass($name, $package='library')
         {
             $vendors =& loadClass('Vendor', 'Core');
-            $list = $vendors->lists();
-            return loadClass($name, $package, $list);
+            $vendor = $vendors->findVendor($package, $name);
+            return loadClass($name, $package, $vendor);
         }
     }
 
