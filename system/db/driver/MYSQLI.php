@@ -23,7 +23,8 @@
 
         public function query($sql)
         {
-
+            $result = $this->mysqli->query($sql);
+            return $result->mysqli_fetch_all();
         }
 
         public function bind($sql, $data=[])
