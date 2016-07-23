@@ -83,6 +83,7 @@
             {
                 if (file_exists($vendor . '/' . $package . '/' . $name . '.php'))
                 {
+                    extract($data);
                     include ($vendor . '/' . $package . '/' . $name . '.php');
                     return true;
                 }
