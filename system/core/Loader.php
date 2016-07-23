@@ -85,6 +85,22 @@
             $vendor = $vendors->findVendor($package, $name);
             return loadClass($name, $package, $vendor);
         }
+
+        private function mergeClass(&$instance)
+        {
+            $vendors =& loadClass('Vendor', 'Core');
+            $list = isLoaded();
+            foreach ($list as $class=>$package)
+            {
+                if (!property_exists($instance, $class))
+                {
+                    $vendor = $vendors->findVendor($package, $class);
+                    $instance->$class =& loadClass($class, $package, $vendor);
+                }
+            }
+
+            return $instance;
+        }
     }
 
 ?>
