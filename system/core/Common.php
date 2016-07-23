@@ -51,6 +51,7 @@
                 exit(-1);
             }
 
+            isLoaded($package, $name);
             $name = $class;
             $class = new $class();
             $instance[$name] = $class;
