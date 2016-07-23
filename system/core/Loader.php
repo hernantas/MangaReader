@@ -72,11 +72,11 @@
         private function loadFile($name, $package='library', $data=array())
         {
             $vendors =& loadClass('Vendor', 'Core');
-            $vendor = $vendors->findVendor($package, $name);
+            $list = $vendors->findVendor($package, $name);
 
-            if (!is_array($vendor))
+            if (!is_array($list))
             {
-                $vendor = array($vendor);
+                $list = array($list);
             }
 
             foreach ($list as $vendor)
