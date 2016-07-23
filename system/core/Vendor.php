@@ -9,6 +9,13 @@
     class Vendor
     {
         /**
+         * Cache vendor list
+         *
+         * @var array
+         */
+        private $vendor = array();
+
+        /**
          * Cache File package vendor list
          *
          * @var array
@@ -42,8 +49,14 @@
             $list = $this->listFilePackage();
             $this->packfile = $list;
 
+            $vendors = $this->listDirFile(BASE_PATH)['directories'];
+            $this->vendors = $vendors;
+
             $config =& loadClass('Config', 'Core');
-            $config->save('Vendor', $list);
+            $config->save('Vendor', [
+                'vendors'=>$vendors,
+                'packfile'=>$list
+            ]);
         }
 
         /**
@@ -146,7 +159,8 @@
 
             if ($arr !== false)
             {
-                $this->packfile = $arr;
+                $this->vendor = $arr['vendor'];
+                $this->packfile = $arr['packfile'];
             }
         }
 
@@ -157,7 +171,8 @@
          * @param  string $name      File name (name only without extension)
          * @param  string $extension File extension (default: php)
          *
-         * @return string|bool       Vendor name if File and package exists or false otherwise.
+         * @return string|array      Vendor name if File and package exists or
+         *                           return all vendor available otherwise.
          */
         public function findVendor($package, $name, $extension='php')
         {
@@ -169,7 +184,7 @@
                 return $this->packfile[$package . '/' . $name . '.' . $extension];
             }
 
-            return false;
+            return $this->vendors;
         }
     }
 
