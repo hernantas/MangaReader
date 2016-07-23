@@ -7,5 +7,8 @@
     $uri =& loadClass('URI', 'Core');
     $router =& loadClass('Router', 'Core');
 
+    $db =& loadClass('DB', 'db');
+
     $router->routing();
+    
 ?>
