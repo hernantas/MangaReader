@@ -40,7 +40,6 @@
         private function generateConfig()
         {
             $list = $this->listFilePackage();
-            print_array($list);
             $this->packfile = $list;
 
             $config =& loadClass('Config', 'Core');
