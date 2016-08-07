@@ -9,6 +9,35 @@
      */
     class Loader
     {
+        public function __construct()
+        {
+            $config =& loadClass('Config', 'Core');
+            $cfg = $config->load('Autoload');
+
+            if ($cfg !== false)
+            {
+                $this->loadConfig($cfg);
+            }
+        }
+
+        private function loadConfig($config)
+        {
+            foreach ($config as $key=>$arr)
+            {
+                if (is_array($arr))
+                {
+                    foreach ($arr as $load)
+                    {
+                        $this->$key($load);
+                    }
+                }
+                else
+                {
+                    $this->$key($arr);
+                }
+            }
+        }
+
         /**
          * Load a page. This function shouldn't be called normally and only be used
          * on routing class which will call specific handler page.
