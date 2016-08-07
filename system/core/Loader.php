@@ -61,6 +61,16 @@
         }
 
         /**
+         * Load html helper
+         *
+         * @param  string $name Helper name
+         */
+        public function helper($name)
+        {
+            $this->loadFile($name, 'Helper');
+        }
+
+        /**
          * Find and load file if file is exists.
          *
          * @param  string $name    File name
