@@ -9,6 +9,8 @@
      */
     class Loader
     {
+        private $storageView = array();
+
         public function __construct()
         {
             $config =& loadClass('Config', 'Core');
@@ -75,6 +77,36 @@
         public function view($name, $data=array())
         {
             $this->loadFile($name, 'View', $data);
+        /**
+         * Store view to be used later.
+         *
+         * @param  string $name     View name
+         * @param  array  $data     Data to be passed to view
+         * @param  string $storage  Storage name
+         */
+        public function storeView($name, $data=array(), $storage='content')
+        {
+            $this->storageView[$storage][] = [$name=>$data];
+        }
+
+        /**
+         * Get all stored view and send to user browser.
+         *
+         * @param  string $storage Storage name
+         */
+        public function fetchView($storage='content')
+        {
+            if (isset($this->storageView[$storage]))
+            {
+                foreach ($this->storageView[$storage] as $viewData)
+                {
+                    foreach ($viewData as $view => $data)
+                    {
+                        $this->view($view, $data);
+                    }
+                }
+            }
+        }
         }
 
         /**
