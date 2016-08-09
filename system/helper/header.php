@@ -2,7 +2,7 @@
 
     if (!function_exists('html_title'))
     {
-        function html_title($name, $title='', $sep='-')
+        function header_title($name, $title='', $sep='-')
         {
 
             if ($title === '')
