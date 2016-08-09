@@ -69,14 +69,18 @@
 
         /**
          * Load a view. View contain html element and will be displayed to user
-         * browser.
+         * browser. If template is used, will
          *
          * @param  string $name View name
          * @param  array  $data Data to pass to view
+         *
+         * @return bool         True if file is exists, false otherwise.
          */
         public function view($name, $data=array())
         {
-            $this->loadFile($name, 'View', $data);
+            return $this->loadFile($name, 'View', $data);
+        }
+
         /**
          * Store view to be used later.
          *
@@ -125,10 +129,12 @@
          * Load html helper
          *
          * @param  string $name Helper name
+         *
+         * @return bool         True if file is exists, false otherwise.
          */
         public function helper($name)
         {
-            $this->loadFile($name, 'Helper');
+            return $this->loadFile($name, 'Helper');
         }
 
         /**
