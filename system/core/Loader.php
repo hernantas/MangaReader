@@ -111,6 +111,19 @@
                 }
             }
         }
+
+        /**
+         * Load template. Template is used as view layout and mean to be where view is
+         * placed in the page.
+         *
+         * @param  string $name Template name to load
+         * @param  array  $data Data to pass to template
+         *
+         * @return bool         True if file is exists, false otherwise.
+         */
+        public function template($name, $data=array())
+        {
+            return $this->loadFile($name, 'Template', $data);
         }
 
         /**
