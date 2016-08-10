@@ -63,4 +63,34 @@
         }
     }
 
+    if (!function_exists('css'))
+    {
+        /**
+         * Get HTML tag to insert css to the header. CSS must be placed in public/css
+         * directory.
+         *
+         * @param  string $name CSS file name
+         *
+         * @return string       HTML Tag
+         */
+        function css($name)
+        {
+            return '<link rel="stylesheet" type="text/css" href="public/css/'.$name.'.css">';
+        }
+    }
+    if (!function_exists('js'))
+    {
+        /**
+         * Get HTML tag to insert javascript to the header. Javascript file must
+         * be placed in public/js directory.
+         *
+         * @param  string $name Javascript file name
+         *
+         * @return string       HTML Tag
+         */
+        function js($name)
+        {
+            return '<script type="text/javascript" src="public/js/'.$name.'.js"></script>';
+        }
+    }
 ?>
