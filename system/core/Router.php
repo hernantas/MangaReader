@@ -73,7 +73,22 @@
 
             $urls = explode('/', trim($url, '/'));
             $loader =& loadClass('Loader', 'Core');
-            $loader->page($urls[0], isset($urls[1])?$urls[1]:'index');
+            $page = $loader->page($urls[0]);
+            $method = isset($urls[1])?$urls[1]:'index';
+
+            if ($page === false || !method_exists($page, $method))
+            {
+                $notFound = $loader->page('NotFound');
+
+                if ($notFound === false || !method_exists($notFound, 'index'))
+                {
+                    notFound($urls[0]);
+                }
+            }
+            else
+            {
+                $page->$method();
+            }
         }
     }
 
