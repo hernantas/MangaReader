@@ -2,8 +2,9 @@
 
     return [
         'helper'=> [
-            'header',
-            'form'
+            'Header',
+            'Form',
+            'URL'
         ]
     ];
 
