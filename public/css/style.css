@@ -637,5 +637,42 @@ input[type="submit"]:active, input[type="button"]:active
 .body
 {
     height: 1500px;
-    padding-top: 60px;
+    padding-top: 70px;
+}
+
+.body .panel
+{
+    background: #FFF;
+    border-radius: 3px;
+    border: 1px solid #dadada;
+}
+
+.body .panel .warp
+{
+    padding: 10px 20px;
+}
+
+.body .single
+{
+    display: table;
+    margin: 0 auto 20px;
+    text-align: center;
+}
+
+.body .single div
+{
+    padding: 10px 15px;
+    display: table;
+    margin: 0 auto;
+}
+
+.body .single input
+{
+    width: 250px;
+}
+
+.body .single input[type="checkbox"]
+{
+    width: auto;
+    margin-right: 5px;
 }
