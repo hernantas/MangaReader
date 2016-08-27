@@ -1,16 +1,16 @@
 <?php
 
-    if (!function_exists('input_text'))
+    if (!function_exists('inputText'))
     {
-        function input_text($name, $placeholder='', $value='')
+        function inputText($name, $placeholder='', $value='')
         {
             return input('text', $name, $value, $placeholder);
         }
     }
 
-    if (!function_exists('input_search'))
+    if (!function_exists('inputSearch'))
     {
-        function input_search($name, $placeholder='', $value='')
+        function inputSearch($name, $placeholder='', $value='')
         {
             return input('search', $name, $value, $placeholder);
         }
