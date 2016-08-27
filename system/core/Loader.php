@@ -22,6 +22,11 @@
             }
         }
 
+        /**
+         * Load configuration file
+         *
+         * @param  string $config Config name
+         */
         private function loadConfig($config)
         {
             foreach ($config as $key=>$arr)
