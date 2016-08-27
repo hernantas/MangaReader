@@ -36,6 +36,27 @@
          */
         private $urlSegmentPair = array();
 
+        /**
+         * Cache url origin
+         *
+         * @var string
+         */
+        private $urlOrigin = '';
+
+        /**
+         * Cache url base
+         *
+         * @var string
+         */
+        private $urlBase = '';
+
+        /**
+         * Cache full url
+         *
+         * @var string
+         */
+        private $urlFull = '';
+
         public function __construct()
         {
             $this->parse();
@@ -128,6 +149,61 @@
         public function string()
         {
             return $this->urlString;
+        }
+
+        /**
+         * Get origin URL (Only protocol and host name)
+         *
+         * @param  bool $use_forwarded_host Use forwarded host or use default host
+         *
+         * @return string                   Origin url
+         */
+        public function originUrl($use_forwarded_host = false)
+        {
+            if ($this->urlOrigin === '')
+            {
+                $ssl      = ( ! empty( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == 'on' );
+                $sp       = strtolower( $_SERVER['SERVER_PROTOCOL'] );
+                $protocol = substr( $sp, 0, strpos( $sp, '/' ) ) . ( ( $ssl ) ? 's' : '' );
+                $port     = $_SERVER['SERVER_PORT'];
+                $port     = ( ( ! $ssl && $port=='80' ) || ( $ssl && $port=='443' ) ) ? '' : ':'.$port;
+                $host     = ( $use_forwarded_host && isset( $_SERVER['HTTP_X_FORWARDED_HOST'] ) ) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : ( isset( $_SERVER['HTTP_HOST'] ) ? $_SERVER['HTTP_HOST'] : null );
+                $host     = isset( $host ) ? $host : $_SERVER['SERVER_NAME'] . $port;
+                $this->urlOrigin = $protocol . '://' . $host;
+            }
+            return $this->urlOrigin;
+        }
+
+        /**
+         * Get base URL
+         *
+         * @param  bool $use_forwarded_host Use forwarded host or use default host
+         *
+         * @return string                   Base url
+         */
+        public function baseUrl($use_forwarded_host = false)
+        {
+            if ($this->urlBase === '')
+            {
+                $this->urlBase = $this->originUrl($use_forwarded_host) . $this->dirname . '/';
+            }
+            return $this->urlBase;
+        }
+
+        /**
+         * Get Full url (Base + Query String)
+         *
+         * @param  bool $use_forwarded_host Use forwarded host or use default host
+         *
+         * @return string                   Full url
+         */
+        public function fullUrl($use_forwarded_host = false)
+        {
+            if ($this->urlFull === '')
+            {
+                $this->urlFull = $this->originUrl($use_forwarded_host) . $_SERVER['REQUEST_URI'];
+            }
+            return $this->urlFull;
         }
     }
 
