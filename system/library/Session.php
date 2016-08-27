@@ -18,6 +18,26 @@
         private $longExpire = 31536000;
 
         /**
+         * Cache flash session.
+         *
+         * @var array
+         */
+        private $flash = array();
+
+        public function __construct()
+        {
+            foreach ($_COOKIE as $key=>$val)
+            {
+                if (strpos($key, 'flash_') === 0)
+                {
+                    $name = substr($key, 6);
+                    $this->flash[$name] = $val;
+                    $this->remove($key);
+                }
+            }
+        }
+
+        /**
          * Set session
          *
          * @param string $name    Session name
@@ -38,6 +58,35 @@
         public function remove($name)
         {
             setcookie($name, '', -1, page()->uri->subdir());
+        }
+
+        /**
+         * Set flash session. Flash session is session that exists only until the
+         * next page is loaded. Session class must be loaded on each page for
+         * this to work.
+         *
+         * @param string $name  Flash session name
+         * @param string $value Flash session value
+         */
+        public function setFlash($name, $value)
+        {
+            $this->set('flash_'.$name, $value);
+            $this->flash[$name] = $value;
+        }
+
+        /**
+         * Get Flash session.
+         *
+         * @param  string $name    Flash session name
+         * @param  string $default Default value
+         *
+         * @return string          Flash session value
+         *
+         * @see Session::setFlash
+         */
+        public function getFlash($name, $default='')
+        {
+            return isset($this->flash[$name]) ? $this->flash[$name] : $default;
         }
     }
 
