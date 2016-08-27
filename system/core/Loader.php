@@ -148,6 +148,11 @@
             return is_array($newData) ? array_merge($data, $newData) : $data;
         }
 
+        public function library($name)
+        {
+            return $this->loadClass($name, 'Library');
+        }
+
         /**
          * Load HTML layout. Layout is used as where to place view.
          *
