@@ -49,4 +49,20 @@
         }
     }
 
+    if (!function_exists('formOpen'))
+    {
+        function formOpen($action, $method='post', $data=false)
+        {
+            return '<form action="'.baseUrl().$action.'" method="'.$method.'">';
+        }
+    }
+
+    if (!function_exists('formClose'))
+    {
+        function formClose()
+        {
+            return '</form>';
+        }
+    }
+
 ?>
