@@ -58,14 +58,17 @@
         }
 
         /**
-         * Load a page. This function shouldn't be called normally and only be used
-         * on routing class which will call specific handler page.
+         * Load a page or if page is already loaded, will load current page
          *
          * @param  string $name   Page name
-         * @param  string $method Method in Page class that need to be called
          */
-        public function page($name, $method='index')
+        public function page($name='')
         {
+            if ($this->currentPage !== null)
+            {
+                return $this->currentPage;
+            }
+
             if ($name==='')
             {
                 $name = 'home';
@@ -73,15 +76,14 @@
 
             $page = $this->loadClass($name, 'Page');
 
-            if ($page === false || method_exists($page, $method) === false)
+            if ($page === false)
             {
-                notFound($name . ($method!='index'?'/'.$method:''));
+                return false;
             }
-            else
-            {
-                $this->mergeClass($page);
-                $page->$method();
-            }
+
+            $this->mergeClass($page);
+            $this->currentPage = $page;
+            return $this->currentPage;
         }
 
         /**
