@@ -51,6 +51,19 @@
         }
 
         /**
+         * Get session
+         *
+         * @param  string $name    Session name
+         * @param  string $default Default value if session don't exists
+         *
+         * @return string          Session value
+         */
+        public function get($name, $default='')
+        {
+            return isset($_COOKIE[$name]) ? $_COOKIE[$name] : $default;
+        }
+
+        /**
          * Remove session
          *
          * @param  string $name Session name
