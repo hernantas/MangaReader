@@ -100,6 +100,26 @@
         }
     }
 
+    if (!function_exists('page'))
+    {
+        /**
+         * Get Current page
+         *
+         * @return object Loaded page
+         */
+        function page()
+        {
+            static $loader = null;
+
+            if ($loader === null)
+            {
+                $loader =& loadClass('Loader', 'Core');
+            }
+
+            return $loader->page();
+        }
+    }
+
     if (!function_exists('printArray'))
     {
         /**
