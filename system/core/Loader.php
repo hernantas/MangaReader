@@ -9,7 +9,19 @@
      */
     class Loader
     {
+        /**
+         * List stored view
+         *
+         * @var array
+         */
         private $storageView = array();
+
+        /**
+         * Current page
+         *
+         * @var Object
+         */
+        private $currentPage = null;
 
         public function __construct()
         {
