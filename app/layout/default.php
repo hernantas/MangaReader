@@ -2,26 +2,26 @@
 <html>
 <head>
     <meta charset="utf-8" lang="en" />
-    <?php echo header_title('Media', isset($page) ? $page : ''); ?>
+    <?php echo headerTitle('Media', isset($page) ? $page : ''); ?>
     <?php echo css('style'); ?>
-    <?php echo js('style'); ?>
+    <?php echo js('jquery-3.1.0.min'); ?>
 </head>
 <body>
     <div class="header">
         <div class="container">
             <div class="title">
-                <img src="public/img/logo512.png" />
+                <img src="<?php echo baseUrl(); ?>public/img/logo48.png" />
             </div>
             <div class="search">
-                <?php echo input_search('Search', 'Search for Manga, People or Page...'); ?>
+                <?php echo inputSearch('Search', 'Search for Manga, People or Page...'); ?>
             </div>
         </div>
     </div>
-    <div class="navigation">
-
-    </div>
+    <?php $this->view('Navigation'); ?>
     <div class="body">
-        <?php $this->fetchView(); ?>
+        <div class="container">
+            <?php $this->fetchView(); ?>
+        </div>
     </div>
 </body>
 </html>
