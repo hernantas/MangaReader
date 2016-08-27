@@ -120,6 +120,19 @@
         }
     }
 
+    if (!function_exists('baseUrl'))
+    {
+        /**
+         * Get base URL
+         *
+         * @return string Base URL
+         */
+        function baseUrl()
+        {
+            return page()->uri->baseUrl();
+        }
+    }
+
     if (!function_exists('printArray'))
     {
         /**
