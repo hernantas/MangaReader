@@ -75,7 +75,7 @@
          */
         function css($name)
         {
-            return '<link rel="stylesheet" type="text/css" href="public/css/'.$name.'.css">';
+            return '<link rel="stylesheet" type="text/css" href="'.baseUrl().'public/css/'.$name.'.css">';
         }
     }
     if (!function_exists('js'))
@@ -90,7 +90,7 @@
          */
         function js($name)
         {
-            return '<script type="text/javascript" src="public/js/'.$name.'.js"></script>';
+            return '<script type="text/javascript" src="'.baseUrl().'public/js/'.$name.'.js"></script>';
         }
     }
 ?>
