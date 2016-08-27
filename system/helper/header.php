@@ -1,6 +1,6 @@
 <?php
 
-    if (!function_exists('html_title'))
+    if (!function_exists('headerTitle'))
     {
         /**
          * Generate Header Title
@@ -12,7 +12,7 @@
          *
          * @return string        Generated html
          */
-        function header_title($name, $title='', $sep='-')
+        function headerTitle($name, $title='', $sep='-')
         {
 
             if ($title === '')
