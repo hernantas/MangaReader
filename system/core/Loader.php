@@ -97,6 +97,7 @@
          */
         public function view($name, $data=array())
         {
+            $data = $this->hook($name, $data);
             return $this->loadFile($name, 'View', $data);
         }
 
@@ -129,6 +130,22 @@
                     }
                 }
             }
+        }
+
+        public function hook($name, $data)
+        {
+            $vendors =& loadClass('Vendor', 'Core');
+            $vendor = $vendors->findVendor('Hook', $name);
+
+            if (is_array($vendor))
+            {
+                return $data;
+            }
+
+            $hook = $this->loadClass($name, 'Hook');
+
+            $newData = $hook->data($data);
+            return is_array($newData) ? array_merge($data, $newData) : $data;
         }
 
         /**
