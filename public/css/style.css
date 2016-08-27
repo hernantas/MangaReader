@@ -446,6 +446,44 @@ a
     text-decoration: none;
 }
 
+input
+{
+    padding: 10px 15px;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+    outline: none;
+}
+
+input[type="text"]:hover, input[type="search"]:hover, input[type="password"]:hover
+{
+    border-color: #AAA;
+}
+
+input[type="text"]:focus, input[type="search"]:focus, input[type="password"]:focus
+{
+    border-color: #4285f4;
+}
+
+input[type="submit"], input[type="button"]
+{
+    border: 0;
+    color: #FFF;
+    background: #31bacd;
+    cursor: pointer;
+    outline: none;
+    font-weight: bold;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover
+{
+    background-color: #25AEC1;
+}
+
+input[type="submit"]:active, input[type="button"]:active
+{
+    background-color: #1EA7BA;
+}
+
 /**
  * 3.0 Page Style
  */
