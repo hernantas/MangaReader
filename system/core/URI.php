@@ -152,6 +152,16 @@
         }
 
         /**
+         * Get Subdirectory where web is placed.
+         *
+         * @return string Subdir name
+         */
+        public function subdir()
+        {
+            return $this->dirname;
+        }
+
+        /**
          * Get origin URL (Only protocol and host name)
          *
          * @param  bool $use_forwarded_host Use forwarded host or use default host
