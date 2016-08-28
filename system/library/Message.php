@@ -16,17 +16,11 @@
 
         private $flashCount = array();
 
-        /**
-         * Cache session instance
-         *
-         * @var object
-         */
-        private $session = null;
-
         public function __construct()
         {
-            $this->session = page()->load->library('Session');
-            $flashes = $this->session->getAllFlash();
+            page()->load->library('Session');
+
+            $flashes = page()->session->getAllFlash();
 
             foreach ($flashes as $key=>$msg)
             {
