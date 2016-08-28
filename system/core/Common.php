@@ -39,6 +39,7 @@
                 if (file_exists($vendor . $package . '/' . $name . '.php'))
                 {
                     include ($vendor . $package . '/' . $name . '.php');
+                    $vendors = $vendor;
                     $fileFound = true;
                     break;
                 }
@@ -51,7 +52,7 @@
                 exit(-1);
             }
 
-            isLoaded($package, $name);
+            isLoaded($vendors, $package, $name);
             $name = $class;
             $instance[$name] = new $class();
             return $instance[$name];
@@ -69,16 +70,16 @@
          * @return array           If using empty parameter, return all list of
          *                         loaded class. Nothing otherwise.
          */
-        function isLoaded($package='', $name='')
+        function isLoaded($vendor='', $package='', $name='')
         {
             static $loaded = array();
 
-            if ($package === '' && $name === '')
+            if ($package === '' || $name === '')
             {
                 return $loaded;
             }
 
-            $loaded[$name] = $package;
+            $loaded[$name] = [$vendor, $package];
         }
     }
 
