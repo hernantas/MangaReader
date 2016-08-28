@@ -78,17 +78,16 @@
 
             if ($page === false || !method_exists($page, $method))
             {
-                $notFound = $loader->page('NotFound');
+                $page = $loader->page('NotFound');
 
-                if ($notFound === false || !method_exists($notFound, 'index'))
+                if ($page === false || !method_exists($page, 'index'))
                 {
                     notFound($urls[0]);
                 }
             }
-            else
-            {
-                $page->$method();
-            }
+
+            $loader->autoload();
+            $page->$method();
         }
     }
 
