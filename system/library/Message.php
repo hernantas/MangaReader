@@ -12,7 +12,7 @@
     class Message
     {
         private $msg = array();
-        private $msgCount = 0;
+        private $msgCount = array(0);
 
         private $flashCount = array();
 
@@ -33,7 +33,7 @@
                 $keys = explode('_', $key);
                 if ($keys[0] === 'msg')
                 {
-                    $this->write($keys[1], $keys[2]);
+                    $this->write($keys[1], $msg);
                 }
             }
         }
@@ -97,11 +97,20 @@
         private function write($type, $msg, $persist=false)
         {
             $this->msg[$type][] = $msg;
-            $this->msgCount++;
+            $this->msgCount[0]++;
+
+            if (isset($this->msgCount[$type]))
+            {
+                $this->msgCount[$type]++;
+            }
+            else
+            {
+                $this->msgCount[$type] = 0;
+            }
 
             if ($persist)
             {
-                $this->session->setFlash('msg_'.$type.'_'.$this->count[$type], $msg);
+                $this->session->setFlash('msg_'.$type.'_'.$this->msgCount[$type], $msg);
                 $this->flashCount[$type]++;
             }
         }
@@ -109,11 +118,13 @@
         /**
          * Get message count
          *
-         * @return int Total message count
+         * @param  string $type  Message type
+         *
+         * @return int           Total message count
          */
-        public function count()
+        public function count($type=0)
         {
-            return $this->msgCount;
+            return isset($this->msgCount[$type]) ? $this->msgCount[$type] : 0;
         }
 
         /**
