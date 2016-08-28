@@ -5,7 +5,7 @@
     {
         public function view($data)
         {
-            $msg = page()->load->library('Message');
+            $msg = page()->message;
             return ($msg->count()>0 ? ['msg'=>$msg->getAsArray()] : []);
         }
     }
