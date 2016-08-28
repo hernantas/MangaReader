@@ -7,6 +7,8 @@
     {
         private $driver;
 
+        private $builder;
+
         public function __construct()
         {
             $config =& loadClass('Config', 'Core');
@@ -14,21 +16,33 @@
 
             if ($cfg !== false)
             {
-                $this->selectDriver($cfg['driver']);
+                // Load driver
+                $this->load('Driver', $cfg['driver']);
+
+                // Load builder if available
+                $this->load('Builder', $cfg['driver']);
+
                 $this->connect($cfg['host'], $cfg['user'], $cfg['password']);
                 $this->database($cfg['database'], false);
             }
         }
 
-        /**
-         * Load driver based on its string name if it exists
-         *
-         * @param  string $name Driver name (ex: mysqli)
-         */
-        public function selectDriver($name)
+        private function load($type, $name)
         {
-            $loader =& loadClass('Loader', 'Core');
-            $this->driver = $loader->dbDriver($name);
+            $vendor =& loadClass('Vendor', 'Core');
+            $list = $vendor->find('DB/'.$type, $name);
+
+            if (!is_array($list))
+            {
+                include ($list . '/DB/'.$type.'/'.$name.'.php');
+                $class = '\\DB\\'.$type.'\\'.$name;
+
+                if (class_exists($class))
+                {
+                    $type = strtolower($type);
+                    $this->$type = new $class();
+                }
+            }
         }
 
         /**
