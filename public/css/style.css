@@ -654,6 +654,30 @@ input[type="submit"]:active, input[type="button"]:active
     padding: 10px 20px;
 }
 
+.body .panel.success
+{
+    background: #DCF3D6;
+    color: #536C4A;
+}
+
+.body .panel.warning
+{
+    background: #F8F4C4;
+    color: #96712C;
+}
+
+.body .panel.error
+{
+    background: #EEC8C5;
+    color: #B02621;
+}
+
+.body .panel.info
+{
+    background: #CDE9F7;
+    color: #3C79AD;
+}
+
 .body .single
 {
     display: table;
