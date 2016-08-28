@@ -23,7 +23,7 @@
          */
         private $currentPage = null;
 
-        public function __construct()
+        public function autoload()
         {
             $config =& loadClass('Config', 'Core');
             $cfg = $config->load('Autoload');
