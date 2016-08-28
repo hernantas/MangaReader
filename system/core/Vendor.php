@@ -174,7 +174,7 @@
          * @return string|array      Vendor name if File and package exists or
          *                           return all vendor available otherwise.
          */
-        public function findVendor($package, $name, $extension='php')
+        public function find($package, $name, $extension='php')
         {
             $package = strtolower($package);
             $name = strtolower($name);
