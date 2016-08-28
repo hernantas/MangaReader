@@ -15,6 +15,9 @@
          */
         private $route = array();
 
+        public $class = '';
+        public $method = '';
+
         public function __construct()
         {
             $config =& loadClass('Config', 'Core');
@@ -72,24 +75,10 @@
         {
             $uri =& loadClass('Uri', 'Core');
             $url = $this->findRoute($uri->string());
-
             $urls = explode('/', trim($url, '/'));
-            $loader =& loadClass('Loader', 'Core');
-            $page = $loader->page($urls[0]);
-            $method = isset($urls[1])?$urls[1]:'index';
 
-            if ($page === false || !method_exists($page, $method))
-            {
-                $page = $loader->page('NotFound');
-
-                if ($page === false || !method_exists($page, 'index'))
-                {
-                    notFound($urls[0]);
-                }
-            }
-
-            $loader->autoload();
-            $page->$method();
+            $this->class = $urls[0];
+            $this->method = isset($urls[1])?$urls[1]:'index';
         }
 
         public function redirect($page)
