@@ -89,6 +89,13 @@
             $loader->autoload();
             $page->$method();
         }
+
+        public function redirect($page)
+        {
+            $uri =& loadClass('Uri', 'Core');
+            header('location: '.$uri->baseUrl().$page);
+            exit();
+        }
     }
 
 ?>
