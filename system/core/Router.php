@@ -27,6 +27,8 @@
                     $this->addRoute($key, $value);
                 }
             }
+
+            $this->routing();
         }
 
         /**
@@ -66,7 +68,7 @@
         /**
          * Start routing proccess
          */
-        public function routing()
+        private function routing()
         {
             $uri =& loadClass('Uri', 'Core');
             $url = $this->findRoute($uri->string());
