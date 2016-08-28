@@ -511,6 +511,7 @@ input[type="submit"]:active, input[type="button"]:active
     height: 50px;
     background: #31BACD;
     box-shadow: 0 0px 10px rgba(0,0,0,0.5);
+    z-index: 9999;
 }
 
 .header .title
@@ -564,6 +565,7 @@ input[type="submit"]:active, input[type="button"]:active
     bottom: 0;
     width: 64px;
     background: #30333C;
+    z-index: 99990;
 }
 
 .navigation:hover
