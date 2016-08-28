@@ -101,6 +101,16 @@
         {
             return isset($this->flash[$name]) ? $this->flash[$name] : $default;
         }
+
+        /**
+         * Get all flash session
+         *
+         * @return array All flash session
+         */
+        public function getAllFlash()
+        {
+            return $this->flash;
+        }
     }
 
 ?>
