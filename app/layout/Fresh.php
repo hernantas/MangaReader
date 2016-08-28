@@ -20,6 +20,7 @@
     <?php $this->view('Navigation'); ?>
     <div class="body">
         <div class="container">
+            <?php $this->view('message');  ?>
             <?php $this->fetchView(); ?>
         </div>
     </div>

@@ -7,7 +7,7 @@
         {
             $this->load->storeView('SignUp');
 
-            $this->load->layout('Default');
+            $this->load->layout('Fresh');
         }
     }
 

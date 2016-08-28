@@ -9,7 +9,7 @@
                 'word' => 'Date Today: ' . date('d-m-y')
             ]);
 
-            $this->load->layout('Default');
+            $this->load->layout('Fresh');
         }
     }
 
