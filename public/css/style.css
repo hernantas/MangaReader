@@ -682,6 +682,12 @@ input[type="submit"]:active, input[type="button"]:active
 {
     display: table;
     margin: 0 auto 20px;
+}
+
+.body .single h1,
+.body .single h2,
+.body .single h3
+{
     text-align: center;
 }
 
