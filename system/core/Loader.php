@@ -3,7 +3,7 @@
 
     /**
      * Provide method to load specific class or file from recognized package like
-     * library, page, etc.
+     * library, etc.
      *
      * @package Core
      */
@@ -15,13 +15,6 @@
          * @var array
          */
         private $storageView = array();
-
-        /**
-         * Current page
-         *
-         * @var Object
-         */
-        private $currentPage = null;
 
         public function autoload()
         {
@@ -55,35 +48,6 @@
                     $this->$key($arr);
                 }
             }
-        }
-
-        /**
-         * Load a page or if page is already loaded, will load current page
-         *
-         * @param  string $name   Page name
-         */
-        public function page($name='')
-        {
-            if ($this->currentPage !== null)
-            {
-                return $this->currentPage;
-            }
-
-            if ($name==='')
-            {
-                $name = 'home';
-            }
-
-            $page = $this->loadClass($name, 'Page');
-
-            if ($page === false)
-            {
-                return false;
-            }
-
-            $this->mergeClass($page);
-            $this->currentPage = $page;
-            return $this->currentPage;
         }
 
         /**
