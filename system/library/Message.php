@@ -12,6 +12,7 @@
     class Message
     {
         private $msg = array();
+        private $msgCount = 0;
 
         private $flashCount = array();
 
@@ -96,12 +97,23 @@
         private function write($type, $msg, $persist=false)
         {
             $this->msg[$type][] = $msg;
+            $this->msgCount++;
 
             if ($persist)
             {
                 $this->session->setFlash('msg_'.$type.'_'.$this->count[$type], $msg);
                 $this->flashCount[$type]++;
             }
+        }
+
+        /**
+         * Get message count
+         *
+         * @return int Total message count
+         */
+        public function count()
+        {
+            return $this->msgCount;
         }
 
         /**
