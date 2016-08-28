@@ -3,7 +3,7 @@
         <?php echo formOpen('user/signup'); ?>
         <h1>Sign Up</h1>
         <div>
-            <?php echo inputText('username', 'Username, 4-16 characters.'); ?>
+            <?php echo inputText('username', 'Username, 5-16 characters.'); ?>
         </div>
         <div>
             <?php echo inputPassword('password', 'Password, 6-32 characters.'); ?>
