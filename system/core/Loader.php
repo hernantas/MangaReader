@@ -167,32 +167,13 @@
          *
          * @param  string $name    Class name
          * @param  string $package Package name where file class is located
-         *
-         * @return object          Instance of the class
          */
-        private function &loadClass($name, $package='library')
+        private function loadClass($name, $package='library')
         {
             $vendors =& loadClass('Vendor', 'Core');
-            $vendor = $vendors->findVendor($package, $name);
-            return loadClass($name, $package, $vendor);
-        }
-
-        private function mergeClass(&$instance)
-        {
-            $vendors =& loadClass('Vendor', 'Core');
-            $list = isLoaded();
-            foreach ($list as $class=>$package)
-            {
-                if (!property_exists($instance, $class))
-                {
-                    $vendor = $vendors->findVendor($package, $class);
-                    $instance->$class =& loadClass($class, $package, $vendor);
-                }
-            }
-
-            $instance->load =& $instance->loader;
-
-            return $instance;
+            $vendor = $vendors->find($package, $name);
+            $lname = strtolower($name);
+            page()->$lname =& loadClass($name, $package, $vendor);
         }
     }
 
