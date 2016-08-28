@@ -108,16 +108,9 @@
          *
          * @return object Loaded page
          */
-        function page()
+        function &page()
         {
-            static $loader = null;
-
-            if ($loader === null)
-            {
-                $loader =& loadClass('Loader', 'Core');
-            }
-
-            return $loader->page();
+            return \Core\Page::getInstance();
         }
     }
 
