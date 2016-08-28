@@ -3,7 +3,7 @@
 
     class Navigation
     {
-        public function data($data)
+        public function view($data)
         {
             return [
                 'nav' => [
