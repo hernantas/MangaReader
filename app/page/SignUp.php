@@ -21,32 +21,31 @@
             $password = $this->input->post('password');
             $rpassword = $this->input->post('rpassword');
 
-            $msg = $this->load->library('Message');
-            $valid = $this->load->library('Validation');
+            $this->load->library('Validation');
 
             if ($password !== $rpassword)
             {
-                $msg->error('Your retype password is not match with the password you entered.');
+                $this->message->error('Your retype password is not match with the password you entered.');
             }
 
-            if (!$valid->username($username))
+            if (!$this->validation->username($username))
             {
-                $msg->error('Your username is not valid, only use alphabet (a-z), number (0-9),'.
+                $this->message->error('Your username is not valid, only use alphabet (a-z), number (0-9),'.
                     ' and symbol (_.-). The character length must between 5-16 characters');
             }
 
-            if (!$valid->password($password))
+            if (!$this->validation->password($password))
             {
-                $msg->error('Your password is not valid, only use alphabet (a-z), number (0-9),'.
+                $this->message->error('Your password is not valid, only use alphabet (a-z), number (0-9),'.
                     ' and symbol (@#!$*&~;:,?_.-). The character length must between 5-16 characters');
             }
 
-            if ($msg->count('error') > 0)
+            if ($this->message->count('error') > 0)
             {
                 return;
             }
 
-            $msg->success('Your account has been created successfully.'.
+            $this->message->success('Your account has been created successfully.'.
                 ' Enter with your username and password', true);
             $this->router->redirect('user/signin');
         }
