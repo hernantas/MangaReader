@@ -97,7 +97,6 @@
          */
         public function view($name, $data=array())
         {
-            $data = $this->hook($name, $data);
             return $this->loadFile($name, 'View', $data);
         }
 
@@ -132,7 +131,7 @@
             }
         }
 
-        public function hook($name, $data)
+        public function hook($name, $type, $data)
         {
             $vendors =& loadClass('Vendor', 'Core');
             $vendor = $vendors->findVendor('Hook', $name);
@@ -144,7 +143,12 @@
 
             $hook = $this->loadClass($name, 'Hook');
 
-            $newData = $hook->data($data);
+            if (!method_exists($hook, $type))
+            {
+                return $data;
+            }
+
+            $newData = $hook->$type($data);
             return is_array($newData) ? array_merge($data, $newData) : $data;
         }
 
@@ -201,6 +205,8 @@
          */
         private function loadFile($name, $package='library', $data=array())
         {
+            $data = $this->hook($name, $package, $data);
+
             $vendors =& loadClass('Vendor', 'Core');
             $list = $vendors->findVendor($package, $name);
 
