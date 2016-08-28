@@ -95,7 +95,7 @@
          *
          * @return string          Flash session value
          *
-         * @see Session::setFlash
+         * @see \Library\Session::setFlash
          */
         public function getFlash($name, $default='')
         {
