@@ -139,7 +139,8 @@
          */
         private function loadFile($name, $package='library', $data=array())
         {
-            $data = $this->hook($name, $package, $data);
+            $hook =& loadClass('Hook', 'Core');
+            $data = $hook->data($name, $package, $data);
 
             $vendors =& loadClass('Vendor', 'Core');
             $list = $vendors->findVendor($package, $name);
