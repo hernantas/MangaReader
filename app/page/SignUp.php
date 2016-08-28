@@ -41,6 +41,11 @@
                     ' and symbol (@#!$*&~;:,?_.-). The character length must between 5-16 characters');
             }
 
+            if ($msg->count('error') > 0)
+            {
+                return;
+            }
+
             $msg->success('Your account has been created successfully.'.
                 ' Enter with your username and password', true);
             $this->router->redirect('user/signin');
