@@ -14,7 +14,7 @@
             <?php echo inputSubmit('Sign In'); ?>
         </div>
         <div>
-            Don't have an account yet? <a href="<?php echo baseUrl(); ?>user/signup">Sign Up</a>
+            Don't have an account yet? <a href="<?php echo baseUrl(); ?>user/signup">Create an Account</a>
         </div>
     </div>
 </div>
