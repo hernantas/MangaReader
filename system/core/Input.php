@@ -57,6 +57,31 @@
         {
             return $this->hasPost($name) ? $_POST[$name] : $default;
         }
+
+        /**
+         * Check if input $_REQUEST is exists
+         *
+         * @param  string $name Input name
+         *
+         * @return bool         True if input exists, false otherwise.
+         */
+        public function hasRequest($name)
+        {
+            return isset($_REQUEST[$name]);
+        }
+
+        /**
+         * Get input that normally use $_REQUEST
+         *
+         * @param  string $name    Input name
+         * @param  string $default Default value if not exists
+         *
+         * @return string          Input value
+         */
+        public function request($name, $default='')
+        {
+            return $this->hasRequest($name) ? $_REQUEST[$name] : $default;
+        }
     }
 
 ?>
