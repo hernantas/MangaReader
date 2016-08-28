@@ -95,27 +95,6 @@
             }
         }
 
-        public function hook($name, $type, $data)
-        {
-            $vendors =& loadClass('Vendor', 'Core');
-            $vendor = $vendors->findVendor('Hook', $name);
-
-            if (is_array($vendor))
-            {
-                return $data;
-            }
-
-            $hook = $this->loadClass($name, 'Hook');
-
-            if (!method_exists($hook, $type))
-            {
-                return $data;
-            }
-
-            $newData = $hook->$type($data);
-            return is_array($newData) ? array_merge($data, $newData) : $data;
-        }
-
         public function library($name)
         {
             return $this->loadClass($name, 'Library');
