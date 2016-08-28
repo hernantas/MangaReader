@@ -5,9 +5,11 @@
                 <div>
                     <b><?php echo strtoupper($type); ?>!</b>
                 </div>
-                <?php foreach ($list as $value): ?>
-                    <li><?php echo $value; ?></li>
-                <?php endforeach; ?>
+                <ul>
+                    <?php foreach ($list as $value): ?>
+                        <li><?php echo $value; ?></li>
+                    <?php endforeach; ?>
+                </ul>
             </div>
         </div>
     <?php endforeach; ?>
