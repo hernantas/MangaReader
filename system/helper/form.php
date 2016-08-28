@@ -26,9 +26,9 @@
 
     if (!function_exists('inputCheckbox'))
     {
-        function inputCheckbox($name, $label)
+        function inputCheckbox($name, $label, $value='')
         {
-            return '<label>' . input('checkbox', $name, '') . $label . '</label>';
+            return '<label>' . input('checkbox', $name, $value) . $label . '</label>';
         }
     }
 
