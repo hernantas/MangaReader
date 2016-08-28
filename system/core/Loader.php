@@ -143,7 +143,7 @@
             $data = $hook->data($name, $package, $data);
 
             $vendors =& loadClass('Vendor', 'Core');
-            $list = $vendors->findVendor($package, $name);
+            $list = $vendors->find($package, $name);
 
             if (!is_array($list))
             {
