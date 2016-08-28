@@ -44,7 +44,8 @@
     {
         function input($type='', $name, $value='', $placeholder='')
         {
-            return '<input type="'.$type.'" name="'.$name.'" value="'.$value .
+            return '<input type="'.$type.'" name="'.$name.'" value="' .
+                ($value === '' && $type != 'password' ? (page()->input->hasRequest($name) ? page()->input->request($name) : '') : $value) .
                 '" placeholder="'.$placeholder.'" />';
         }
     }
