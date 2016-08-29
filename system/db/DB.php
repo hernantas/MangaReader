@@ -1,14 +1,19 @@
 <?php
     namespace DB;
 
+    include (SYSTEM_PATH . 'db/Result.php');
     include (SYSTEM_PATH . 'db/builder/Builder.php');
     include (SYSTEM_PATH . 'db/driver/IDriver.php');
+    include (SYSTEM_PATH . 'db/Schema.php');
+    include (SYSTEM_PATH . 'db/schema/ISchema.php');
 
     class DB
     {
         private $driver;
 
         private $builder;
+
+        public $schema;
 
         public function __construct()
         {
@@ -28,8 +33,10 @@
                     $this->builder->db =& $this;
                 }
 
+                $this->schema = new \DB\Schema($cfg['driver'], $this);
+
                 $this->connect($cfg['host'], $cfg['user'], $cfg['password']);
-                $this->database($cfg['database'], false);
+                $this->database($cfg['database']);
             }
         }
 
@@ -101,7 +108,7 @@
                 return null;
             }
 
-            $this->builder->clear();
+            $this->builder->reset();
             return $this->builder->table($tables);
         }
     }
