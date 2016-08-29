@@ -4,6 +4,7 @@
     class MySQLi implements ISchema
     {
         private $fields = array();
+        private $cons = array();
 
         public function addField($field)
         {
@@ -11,6 +12,23 @@
                 ($field->autoinc?' AUTO_INCREMENT ':'');
         }
 
+        public function addConstraint($cons)
+        {
+            $k = '';
+            switch ($cons->type) {
+                case \DB\SchemaConstraint::TYPE_PRIMARY:
+                    $k = 'PRIMARY KEY';
+                    break;
+                case \DB\SchemaConstraint::TYPE_UNIQUE:
+                    $k = 'UNIQUE KEY';
+                    break;
+                case \DB\SchemaConstraint::TYPE_INDEX:
+                    $k = 'INDEX KEY';
+                    break;
+            }
+
+            $this->cons[] = "$k (`$cons->name`)";
+        }
         public function create($table)
         {
             $fs = '';
@@ -27,9 +45,15 @@
                 }
             }
 
+            foreach ($this->cons as $cons)
+            {
+                $fs .= ', '. $cons;
+            }
+
             $sql = "CREATE TABLE `$table` ($fs)";
-            echo "$sql";
-            //$this->db->query($sql);
+            $result = $this->db->query($sql);
+
+            return !($result->isError());
         }
     }
 ?>
