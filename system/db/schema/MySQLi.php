@@ -68,5 +68,12 @@
 
             return !($result->isError());
         }
+
+        public function drop($name)
+        {
+            $result = $this->db->query("DROP TABLE `$name`");
+            return !($result->isError());
+        }
     }
+
 ?>

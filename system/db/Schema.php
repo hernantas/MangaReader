@@ -59,6 +59,11 @@
             exit();
         }
 
+        public function drop($table)
+        {
+            $this->schemaDriver->drop($table);
+        }
+
         public function reset()
         {
             $this->fields = array();
