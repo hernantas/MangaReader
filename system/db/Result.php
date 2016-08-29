@@ -35,7 +35,7 @@
          *
          * @var string
          */
-        private $error = '';
+        private $err = '';
 
         /**
          * Result pointer
@@ -49,12 +49,12 @@
             $this->sql = $sql;
             $this->data = $data;
             $this->dataLength = count($data);
-            $this->error = $error;
+            $this->err = $error;
         }
 
         public function isError()
         {
-            return ($this->error !== '');
+            return ($this->err !== '');
         }
 
         /**
