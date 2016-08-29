@@ -175,7 +175,14 @@
             }
             else
             {
+                $i = $this->schema->hasField($field);
+                if ($i !== false)
+                {
+                    $f = $this->schema->getField($i);
 
+                    $this->schema->addConstraint(SchemaConstraint::TYPE_PRIMARY,
+                        $f->name);
+                }
             }
         }
     }
