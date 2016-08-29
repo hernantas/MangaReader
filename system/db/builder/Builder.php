@@ -8,8 +8,12 @@
      */
     abstract class Builder
     {
-        abstract public function clear();
+        abstract public function reset();
         abstract public function table($tables);
+        abstract public function join($table, $field1, $field2);
+        abstract public function where($field, $vo1, $vo2='');
+        abstract public function whereOr($field, $vo1, $vo2='');
+        abstract public function get($field='*');
 
         protected function splitToArr($s, $delim=',')
         {
@@ -46,6 +50,18 @@
                 return $field;
             }
             return "`$field`";
+        }
+
+        protected function addCond(&$conds, $vo1, $op, $vo2, $cond='AND')
+        {
+            if ($conds === '')
+            {
+                $conds = "$vo1$op$vo2";
+            }
+            else
+            {
+                $conds .= " $cond $vo1$op$vo2";
+            }
         }
     }
 
