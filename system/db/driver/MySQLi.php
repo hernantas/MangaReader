@@ -40,6 +40,10 @@
             {
                 $result = new \DB\Result($sql, array(), $this->mysqli->error);
             }
+            else if ($res === true)
+            {
+                $result = new \DB\Result($sql, []);
+            }
             else
             {
                 $data = array();
