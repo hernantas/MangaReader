@@ -178,7 +178,13 @@
             $vendors =& loadClass('Vendor', 'Core');
             $vendor = $vendors->find($package, $name);
             $lname = strtolower($name);
-            page()->$lname =& loadClass($name, $package, $vendor);
+
+            page()->$package->$lname =& loadClass($name, $package, $vendor);
+
+            if (!method_exists(page(), $lname))
+            {
+                page()->$lname =& loadClass($name, $package, $vendor);
+            }
         }
     }
 
