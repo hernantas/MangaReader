@@ -147,21 +147,13 @@
             $data = $hook->data($name, $package, $data);
 
             $vendors =& loadClass('Vendor', 'Core');
-            $list = $vendors->find($package, $name);
+            $vendor = $vendors->find($package, $name);
 
-            if (!is_array($list))
+            if ($vendor !== false)
             {
-                $list = array($list);
-            }
-
-            foreach ($list as $vendor)
-            {
-                if (file_exists($vendor . '/' . $package . '/' . $name . '.php'))
-                {
-                    extract($data);
-                    include ($vendor . '/' . $package . '/' . $name . '.php');
-                    return true;
-                }
+                extract($data);
+                include ($vendor . '/' . $package . '/' . $name . '.php');
+                return true;
             }
 
             return false;
@@ -177,14 +169,19 @@
         {
             $vendors =& loadClass('Vendor', 'Core');
             $vendor = $vendors->find($package, $name);
-            $lname = strtolower($name);
 
-            page()->$package->$lname =& loadClass($name, $package, $vendor);
-
-            if (!method_exists(page(), $lname))
+            if ($vendor !== false)
             {
-                page()->$lname =& loadClass($name, $package, $vendor);
+                $lname = strtolower($name);
+
+                page()->$package->$lname =& loadClass($name, $package, $vendor);
+
+                if (!method_exists(page(), $lname))
+                {
+                    page()->$lname =& loadClass($name, $package, $vendor);
+                }
             }
+
         }
     }
 

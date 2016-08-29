@@ -10,7 +10,7 @@
             $vendors =& loadClass('Vendor', 'Core');
             $vendor = $vendors->find('Hook', $name);
 
-            if (is_array($vendor))
+            if ($vendor === false)
             {
                 return $data;
             }
