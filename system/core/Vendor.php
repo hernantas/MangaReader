@@ -53,18 +53,18 @@
          */
         private function generateConfig()
         {
-            $list = $this->listFilePackage();
-            $this->vendorFiles = $list['vendor'];
-            $this->packFiles = $list['package'];
+            //$list = $this->listFilePackage();
+            //$this->vendorFiles = $list['vendor'];
+            //$this->packFiles = $list['package'];
 
             $vendors = $this->listDirFile(BASE_PATH)['directories'];
             $this->vendors = $vendors;
 
             $config =& loadClass('Config', 'Core');
             $config->save('Vendor', [
-                'vendors'=>$vendors,
-                'vendorfile'=>$list['vendor'],
-                'packagefile'=>$list['package']
+                'vendors'=>$vendors
+                //, 'vendorfile'=>$list['vendor']
+                //, 'packagefile'=>$list['package']
             ]);
         }
 
@@ -171,8 +171,8 @@
             if ($arr !== false)
             {
                 $this->vendors = $arr['vendors'];
-                $this->vendorFiles = $arr['vendorfile'];
-                $this->packFiles = $arr['packagefile'];
+                $this->vendorFiles = isset($arr['vendorfile']) ? $arr['vendorfile'] : [];
+                $this->packFiles = isset($arr['packagefile']) ? $arr['packagefile'] : [];
             }
         }
 
@@ -183,7 +183,7 @@
          * @param  string $name      File name (name only without extension)
          * @param  string $extension File extension (default: php)
          *
-         * @return string|array      Vendor name if File and package exists or
+         * @return string            Vendor name if File and package exists or
          *                           return all vendor available otherwise.
          */
         public function find($package, $name, $extension='php')
@@ -196,7 +196,15 @@
                 return $this->vendorFiles[$package . '/' . $name . '.' . $extension];
             }
 
-            return $this->vendors;
+            foreach ($this->vendors as $vendor)
+            {
+                if (file_exists($vendor.'/'.$package.'/'.$name.'.php'))
+                {
+                    return $vendor;
+                }
+            }
+
+            return false;
         }
 
         /**
