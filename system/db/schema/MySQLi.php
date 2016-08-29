@@ -6,6 +6,12 @@
         private $fields = array();
         private $cons = array();
 
+        public function reset()
+        {
+            $this->fields = array();
+            $this->cons = array();
+        }
+
         public function addField($field)
         {
             $this->fields[] = "`$field->name` $field->type".($field->null?'':' NOT NULL ').

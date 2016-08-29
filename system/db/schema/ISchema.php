@@ -3,6 +3,7 @@
 
     interface ISchema
     {
+        public function reset();
         public function addField($field);
         public function addConstraint($cons);
         public function hasTable($name);
