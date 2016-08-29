@@ -13,14 +13,9 @@
          *
          * @return object          Instance of the class
          */
-        function &loadClass($name, $package='library', $vendors=array(APP_PATH, SYSTEM_PATH))
+        function &loadClass($name, $package='library', $vendor=SYSTEM_PATH)
         {
             static $instance = array();
-
-            if (!is_array($vendors))
-            {
-                $vendors = array($vendors);
-            }
 
             $package = str_replace('/', '\\', strtolower($package));
             $name = strtolower($name);
@@ -32,27 +27,22 @@
             }
 
             $fileFound = false;
-            foreach ($vendors as $vendor)
-            {
-                $vendor = rtrim(strtolower($vendor), '/') . '/';
+            $vendor = rtrim(strtolower($vendor), '/') . '/';
 
-                if (file_exists($vendor . $package . '/' . $name . '.php'))
-                {
-                    include ($vendor . $package . '/' . $name . '.php');
-                    $vendors = $vendor;
-                    $fileFound = true;
-                    break;
-                }
+            if (file_exists($vendor . $package . '/' . $name . '.php'))
+            {
+                include ($vendor . $package . '/' . $name . '.php');
+                $fileFound = true;
             }
 
             $class = str_replace('/', '\\', $class);
             if ($fileFound === false || class_exists($class) === false)
             {
-                echo ('Class "'.$name.'" is not found on "'.$package.'" package.');
+                echo ('Can\'t find class "'.$name.'" at "'.$package.'" package.');
                 exit(-1);
             }
 
-            isLoaded($vendors, $package, $name);
+            isLoaded($vendor, $package, $name);
             $name = $class;
             $instance[$name] = new $class();
             return $instance[$name];
