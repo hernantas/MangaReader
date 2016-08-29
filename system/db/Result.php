@@ -31,17 +31,30 @@
         private $dataLength = 0;
 
         /**
+         * Query result error
+         *
+         * @var string
+         */
+        private $error = '';
+
+        /**
          * Result pointer
          *
          * @var int
          */
         private $pos = 0;
 
-        public function __construct($sql, $data)
+        public function __construct($sql, $data, $error='')
         {
             $this->sql = $sql;
             $this->data = $data;
             $this->dataLength = count($data);
+            $this->error = $error;
+        }
+
+        public function isError()
+        {
+            return ($this->error !== '');
         }
 
         /**
