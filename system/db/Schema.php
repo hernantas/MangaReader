@@ -32,6 +32,11 @@
             }
         }
 
+        public function hasTable($table)
+        {
+            return $this->schemaDriver->hasTable($table);
+        }
+
         public function create($table, $func)
         {
             $this->reset();
