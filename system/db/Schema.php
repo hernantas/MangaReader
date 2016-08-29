@@ -12,6 +12,7 @@
         private $mode = '';
         private $fields = array();
         private $fieldCount = 0;
+        private $constraint = array();
 
         public function __construct($name, &$db)
         {
@@ -41,6 +42,11 @@
                 $this->schemaDriver->addField($field);
             }
 
+            foreach ($this->constraint as $cons)
+            {
+                $this->schemaDriver->addConstraint($cons);
+            }
+
             $this->schemaDriver->create($table);
 
             exit();
@@ -49,6 +55,7 @@
         public function reset()
         {
             $this->fields = array();
+            $this->constraint = array();
         }
 
         public function &newField()
@@ -59,18 +66,32 @@
             return $this->fields[$this->fieldCount-1];
         }
 
-        public function &findField($name)
+        public function hasField($name)
         {
             for ($i = 0; $i < $this->fieldCount; $i++)
             {
-                return $this->fields[$i];
+                return $i;
             }
-            return $this->fields[0];
+
+            return false;
+        }
+
+        public function &getField($i)
+        {
+            return $this->fields[$i];
         }
 
         public function &lastField()
         {
             return $this->fields[$this->fieldCount-1];
+        }
+
+        public function addConstraint($type, $field)
+        {
+            $constraint = new SchemaConstraint();
+            $constraint->type = $type;
+            $constraint->name = $field;
+            $this->constraint[] = $constraint;
         }
     }
 
@@ -96,6 +117,8 @@
             $field->name = $name;
             $field->type = "INT";
             $field->autoinc = true;
+
+            $this->primary();
         }
 
         public function string($name, $length=255)
@@ -132,11 +155,27 @@
             {
                 $this->schema->lastField()->null = true;
             }
+            else
+            {
+                $i = $this->schema->hasField($field);
+                if ($i !== false)
+                {
+                    $f = $this->schema->getField($i);
+                }
+            }
         }
 
         public function primary($field='')
         {
+            if ($field === '')
+            {
+                $this->schema->addConstraint(SchemaConstraint::TYPE_PRIMARY,
+                    $this->schema->lastField()->name);
+            }
+            else
+            {
 
+            }
         }
     }
 
@@ -146,6 +185,16 @@
         public $type = '';
         public $null = false;
         public $autoinc = false;
+    }
+
+    class SchemaConstraint
+    {
+        const TYPE_PRIMARY = 'PRIMARY';
+        const TYPE_UNIQUE = 'UNIQUE';
+        const TYPE_INDEX = 'INDEX';
+
+        public $type = '';
+        public $name = '';
     }
 
 ?>
