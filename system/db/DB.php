@@ -1,6 +1,7 @@
 <?php
     namespace DB;
 
+    include (SYSTEM_PATH . 'db/builder/Builder.php');
     include (SYSTEM_PATH . 'db/driver/IDriver.php');
 
     class DB
@@ -21,6 +22,11 @@
 
                 // Load builder if available
                 $this->load('Builder', $cfg['driver']);
+
+                if ($this->builder !== null)
+                {
+                    $this->builder->db =& $this;
+                }
 
                 $this->connect($cfg['host'], $cfg['user'], $cfg['password']);
                 $this->database($cfg['database'], false);
@@ -86,6 +92,17 @@
             {
                 return $this->driver->query($sql);
             }
+        }
+
+        public function table($tables)
+        {
+            if ($this->builder === null)
+            {
+                return null;
+            }
+
+            $this->builder->clear();
+            return $this->builder->table($tables);
         }
     }
 
