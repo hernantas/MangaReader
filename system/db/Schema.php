@@ -40,6 +40,8 @@
         public function create($table, $func)
         {
             $this->reset();
+            $this->schemaDriver->reset();
+
             $func(new SchemaTable($this));
 
             foreach ($this->fields as $field)
