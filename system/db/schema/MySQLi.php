@@ -29,6 +29,14 @@
 
             $this->cons[] = "$k (`$cons->name`)";
         }
+
+        public function hasTable($name)
+        {
+            $result = $this->db->query("SHOW TABLES LIKE `$name`");
+
+            return (!$result->isError() && $result->count() > 0);
+        }
+
         public function create($table)
         {
             $fs = '';
