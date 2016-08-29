@@ -57,6 +57,11 @@
             return ($this->err !== '');
         }
 
+        public function error()
+        {
+            return $this->err;
+        }
+
         /**
          * Get syntax used when performing the query
          *
