@@ -38,7 +38,7 @@
                     $router->method = 'index';
                     $class = '\\Page\\' . $router->class;
 
-                    $vendorList = $vendor->findVendor('Page', $router->class);
+                    $vendorList = $vendor->find('Page', $router->class);
 
                     if (!is_array($vendorList))
                     {
