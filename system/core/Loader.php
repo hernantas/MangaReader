@@ -113,7 +113,11 @@
             return $this->loadFile($name, 'Layout', $data);
         }
 
+        public function model($name)
         {
+            $model = $this->loadClass($name, 'Model');
+            $model->db =& loadClass('DB', 'DB');
+            return $model;
         }
 
         /**
