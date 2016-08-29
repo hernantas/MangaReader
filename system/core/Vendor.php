@@ -20,7 +20,14 @@
          *
          * @var array
          */
-        private $packfile = array();
+        private $vendorFiles = array();
+
+        /**
+         * Cache File package list.
+         *
+         * @var array
+         */
+        private $packFiles = array();
 
         /**
          * List of name that will be ignored when generating vendor configuration.
@@ -47,7 +54,8 @@
         private function generateConfig()
         {
             $list = $this->listFilePackage();
-            $this->packfile = $list;
+            $this->vendorFiles = $list['vendor'];
+            $this->packFiles = $list['package'];
 
             $vendors = $this->listDirFile(BASE_PATH)['directories'];
             $this->vendors = $vendors;
@@ -55,7 +63,8 @@
             $config =& loadClass('Config', 'Core');
             $config->save('Vendor', [
                 'vendors'=>$vendors,
-                'packfile'=>$list
+                'vendorfile'=>$list['vendor'],
+                'packagefile'=>$list['package']
             ]);
         }
 
@@ -70,11 +79,12 @@
         {
             $list = $this->listDirFile(BASE_PATH.$path);
 
-            $ret = array();
+            $ret = array('vendor'=>[], 'package'=>[]);
             foreach ($list['directories'] as $dir)
             {
                 $r = $this->listFilePackage($path.$dir.'/');
-                $ret = array_merge($ret, $r);
+                $ret['vendor'] = array_merge($ret['vendor'], $r['vendor']);
+                $ret['package'] = array_merge($ret['package'], $r['package']);
             }
 
             foreach ($list['files'] as $file)
@@ -89,7 +99,8 @@
 
                 if ($file !== '')
                 {
-                    $ret[strtolower($package . $file)] = strtolower($vendor);
+                    $ret['vendor'][strtolower($package . $file)] = strtolower($vendor);
+                    $ret['package'][$package][] = strtolower($file);
                 }
             }
 
@@ -160,7 +171,8 @@
             if ($arr !== false)
             {
                 $this->vendor = $arr['vendor'];
-                $this->packfile = $arr['packfile'];
+                $this->vendorFiles = $arr['vendorfile'];
+                $this->packFiles = $arr['packagefile'];
             }
         }
 
@@ -179,12 +191,34 @@
             $package = strtolower($package);
             $name = strtolower($name);
 
-            if (isset($this->packfile[$package . '/' . $name . '.' . $extension]))
+            if (isset($this->vendorFiles[$package . '/' . $name . '.' . $extension]))
             {
-                return $this->packfile[$package . '/' . $name . '.' . $extension];
+                return $this->vendorFiles[$package . '/' . $name . '.' . $extension];
             }
 
             return $this->vendors;
+        }
+
+        /**
+         * Get current vendor list
+         *
+         * @return array Vendor List
+         */
+        public function getList()
+        {
+            return $this->vendor;
+        }
+
+        /**
+         * Get all files within package (Ignoring vendor)
+         *
+         * @param  string $package Package name
+         *
+         * @return array           Files in the package
+         */
+        public function getPackageFiles($package)
+        {
+            return isset($this->packFiles[$package]) ? $this->packFiles[$package] : false;
         }
     }
 
