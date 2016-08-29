@@ -170,7 +170,7 @@
 
             if ($arr !== false)
             {
-                $this->vendor = $arr['vendor'];
+                $this->vendors = $arr['vendors'];
                 $this->vendorFiles = $arr['vendorfile'];
                 $this->packFiles = $arr['packagefile'];
             }
