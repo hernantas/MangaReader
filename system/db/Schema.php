@@ -161,6 +161,7 @@
                 if ($i !== false)
                 {
                     $f = $this->schema->getField($i);
+                    $f->null = true;
                 }
             }
         }
