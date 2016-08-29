@@ -5,7 +5,7 @@
         'host'=>'localhost',
         'user'=>'root',
         'password'=>'',
-        'database'=>'mediadb'
+        'database'=>'mangadb'
     ];
 
 ?>
