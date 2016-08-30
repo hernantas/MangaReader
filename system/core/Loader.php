@@ -180,8 +180,9 @@
                 {
                     page()->$lname =& loadClass($name, $package, $vendor);
                 }
+                return true;
             }
-
+            return false;
         }
     }
 
