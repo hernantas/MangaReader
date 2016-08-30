@@ -16,6 +16,13 @@
         private $cache = array();
 
         /**
+         * Cache config info
+         *
+         * @var array
+         */
+        private $info = array();
+
+        /**
          * Load Configuration and return it's configuration as an array.
          *
          * @param  string $name Config name
@@ -47,6 +54,38 @@
         }
 
         /**
+         * Load configuration info. Configuration info is config that shouldn't
+         * be modified by user and only be used for code information
+         *
+         * @param  string $name Config info name
+         *
+         * @return bool|array   FALSE if failed to load configuration or configuration
+         *                      as array.
+         */
+        public function loadInfo($name)
+        {
+            if (!file_exists(APP_PATH . 'info/'.$name.'.php'))
+            {
+                return false;
+            }
+
+            $config = include (APP_PATH . 'info/'.$name.'.php');
+            $this->info[$name] = $config;
+            return $config;
+        }
+
+        /**
+         * Safe Array Configuration info to a config file.
+         *
+         * @param  string $name   Config name
+         * @param  array  $config Config array
+         */
+        public function saveInfo($name, $config)
+        {
+            $this->write($name, $config, true);
+        }
+
+        /**
          * Actual method to write config to the file
          *
          * @param  string $name   Config file name
@@ -59,20 +98,21 @@
 
             if ($info)
             {
-                $fp = fopen(APP_PATH . 'config/info/'.$name.'.php', "w");
+                $fp = fopen(APP_PATH . 'info/'.$name.'.php', "w");
+                $this->info[$name] = $config;
             }
             else
             {
                 $fp = fopen(APP_PATH . 'config/'.$name.'.php', "w");
+                $this->cache[$name] = $config;
             }
+
             fwrite($fp, '<?php' . PHP_EOL);
             fwrite($fp, "\t// Config Generated At: " . date('d-M-Y H:i:s') . PHP_EOL . PHP_EOL);
             fwrite($fp, "\treturn ");
             $this->writeArray($fp, $config);
             fwrite($fp, PHP_EOL . '?>');
             fclose($fp);
-
-            $this->cache[$name] = $config;
         }
 
         /**
