@@ -25,8 +25,6 @@
          */
         public function load($name)
         {
-            $fp = false;
-
             if (!file_exists(APP_PATH . 'config/'.$name.'.php'))
             {
                 return false;
