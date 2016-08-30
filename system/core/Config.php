@@ -68,7 +68,7 @@
             fwrite($fp, '<?php' . PHP_EOL);
             fwrite($fp, "\t// Config Generated At: " . date('d-M-Y H:i:s') . PHP_EOL . PHP_EOL);
             fwrite($fp, "\treturn ");
-            $this->writeToConfig($fp, $config);
+            $this->writeArray($fp, $config);
             fwrite($fp, PHP_EOL . '?>');
             fclose($fp);
 
@@ -82,7 +82,7 @@
          * @param  array  $arr     Array to be written to config file
          * @param  int    $offset  Tab offset
          */
-        private function writeToConfig($handler, $arr, $offset=1)
+        private function writeArray($handler, $arr, $offset=1)
         {
             fwrite($handler, '[');
             $first = true;
@@ -103,7 +103,7 @@
 
                 if (is_array($val))
                 {
-                    $this->writeToConfig($handler, $val, $offset+1);
+                    $this->writeArray($handler, $val, $offset+1);
                 }
                 else
                 {
