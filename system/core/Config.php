@@ -43,7 +43,28 @@
          */
         public function save($name, $config)
         {
-            $fp = fopen(APP_PATH . 'config/'.$name.'.php', "w");
+            $this->write($name, $config);
+        }
+
+        /**
+         * Actual method to write config to the file
+         *
+         * @param  string $name   Config file name
+         * @param  string $config Config array
+         * @param  bool   $info   Write config as info or normal config
+         */
+        private function write($name, $config, $info=false)
+        {
+            $fp = null;
+
+            if ($info)
+            {
+                $fp = fopen(APP_PATH . 'config/info/'.$name.'.php', "w");
+            }
+            else
+            {
+                $fp = fopen(APP_PATH . 'config/'.$name.'.php', "w");
+            }
             fwrite($fp, '<?php' . PHP_EOL);
             fwrite($fp, "\t// Config Generated At: " . date('d-M-Y H:i:s') . PHP_EOL . PHP_EOL);
             fwrite($fp, "\treturn ");
