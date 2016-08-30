@@ -122,7 +122,7 @@
 
             foreach ($lists as $list)
             {
-                if (!$this->checkIgnoredName($list))
+                if (!$this->inIgnoreNames($list))
                 {
                     if (is_dir($path.$list))
                     {
@@ -148,7 +148,7 @@
          *
          * @return bool         True if in ignore list, false otherwise.
          */
-        private function checkIgnoredName($name)
+        private function inIgnoreNames($name)
         {
             foreach ($this->ignoreName as $ignore)
             {
