@@ -10,24 +10,31 @@
      */
     class Installation
     {
+        private $config;
         private $installOrder = array();
-        private $uninstallOrder = array();
+        private $progressOrder = array();
 
         public function __construct()
         {
-            $config =& page()->config;
-            $cfg = $config->load('Install');
+            $this->config =& page()->config;
+            $cfg = $this->config->load('Install');
 
             if ($cfg !== false)
             {
+                $info = $config->loadInfo('Install');
+                if ($info !== false)
+                {
+                    $this->progressOrder = $info;
+                }
+
                 $this->installOrder = $cfg['installOrder'];
-                $this->uninstallOrder = $cfg['uninstallOrder'];
+                $this->install();
             }
             else
             {
+                // Generate empty config template
                 $array = [
-                    'installOrder'=>[],
-                    'uninstallOrder'=>[]
+                    'installOrder'=>[]
                 ];
                 $config->save('Install', $array);
             }
