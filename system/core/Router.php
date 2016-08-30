@@ -77,7 +77,7 @@
             $url = $this->findRoute($uri->string());
             $urls = explode('/', trim($url, '/'));
 
-            $this->class = $urls[0];
+            $this->class = $urls[0]!==''?$urls[0]:'home';
             $this->method = isset($urls[1])?$urls[1]:'index';
         }
 
