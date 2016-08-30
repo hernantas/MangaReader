@@ -239,7 +239,7 @@
          */
         public function getList()
         {
-            return $this->vendor;
+            return $this->vendors;
         }
 
         /**
