@@ -105,6 +105,8 @@
                 $table->string('name');
                 $table->int('page');
             });
+
+            $this->auth->install();
         }
     }
 ?>
