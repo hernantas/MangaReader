@@ -87,7 +87,7 @@
          * @param  string $redirect Redirect address if page is accessed. Will
          *                          redirect to home by default
          */
-        private function installOnly($redirect='')
+        public function installOnly($redirect='')
         {
             if ($this->isInstallPage !== true)
             {
