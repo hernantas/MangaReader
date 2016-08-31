@@ -83,6 +83,16 @@
         }
 
         /**
+         * Check if result data is empty or not
+         *
+         * @return bool True if data is empty, false otherwise
+         */
+        public function isEmpty()
+        {
+            return $this->dataLength === 0;
+        }
+
+        /**
          * Change result pointer position
          *
          * @param  string $pos Pointer position
