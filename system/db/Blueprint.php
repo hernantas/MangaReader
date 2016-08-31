@@ -105,7 +105,7 @@
             }
         }
 
-        public function unqiue($field='')
+        public function unique($field='')
         {
             if ($field === '')
             {
