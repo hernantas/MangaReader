@@ -97,9 +97,9 @@
             }
         }
 
-        public function library($name)
+        public function library($name, $altName='')
         {
-            return $this->loadClass($name, 'Library');
+            return $this->loadClass($name, 'Library', $altName);
         }
 
         /**
@@ -115,11 +115,11 @@
             return $this->loadFile($name, 'Layout', $data);
         }
 
-        public function model($name)
+        public function model($name, $altName='')
         {
-            $model = $this->loadClass($name, 'Model');
-            $model->db =& loadClass('DB', 'DB');
-            return $model;
+            $this->loadClass($name, 'Model', $altName);
+            $lname = strtolower($name);
+            page()->$lname->db =& loadClass('DB', 'DB');
         }
 
         /**
@@ -171,21 +171,20 @@
          *
          * @param  string $name    Class name
          * @param  string $package Package name where file class is located
+         * @param  string $altName Alternative name to be used in the page
          */
-        private function loadClass($name, $package='library')
+        private function loadClass($name, $package='library', $altName='')
         {
             $vendors =& loadClass('Vendor', 'Core');
             $vendor = $vendors->find($package, $name);
 
             if ($vendor !== false)
             {
-                $lname = strtolower($name);
+                $altName = $altName === '' ? strtolower($name) : strtolower($altName);
 
-                page()->$package->$lname =& loadClass($name, $package, $vendor);
-
-                if (!method_exists(page(), $lname))
+                if (!method_exists(page(), $altName))
                 {
-                    page()->$lname =& loadClass($name, $package, $vendor);
+                    page()->$altName =& loadClass($name, $package, $vendor);
                 }
 
                 logInfo("Successfully load $package class '$name'", 'Loader');
