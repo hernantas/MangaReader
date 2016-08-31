@@ -55,8 +55,6 @@
             }
 
             $this->schemaDriver->create($table);
-
-            exit();
         }
 
         public function drop($table)
