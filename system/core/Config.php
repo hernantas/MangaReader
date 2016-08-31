@@ -111,6 +111,19 @@
         }
 
         /**
+         * Remove configuration info if exists. This can't be undone
+         *
+         * @param  string $name Config name
+         */
+        public function removeInfo($name)
+        {
+            if ($this->hasConfig($name))
+            {
+                unlink(APP_PATH . 'info/'.$name.'.php');
+            }
+        }
+
+        /**
          * Actual method to write config to the file
          *
          * @param  string $name   Config file name
