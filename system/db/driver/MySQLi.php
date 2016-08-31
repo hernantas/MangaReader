@@ -27,13 +27,26 @@
             return true;
         }
 
-        public function database($name)
+        public function database($name, $forceCreate=false)
         {
             $this->mysqli->select_db($name);
 
             if ($this->mysqli->errno > 0)
             {
-                return ($this->mysqli->error);
+                if ($forceCreate)
+                {
+                    $res = $this->mysqli->query("CREATE DATABASE $name");
+
+                    if ($this->mysqli->errno > 0)
+                    {
+                        return ($this->mysqli->error);
+                    }
+                    $this->mysqli->select_db($name);
+                }
+                else
+                {
+                    return ($this->mysqli->error);
+                }
             }
             return true;
         }

@@ -104,11 +104,13 @@
         /**
          * Select database inside the database host
          *
-         * @param  string $name   Database name
+         * @param  string $name         Database name
+         * @param  bool   $forceCreate  If set to true, will create database if
+         * 								database is not exists
          */
-        public function database($name)
+        public function database($name, $forceCreate=false)
         {
-            $db = $this->driver->database($name);
+            $db = $this->driver->database($name, $forceCreate);
 
             if ($db !== true)
             {
@@ -116,6 +118,7 @@
                 logError($db, 'DB');
                 return false;
             }
+
             return true;
         }
 

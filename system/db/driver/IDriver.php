@@ -21,9 +21,11 @@
         /**
          * Connect to database in the host.
          *
-         * @param  string $name Database name
+         * @param  string $name         Database name
+         * @param  bool   $forceCreate  If set to true, will create database if
+         * 								database is not exists
          */
-        public function database($name);
+        public function database($name, $forceCreate=false);
 
         /**
          * Perform Query based on the driver.
