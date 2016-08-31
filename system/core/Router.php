@@ -84,7 +84,7 @@
         public function redirect($page)
         {
             $uri =& loadClass('Uri', 'Core');
-            header('location: '.$uri->baseUrl().$page);
+            header('location: '.$uri->baseUrl().strtolower($page));
             exit();
         }
     }
