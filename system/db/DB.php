@@ -79,16 +79,23 @@
          */
         public function connect($host, $user, $password='')
         {
+            if ($this->driver === null)
+            {
+                logError('Please select your database driver first', 'DB');
+                return false;
+            }
+
             $con = $this->driver->connect($host, $user, $password);
 
             if ($con !== true)
             {
                 logError($con, 'DB');
+                return false;
             }
             else
             {
                 logInfo("Successfully connect to database host '$host'", 'DB');
-
+                return true;
             }
         }
 
@@ -105,7 +112,9 @@
             {
                 $this->dbError = $db;
                 logError($db, 'DB');
+                return false;
             }
+            return true;
         }
 
         /**
