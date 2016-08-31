@@ -4,6 +4,7 @@
         'library'=>[
             'Setup',
             'Message',
+            'Auth',
             'Session'
         ],
         'helper'=> [
