@@ -13,12 +13,17 @@
 
         public function connect($host, $user, $password)
         {
-            $this->mysqli = new \mysqli($host, $user, $password);
+            @$this->mysqli = new \mysqli($host, $user, $password);
 
-            if ($this->mysqli->errno > 0)
+            if (@$this->mysqli->errno > 0)
             {
                 return ($this->mysqli->error);
             }
+            elseif (!@$this->mysqli->ping())
+            {
+                return "Can't connect to database host '$host'";
+            }
+
             return true;
         }
 
