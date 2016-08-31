@@ -132,4 +132,49 @@
             echo "</pre>";
         }
     }
+
+    if (!function_exists('log'))
+    {
+        function log($message)
+        {
+            static $log = null;
+
+            if ($log === null)
+            {
+                $log =& loadClass('Log', 'Core');
+            }
+
+            $log->info($message);
+        }
+    }
+
+    if (!function_exists('logWarning'))
+    {
+        function logWarning($message)
+        {
+            static $log = null;
+
+            if ($log === null)
+            {
+                $log =& loadClass('Log', 'Core');
+            }
+
+            $log->warning($message);
+        }
+    }
+
+    if (!function_exists('logError'))
+    {
+        function logError($message)
+        {
+            static $log = null;
+
+            if ($log === null)
+            {
+                $log =& loadClass('Log', 'Core');
+            }
+
+            $log->error($message);
+        }
+    }
 ?>

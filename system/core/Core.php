@@ -3,6 +3,7 @@
     require (SYSTEM_PATH . 'core/Common.php');
 
     $config =& loadClass('Config', 'Core');
+    $log =& loadClass('Log', 'Core');
     $vendor =& loadClass('Vendor', 'Core');
 
     $input =& loadClass('Input', 'Core');
