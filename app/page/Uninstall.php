@@ -5,10 +5,10 @@
     {
         public function index()
         {
-            $cfg = $this->config->load('DB');
+            $cfg = $this->config->loadInfo('DB');
 
             $this->db->query('DROP DATABASE '. $cfg['database']);
-            $this->config->remove('DB');
+            $this->config->removeInfo('DB');
             $this->config->removeInfo('Manga');
             $this->config->removeInfo('Setup');
 

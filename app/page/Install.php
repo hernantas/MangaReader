@@ -53,7 +53,7 @@
                 else
                 {
                     $this->db->database($this->input->post('name'), true);
-                    $this->config->save('DB', [
+                    $this->config->saveInfo('DB', [
                         'driver'=>'mysqli',
                         'host'=>$this->input->post('host'),
                         'username'=>$this->input->post('username'),
