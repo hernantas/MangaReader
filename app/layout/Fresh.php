@@ -30,7 +30,7 @@
 
     <div class="body">
         <div class="container">
-            <?php $this->view('message');  ?>
+            <?php $this->view('Message');  ?>
             <?php $this->fetchView(); ?>
         </div>
     </div>
