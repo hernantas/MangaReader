@@ -15,6 +15,9 @@
 
         public $schema;
 
+        private $connError = '';
+        private $dbError = '';
+
         public function __construct()
         {
             $config =& loadClass('Config', 'Core');
@@ -73,7 +76,22 @@
          */
         public function connect($host, $user, $password='')
         {
-            $this->driver->connect($host, $user, $password);
+            $con = $this->driver->connect($host, $user, $password);
+
+            if ($con !== true)
+            {
+                $this->connError = $con;
+            }
+        }
+
+        /**
+         * Get Database Connection error if error is happen when connecting.
+         *
+         * @return string Connection error
+         */
+        public function connectionError()
+        {
+            return $this->connError;
         }
 
         /**
@@ -83,7 +101,22 @@
          */
         public function database($name)
         {
-            $this->driver->database($name);
+            $db = $this->driver->database($name);
+
+            if ($db !== true)
+            {
+                $this->dbError = $db;
+            }
+        }
+
+        /**
+         * Get database error when selecting a database
+         *
+         * @return string Database Select error
+         */
+        public function databaseError()
+        {
+            return $this->dbError;
         }
 
         /**
