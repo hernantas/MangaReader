@@ -33,7 +33,7 @@
         {
             $this->setup->installOnly();
 
-            if ($this->config->hasConfig('DB'))
+            if ($this->config->has('DB'))
             {
                 $this->setup->finish();
                 $this->router->redirect();
