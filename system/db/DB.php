@@ -39,11 +39,11 @@
         private function load($type, $name)
         {
             $vendor =& loadClass('Vendor', 'Core');
-            $list = $vendor->find('DB/'.$type, $name);
+            $vend = $vendor->find('DB/'.$type, $name);
 
-            if (!is_array($list))
+            if ($vend !== false)
             {
-                include ($list . '/DB/'.$type.'/'.$name.'.php');
+                include ($vend . '/DB/'.$type.'/'.$name.'.php');
                 $class = '\\DB\\'.$type.'\\'.$name;
 
                 if (class_exists($class))
