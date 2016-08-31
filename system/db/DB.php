@@ -17,6 +17,8 @@
 
         private $dbError = '';
 
+        private $result = array();
+
         public function __construct()
         {
             $config =& loadClass('Config', 'Core');
@@ -140,12 +142,14 @@
         {
             if (count($data) > 0)
             {
-                return $this->driver->bind($sql, $data);
+                $this->result[$sql] = $this->driver->bind($sql, $data);
             }
             else
             {
-                return $this->driver->query($sql);
+                $this->result[$sql] = $this->driver->query($sql);
             }
+
+            return $this->result[$sql];
         }
 
         public function table($tables)
