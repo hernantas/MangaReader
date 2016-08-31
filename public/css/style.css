@@ -498,6 +498,16 @@ input[type="submit"]:active, input[type="button"]:active
     margin: 0 auto;
 }
 
+.desc
+{
+    color: #999;
+}
+
+.desc.small
+{
+    font-size: 0.9em;
+}
+
 /**
  * 3.1 Header
  */
