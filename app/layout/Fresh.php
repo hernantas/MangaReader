@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" lang="en" />
-    <?php echo headerTitle('Media', isset($page) ? $page : ''); ?>
+    <?php echo headerTitle('Media', isset($title) ? $title : ''); ?>
     <?php echo css('style'); ?>
     <?php echo js('jquery-3.1.0.min'); ?>
 </head>
@@ -18,7 +18,7 @@
             </div>
             <?php else: ?>
             <div class="search">
-                <?php echo inputText('Info', 'Installation Page', '', true); ?>
+                <?php echo inputText('Info', isset($title) ? $title : '', '', true); ?>
             </div>
             <?php endif; ?>
         </div>
