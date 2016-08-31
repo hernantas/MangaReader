@@ -28,7 +28,7 @@
             return $this;
         }
 
-        public function string($name, $length=255)
+        public function string($name, $length=256)
         {
             $field = $this->schema->newField();
             $field->name = $name;
