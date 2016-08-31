@@ -38,7 +38,7 @@
                 $array = [
                     'installOrder'=>[]
                 ];
-                $config->save('Setup', $array);
+                $this->config->save('Setup', $array);
             }
         }
 
