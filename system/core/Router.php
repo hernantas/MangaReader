@@ -32,6 +32,8 @@
             }
 
             $this->routing();
+
+            logInfo("Route to '$this->class' class with '$this->method' method", 'Router');
         }
 
         /**
@@ -84,7 +86,9 @@
         public function redirect($page)
         {
             $uri =& loadClass('Uri', 'Core');
-            header('location: '.$uri->baseUrl().strtolower($page));
+            $url = $uri->baseUrl().strtolower($page);
+            header('location: '.$url);
+            logInfo("Router: Redirect user to $url");
             exit();
         }
     }

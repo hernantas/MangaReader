@@ -34,6 +34,7 @@
          */
         private function loadConfig($config)
         {
+            logInfo('Begin Autoload', 'Loader');
             foreach ($config as $key=>$arr)
             {
                 if (is_array($arr))
@@ -48,6 +49,7 @@
                     $this->$key($arr);
                 }
             }
+            logInfo('End of Autoload', 'Loader');
         }
 
         /**
@@ -153,7 +155,12 @@
             {
                 extract($data);
                 include ($vendor . '/' . $package . '/' . $name . '.php');
+                logInfo("Successfully load $package file \"$name.php\"", 'Loader');
                 return true;
+            }
+            else
+            {
+                logError("Failed to load $package file \"$name.php\"", 'Loader');
             }
 
             return false;
@@ -180,7 +187,13 @@
                 {
                     page()->$lname =& loadClass($name, $package, $vendor);
                 }
+
+                logInfo("Successfully load $package class '$name'", 'Loader');
                 return true;
+            }
+            else
+            {
+                logError("Failed to load $package class '$name'", 'Loader');
             }
             return false;
         }

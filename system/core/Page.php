@@ -56,6 +56,8 @@
                     static::$instance = new $class();
                     $list = isLoaded();
 
+                    $name = $class;
+
                     foreach ($list as $class=>$vp)
                     {
                         $vend = $vp[0];
@@ -64,9 +66,12 @@
                     }
 
                     static::$instance->load =& static::$instance->loader;
+
+                    logInfo("'".substr($name, 6)."' page is loaded.", 'Page');
                 }
                 else
                 {
+                    logWarning('No page is found and no handler for it either.');
                     notFound($classOrigin);
                 }
             }

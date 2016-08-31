@@ -79,7 +79,12 @@
 
             if ($con !== true)
             {
-                logError($con);
+                logError($con, 'DB');
+            }
+            else
+            {
+                logInfo("Successfully connect to database host '$host'", 'DB');
+
             }
         }
 
@@ -95,7 +100,7 @@
             if ($db !== true)
             {
                 $this->dbError = $db;
-                logError($db);
+                logError($db, 'DB');
             }
         }
 

@@ -60,6 +60,8 @@
         public function __construct()
         {
             $this->parse();
+
+            logInfo("User request page '$this->urlString'", "URI");
         }
 
         /**
