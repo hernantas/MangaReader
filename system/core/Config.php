@@ -108,7 +108,12 @@
             }
 
             fwrite($fp, '<?php' . PHP_EOL);
-            fwrite($fp, "\t// Config Generated At: " . date('d-M-Y H:i:s') . PHP_EOL . PHP_EOL);
+            if ($info)
+            {
+                fwrite($fp, "\t// This file or directory should be ignored if using version control." . PHP_EOL);
+            }
+            fwrite($fp, "\t// Config Info Generated At: " . date('d-M-Y H:i:s') . PHP_EOL . PHP_EOL);
+
             fwrite($fp, "\treturn ");
             $this->writeArray($fp, $config);
             fwrite($fp, PHP_EOL . '?>');
