@@ -86,6 +86,18 @@
         }
 
         /**
+         * Check if config exists or not
+         *
+         * @param  string $name Config name
+         *
+         * @return bool         True if config is exists, false otherwise.
+         */
+        public function hasConfig($name)
+        {
+            return file_exists(APP_PATH . 'config/'.$name.'.php');
+        }
+
+        /**
          * Actual method to write config to the file
          *
          * @param  string $name   Config file name
