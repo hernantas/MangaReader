@@ -531,7 +531,8 @@ input[type="submit"]:active, input[type="button"]:active
     padding-left: 50px;
 }
 
-.header .search input[type="search"]
+.header .search input[type="search"],
+.header .search input[type="text"]
 {
     background: rgba(0,0,0,0);
     border: 0;
@@ -543,7 +544,8 @@ input[type="submit"]:active, input[type="button"]:active
     border-radius: 3px;
 }
 
-.header .search input[type="search"]:hover
+.header .search input[type="search"]:hover,
+.header .search input[type="text"]:hover
 {
     background: rgba(255,255,255, 0.1);
 }

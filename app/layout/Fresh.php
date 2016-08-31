@@ -12,12 +12,22 @@
             <div class="title">
                 <img src="<?php echo baseUrl(); ?>public/img/logo48.png" />
             </div>
+            <?php if (!isset($simpleMode)): ?>
             <div class="search">
                 <?php echo inputSearch('Search', 'Search for Manga, People or Page...'); ?>
             </div>
+            <?php else: ?>
+            <div class="search">
+                <?php echo inputText('Info', 'Installation Page', '', true); ?>
+            </div>
+            <?php endif; ?>
         </div>
     </div>
-    <?php $this->view('Navigation'); ?>
+    
+    <?php if (!isset($simpleMode)): ?>
+        <?php $this->view('Navigation'); ?>
+    <?php endif; ?>
+
     <div class="body">
         <div class="container">
             <?php $this->view('message');  ?>
