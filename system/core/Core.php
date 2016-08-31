@@ -12,13 +12,12 @@
     $loader =& loadClass('Loader', 'Core');
     $router =& loadClass('Router', 'Core');
 
-    $db =& loadClass('DB', 'db');
-
     $page =& loadClass('Page', 'Core');
     $curPage =& $page->getInstance();
     $method = $router->method;
 
-    $loader->autoload();
+    $db =& loadClass('DB', 'db');
 
+    $loader->autoload();
     $curPage->$method();
 ?>
