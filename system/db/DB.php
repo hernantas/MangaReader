@@ -15,7 +15,6 @@
 
         public $schema;
 
-        private $connError = '';
         private $dbError = '';
 
         public function __construct()
@@ -80,18 +79,8 @@
 
             if ($con !== true)
             {
-                $this->connError = $con;
+                logError($con);
             }
-        }
-
-        /**
-         * Get Database Connection error if error is happen when connecting.
-         *
-         * @return string Connection error
-         */
-        public function connectionError()
-        {
-            return $this->connError;
         }
 
         /**
@@ -106,6 +95,7 @@
             if ($db !== true)
             {
                 $this->dbError = $db;
+                logError($db);
             }
         }
 
