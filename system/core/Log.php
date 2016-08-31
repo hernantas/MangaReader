@@ -13,17 +13,7 @@
             $config =& loadClass('Config', 'Core');
             $cfg = $config->load('Log');
 
-            if ($cfg !== false)
-            {
-                $this->canWrite['info'] = isset($cfg['info']) ? $cfg['info'] : true;
-                $this->canWrite['warning'] = isset($cfg['warning']) ? $cfg['warning'] : true;
-                $this->canWrite['error'] = isset($cfg['error']) ? $cfg['error'] : true;
-
-                $this->canDisplay['info'] = isset($cfg['infoDisplay']) ? $cfg['infoDisplay'] : false;
-                $this->canDisplay['warning'] = isset($cfg['warningDisplay']) ? $cfg['warningDisplay'] : false;
-                $this->canDisplay['error'] = isset($cfg['errorDisplay']) ? $cfg['errorDisplay'] : false;
-            }
-            else
+            if ($cfg === false)
             {
                 // Generate template config
                 $cfg = [
@@ -36,6 +26,14 @@
                 ];
                 $config->save('Log', $cfg);
             }
+
+            $this->canWrite['info'] = isset($cfg['info']) ? $cfg['info'] : true;
+            $this->canWrite['warning'] = isset($cfg['warning']) ? $cfg['warning'] : true;
+            $this->canWrite['error'] = isset($cfg['error']) ? $cfg['error'] : true;
+
+            $this->canDisplay['info'] = isset($cfg['infoDisplay']) ? $cfg['infoDisplay'] : false;
+            $this->canDisplay['warning'] = isset($cfg['warningDisplay']) ? $cfg['warningDisplay'] : false;
+            $this->canDisplay['error'] = isset($cfg['errorDisplay']) ? $cfg['errorDisplay'] : false;
 
             $this->fileHandler = fopen(APP_PATH.'log/'.date('y-m-d').'.log', "a+");
             $this->write('------------------------- [New User Request] -------------------------');
