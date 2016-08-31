@@ -2,7 +2,8 @@
 	return [
 		"installOrder" => [
 			'install',
-			'install/database'
+			'install/database',
+			'install/path'
 		]
 	];
 ?>

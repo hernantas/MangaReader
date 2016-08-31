@@ -9,6 +9,7 @@
 
             $this->db->query('DROP DATABASE '. $cfg['database']);
             $this->config->remove('DB');
+            $this->config->removeInfo('Manga');
             $this->config->removeInfo('Setup');
 
 

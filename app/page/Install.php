@@ -108,5 +108,39 @@
 
             $this->auth->install();
         }
+
+        public function path()
+        {
+            if ($this->input->hasPost())
+            {
+                $path = $this->input->post('path');
+                if ($path !== '')
+                {
+                    if (file_exists($path) && is_readable($path))
+                    {
+                        $this->config->saveInfo('Manga', [
+                            'path'=>$path
+                        ]);
+                        $this->setup->finish();
+                        $this->router->redirect();
+                    }
+                    else
+                    {
+                        $this->message->error("Can't access directory '$path'");
+                    }
+                }
+                else
+                {
+                    $this->message->error('Path must not empty.');
+                }
+            }
+
+            $this->load->storeView('InstallPath');
+
+            $this->load->layout('Fresh', [
+                'simpleMode'=>true,
+                'title'=>'Database Setup'
+            ]);
+        }
     }
 ?>
