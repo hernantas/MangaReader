@@ -8,20 +8,21 @@
      *
      * @package Library
      */
-    class Installation
+    class Setup
     {
         private $config;
         private $installOrder = array();
         private $progressOrder = array();
+        private $isInstallPage = false;
 
         public function __construct()
         {
             $this->config =& page()->config;
-            $cfg = $this->config->load('Install');
+            $cfg = $this->config->load('Setup');
 
             if ($cfg !== false)
             {
-                $info = $this->config->loadInfo('Install');
+                $info = $this->config->loadInfo('Setup');
 
                 if ($info !== false)
                 {
@@ -37,7 +38,7 @@
                 $array = [
                     'installOrder'=>[]
                 ];
-                $config->save('Install', $array);
+                $config->save('Setup', $array);
             }
         }
 
@@ -60,7 +61,7 @@
             }
 
             // Resave config info incase progress order is empty
-            $this->config->saveInfo('Install', $state);
+            $this->config->saveInfo('Setup', $state);
 
             if (isset($notDone[0]))
             {
@@ -73,12 +74,25 @@
                 {
                     $router->redirect($notDone[0]);
                 }
+                else
+                {
+                    $this->isInstallPage = true;
+                }
             }
         }
 
-        private function uninstall()
+        /**
+         * Prevent current page to be accessed outside install procedure.
+         *
+         * @param  string $redirect Redirect address if page is accessed. Will
+         *                          redirect to home by default
+         */
+        private function installOnly($redirect='')
         {
-
+            if ($this->isInstallPage !== true)
+            {
+                page()->router->redirect($redirect);
+            }
         }
     }
 

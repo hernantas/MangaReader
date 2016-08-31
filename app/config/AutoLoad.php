@@ -2,7 +2,7 @@
 
     return [
         'library'=>[
-            'Installation',
+            'Setup',
             'Message',
             'Session'
         ],
