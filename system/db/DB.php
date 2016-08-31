@@ -40,6 +40,12 @@
             }
         }
 
+        /**
+         * Load Sub DB class
+         *
+         * @param  string $type Sub DB Type
+         * @param  string $name Sub DB Name
+         */
         private function load($type, $name)
         {
             $vendor =& loadClass('Vendor', 'Core');
