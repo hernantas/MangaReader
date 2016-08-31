@@ -24,19 +24,7 @@
 
             if ($cfg !== false)
             {
-                // Load driver
-                $this->load('Driver', $cfg['driver']);
-
-                // Load builder if available
-                $this->load('Builder', $cfg['driver']);
-
-                if ($this->builder !== null)
-                {
-                    $this->builder->db =& $this;
-                }
-
-                $this->schema = new \DB\Schema($cfg['driver'], $this);
-
+                $this->selectDriver($cfg['driver']);
                 $this->connect($cfg['host'], $cfg['user'], $cfg['password']);
                 $this->database($cfg['database']);
             }
@@ -64,6 +52,22 @@
                     $this->$type = new $class();
                 }
             }
+        }
+
+        public function selectDriver($name)
+        {
+            // Load driver
+            $this->load('Driver', $name);
+
+            // Load builder if available
+            $this->load('Builder', $name);
+
+            if ($this->builder !== null)
+            {
+                $this->builder->db =& $this;
+            }
+
+            $this->schema = new \DB\Schema($name, $this);
         }
 
         /**
