@@ -22,14 +22,14 @@
         {
             $k = '';
             switch ($cons->type) {
-                case \DB\SchemaConstraint::TYPE_PRIMARY:
+                case \DB\BlueprintConstraint::TYPE_PRIMARY:
                     $k = 'PRIMARY KEY';
                     break;
-                case \DB\SchemaConstraint::TYPE_UNIQUE:
-                    $k = 'UNIQUE KEY';
+                case \DB\BlueprintConstraint::TYPE_UNIQUE:
+                    $k = 'UNIQUE';
                     break;
-                case \DB\SchemaConstraint::TYPE_INDEX:
-                    $k = 'INDEX KEY';
+                case \DB\BlueprintConstraint::TYPE_INDEX:
+                    $k = 'INDEX';
                     break;
             }
 
