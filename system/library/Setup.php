@@ -94,6 +94,40 @@
                 page()->router->redirect($redirect);
             }
         }
+
+        /**
+         * Finish current install progress.
+         */
+        public function finish()
+        {
+            $state = array();
+            $done = true;
+
+            foreach ($this->installOrder as $order)
+            {
+                if (isset($this->progressOrder[$order]) &&
+                    $this->progressOrder[$order] == 'done')
+                {
+                    $state[$order] = 'done';
+                }
+                else
+                {
+                    if ($done)
+                    {
+                        $done = false;
+                        $state[$order] = 'done';
+                    }
+                    else
+                    {
+                        $state[$order] = '';
+                    }
+
+                }
+            }
+
+            // Resave config info incase progress order is empty
+            $this->config->saveInfo('Setup', $state);
+        }
     }
 
 ?>
