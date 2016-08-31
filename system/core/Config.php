@@ -102,7 +102,7 @@
          *
          * @param  string $name Config name
          */
-        public function removeConfig($name)
+        public function remove($name)
         {
             if ($this->hasConfig($name))
             {
