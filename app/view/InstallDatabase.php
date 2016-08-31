@@ -1,7 +1,7 @@
 <div class="single panel">
     <div class="warp">
         <?php echo formOpen('install/database'); ?>
-        <h1>Setup Database</h1>
+        <h1>Set Up Database</h1>
         <div>
             Now, you must input your database configuration.
         </div>
