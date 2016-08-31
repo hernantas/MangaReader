@@ -2,9 +2,9 @@
 
     if (!function_exists('inputText'))
     {
-        function inputText($name, $placeholder='', $value='')
+        function inputText($name, $placeholder='', $value='', $readOnly=false)
         {
-            return input('text', $name, $value, $placeholder);
+            return input('text', $name, $value, $placeholder, $readOnly);
         }
     }
 
@@ -42,11 +42,11 @@
 
     if (!function_exists('input'))
     {
-        function input($type='', $name, $value='', $placeholder='')
+        function input($type='', $name, $value='', $placeholder='', $readOnly=false)
         {
             return '<input type="'.$type.'" name="'.$name.'" value="' .
                 ($value === '' && $type != 'password' ? (page()->input->hasRequest($name) ? page()->input->request($name) : '') : $value) .
-                '" placeholder="'.$placeholder.'" />';
+                '" placeholder="'.$placeholder.'" '.($readOnly?'readonly="true"':'').' />';
         }
     }
 
