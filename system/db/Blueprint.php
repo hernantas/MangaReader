@@ -60,6 +60,14 @@
             return $this;
         }
 
+        public function bool($name)
+        {
+            $field = $this->schema->newField();
+            $field->name = $name;
+            $field->type = "BOOLEAN";
+            return $this;
+        }
+
         public function nullable($field='')
         {
             if ($field === '')
