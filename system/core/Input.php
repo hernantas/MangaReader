@@ -15,8 +15,12 @@
          *
          * @return bool         True if input exists, false otherwise.
          */
-        public function hasGet($name)
+        public function hasGet($name='')
         {
+            if ($name === '')
+            {
+                return !empty($_GET);
+            }
             return isset($_GET[$name]);
         }
 
@@ -40,8 +44,13 @@
          *
          * @return bool         True if input exists, false otherwise.
          */
-        public function hasPost($name)
+        public function hasPost($name='')
         {
+            if ($name === '')
+            {
+                return !empty($_POST);
+            }
+            
             return isset($_POST[$name]);
         }
 
@@ -65,8 +74,12 @@
          *
          * @return bool         True if input exists, false otherwise.
          */
-        public function hasRequest($name)
+        public function hasRequest($name='')
         {
+            if ($name === '')
+            {
+                return !empty($_REQUEST);
+            }
             return isset($_REQUEST[$name]);
         }
 
