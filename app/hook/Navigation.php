@@ -35,6 +35,13 @@
                             'img'=>'news48.png',
                             'text'=>'Latest Updated'
                         ]
+                    ],
+                    [
+                        [
+                            'url'=>'uninstall',
+                            'img'=>'',
+                            'text'=>'Uninstall'
+                        ]
                     ]
                 ]
             ];
