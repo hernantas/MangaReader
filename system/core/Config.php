@@ -152,7 +152,14 @@
                 }
                 else
                 {
-                    fwrite($handler, '"' . $val . '"');
+                    if (is_bool($val))
+                    {
+                        fwrite($handler, $val?'true':'false');
+                    }
+                    else
+                    {
+                        fwrite($handler, '"' . $val . '"');
+                    }
                 }
                 $first = false;
             }
