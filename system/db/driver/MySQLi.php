@@ -17,8 +17,9 @@
 
             if ($this->mysqli->errno > 0)
             {
-                die ($this->mysqli->error);
+                return ($this->mysqli->error);
             }
+            return true;
         }
 
         public function database($name)
@@ -27,8 +28,9 @@
 
             if ($this->mysqli->errno > 0)
             {
-                die ($this->mysqli->error);
+                return ($this->mysqli->error);
             }
+            return true;
         }
 
         public function query($sql)
