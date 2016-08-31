@@ -64,7 +64,7 @@
          */
         public function loadInfo($name)
         {
-            if (!file_exists(APP_PATH . 'info/'.$name.'.php'))
+            if (!$this->hasConfig($name))
             {
                 return false;
             }
