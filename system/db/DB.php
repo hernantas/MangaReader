@@ -24,8 +24,14 @@
             $config =& loadClass('Config', 'Core');
             $cfg = $config->load('DB');
 
+            if ($cfg === false)
+            {
+                $cfg = $config->loadInfo('DB');
+            }
+            var_dump($cfg);
             if ($cfg !== false)
             {
+
                 $this->selectDriver($cfg['driver']);
                 $this->connect($cfg['host'], $cfg['username'], $cfg['password']);
                 $this->database($cfg['database']);
