@@ -28,5 +28,83 @@
                 'title'=>'Welcome'
             ]);
         }
+
+        public function database()
+        {
+            $this->setup->installOnly();
+
+            if ($this->config->hasConfig('DB'))
+            {
+                $this->setup->finish();
+                $this->router->redirect();
+            }
+
+            if ($this->input->hasPost())
+            {
+                $this->db->selectDriver('mysqli');
+                $res = $this->db->connect($this->input->post('host'),
+                    $this->input->post('username'),
+                    $this->input->post('password'));
+
+                if ($res !== true)
+                {
+                    $this->message->error('Your database host configuration is not valid.');
+                }
+                else
+                {
+                    $this->db->database($this->input->post('name'), true);
+                    $this->config->save('DB', [
+                        'driver'=>'mysqli',
+                        'host'=>$this->input->post('host'),
+                        'username'=>$this->input->post('username'),
+                        'password'=>$this->input->post('password'),
+                        'database'=>$this->input->post('name')
+                    ]);
+                    $this->createTable();
+
+                    $this->setup->finish();
+                    $this->router->redirect();
+                    // $this->db->schema->create();
+                }
+            }
+
+            $this->load->storeView('InstallDatabase');
+
+            $this->load->layout('Fresh', [
+                'simpleMode'=>true,
+                'title'=>'Database Setup'
+            ]);
+        }
+
+        private function createTable()
+        {
+            $this->db->schema->create('manga', function ($table)
+            {
+                $table->increment('id');
+                $table->string('name')->unique();
+                $table->string('friendly_name')->unique();
+                $table->int('added_at');
+                $table->int('update_at');
+                $table->bool('completed');
+                $table->bool('deleted');
+            });
+            $this->db->schema->create('manga_chapter', function ($table)
+            {
+                $table->increment('id');
+                $table->int('id_manga')->index();
+                $table->string('name')->index();
+                $table->string('friendly_name')->index();
+                $table->int('added_at');
+                $table->bool('deleted');
+            });
+            $this->db->schema->create('manga_image', function ($table)
+            {
+                $table->increment('id');
+                $table->int('id_manga')->index();
+                $table->int('id_chapter')->index();
+                $table->string('name');
+                $table->int('page');
+            });
+        }
     }
 ?>
