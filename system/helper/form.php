@@ -1,5 +1,13 @@
 <?php
 
+    if (!function_exists('inputHidden'))
+    {
+        function inputHidden($name, $value)
+        {
+            return input('hidden', $name, $value);
+        }
+    }
+
     if (!function_exists('inputText'))
     {
         function inputText($name, $placeholder='', $value='', $readOnly=false)
