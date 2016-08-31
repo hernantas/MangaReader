@@ -27,7 +27,7 @@
             if ($cfg !== false)
             {
                 $this->selectDriver($cfg['driver']);
-                $this->connect($cfg['host'], $cfg['user'], $cfg['password']);
+                $this->connect($cfg['host'], $cfg['username'], $cfg['password']);
                 $this->database($cfg['database']);
             }
         }
