@@ -133,9 +133,9 @@
         }
     }
 
-    if (!function_exists('log'))
+    if (!function_exists('logInfo'))
     {
-        function log($message)
+        function logInfo($message, $source='')
         {
             static $log = null;
 
@@ -144,13 +144,13 @@
                 $log =& loadClass('Log', 'Core');
             }
 
-            $log->info($message);
+            $log->info($message, $source);
         }
     }
 
     if (!function_exists('logWarning'))
     {
-        function logWarning($message)
+        function logWarning($message, $source='')
         {
             static $log = null;
 
@@ -159,13 +159,13 @@
                 $log =& loadClass('Log', 'Core');
             }
 
-            $log->warning($message);
+            $log->warning($message, $source);
         }
     }
 
     if (!function_exists('logError'))
     {
-        function logError($message)
+        function logError($message, $source='')
         {
             static $log = null;
 
@@ -174,7 +174,7 @@
                 $log =& loadClass('Log', 'Core');
             }
 
-            $log->error($message);
+            $log->error($message, $source);
         }
     }
 ?>

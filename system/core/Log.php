@@ -51,11 +51,11 @@
             echo ($prefix!==''?"<b>$prefix: </b>":'') . $message;
         }
 
-        public function info($message)
+        public function info($message, $source='')
         {
             if ($this->canWrite['info'])
             {
-                $this->write($message);
+                $this->write(($source!==''?$source.': ':'').$message);
             }
             if ($this->canDisplay['info'])
             {
@@ -63,11 +63,11 @@
             }
         }
 
-        public function warning($message)
+        public function warning($message, $source='')
         {
             if ($this->canWrite['warning'])
             {
-                $this->write($message);
+                $this->write('Warning'.($source!==''?' at '.$source:'').': '.$message);
             }
             if ($this->canDisplay['warning'])
             {
@@ -75,11 +75,11 @@
             }
         }
 
-        public function error($message)
+        public function error($message, $source='')
         {
             if ($this->canWrite['error'])
             {
-                $this->write($message);
+                $this->write('Error'.($source!==''?' at '.$source:'').': '.$message);
             }
             if ($this->canDisplay['error'])
             {
