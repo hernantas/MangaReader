@@ -67,6 +67,7 @@
         public function reset()
         {
             $this->fields = array();
+            $this->fieldCount = 0;
             $this->constraint = array();
         }
 
