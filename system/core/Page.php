@@ -38,11 +38,11 @@
                     $router->method = 'index';
                     $class = '\\Page\\' . $router->class;
 
-                    $vendorList = $vendor->find('Page', $router->class);
+                    $vendor = $vendor->find('Page', $router->class);
 
-                    if (!is_array($vendorList))
+                    if ($vendor !== false)
                     {
-                        include ($vendorList . '/Page/' . $router->class . '.php');
+                        include ($vendor . '/Page/' . $router->class . '.php');
 
                         if (class_exists($class) && method_exists($class, $router->method))
                         {
