@@ -46,7 +46,7 @@
 
         public function display($message, $prefix='')
         {
-            echo ($prefix!==''?"<b>$prefix: </b>":'') . $message;
+            echo ($prefix!==''?"<b>$prefix: </b>":'') . $message . '<br />';
         }
 
         public function info($message, $source='')
