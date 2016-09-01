@@ -22,7 +22,7 @@
 
             if ($cfg === false || !isset($cfg['key']))
             {
-                $cfg['key'] = $this->createKey();
+                $cfg['key'] = $this->createKey(32);
                 if (!isset($cfg['chiper'])) $cfg['chiper'] = MCRYPT_RIJNDAEL_128;
                 if (!isset($cfg['mode'])) $cfg['mode'] = MCRYPT_MODE_CBC;
 
