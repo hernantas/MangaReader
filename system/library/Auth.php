@@ -82,6 +82,34 @@
             return true;
         }
 
+        public function getUser()
+        {
+            if ($this->isLoggedIn())
+            {
+                return page()->session->get('username');
+            }
+            return false;
+        }
+
+        public function getUserId()
+        {
+            if ($this->isLoggedIn())
+            {
+                return page()->authuser->getId(page()->session->get('username'));
+            }
+            return -1;
+        }
+
+        public function getUserOption($optionKey, $default='')
+        {
+            if ($this->isLoggedIn())
+            {
+                return page()->authuser->getOption($this->getUserId(), $optionKey,
+                    $default);
+            }
+
+            return $default;
+        }
         public function requireLogin($redirect='')
         {
             if (!$this->isLoggedIn())
