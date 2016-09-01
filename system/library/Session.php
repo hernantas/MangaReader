@@ -1,6 +1,11 @@
 <?php
     namespace Library;
 
+    /**
+     * Provide easy to use session mechanism.
+     *
+     * @package Library
+     */
     class Session
     {
         /**
