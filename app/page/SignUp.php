@@ -45,9 +45,19 @@
                 return;
             }
 
-            $this->message->success('Your account has been created successfully.'.
+            $create = $this->auth->addUser($username, $password);
+
+            if ($create === true)
+            {
+                $this->message->success('Your account has been created successfully.'.
                 ' Enter with your username and password', true);
-            $this->router->redirect('user/signin');
+                $this->router->redirect('user/signin');
+            }
+            else
+            {
+                $this->message->error($create);
+            }
+
         }
     }
 
