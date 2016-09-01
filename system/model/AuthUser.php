@@ -31,11 +31,12 @@
 
         public function insert($username, $password)
         {
+            $hasUser = $this->hasUser();
             $hashPass = page()->encryption->hashPassword($password);
             $this->db->table('user')->insert(['',$username, $hashPass]);
 
             $id = $this->getId($username);
-            if (!$this->hasUser())
+            if (!$emptyUser)
             {
                 $this->setOption($id, 'privilege', 'admin');
             }
