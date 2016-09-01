@@ -518,7 +518,7 @@ input[type="submit"]:active, input[type="button"]:active
     top: 0;
     left: 0;
     right: 0;
-    height: 50px;
+    height: 48px;
     background: #31BACD;
     box-shadow: 0 0px 10px rgba(0,0,0,0.5);
     z-index: 9999;
@@ -533,7 +533,7 @@ input[type="submit"]:active, input[type="button"]:active
 {
     width: 40px;
     height: 40px;
-    padding-top: 5px;
+    padding-top: 4px;
 }
 
 .header .search
@@ -549,7 +549,7 @@ input[type="submit"]:active, input[type="button"]:active
     outline: 0;
     color: #FFF;
     padding: 11px;
-    margin-top: 5px;
+    margin-top: 4px;
     width: 300px;
     border-radius: 3px;
 }
@@ -575,18 +575,21 @@ input[type="submit"]:active, input[type="button"]:active
     left: 0;
     bottom: 0;
     width: 64px;
-    background: #30333C;
+    background: #30353A;
     z-index: 99990;
+    box-shadow: inset -10px 0 16px rgba(0,0,0,0.3);
 }
 
 .navigation:hover
 {
     width: 250px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);;
 }
 
 .navigation .section
 {
     border-bottom: 1px solid #22242a;
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.1);
 }
 
 .navigation a
@@ -608,10 +611,11 @@ input[type="submit"]:active, input[type="button"]:active
 
 .navigation a img
 {
-    padding-top: 8px;
-    padding-left: 5px;
+    margin-top: 8px;
+    margin-left: 5px;
     float: left;
     width: 32px;
+    height: 32px;
 }
 
 .navigation a .text
