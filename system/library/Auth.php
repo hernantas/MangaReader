@@ -39,7 +39,7 @@
             return true;
         }
 
-        public function createSession($username, $password)
+        public function createSession($username, $password, $persist=false)
         {
             if (page()->authuser->verify($username, $password))
             {
@@ -47,10 +47,11 @@
                 $mac = hash_hmac('sha256', "$username:$token", $this->key);
                 page()->authuser->addSession($username, $mac);
 
-                $this->session->set('username', $username);
-                $this->session->set('token', $token);
+                page()->session->set('username', $username, $persist);
+                page()->session->set('token', $token, $persist);
                 return true;
             }
+
             return false;
         }
 
