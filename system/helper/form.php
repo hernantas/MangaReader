@@ -36,7 +36,7 @@
     {
         function inputCheckbox($name, $label, $value='')
         {
-            return '<label>' . input('checkbox', $name, $value) . $label . '</label>';
+            return '<label>' . input('checkbox', $name, $value===''?$name:$value) . $label . '</label>';
         }
     }
 
