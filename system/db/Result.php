@@ -111,13 +111,16 @@
         }
 
         /**
-         * Get query result per row
+         * Get query result per row, or get single string at current row if
+         * column is used
          *
-         * @return array Result row
+         * @param  string       $column     Column name
+         * @param  string       $default    Default value if column is not exists
+         * @return array|string             Result row or single string if column is used
          */
-        public function row()
+        public function row($column='', $default='')
         {
-            return $this->at($this->pos++);
+            return $this->at($this->pos++, $column='', $default='');
         }
 
         /**
@@ -131,35 +134,50 @@
         }
 
         /**
-         * Get first row from query result data
+         * Get first row from query result data. If column is used, will return
+         * single string instead
          *
-         * @return array First row on Query result
+         * @param  string       $column     Column name
+         * @param  string       $default    Default value if column is not exists
+         * @return array|string             First row on Query result or single string if
+         *                                  column is used
          */
-        public function first()
+        public function first($column='', $default='')
         {
-            return $this->at(0);
+            return $this->at(0, $column, $default);
         }
 
         /**
          * Get query result at specific row
          *
-         * @param  int $pos Row number, start with 0
+         * @param  int    $pos      Row number, start with 0
+         * @param  string $column   Column name
+         * @param  string $default  Default value if column is not exists
          *
-         * @return array    Row on query result
+         * @return array            Row on query result
          */
-        public function at($pos)
+        public function at($pos, $column='', $default='')
         {
-            return isset($this->data[$pos]) ? $this->data[$pos] : false;
+            $row = isset($this->data[$pos]) ? $this->data[$pos] : false;
+            if ($column === '')
+            {
+                return $row;
+            }
+            return property_exists($row, $column) ? $row->$column : $default;
         }
 
         /**
          * Get last row from query result
          *
-         * @return array Last Row on query result
+         * @param  int    $pos      Row number, start with 0
+         * @param  string $column   Column name
+         *
+         * @return array|string     Last row on Query result or single string if
+         *                          column is used
          */
-        public function last()
+        public function last($column='', $default='')
         {
-            return $this->at($this->dataLength-1);
+            return $this->at($this->dataLength-1, $column, $default);
         }
     }
 
