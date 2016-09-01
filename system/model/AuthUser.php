@@ -31,8 +31,7 @@
 
         public function insert($username, $password)
         {
-            page()->load->library('Encryption');
-            $hashPass = page()->encryption->hash($password);
+            $hashPass = page()->encryption->hashPassword($password);
             $this->db->table('user')->insert(['',$username, $hashPass]);
 
             $id = $this->getId($username);
