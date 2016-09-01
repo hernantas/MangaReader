@@ -5,6 +5,8 @@
     {
         private $tbl = '';
         private $conds = '';
+        private $order = '';
+        private $lim = '';
 
         public function reset()
         {
@@ -99,7 +101,21 @@
 
             $tables = $this->tbl;
 
-            return $this->db->query("SELECT $fields FROM $tables".($this->conds!==''?' WHERE '.$this->conds:''));
+            return $this->db->query("SELECT $fields FROM $tables" .
+                ($this->conds!==''?' WHERE '.$this->conds:'') .
+                ($this->order!==''?' '.$this->order:'') .
+                ($this->lim!==''?' '.$this->lim:''));
+        }
+        public function orderBy($field, $asc=true)
+        {
+            $this->order = "ORDER BY `$field` ".($asc?'ASC':'DESC');
+            return $this;
+        }
+
+        public function limit($page, $limit)
+        {
+            $this->lim = "LIMIT $page, $limit";
+            return $this;
         }
     }
 
