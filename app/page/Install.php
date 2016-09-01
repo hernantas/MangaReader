@@ -105,7 +105,13 @@
                 $table->string('name');
                 $table->int('page');
             });
-
+            $this->db->schema->create('user_history', function ($table)
+            {
+                $table->increment('id');
+                $table->int('id_manga')->index();
+                $table->int('id_chapter')->index();
+                $table->int('page');
+            });
             $this->auth->install();
         }
 
