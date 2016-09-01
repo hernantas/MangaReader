@@ -35,6 +35,41 @@
             return true;
         }
 
+        public function createSession($username, $password)
+        {
+            if (page()->authuser->verify($username, $password))
+            {
+                $token = page()->encryption->createKey();
+                $mac = hash_hmac('sha256', "$username:$token", $this->key);
+                page()->authuser->addSession($username, $mac);
+
+                $this->session->set('username', $username);
+                $this->session->set('token', $token);
+                return true;
+            }
+            return false;
+        }
+
+        public function isLoggedIn()
+        {
+            $username = $this->session->get('username');
+            $token = $this->session->get('token');
+
+            if ($username === '' || $token === '')
+            {
+                return false;
+            }
+
+            $mac = hash_hmac('sha256', "$username:$token", $this->key);
+
+            if (!page()->authuser->verifySession($username, $mac))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         /**
          * Install database table to be used for this library
          */

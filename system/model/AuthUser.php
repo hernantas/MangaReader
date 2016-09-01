@@ -73,6 +73,34 @@
             }
             return $result->first('option_value');
         }
+
+        public function verify($username, $password)
+        {
+            $result = $this->db->table('user')->where('name', $username)->get('password');
+
+            if ($result->isEmpty())
+            {
+                return false;
+            }
+
+            $hashPass = $result->first('password');
+            return (page()->encryption->verifyPassword($password, $hashPass));
+        }
+
+        public function addSession($username, $hashedToken)
+        {
+            $id = $this->getId($username);
+            $result = $this->db->table('user_session')->insert(['', $id, $hashedToken, time()]);
+            return !$result->isError();
+        }
+
+        public function verifySession($username, $hashedToken)
+        {
+            $id = $this->getId($username);
+            $result = $this->db->table('user_session')->where('id', $id)
+                ->where('id_session', $hashedToken)->get();
+            return ($result->isEmpty());
+        }
     }
 
 ?>
