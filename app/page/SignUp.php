@@ -5,6 +5,8 @@
     {
         public function index()
         {
+            $this->auth->requireNoLogin();
+            
             if ($this->input->hasPost('username'))
             {
                 $this->addUser();
