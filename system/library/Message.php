@@ -104,7 +104,7 @@
 
             if ($persist)
             {
-                $this->session->setFlash('msg_'.$type.'_'.$this->msgCount[$type], $msg);
+                page()->session->setFlash('msg_'.$type.'_'.$this->msgCount[$type], $msg);
                 $this->flashCount[$type]++;
             }
         }
