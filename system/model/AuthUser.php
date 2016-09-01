@@ -98,8 +98,8 @@
         {
             $id = $this->getId($username);
             $result = $this->db->table('user_session')->where('id', $id)
-                ->where('id_session', $hashedToken)->get();
-            return ($result->isEmpty());
+                ->where('session_token', $hashedToken)->get();
+            return !($result->isEmpty());
         }
     }
 
