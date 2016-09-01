@@ -1,5 +1,6 @@
 <div class="single">
     <div class="panel warp">
+        <?php echo formOpen('user/signin'); ?>
         <h1>Sign In</h1>
         <div>
             <?php echo inputText('username', 'Username'); ?>
@@ -16,5 +17,6 @@
         <div>
             Don't have an account yet? <a href="<?php echo baseUrl(); ?>user/signup">Create an Account</a>
         </div>
+        <?php echo formClose(); ?>
     </div>
 </div>
