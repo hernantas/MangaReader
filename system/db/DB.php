@@ -28,10 +28,9 @@
             {
                 $cfg = $config->loadInfo('DB');
             }
-            
+
             if ($cfg !== false)
             {
-
                 $this->selectDriver($cfg['driver']);
                 $this->connect($cfg['host'], $cfg['username'], $cfg['password']);
                 $this->database($cfg['database']);
