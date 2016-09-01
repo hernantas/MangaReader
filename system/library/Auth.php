@@ -81,6 +81,22 @@
             return true;
         }
 
+        public function requireLogin($redirect='')
+        {
+            if (!$this->isLoggedIn())
+            {
+                page()->router->redirect($redirect);
+            }
+        }
+
+        public function requireNoLogin($redirect='')
+        {
+            if ($this->isLoggedIn())
+            {
+                page()->router->redirect($redirect);
+            }
+        }
+
         /**
          * Install database table to be used for this library
          */
