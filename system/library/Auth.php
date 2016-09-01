@@ -3,10 +3,23 @@
 
     class Auth
     {
+        private $key = '';
+
         public function __construct()
         {
             // Load Model Auth as User
+            page()->load->library('Encryption');
+            page()->load->library('Session');
             page()->load->model('AuthUser');
+
+            $cfg = page()->config->load('Auth');
+            if ($cfg === false)
+            {
+                $cfg['key'] = page()->encryption->createKey(32);
+                page()->config->save('Auth', $cfg);
+            }
+
+            $this->key = $cfg['key'];
         }
 
         public function addUser($username, $password)
