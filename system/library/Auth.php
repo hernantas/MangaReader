@@ -3,6 +3,25 @@
 
     class Auth
     {
+        public function __construct()
+        {
+            // Load Model Auth as User
+            page()->load->model('AuthUser');
+        }
+
+        public function addUser($username, $password)
+        {
+            $user =& page()->authuser;
+
+            if ($user->hasUser($username))
+            {
+                return "Username already exists";
+            }
+
+            $user->insert($username, $password);
+            return true;
+        }
+
         /**
          * Install database table to be used for this library
          */
@@ -35,7 +54,9 @@
          */
         public function uninstall()
         {
-
+            page()->db->schema->drop('user');
+            page()->db->schema->drop('user_option');
+            page()->db->schema->drop('user_session');
         }
     }
 
