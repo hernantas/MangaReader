@@ -5,6 +5,10 @@
     {
         private $key = '';
 
+        private $isLoginCheck = false;
+
+        private $isLogin = false;
+
         public function __construct()
         {
             // Load Model Auth as User
@@ -52,8 +56,14 @@
 
         public function isLoggedIn()
         {
-            $username = $this->session->get('username');
-            $token = $this->session->get('token');
+            if ($this->isLoginCheck)
+            {
+                return $this->isLogin;
+            }
+
+            $this->isLoginCheck = true;
+            $username = page()->session->get('username');
+            $token = page()->session->get('token');
 
             if ($username === '' || $token === '')
             {
@@ -67,6 +77,7 @@
                 return false;
             }
 
+            $this->isLogin = true;
             return true;
         }
 
