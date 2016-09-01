@@ -44,7 +44,7 @@
             {
                 $table->increment('id');
                 $table->int('id_user')->index();
-                $table->string('id_session');
+                $table->string('session_token');
                 $table->int('last_access');
             });
         }
