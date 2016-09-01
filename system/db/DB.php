@@ -28,7 +28,7 @@
             {
                 $cfg = $config->loadInfo('DB');
             }
-            var_dump($cfg);
+            
             if ($cfg !== false)
             {
 
