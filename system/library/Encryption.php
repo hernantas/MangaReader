@@ -70,17 +70,21 @@
 
         /**
          * Do 2-way encryption. It recommended to always generate salt for different
-         * encryption process since.
+         * encryption process since same salt will easily guessed.
          *
          * @param  string $raw      Raw data that want to be encrypted
-         * @param  string $salt     Salt used in encryption. Will use $default_salt if empty
          * @param  string $password Password used to add defined salt
+         * @param  string $salt     Salt used in encryption. Will use $default_salt if empty
+         *
          * @return string           Encrypted string
          * @see Encryption::createSalt()
          */
         public function encrypt($raw, $salt='', $password='')
         {
-            if ($salt === '') $salt = $this->defaultSalt;
+            if ($salt === '')
+            {
+                $salt = $this->defaultSalt;
+            }
             $key = hash('SHA256', $salt . $password, true);
             srand();
             // Create $iv and $iv_base64. Block size 128 bits (AES) and CBC mode.
@@ -96,13 +100,16 @@
          * weird string if the salt used in an encryption is different.
          *
          * @param  string $encrypted Encrypted data that need to be decrypted
-         * @param  string $salt      Salt used in encrypted data.
          * @param  string $password  Password used in encrypted data
+         * @param  string $salt      Salt used in encrypted data.
          * @return string            Raw data if $salt and $password is the correct one.
          */
-        public function decrypt($encrypted, $salt = '', $password = '')
+        public function decrypt($encrypted, $password = '', $salt = '')
         {
-            if ($salt === '') $salt = $this->defaultSalt;
+            if ($salt === '')
+            {
+                $salt = $this->defaultSalt;
+            }
             $key = hash('SHA256', $salt . $password, true);
             // Retrieve $iv which is the first 22 characters plus ==, base64_decoded.
             $iv = base64_decode(substr($encrypted, 0, 22) . '==');
