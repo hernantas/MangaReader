@@ -106,6 +106,44 @@
                 ($this->order!==''?' '.$this->order:'') .
                 ($this->lim!==''?' '.$this->lim:''));
         }
+
+        public function insert($array)
+        {
+            $values = '';
+            foreach ($array as $val)
+            {
+                if ($values === '')
+                {
+                    $values = "'$val'";
+                }
+                else
+                {
+                    $values .= ", '$val'";
+                }
+            }
+
+            return $this->db->query("INSERT INTO $this->tbl VALUES ($values)");
+        }
+
+        public function update($array)
+        {
+            $pair = '';
+            foreach ($array as $key=>$val)
+            {
+                if ($pair === '')
+                {
+                    $pair = $this->fieldQuote($key)."='$val'";
+                }
+                else
+                {
+                    $pair .= ", ".$this->fieldQuote($key)."='$val'";
+                }
+            }
+
+            return $this->db->query("UPDATE $this->tbl SET $pair".
+                ($this->conds!==''?' WHERE '.$this->conds:''));
+        }
+
         public function orderBy($field, $asc=true)
         {
             $this->order = "ORDER BY `$field` ".($asc?'ASC':'DESC');
