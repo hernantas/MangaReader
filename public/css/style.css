@@ -575,7 +575,7 @@ input[type="submit"]:active, input[type="button"]:active
     left: 0;
     bottom: 0;
     width: 64px;
-    background: #30353A;
+    background: #2C343F;
     z-index: 99990;
     box-shadow: inset -10px 0 16px rgba(0,0,0,0.3);
 }
@@ -620,7 +620,7 @@ input[type="submit"]:active, input[type="button"]:active
 
 .navigation a .text
 {
-    color: #bababa;
+    color: rgba(255, 255, 255, 0.5);
     padding-top: 16px;
     padding-left: 50px;
     font-size: 0.9em;
@@ -634,7 +634,7 @@ input[type="submit"]:active, input[type="button"]:active
 
 .navigation a:hover .text
 {
-    color: #ddd;
+    color:  rgba(255, 255, 255, 0.9);
 }
 
 .navigation a .opt
