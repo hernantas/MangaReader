@@ -53,12 +53,12 @@
                 {
                     $nav[] = [
                         [
-                            'url'=>'scan',
+                            'url'=>'admin/scan',
                             'img'=>'radar48.png',
                             'text'=>'Scan Directory'
                         ],
                         [
-                            'url'=>'uninstall',
+                            'url'=>'admin/uninstall',
                             'img'=>'destruct48.png',
                             'text'=>'Uninstall'
                         ]

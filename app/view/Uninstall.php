@@ -11,7 +11,7 @@
                 </a>
             </div>
             <div>
-                <?php echo formOpen('uninstall/warning'); ?>
+                <?php echo formOpen('admin/uninstall/warning'); ?>
                     <?php echo inputHidden('uninstall', 'yes'); ?>
                     <?php echo inputSubmit('Yes', 'alt'); ?>
                 <?php echo formClose(); ?>
@@ -30,7 +30,7 @@
                 </a>
             </div>
             <div>
-                <a href="<?php echo baseUrl(); ?>uninstall/warning">
+                <a href="<?php echo baseUrl(); ?>admin/uninstall/warning">
                     <?php echo inputButton('Yes', 'alt'); ?>
                 </a>
             </div>
