@@ -16,6 +16,13 @@
          */
         private $storageView = array();
 
+        /**
+         * List of loaded class
+         *
+         * @var array
+         */
+        private $loadedClass = array();
+
         public function autoload()
         {
             $config =& loadClass('Config', 'Core');
@@ -175,6 +182,14 @@
          */
         private function loadClass($name, $package='library', $altName='')
         {
+            $name = strtolower($name);
+            $package = strtolower($package);
+
+            if (isset($this->loadedClass[$package.'/'.$name]))
+            {
+                return true;
+            }
+
             $vendors =& loadClass('Vendor', 'Core');
             $vendor = $vendors->find($package, $name);
 
@@ -188,6 +203,7 @@
                 }
 
                 logInfo("Successfully load $package class '$name'", 'Loader');
+                $this->loadedClass[$package.'/'.$name] = true;
                 return true;
             }
             else
