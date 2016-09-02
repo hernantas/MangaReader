@@ -40,6 +40,14 @@
         }
     }
 
+    if (!function_exists('inputRadio'))
+    {
+        function inputRadio($name, $value, $label, $default=false, $cssClass='')
+        {
+            return '<label>' . input('radio', $name, $value, '', false, $cssClass) . $label . '</label>';
+        }
+    }
+
     if (!function_exists('inputSubmit'))
     {
         function inputSubmit($value, $cssClass='')
