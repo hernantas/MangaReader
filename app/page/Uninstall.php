@@ -5,15 +5,30 @@
     {
         public function index()
         {
-            $cfg = $this->config->loadInfo('DB');
+            $this->load->storeView('Uninstall');
 
-            $this->db->query('DROP DATABASE '. $cfg['database']);
-            $this->config->removeInfo('DB');
-            $this->config->removeInfo('Manga');
-            $this->config->removeInfo('Setup');
+            $this->load->layout('Fresh');
+        }
 
+        public function warning()
+        {
+            if ($this->input->hasPost())
+            {
+                $cfg = $this->config->loadInfo('DB');
 
-            $this->router->redirect();
+                $this->db->query('DROP DATABASE '. $cfg['database']);
+                $this->config->removeInfo('DB');
+                $this->config->removeInfo('Manga');
+                $this->config->removeInfo('Setup');
+
+                $this->router->redirect();
+            }
+
+            $this->message->warning("Be careful since it can't be reverted");
+            $this->load->storeView('Uninstall', [
+                'alternative'=>true
+            ]);
+            $this->load->layout('Fresh');
         }
     }
 ?>
