@@ -520,6 +520,16 @@ input[type="submit"]:active, input[type="button"]:active
     font-size: 0.9em;
 }
 
+.clearfix:after
+{
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: ".";
+	clear: both;
+	height: 0;
+}
+
 /**
  * 3.1 Header
  */
@@ -672,8 +682,14 @@ input[type="submit"]:active, input[type="button"]:active
 .body .panel
 {
     background: #FFF;
-    border-radius: 3px;
+    border-radius: 5px;
     border: 1px solid #dadada;
+}
+
+.body .panel.single
+{
+    display: table;
+    margin: 0 auto;
 }
 
 .body .panel .warp
@@ -705,12 +721,6 @@ input[type="submit"]:active, input[type="button"]:active
     color: #3C79AD;
 }
 
-.body .single
-{
-    display: table;
-    margin: 0 auto 20px;
-}
-
 .body .single h1,
 .body .single h2,
 .body .single h3
@@ -720,7 +730,10 @@ input[type="submit"]:active, input[type="button"]:active
 
 .body .single div
 {
-    padding: 10px 15px;
+}
+
+.body .single div.center
+{
     display: table;
     margin: 0 auto;
 }
@@ -730,7 +743,8 @@ input[type="submit"]:active, input[type="button"]:active
     width: 250px;
 }
 
-.body .single input[type="checkbox"]
+.body .single input[type="checkbox"],
+.body .single input[type="radio"]
 {
     width: auto;
     margin-right: 5px;
