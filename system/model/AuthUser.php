@@ -99,7 +99,7 @@
         public function verifySession($username, $hashedToken)
         {
             $id = $this->getId($username);
-            $result = $this->db->table('user_session')->where('id', $id)
+            $result = $this->db->table('user_session')->where('id_user', $id)
                 ->where('session_token', $hashedToken)->get();
             return !($result->isEmpty());
         }
