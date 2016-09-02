@@ -700,6 +700,11 @@ input[type="submit"]:active, input[type="button"]:active
     padding: 10px 20px;
 }
 
+.body .panel .hwarp
+{
+    padding: 0 20px;
+}
+
 .body .panel.success
 {
     background: #DCF3D6;
