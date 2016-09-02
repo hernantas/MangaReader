@@ -120,7 +120,7 @@
          */
         public function row($column='', $default='')
         {
-            return $this->at($this->pos++, $column='', $default='');
+            return $this->item($this->pos++, $column='', $default='');
         }
 
         /**
@@ -144,7 +144,7 @@
          */
         public function first($column='', $default='')
         {
-            return $this->at(0, $column, $default);
+            return $this->item(0, $column, $default);
         }
 
         /**
@@ -156,7 +156,7 @@
          *
          * @return array            Row on query result
          */
-        public function at($pos, $column='', $default='')
+        public function item($pos, $column='', $default='')
         {
             $row = isset($this->data[$pos]) ? $this->data[$pos] : false;
             if ($column === '')
@@ -177,7 +177,7 @@
          */
         public function last($column='', $default='')
         {
-            return $this->at($this->dataLength-1, $column, $default);
+            return $this->item($this->dataLength-1, $column, $default);
         }
     }
 
