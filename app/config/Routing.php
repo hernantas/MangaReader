@@ -2,7 +2,8 @@
 
     return [
         'user/signin'=>'signin',
-        'user/signup'=>'signup'
+        'user/signup'=>'signup',
+        'user/signout'=>'signout'
     ];
 
 ?>
