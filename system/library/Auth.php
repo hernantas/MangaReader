@@ -9,6 +9,10 @@
 
         private $isLogin = false;
 
+        private $user = array();
+
+        private $userOption = false;
+
         public function __construct()
         {
             // Load Model Auth as User
@@ -84,32 +88,75 @@
 
         public function getUser()
         {
+            if (isset($this->user['username']))
+            {
+                return $this->user['username'];
+            }
             if ($this->isLoggedIn())
             {
-                return page()->session->get('username');
+                $this->user['username'] = page()->session->get('username');
+                return $this->user['username'];
             }
             return false;
         }
 
         public function getUserId()
         {
+            if (isset($this->user['id']))
+            {
+                return $this->user['id'];
+            }
             if ($this->isLoggedIn())
             {
-                return page()->authuser->getId(page()->session->get('username'));
+                $this->user['id'] = page()->authuser->getId($this->getUser());
+                return $this->user['id'];
             }
             return -1;
         }
 
         public function getUserOption($optionKey, $default='')
         {
-            if ($this->isLoggedIn())
+            if ($this->userOption !== false)
             {
-                return page()->authuser->getOption($this->getUserId(), $optionKey,
-                    $default);
+                return isset($this->userOption[$optionKey]) ? $this->userOption[$optionKey] :
+                    $default;
             }
 
-            return $default;
+            if ($this->isLoggedIn())
+            {
+                $this->userOption = page()->authuser->getOption($this->getUserId());
+            }
+
+            return isset($this->userOption[$optionKey]) ? $this->userOption[$optionKey] :
+                $default;
         }
+
+        public function setUserOption($key, $value)
+        {
+            if ($this->isLoggedIn())
+            {
+                page()->authuser->setOption($this->getUserId(), $key, $value);
+                $this->userOption[$key] = $value;
+            }
+        }
+
+        public function removeSession()
+        {
+            $username = page()->session->get('username');
+            $token = page()->session->get('token');
+
+            if ($username === '' || $token === '')
+            {
+                return false;
+            }
+
+            $mac = hash_hmac('sha256', "$username:$token", $this->key);
+
+            page()->authuser->removeSession($username, $mac);
+            page()->session->remove('username');
+            page()->session->remove('token');
+        }
+
         public function requireLogin($redirect='')
         {
             if (!$this->isLoggedIn())
