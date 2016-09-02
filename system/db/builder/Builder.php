@@ -47,8 +47,9 @@
             }
             else if ($field === '*')
             {
-                return $field;
+                return trim($field);
             }
+            $field = trim($field);
             return "`$field`";
         }
 
