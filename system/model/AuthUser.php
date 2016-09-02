@@ -103,6 +103,14 @@
                 ->where('session_token', $hashedToken)->get();
             return !($result->isEmpty());
         }
+
+        public function removeSession($username, $hashedToken)
+        {
+            $id = $this->getId($username);
+            $result = $this->db->table('user_session')->where('id', $id)
+                ->where('session_token', $hashedToken)->delete();
+            return !($result->isEmpty());
+        }
     }
 
 ?>
