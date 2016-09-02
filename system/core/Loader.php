@@ -182,6 +182,8 @@
          */
         private function loadClass($name, $package='library', $altName='')
         {
+            $rName = $name;
+            $rPackage = $package;
             $name = strtolower($name);
             $package = strtolower($package);
 
@@ -197,12 +199,20 @@
             {
                 $altName = $altName === '' ? strtolower($name) : strtolower($altName);
 
+                page()->$package->$altName =& loadClass($name, $package, $vendor);
+
                 if (!method_exists(page(), $altName))
                 {
                     page()->$altName =& loadClass($name, $package, $vendor);
+                    logInfo("Successfully load $rPackage class '$rName'", 'Loader');
+                }
+                else
+                {
+                    logWarning("Class '$rName' at $rPackage successfully loaded but class with ".
+                        " the same name is already loaded. Use alternate name parameter".
+                        " to avoid confusion.", 'Loader');
                 }
 
-                logInfo("Successfully load $package class '$name'", 'Loader');
                 $this->loadedClass[$package.'/'.$name] = true;
                 return true;
             }
