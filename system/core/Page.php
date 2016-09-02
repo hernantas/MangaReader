@@ -12,14 +12,14 @@
                 $router =& loadClass('Router', 'Core');
                 $vendor =& loadClass('Vendor', 'Core');
 
-                $vendorList = $vendor->find('Page', $router->class);
+                $vend = $vendor->find('Page', $router->class);
                 $classOrigin = $router->class;
                 $class = '\\Page\\' . $router->class;
                 $e404 = false;
 
-                if (!is_array($vendorList))
+                if ($vend !== false)
                 {
-                    include ($vendorList . '/Page/' . $router->class . '.php');
+                    include ($vend . '/Page/' . $router->class . '.php');
 
                     if (!class_exists($class) ||
                         !method_exists($class, $router->method))
