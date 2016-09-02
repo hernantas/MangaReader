@@ -144,6 +144,13 @@
                 ($this->conds!==''?' WHERE '.$this->conds:''));
         }
 
+        public function delete()
+        {
+            return $this->db->query("DELETE FROM $this->tbl".
+                ($this->conds!==''?' WHERE '.$this->conds:'') .
+                ($this->order!==''?' '.$this->order:''));
+        }
+
         public function orderBy($field, $asc=true)
         {
             $this->order = "ORDER BY `$field` ".($asc?'ASC':'DESC');
