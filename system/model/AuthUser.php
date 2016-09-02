@@ -62,16 +62,18 @@
             }
         }
 
-        public function getOption($idUser, $key, $default='')
+        public function getOption($idUser)
         {
             $result = $this->db->table('user_option')->where('id_user', $idUser)
-                ->where('option_key', $key)->get();
+                ->get('option_key, option_value');
 
-            if ($result->isEmpty())
+            $option = array();
+            while ($row = $result->row())
             {
-                return $default;
+                $option[$row->option_key] = $row->option_value;
             }
-            return $result->first('option_value');
+
+            return $result->isEmpty() ? array() : $option;
         }
 
         public function verify($username, $password)
