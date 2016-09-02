@@ -472,11 +472,23 @@ input[type="submit"], input[type="button"]
     cursor: pointer;
     outline: none;
     font-weight: bold;
+    border: 1px solid #31bacd;
+}
+
+input[type="submit"].alt, input[type="button"].alt
+{
+    background-color: #FFF;
+    color: #31bacd;
 }
 
 input[type="submit"]:hover, input[type="button"]:hover
 {
     background-color: #25AEC1;
+}
+
+input[type="submit"].alt:hover, input[type="button"].alt:hover
+{
+    color: #FFF;
 }
 
 input[type="submit"]:active, input[type="button"]:active
