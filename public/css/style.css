@@ -685,12 +685,14 @@ input[type="submit"]:active, input[type="button"]:active
     background: #FFF;
     border-radius: 5px;
     border: 1px solid #dadada;
+    margin-bottom: 20px;
 }
 
 .body .panel.single
 {
     display: table;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .body .panel .warp
