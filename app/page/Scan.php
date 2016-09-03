@@ -7,44 +7,49 @@
 
         public function index()
         {
-            $this->loadConfig();
+            $this->load->library('Manga');
 
             $this->load->storeView('Scan',[
-                'path'=>$this->path,
-                'mangaList'=>$this->scanDir()
+                'scanEmpty'=>$this->manga->isScanEmpty()
             ]);
-            $this->load->layout('Fresh', ['title'=>'Scan Directory']);
+
+            $this->load->layout('Fresh', [
+                'title'=>'Scan Directory',
+                'additionalJs'=>['scan']
+            ]);
         }
 
-        private function loadConfig()
+        public function start()
         {
-            $cfg = $this->config->loadInfo('Manga');
+            $this->load->library('Manga');
 
-            if ($cfg === false)
+            if ($this->manga->isScanEmpty())
             {
-                logError('No Manga Configuration found.');
-                exit();
+                $this->manga->startScan();
             }
-
-            $this->path = $cfg['path'];
         }
 
-        private function scanDir()
+        public function status()
         {
-            $list = scandir($this->path);
-            $array = array();
-            $i = 0;
-            foreach ($list as $manga)
+            $result = $this->db->query('SELECT * from manga where id < ?', ['100']);
+
+            $this->load->library('Manga');
+
+            if (!$this->manga->isScanEmpty())
             {
-                if($manga !== '.' && $manga !== '..' && $manga !== '')
-                {
-                    $m['num'] = $i;
-                    $m['name'] = $manga;
-                    $array[] = $m;
-                    $i++;
-                }
+                $startTime = microtime(true);
+                $this->manga->flushScan();
+                $duration = microtime(true) - $startTime;
+
+                echo "{
+                    \"result\": \"success\",
+                    \"time\": \"$duration\"
+                }";
             }
-            return $array;
+            else
+            {
+                echo "{'result':'done'}";
+            }
         }
     }
 
