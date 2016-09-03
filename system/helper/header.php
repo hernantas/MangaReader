@@ -78,6 +78,15 @@
             return '<link rel="stylesheet" type="text/css" href="'.baseUrl().'public/css/'.$name.'.css">';
         }
     }
+
+    if (!function_exists('jsutility'))
+    {
+        function jsutility()
+        {
+            return '<script type="text/javascript">var baseUrl="'.baseUrl().'";</script>';
+        }
+    }
+
     if (!function_exists('js'))
     {
         /**
