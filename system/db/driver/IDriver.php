@@ -45,6 +45,8 @@
          * @return \DB\Result   Database query result
          */
         public function bind($sql, $data=[]);
+
+        public function escape($string);
     }
 
 ?>

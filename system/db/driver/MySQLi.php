@@ -96,6 +96,11 @@
 
             return $this->query($sql);
         }
+
+        public function escape($string)
+        {
+            return $this->mysqli->escape_string($string);
+        }
     }
 
 ?>
