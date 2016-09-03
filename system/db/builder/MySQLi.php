@@ -44,10 +44,10 @@
                 case '<':
                 case '<=':
                 case 'LIKE':
-                    $vo2 = "'$vo2'";
+                    $vo2 = "'".$this->db->escape($vo2)."'";
                     break;
                 default:
-                    $vo2 = "'$vo1'";
+                    $vo2 = "'".$this->db->escape($vo1)."'";
                     $vo1 = '=';
                     break;
             }
@@ -67,10 +67,10 @@
                 case '<':
                 case '<=':
                 case 'LIKE':
-                    $vo2 = "'$vo2'";
+                    $vo2 = "'".$this->db->escape($vo2)."'";
                     break;
                 default:
-                    $vo2 = "'$vo1'";
+                    $vo2 = "'".$this->db->escape($vo1)."'";
                     $vo1 = '=';
                     break;
             }
@@ -112,6 +112,7 @@
             $values = '';
             foreach ($array as $val)
             {
+                $val = $this->db->escape($val);
                 if ($values === '')
                 {
                     $values = "'$val'";
@@ -130,6 +131,7 @@
             $pair = '';
             foreach ($array as $key=>$val)
             {
+                $val = $this->db->escape($val);
                 if ($pair === '')
                 {
                     $pair = $this->fieldQuote($key)."='$val'";
@@ -151,7 +153,7 @@
                 ($this->order!==''?' '.$this->order:''));
         }
 
-        public function orderBy($field, $asc=true)
+        public function order($field, $asc=true)
         {
             $this->order = "ORDER BY `$field` ".($asc?'ASC':'DESC');
             return $this;
