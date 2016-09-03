@@ -14,6 +14,7 @@
         {
             if ($this->input->hasPost())
             {
+                $this->auth->removeSession();
                 $cfg = $this->config->loadInfo('DB');
 
                 $this->db->query('DROP DATABASE '. $cfg['database']);
