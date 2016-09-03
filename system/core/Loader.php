@@ -125,8 +125,8 @@
         public function model($name, $altName='')
         {
             $this->loadClass($name, 'Model', $altName);
-            $lname = strtolower($name);
-            page()->$lname->db =& loadClass('DB', 'DB');
+            $lname = $altName === '' ? strtolower($name) : strtolower($altName);
+            page()->model->$lname->db =& loadClass('DB', 'DB');
         }
 
         /**
