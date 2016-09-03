@@ -86,7 +86,6 @@
                 $table->int('added_at');
                 $table->int('update_at');
                 $table->bool('completed');
-                $table->bool('deleted');
             });
             $this->db->schema->create('manga_chapter', function ($table)
             {
@@ -95,7 +94,6 @@
                 $table->string('name')->index();
                 $table->string('friendly_name')->index();
                 $table->int('added_at');
-                $table->bool('deleted');
             });
             $this->db->schema->create('manga_image', function ($table)
             {
@@ -104,6 +102,13 @@
                 $table->int('id_chapter')->index();
                 $table->string('name');
                 $table->int('page');
+            });
+            $this->db->schema->create('manga_scan', function ($table)
+            {
+                $table->increment('id');
+                $table->string('manga');
+                $table->string('chapter')->nullable();
+                $table->string('image')->nullable();
             });
             $this->db->schema->create('user_history', function ($table)
             {
