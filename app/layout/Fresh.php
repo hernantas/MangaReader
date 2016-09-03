@@ -4,7 +4,13 @@
     <meta charset="utf-8" lang="en" />
     <?php echo headerTitle('Media', isset($title) ? $title : ''); ?>
     <?php echo css('style'); ?>
+    <?php echo jsutility(); ?>
     <?php echo js('jquery-3.1.0.min'); ?>
+    <?php if (isset($additionalJs)): ?>
+        <?php foreach ($additionalJs as $js): ?>
+            <?php echo js($js); ?>
+        <?php endforeach; ?>
+    <?php endif; ?>
 </head>
 <body>
     <div class="header">
