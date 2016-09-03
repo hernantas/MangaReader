@@ -112,7 +112,6 @@
                     for ($i = 0; $i < $fieldCount; $i++)
                     {
                         $row->$fields[$i] = $values[$i];
-
                     }
                     $newData[] = $row;
                 }
