@@ -531,6 +531,11 @@ input[type="submit"]:active, input[type="button"]:active
 	height: 0;
 }
 
+.hidden
+{
+    display: none;
+}
+
 /**
  * 3.1 Header
  */
@@ -700,9 +705,16 @@ input[type="submit"]:active, input[type="button"]:active
     padding: 10px 20px;
 }
 
+.body .panel .vwarp
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 .body .panel .hwarp
 {
-    padding: 0 20px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .body .panel.success
@@ -746,9 +758,46 @@ input[type="submit"]:active, input[type="button"]:active
     margin: 0 auto;
 }
 
+.body .single div.scan_directory
+{
+    float: left;
+    border: 1px solid #CCC;
+    margin: 5px 10px;
+    overflow: hidden;
+}
+
+.body .single div.scan_directory label
+{
+    padding: 10px;
+    display: block;
+    width: 220px;
+    height: 50px;
+}
+
+.body .single div.scan_directory label:hover
+{
+    background: #f0f0f0;
+}
+
+.body .single div.scan_directory.success
+{
+    background: #DCF3D6;
+    color: #536C4A;
+}
+.body .single div.scan_directory.fail
+{
+    background: #EEC8C5;
+    color: #B02621;
+}
+
 .body .single input
 {
     width: 250px;
+}
+
+.body .single input[type="password"]
+{
+    width: 220px;
 }
 
 .body .single input[type="checkbox"],
