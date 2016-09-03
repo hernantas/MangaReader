@@ -81,20 +81,60 @@
 
         public function bind($sql, $data=[])
         {
-            $length = count($data);
-            for ($i=0;$i<$length;$i++)
+            $this->fixBindData($data);
+
+            $prep = $this->mysqli->prepare($sql);
+            $ref = new \ReflectionClass('mysqli_stmt');
+            $method = $ref->getMethod("bind_param");
+            $method->invokeArgs($prep,$data);
+            $prep->execute();
+
+            $newData = array();
+            if (($metadata = $prep->result_metadata()) !== null)
             {
-                $data[$i] = mysqli_escape_string($data[$i]);
+                // Have data
+                $fields = array();
+                $values = array();
+
+                while ($field = mysqli_fetch_field($metadata))
+                {
+                    $fields[] = $field->name;
+                    $values[] = null;
+                }
+
+                $fieldCount = count($fields);
+                $method = $ref->getMethod('bind_result');
+                $method->invokeArgs($prep, $values);
+
+                while ($prep->fetch())
+                {
+                    $row = new \stdClass();
+                    for ($i = 0; $i < $fieldCount; $i++)
+                    {
+                        $row->$fields[$i] = $values[$i];
+
+                    }
+                    $newData[] = $row;
+                }
             }
 
-            $subs = 0;
-            while (($pos = strpos($sql, '?')) !== false)
-            {
-                $sql = substr_replace($sql, $data[$subs], $pos);
-                $subs++;
-            }
+            $prep->close();
+            return new \DB\Result($sql, $newData);
+        }
 
-            return $this->query($sql);
+        private function fixBindData(&$data)
+        {
+            $type = '';
+            $count = count($data);
+            for($i = 0; $i < $count; $i++)
+            {
+                if (is_int($data[$i])) $type .= 'i';
+                elseif (is_double($data[$i]) || is_float($data[$i])) $type .= 'd';
+                else $type .= 's';
+
+                $data[$i] = & $data[$i];
+            }
+            array_unshift($data, $type);
         }
 
         public function escape($string)
