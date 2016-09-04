@@ -7,6 +7,7 @@
         private $model = null;
 
         private $addToScan = array();
+        private $addToUpdate = array();
         private $scanLength = 0;
 
         public function __construct()
@@ -72,7 +73,6 @@
                 if ($chapter === '' && $image === '')
                 {
                     $mangas[] = $manga;
-
                 }
                 elseif ($image === '')
                 {
@@ -105,32 +105,48 @@
             $this->scanLength++;
         }
 
+        private function addUpdate($id)
+        {
+            foreach ($this->addToUpdate as $update)
+            {
+                if ($update === $id)
+                {
+                    return false;
+                }
+            }
+
+            $this->addToUpdate[] = $id;
+        }
+
         private function scanManga($mangas)
         {
+            $newManga = array();
+
             foreach ($mangas as $manga)
             {
                 $fmanga = $this->toFriendlyName($manga);
-
-                $newManga = array();
 
                 if (!$this->model->hasMangaF($fmanga))
                 {
                     // Insert new manga
                     $newManga[] = [$manga, $fmanga];
-
                 }
 
-                $this->model->addManga($newManga);
                 $chapterDirs = scandir($this->mangaPath . '/' . $manga);
 
                 foreach ($chapterDirs as $chapter)
                 {
                     if ($chapter != '.' && $chapter != '..' &&
-                    is_dir($this->mangaPath . '/' . $manga . '/' . $chapter))
+                        is_dir($this->mangaPath . '/' . $manga . '/' . $chapter))
                     {
                         $this->addScan([$manga, $chapter]);
                     }
                 }
+            }
+
+            if (!empty($newManga))
+            {
+                $this->model->addManga($newManga);
             }
         }
 
@@ -162,44 +178,63 @@
                 if (!$this->model->hasChapterF($id, $fchapter))
                 {
                     $newChapter[] = [$id, $chapter, $fchapter, $manga];
+                    $this->addUpdate($id);
                 }
                 else
                 {
                     $idChapter = $this->model->getChapterF($id, $fchapter)->id;
                     $scChapter[] = [$id, $idChapter, $manga, $chapter];
                 }
-
             }
 
-            $this->model->addChapter($newChapter);
+            if (!empty($newChapter))
+            {
+                $this->model->addChapter($newChapter);
+            }
 
             foreach ($newChapter as $new)
             {
                 // Complete ID for the new chapter
                 $idChapter = $this->model->getChapterF($new[0], $new[2])->id;
-                $scChapter[] = [$new[0], $idChapter, $new[3], $new[1], $new[2]];
+                $scChapter[] = [$new[0], $idChapter, $new[3], $new[1]];
             }
 
-            /*
-            // Image
-            $imgCount = $this->model->countImage($id, $idChapter);
-            $imgDirs = scandir($this->mangaPath . '/' . $manga . '/' . $chapter);
-            $count = count($imgDirs);
-            if ($count != $imgCount)
+            $removeImage = array();
+            $newImage = array();
+            foreach ($scChapter as $chapter)
             {
-                $this->model->removeImage($id, $idChapter);
-                $add = array();
-                natsort($imgDirs);
+                $imgCount = $this->model->countImage($id, $idChapter);
+                $imgDirs = scandir($this->mangaPath . '/' . $chapter[2] . '/' . $chapter[3]);
+
+                $imgs = array();
                 foreach ($imgDirs as $img)
                 {
                     if ($img != '.' && $img != '..' &&
-                        is_file($this->mangaPath . '/' . $manga . '/' . $chapter . '/' . $img))
+                        is_file($this->mangaPath . '/' . $chapter[2] . '/' . $chapter[3] . '/' . $img))
                     {
-                        $add[] = [$id, $idChapter, $img];
+                        $imgs[] = $img;
+                    }
+                }
+                $count = count($imgs);
+
+                if ($count != $imgCount)
+                {
+                    // echo "$count != $imgCount<br />";
+                    $removeImage[] = [$chapter[0], $chapter[1]];
+
+                    $i = 1;
+                    foreach ($imgs as $img)
+                    {
+                        $newImage[] = [$chapter[0], $chapter[1], $img, $i++];
                     }
                 }
             }
-            */
+
+            if (!empty($removeImage))
+            {
+                $this->model->removeImage($removeImage);
+                $this->model->addImage($newImage);
+            }
         }
     }
 

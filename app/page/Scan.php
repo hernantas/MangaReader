@@ -21,18 +21,22 @@
 
         public function start()
         {
+            // $this->db->query("TRUNCATE TABLE `manga`");
+            // $this->db->query("TRUNCATE TABLE `manga_chapter`");
+            // $this->db->query("TRUNCATE TABLE `manga_image`");
+
             $this->load->library('Manga');
 
             if ($this->manga->isScanEmpty())
             {
                 $this->manga->startScan();
             }
+
+            $this->router->redirect('admin/scan');
         }
 
         public function status()
         {
-            $result = $this->db->query('SELECT * from manga where id < ?', ['100']);
-
             $this->load->library('Manga');
 
             if (!$this->manga->isScanEmpty())
@@ -48,7 +52,7 @@
             }
             else
             {
-                echo "{'result':'done'}";
+                echo "{\"result\": \"done\",}";
             }
         }
     }

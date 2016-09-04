@@ -89,6 +89,11 @@
             $this->db->query("INSERT INTO `manga` VALUES $build");
         }
 
+        public function updateMangaTime($ids)
+        {
+
+        }
+
         public function hasChapterF($id_manga, $name)
         {
             $result = $this->db->table('manga_chapter')->where('id_manga', $id_manga)
@@ -131,12 +136,34 @@
             return $result->count();
         }
 
-        public function removeImage($id_manga, $id_chapter)
+        public function removeImage($list)
         {
-            $this->db->table('manga_image')
-                ->where('id_manga', $id_manga)
-                ->where('id_chapter', $id_chapter)
-                ->delete();
+            $build = '';
+            foreach ($list as $item)
+            {
+                if ($build !== '')
+                {
+                    $build .= ' OR ';
+                }
+
+                $build .= "(`id_manga`='$item[0]' AND `id_chapter`='$item[1]')";
+            }
+            $this->db->query("DELETE FROM `manga_image` WHERE ".$build);
+        }
+
+        public function addImage($list)
+        {
+            $build = '';
+            foreach ($list as $item)
+            {
+                if ($build !== '')
+                {
+                    $build .= ', ';
+                }
+
+                $build .= "('', '$item[0]', '$item[1]', '$item[2]', '$item[3]')";
+            }
+            $this->db->query("INSERT INTO `manga_image` VALUES ".$build);
         }
     }
 ?>

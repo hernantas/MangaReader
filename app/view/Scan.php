@@ -27,7 +27,9 @@
     </div>
     <div class="warp center">
         <?php if ($scanEmpty): ?>
-            <?php echo inputButton('Start', 'scan_start'); ?>
+            <a href="<?php echo baseUrl(); ?>scan/start">
+                <?php echo inputButton('Start', 'scan_start'); ?>
+            </a>
         <?php endif; ?>
     </div>
     <div class="warp info_debug">
