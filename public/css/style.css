@@ -576,8 +576,8 @@ input[type="submit"]:active, input[type="button"]:active
     border: 0;
     outline: 0;
     color: #FFF;
-    padding: 11px;
-    margin-top: 4px;
+    padding: 10px 15px;
+    margin-top: 1px;
     width: 300px;
     border-radius: 3px;
 }
