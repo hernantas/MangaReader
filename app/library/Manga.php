@@ -7,8 +7,9 @@
         private $model = null;
 
         private $addToScan = array();
-        private $addToUpdate = array();
         private $scanLength = 0;
+        private $addToUpdate = array();
+        private $updateLength = 0;
 
         public function __construct()
         {
@@ -51,6 +52,7 @@
                 }
             }
 
+            $this->model->existsSet();
             $this->model->addScan($scan);
         }
 
@@ -97,6 +99,11 @@
             {
                 $this->model->addScan($this->addToScan);
             }
+
+            if ($this->updateLength > 0)
+            {
+                $this->model->updateMangaTime($this->addToUpdate);
+            }
         }
 
         private function addScan($array)
@@ -121,6 +128,7 @@
         private function scanManga($mangas)
         {
             $newManga = array();
+            $existsManga = array();
 
             foreach ($mangas as $manga)
             {
@@ -130,6 +138,10 @@
                 {
                     // Insert new manga
                     $newManga[] = [$manga, $fmanga];
+                }
+                else
+                {
+                    $existsManga[] = $fmanga;
                 }
 
                 $chapterDirs = scandir($this->mangaPath . '/' . $manga);
@@ -148,6 +160,11 @@
             {
                 $this->model->addManga($newManga);
             }
+
+            if (!empty($existsManga))
+            {
+                $this->model->setExistsManga($existsManga);
+            }
         }
 
         private function scanChapter($chapters)
@@ -164,6 +181,7 @@
                 $fchapter = $data[3];
                 $id = -1;
 
+                // Cache previous chapter
                 if ($lastFManga == $fmanga)
                 {
                     $id = $lastId;
@@ -200,6 +218,11 @@
             }
 
             $removeImage = array();
+            if (!empty($scChapter))
+            {
+                $this->model->setExistsChapter($scChapter);
+            }
+
             $newImage = array();
             foreach ($scChapter as $chapter)
             {
@@ -207,21 +230,20 @@
                 $imgDirs = scandir($this->mangaPath . '/' . $chapter[2] . '/' . $chapter[3]);
 
                 $imgs = array();
+                $count = 0;
                 foreach ($imgDirs as $img)
                 {
                     if ($img != '.' && $img != '..' &&
                         is_file($this->mangaPath . '/' . $chapter[2] . '/' . $chapter[3] . '/' . $img))
                     {
                         $imgs[] = $img;
+                        $count++;
                     }
                 }
-                $count = count($imgs);
 
                 if ($count != $imgCount)
                 {
-                    // echo "$count != $imgCount<br />";
                     $removeImage[] = [$chapter[0], $chapter[1]];
-
                     $i = 1;
                     foreach ($imgs as $img)
                     {
