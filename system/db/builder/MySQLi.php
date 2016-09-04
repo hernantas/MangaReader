@@ -12,6 +12,8 @@
         {
             $this->tbl = '';
             $this->conds = '';
+            $this->order = '';
+            $this->lim = '';
         }
 
         public function table($table)
