@@ -77,6 +77,13 @@
             return $result->first();
         }
 
+        public function getMangas($page, $limit)
+        {
+            $this->db->table('manga')->join('manga_chapter', 'manga.id', 'manga_chapter.id_manga')
+                ->order('manga.friendly_name')->limit($page, $limit)
+                ->get('manga.*, count(manga_chapter.id)');
+        }
+
         public function addManga($list)
         {
             $build = '';
@@ -175,10 +182,9 @@
                 {
                     $build .= ' OR ';
                 }
-
                 $build .= "(`id_manga`='$item[0]' AND `id_chapter`='$item[1]')";
             }
-            $this->db->query("DELETE FROM `manga_image` WHERE ".$build);
+            $this->db->query("DELETE FROM `manga_image` WHERE $build");
         }
 
         public function addImage($list)
@@ -194,6 +200,23 @@
                 $build .= "('', '$item[0]', '$item[1]', '$item[2]', '$item[3]')";
             }
             $this->db->query("INSERT INTO `manga_image` VALUES ".$build);
+        }
+
+        public function setExistsImage($list)
+        {
+            $build = '';
+            foreach ($list as $item)
+            {
+                if ($build !== '')
+                {
+                    $build .= ' AND ';
+                }
+
+                $build .= "(`id_manga`='$item[0]' OR `id_chapter`='$item[1]')";
+            }
+            $this->db->query("UPDATE `manga_image` set `exists`='1' WHERE $build");
+        }
+
         public function removeDeleted()
         {
             $this->db->table('manga')->where('exists', '0')->delete();

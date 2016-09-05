@@ -6,6 +6,8 @@
         private $mangaPath;
         private $model = null;
 
+        private $scanWarning = array();
+
         private $addToScan = array();
         private $scanLength = 0;
         private $addToUpdate = array();
@@ -28,9 +30,15 @@
 
         public function toFriendlyName($name)
         {
-            $name = preg_replace('/[^a-z0-9 ]/i', '', $name);
+            $name = preg_replace('/[^a-z0-9 ]/i', ' ', $name);
             $name = preg_replace('/\s+/', ' ', $name);
+            $name = trim($name);
             return strtolower(str_replace(' ', '_', $name));
+        }
+
+        public function getScanWarning()
+        {
+            return $this->scanWarning;
         }
 
         public function isScanEmpty()
@@ -193,15 +201,24 @@
                     $lastFManga = $fmanga;
                 }
 
-                if (!$this->model->hasChapterF($id, $fchapter))
+                $chp = $this->model->getChapterF($id, $fchapter);
+                if ($chp === false)
                 {
                     $newChapter[] = [$id, $chapter, $fchapter, $manga];
                     $this->addUpdate($id);
                 }
                 else
                 {
-                    $idChapter = $this->model->getChapterF($id, $fchapter)->id;
-                    $scChapter[] = [$id, $idChapter, $manga, $chapter];
+                    if (strcasecmp($chp->name, $chapter) == 0)
+                    {
+                        $scChapter[] = [$id, $chp->id, $manga, $chapter];
+                    }
+                    else
+                    {
+                        $this->scanWarning[] = "There is duplicate/almost similar".
+                            " manga chapter name '$chapter' and '$chp->name'." .
+                            " Please remove one of them since having them both may cause issues.";
+                    }
                 }
             }
 
@@ -210,45 +227,51 @@
                 $this->model->addChapter($newChapter);
             }
 
-            foreach ($newChapter as $new)
-            {
-                // Complete ID for the new chapter
-                $idChapter = $this->model->getChapterF($new[0], $new[2])->id;
-                $scChapter[] = [$new[0], $idChapter, $new[3], $new[1]];
-            }
-
-            $removeImage = array();
             if (!empty($scChapter))
             {
                 $this->model->setExistsChapter($scChapter);
             }
 
+            foreach ($newChapter as $new)
+            {
+                // Complete ID for the new chapter
+                $chp = $this->model->getChapterF($new[0], $new[2]);
+                if (strcasecmp($chp->name, $new[1]) == 0)
+                {
+                    $scChapter[] = [$new[0], $chp->id, $new[3], $new[1]];
+                }
+                else
+                {
+                    $this->scanWarning[] = "There is duplicate/almost similar".
+                        " manga chapter name '$new[1]' and '$chp->name'." .
+                        " Please remove one of them since having them both may cause issues.";
+                }
+            }
+
+            $removeImage = array();
             $newImage = array();
             foreach ($scChapter as $chapter)
             {
-                $imgCount = $this->model->countImage($id, $idChapter);
+                $imgCount = $this->model->countImage($chapter[0], $chapter[1]);
                 $imgDirs = scandir($this->mangaPath . '/' . $chapter[2] . '/' . $chapter[3]);
 
-                $imgs = array();
                 $count = 0;
+                $newImageData = array();
+                $page = 0;
                 foreach ($imgDirs as $img)
                 {
                     if ($img != '.' && $img != '..' &&
                         is_file($this->mangaPath . '/' . $chapter[2] . '/' . $chapter[3] . '/' . $img))
                     {
-                        $imgs[] = $img;
-                        $count++;
+                        $newImageData[] = [$chapter[0], $chapter[1], $img, ++$page];
                     }
                 }
+                $count += $page;
 
                 if ($count != $imgCount)
                 {
                     $removeImage[] = [$chapter[0], $chapter[1]];
-                    $i = 1;
-                    foreach ($imgs as $img)
-                    {
-                        $newImage[] = [$chapter[0], $chapter[1], $img, $i++];
-                    }
+                    $newImage = array_merge($newImage, $newImageData);
                 }
             }
 

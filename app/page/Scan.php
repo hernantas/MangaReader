@@ -45,14 +45,34 @@
                 $this->manga->flushScan();
                 $duration = microtime(true) - $startTime;
 
-                echo "{
-                    \"result\": \"success\",
-                    \"time\": \"$duration\"
-                }";
+                $warningI = 0;
+
+                echo "{";
+                echo "\"result\": \"success\",";
+                echo "\"warning\": [";
+                if (count($this->manga->getScanWarning()) > 0)
+                {
+                    $first = true;
+                    foreach ($this->manga->getScanWarning() as $warning)
+                    {
+                        if ($first)
+                        {
+                            echo "\"$warning\"";
+                            $first = false;
+                        }
+                        else
+                        {
+                            echo ", \"$warning\"";
+                        }
+                    }
+                }
+                echo "],";
+                echo "\"time\": \"$duration\"";
+                echo "}";
             }
             else
             {
-                echo "{\"result\": \"done\",}";
+                echo "{\"result\": \"done\"}";
             }
         }
     }
