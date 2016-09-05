@@ -85,6 +85,8 @@
                 $table->string('friendly_name')->unique();
                 $table->int('added_at');
                 $table->int('update_at');
+                $table->int('views');
+                $table->int('rankings');
                 $table->bool('completed');
                 $table->bool('exists');
             });
