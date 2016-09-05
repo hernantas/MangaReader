@@ -43,9 +43,17 @@
                 $ex = explode ('.', $field);
                 $ex[0] = trim($ex[0]);
                 $ex[1] = trim($ex[1]);
+                if ($ex[1] === '*')
+                {
+                    return "`$ex[0]`.$ex[1]";
+                }
                 return "`$ex[0]`.`$ex[1]`";
             }
-            else if ($field === '*')
+            else if ($field === '*' ||
+                strpos($field, 'avg') === 0 ||
+                strpos($field, 'count') === 0 ||
+                strpos($field, 'max') === 0 ||
+                strpos($field, 'min') === 0)
             {
                 return trim($field);
             }
