@@ -172,7 +172,7 @@
 
         public function limit($page, $limit)
         {
-            $this->lim = "LIMIT $page, $limit";
+            $this->lim = "LIMIT ".$page*$limit.", $limit";
             return $this;
         }
 
