@@ -7,8 +7,18 @@
 
         public function getContent($path)
         {
-            $type = pathinfo($path, PATHINFO_EXTENSION);
-            $data = file_get_contents($path);
+            $type = pathinfo ($path, PATHINFO_EXTENSION);
+            $name = md5($path);
+
+            if (file_exists(BASE_PATH.$this->savePath.$name.'.'.$type))
+            {
+                return baseUrl().$this->savePath.$name.'.'.$type;
+            }
+
+            $image = $this->createNewImage($type, $path);
+            $this->output($type, $image, BASE_PATH.$this->savePath.$name.'.'.$type);
+            imagedestroy($image);
+            return baseUrl().$this->savePath.$name.'.'.$type;
         }
 
         public function getContentCrop($path, $width, $height)
