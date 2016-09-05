@@ -3,6 +3,8 @@
 
     class Manga
     {
+        private $pageLimit = 10;
+
         public function directory()
         {
             $this->load->model('Manga');
@@ -110,7 +112,7 @@
             $page = 0;
             if (($pair = $this->uri->pair('page')) !== false)
             {
-                $page = $pair;
+                $page = $pair-1;
             }
 
             $chapter = $this->manga->getChapterF($order[$curI]);
@@ -118,68 +120,84 @@
             $nextChapter = $chapter;
 
             // Generate Prev Link
-            $prevImage = 0;
             $pI = $curI;
+            $pImageCount = 0;
             $prevLink = "manga/$fmanga";
-            if ($page > 10)
+
+            while ($pI > 0 && $pImageCount < $this->pageLimit)
             {
-                $prevLink = "manga/$fmanga/chapter/$prevChapter->friendly_name";
-                $prevLink .= "/page/".($page-10);
-            }
-            elseif ($page == 10)
-            {
-                $prevLink = "manga/$fmanga/chapter/$prevChapter->friendly_name";
-            }
-            while ($pI > 0 && $prevImage < 10)
-            {
-                $prevChapter = $this->manga->getChapterF(
-                    $this->mangalib->toFriendlyName($order[$pI-1]));
+                $curPage = $pImageCount===0? $page : 0;
+
+                if ($page < $this->pageLimit)
+                {
+                    $pI--;
+                    $prevChapter = $this->manga->getChapterF(
+                        $this->mangalib->toFriendlyName($order[$pI]));
+                }
+
                 $maxImage = $this->manga->getImageCount($prevChapter->id_manga,
                     $prevChapter->id);
-                $prevImage += $maxImage;
-                $pI--;
+                $pImageCount += $maxImage;
 
-                if ($pI >= 0)
+                if ($page < $this->pageLimit)
+                {
+                    $pCount = ($pImageCount+1) - $this->pageLimit;
+                }
+                else
+                {
+                    $pCount = ($curPage+1) - $this->pageLimit;
+                }
+
+                if ($pCount > 0)
                 {
                     $prevLink = "manga/$fmanga/chapter/$prevChapter->friendly_name";
-                    if ($maxImage-10 >= 1)
-                    {
-                        $prevLink .= "/page/".($maxImage-10);
-                    }
+                    $prevLink .= "/page/".$pCount;
+                }
+                else
+                {
+                    $prevLink = "manga/$fmanga/chapter/$prevChapter->friendly_name";
                 }
             }
 
             $images = array();
             $imageCount = 0;
-            $nextLink = '';
-            while ($imageCount < 10 && $nextChapter!==false)
+            $nextLink = "manga/$fmanga";
+            while ($imageCount < $this->pageLimit && $nextChapter!==false)
             {
-                $curPage = $imageCount===0 ? $page : 0;
+                $curPage = $imageCount==0 ? $page : 0;
                 $result = $this->manga->getImages($nextChapter->id_manga,
-                    $nextChapter->id, $curPage, 10-$imageCount);
+                    $nextChapter->id, $curPage, $this->pageLimit-$imageCount);
                 $maxImage = $this->manga->getImageCount($nextChapter->id_manga,
                     $nextChapter->id);
 
                 while ($row = $result->row())
                 {
                     $row->chapter = $nextChapter->name;
+                    $row->fchapter = $nextChapter->friendly_name;
                     $images[] = $row;
                 }
 
+                $imageCount += $result->count();
                 $nextLink = "manga/$fmanga/chapter/$nextChapter->friendly_name";
-                $nextChapter = $this->manga->getChapterF(
-                    $this->mangalib->toFriendlyName($order[$curI+1]));
-                if ($page+$result->count() < $maxImage)
+                if ($curPage+$result->count() < $maxImage)
                 {
-                    $nextLink .= "/page/".($page+$result->count()+1);
+                    $nextLink .= "/page/".($curPage+$result->count()+1);
                 }
                 else
                 {
-                    $nextLink = "manga/$fmanga/chapter/$nextChapter->friendly_name";
+                    $curI++;
+                    if ($curI < $count-1)
+                    {
+                        $nextChapter = $this->manga->getChapterF(
+                            $this->mangalib->toFriendlyName($order[$curI]));
+                        $nextLink = "manga/$fmanga/chapter/$nextChapter->friendly_name";
+                    }
+                    else
+                    {
+                        $nextLink = "manga/$fmanga";
+                        break;
+                    }
                 }
-
-                $imageCount += $result->count();
-                $curI++;
             }
 
             $this->load->storeView('Read', [
@@ -187,7 +205,8 @@
                 'path'=>$cfg['path'],
                 'images'=>$images,
                 'prevLink'=>$prevLink,
-                'nextLink'=>$nextLink
+                'nextLink'=>$nextLink,
+                'count'=>$imageCount
             ]);
 
             $this->load->layout('Fresh', [
