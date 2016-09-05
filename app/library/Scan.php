@@ -16,6 +16,7 @@
         public function __construct()
         {
             page()->load->model('Scan', 'ScanModel');
+            page()->load->library('Manga');
             $this->model =& page()->scanmodel;
 
             $cfg = page()->config->loadInfo('Manga');
@@ -26,14 +27,6 @@
         public function path()
         {
             return $this->mangaPath;
-        }
-
-        public function toFriendlyName($name)
-        {
-            $name = preg_replace('/[^a-z0-9 ]/i', ' ', $name);
-            $name = preg_replace('/\s+/', ' ', $name);
-            $name = trim($name);
-            return strtolower(str_replace(' ', '_', $name));
         }
 
         public function getScanWarning()
@@ -87,7 +80,9 @@
                 elseif ($image === '')
                 {
                     $chapters[] = [$manga, $chapter,
-                        $this->toFriendlyName($manga), $this->toFriendlyName($chapter)];
+                        page()->manga->toFriendlyName($manga),
+                        page()->manga->toFriendlyName(
+                            page()->manga->nameFix($chapter, $manga))];
                 }
             }
 
@@ -140,7 +135,7 @@
 
             foreach ($mangas as $manga)
             {
-                $fmanga = $this->toFriendlyName($manga);
+                $fmanga = page()->manga->toFriendlyName($manga);
 
                 if (!$this->model->hasMangaF($fmanga))
                 {
