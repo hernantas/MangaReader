@@ -59,6 +59,16 @@
             return "`$field`";
         }
 
+        protected function valueQuote($value)
+        {
+            if (strpos($value, '.') !== false)
+            {
+                return $this->fieldQuote($value);
+            }
+            $value = trim($value);
+            return "'$value'";
+        }
+
         protected function addCond(&$conds, $vo1, $op, $vo2, $cond='AND')
         {
             if ($conds === '')

@@ -48,15 +48,15 @@
                 case '<':
                 case '<=':
                 case 'LIKE':
-                    $vo2 = "'".$this->db->escape($vo2)."'";
+                    $vo2 = $this->db->escape($vo2);
                     break;
                 default:
-                    $vo2 = "'".$this->db->escape($vo1)."'";
+                    $vo2 = $this->db->escape($vo1);
                     $vo1 = '=';
                     break;
             }
 
-            $this->addCond($this->conds, $this->fieldQuote($field), $vo1, $vo2);
+            $this->addCond($this->conds, $this->fieldQuote($field), $vo1, $this->valueQuote($vo2));
             return $this;
         }
 
