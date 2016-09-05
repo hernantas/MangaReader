@@ -7,7 +7,7 @@
         {
             return $this->db->table('manga')
                 ->join('manga_chapter','manga.id', 'manga_chapter.id_manga')
-                ->order('manga.friendly_name')->limit($page, 36)
+                ->order('manga.friendly_name')->limit($page*36, 36)
                 ->group('manga.id')->get("manga.*, count(manga.id) as cnt");
         }
 
