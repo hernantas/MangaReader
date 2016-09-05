@@ -685,6 +685,11 @@ input[type="submit"]:active, input[type="button"]:active
     padding-top: 70px;
 }
 
+.body a:hover
+{
+    text-decoration: underline;
+}
+
 .body .panel
 {
     background: #FFF;
@@ -739,6 +744,37 @@ input[type="submit"]:active, input[type="button"]:active
 {
     background: #CDE9F7;
     color: #3C79AD;
+}
+
+.body .panel .left
+{
+    float: left;
+}
+
+.body .panel .right
+{
+    float: right;
+}
+
+.body .panel .list
+{
+    border-bottom: 1px solid #CCC;
+}
+
+.body .panel .list a
+{
+    padding: 5px 10px;
+    display: block;
+}
+
+.body .panel .list a:hover
+{
+    background-color: #f0f0f0;
+}
+
+.body .panel .list .right
+{
+    padding-left: 15px;
 }
 
 .body .single h1,
@@ -840,6 +876,11 @@ input[type="submit"]:active, input[type="button"]:active
 .body .card .tag.orange { background-color: #f39c12; }
 .body .card .tag.purple { background-color: #8e44ad; }
 .body .card .tag.black { background-color: #34495e; }
+
+.body .card a:hover
+{
+    text-decoration: none;
+}
 
 .body .page
 {
