@@ -121,41 +121,54 @@
 
             // Generate Prev Link
             $pI = $curI;
-            $pImageCount = 0;
+            $pImageCount = $page > $this->pageLimit ? $page - $this->pageLimit : $page;
             $prevLink = "manga/$fmanga";
 
-            while ($pI > 0 && $pImageCount < $this->pageLimit)
+            if ($pI === 0 && $page != 0)
             {
-                $curPage = $pImageCount===0? $page : 0;
+                $prevLink = "manga/$fmanga/chapter/$chapter->friendly_name";
 
-                if ($page < $this->pageLimit)
+                if ($page > $this->pageLimit)
                 {
-                    $pI--;
-                    $prevChapter = $this->manga->getChapterF(
-                        $this->mangalib->toFriendlyName($order[$pI]));
-                }
-
-                $maxImage = $this->manga->getImageCount($prevChapter->id_manga,
-                    $prevChapter->id);
-                $pImageCount += $maxImage;
-
-                if ($page < $this->pageLimit)
-                {
-                    $pCount = ($pImageCount+1) - $this->pageLimit;
-                }
-                else
-                {
-                    $pCount = ($curPage+1) - $this->pageLimit;
-                }
-
-                if ($pCount > 0)
-                {
-                    $prevLink = "manga/$fmanga/chapter/$prevChapter->friendly_name";
+                    $pCount = $page > 0 ? ($page+1)-$this->pageLimit : 0;
                     $prevLink .= "/page/".$pCount;
                 }
-                else
+            }
+            else
+            {
+                while ($pI > 0 && $pImageCount < $this->pageLimit)
                 {
-                    $prevLink = "manga/$fmanga/chapter/$prevChapter->friendly_name";
+                    $curPage = $pI==$curI ? $page : 0;
+
+                    if ($curPage < $this->pageLimit)
+                    {
+                        $pI--;
+                        $prevChapter = $this->manga->getChapterF(
+                            $this->mangalib->toFriendlyName($order[$pI]));
+                    }
+
+                    $maxImage = $this->manga->getImageCount($prevChapter->id_manga,
+                        $prevChapter->id);
+
+                    if ($page < $this->pageLimit)
+                    {
+                        $pCount = ($maxImage+1) - ($this->pageLimit-$pImageCount);
+                    }
+                    else
+                    {
+                        $pCount = ($curPage+1) - $this->pageLimit;
+                    }
+                    $pImageCount += $maxImage;
+
+                    if ($pCount > 0)
+                    {
+                        $prevLink = "manga/$fmanga/chapter/$prevChapter->friendly_name";
+                        $prevLink .= "/page/".$pCount;
+                    }
+                    else
+                    {
+                        $prevLink = "manga/$fmanga/chapter/$prevChapter->friendly_name";
+                    }
                 }
             }
 
@@ -186,7 +199,7 @@
                 else
                 {
                     $curI++;
-                    if ($curI < $count-1)
+                    if ($curI < $count)
                     {
                         $nextChapter = $this->manga->getChapterF(
                             $this->mangalib->toFriendlyName($order[$curI]));
