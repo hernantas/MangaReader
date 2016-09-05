@@ -11,7 +11,7 @@
             $data = file_get_contents($path);
         }
 
-        public function getContentResize($path, $width, $height)
+        public function getContentCrop($path, $width, $height)
         {
             $type = pathinfo ($path, PATHINFO_EXTENSION);
             $name = md5($path . $width . $height);
