@@ -63,7 +63,7 @@
                     $this->createTable();
 
                     $this->setup->finish();
-                    $this->router->redirect();
+                    $this->router->redirect("user/signup");
                     // $this->db->schema->create();
                 }
             }
@@ -81,19 +81,21 @@
             $this->db->schema->create('manga', function ($table)
             {
                 $table->increment('id');
-                $table->string('name')->unique();
+                $table->string('name');
                 $table->string('friendly_name')->unique();
                 $table->int('added_at');
                 $table->int('update_at');
                 $table->bool('completed');
+                $table->bool('exists');
             });
             $this->db->schema->create('manga_chapter', function ($table)
             {
                 $table->increment('id');
                 $table->int('id_manga')->index();
-                $table->string('name')->index();
+                $table->string('name');
                 $table->string('friendly_name')->index();
                 $table->int('added_at');
+                $table->bool('exists');
             });
             $this->db->schema->create('manga_image', function ($table)
             {
