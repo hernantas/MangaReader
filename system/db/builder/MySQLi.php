@@ -7,6 +7,7 @@
         private $conds = '';
         private $order = '';
         private $lim = '';
+        private $grp = '';
 
         public function reset()
         {
@@ -14,6 +15,7 @@
             $this->conds = '';
             $this->order = '';
             $this->lim = '';
+            $this->grp = '';
         }
 
         public function table($table)
@@ -32,7 +34,7 @@
 
         public function join($table, $field1, $field2)
         {
-            $this->where($this->fieldQuote($field1), '=', $this->fieldQuote($field2));
+            $this->table($table)->addCond($this->conds, $this->fieldQuote($field1), '=', $this->fieldQuote($field2));
             return $this;
         }
 
@@ -55,7 +57,6 @@
             }
 
             $this->addCond($this->conds, $this->fieldQuote($field), $vo1, $vo2);
-
             return $this;
         }
 
@@ -105,6 +106,7 @@
 
             return $this->db->query("SELECT $fields FROM $tables" .
                 ($this->conds!==''?' WHERE '.$this->conds:'') .
+                ($this->grp!==''?' GROUP BY '.$this->grp:'') .
                 ($this->order!==''?' '.$this->order:'') .
                 ($this->lim!==''?' '.$this->lim:''));
         }
@@ -131,17 +133,24 @@
         public function update($array)
         {
             $pair = '';
-            foreach ($array as $key=>$val)
+            if (is_array($array))
             {
-                $val = $this->db->escape($val);
-                if ($pair === '')
+                foreach ($array as $key=>$val)
                 {
-                    $pair = $this->fieldQuote($key)."='$val'";
+                    $val = $this->db->escape($val);
+                    if ($pair === '')
+                    {
+                        $pair = $this->fieldQuote($key)."='$val'";
+                    }
+                    else
+                    {
+                        $pair .= ", ".$this->fieldQuote($key)."='$val'";
+                    }
                 }
-                else
-                {
-                    $pair .= ", ".$this->fieldQuote($key)."='$val'";
-                }
+            }
+            else
+            {
+                $pair = $array;
             }
 
             return $this->db->query("UPDATE $this->tbl SET $pair".
@@ -157,13 +166,26 @@
 
         public function order($field, $asc=true)
         {
-            $this->order = "ORDER BY `$field` ".($asc?'ASC':'DESC');
+            $this->order = "ORDER BY ".$this->fieldQuote($field)." ".($asc?'ASC':'DESC');
             return $this;
         }
 
         public function limit($page, $limit)
         {
             $this->lim = "LIMIT $page, $limit";
+            return $this;
+        }
+
+        public function group($field)
+        {
+            if ($this->grp === '')
+            {
+                $this->grp = $this->fieldQuote($field);
+            }
+            else
+            {
+                $this->grp .= ', '.$this->fieldQuote($field);
+            }
             return $this;
         }
     }
