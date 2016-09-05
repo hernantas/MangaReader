@@ -16,7 +16,9 @@
     <div class="header">
         <div class="container">
             <div class="title">
-                <img src="<?php echo baseUrl(); ?>public/img/logo48.png" />
+                <a href="<?php echo baseUrl(); ?>">
+                    <img src="<?php echo baseUrl(); ?>public/img/logo48.png" />
+                </a>
             </div>
             <?php if (!isset($simpleMode)): ?>
             <div class="search">
