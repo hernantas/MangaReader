@@ -32,8 +32,8 @@
 
         public function join($table, $field1, $field2)
         {
-            $this->addCond($this->fieldQuote($field1), '=', $this->fieldQuote($field2));
-            return $this->table($table);
+            $this->where($this->fieldQuote($field1), '=', $this->fieldQuote($field2));
+            return $this;
         }
 
         public function where($field, $vo1, $vo2='')
