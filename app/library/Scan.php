@@ -1,7 +1,7 @@
 <?php
     namespace Library;
 
-    class Manga
+    class Scan
     {
         private $mangaPath;
         private $model = null;
@@ -15,8 +15,8 @@
 
         public function __construct()
         {
-            page()->load->model('Manga', 'MangaModel');
-            $this->model =& page()->mangamodel;
+            page()->load->model('Scan', 'ScanModel');
+            $this->model =& page()->scanmodel;
 
             $cfg = page()->config->loadInfo('Manga');
 

@@ -1,7 +1,7 @@
 <?php
     namespace Model;
 
-    class Manga
+    class Scan
     {
         public function isScanEmpty()
         {
@@ -51,23 +51,11 @@
             $query->delete();
         }
 
-        public function hasManga($name)
-        {
-            $name = page()->manga->toFriendlyName($name);
-            return $this->hasMangaF($name);
-        }
-
         public function hasMangaF($name)
         {
             $res = $this->db->table('manga')->where('friendly_name', $name)
                 ->limit(0,1)->get();
             return !$res->isEmpty();
-        }
-
-        public function getManga($name)
-        {
-            $name = page()->manga->toFriendlyName($name);
-            return $this->getMangaF($name);
         }
 
         public function getMangaF($name)

@@ -7,10 +7,10 @@
 
         public function index()
         {
-            $this->load->library('Manga');
+            $this->load->library('Scan');
 
             $this->load->storeView('Scan',[
-                'scanEmpty'=>$this->manga->isScanEmpty()
+                'scanEmpty'=>$this->scan->isScanEmpty()
             ]);
 
             $this->load->layout('Fresh', [
@@ -25,11 +25,11 @@
             // $this->db->query("TRUNCATE TABLE `manga_chapter`");
             // $this->db->query("TRUNCATE TABLE `manga_image`");
 
-            $this->load->library('Manga');
+            $this->load->library('Scan');
 
-            if ($this->manga->isScanEmpty())
+            if ($this->scan->isScanEmpty())
             {
-                $this->manga->startScan();
+                $this->scan->startScan();
             }
 
             $this->router->redirect('admin/scan');
@@ -37,12 +37,12 @@
 
         public function status()
         {
-            $this->load->library('Manga');
+            $this->load->library('Scan');
 
-            if (!$this->manga->isScanEmpty())
+            if (!$this->scan->isScanEmpty())
             {
                 $startTime = microtime(true);
-                $this->manga->flushScan();
+                $this->scan->flushScan();
                 $duration = microtime(true) - $startTime;
 
                 $warningI = 0;
@@ -50,10 +50,10 @@
                 echo "{";
                 echo "\"result\": \"success\",";
                 echo "\"warning\": [";
-                if (count($this->manga->getScanWarning()) > 0)
+                if (count($this->scan->getScanWarning()) > 0)
                 {
                     $first = true;
-                    foreach ($this->manga->getScanWarning() as $warning)
+                    foreach ($this->scan->getScanWarning() as $warning)
                     {
                         if ($first)
                         {
