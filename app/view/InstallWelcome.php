@@ -21,7 +21,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         </div>
         <div class="center warp">
             <?php echo inputHidden('license', 'true') ?>
-            <?php echo inputCheckbox('agree', 'I have read and agree.', 'agree'); ?>
+            <?php echo inputCheckbox('agree', 'I have read and agree.'); ?>
         </div>
         <div class="center">
             <?php echo inputSubmit('Continue'); ?>
