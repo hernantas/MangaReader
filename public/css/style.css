@@ -817,6 +817,7 @@ input[type="submit"]:active, input[type="button"]:active
 {
     display: block;
     width: 208px;
+    height: 418px;
     color: #000;
 }
 .body .card a:hover
@@ -839,3 +840,27 @@ input[type="submit"]:active, input[type="button"]:active
 .body .card .tag.orange { background-color: #f39c12; }
 .body .card .tag.purple { background-color: #8e44ad; }
 .body .card .tag.black { background-color: #34495e; }
+
+.body .page
+{
+    float: left;
+    margin-left: 5px;
+}
+
+.body .page a
+{
+    display: block;
+    padding: 5px 10px;
+    color: #000;
+}
+
+.body .page a:hover
+{
+    background-color: #f0f0f0;
+}
+
+.body .page .empty
+{
+    display: block;
+    padding: 5px 10px;
+}
