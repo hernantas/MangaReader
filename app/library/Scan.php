@@ -210,9 +210,9 @@
                     }
                     else
                     {
-                        $this->scanWarning[] = "There is duplicate/almost similar".
-                            " manga chapter name '$chapter' and '$chp->name'." .
-                            " Please remove one of them since having them both may cause issues.";
+                        $this->scanWarning[] = "Found almost identical/duplicate manga chapter name:".
+                            "<ul><li>$chapter</li><li>$chp->name</li></ul>" .
+                            "Please remove one of them since having them both may cause issues.";
                     }
                 }
             }
