@@ -17,7 +17,7 @@
         function inputText($name, $placeholder='', $value='', $readOnly=false, $css='')
         {
             return input([
-                'type'=>'search',
+                'type'=>'text',
                 'name'=>$name,
                 'placeholder'=>$placeholder,
                 'value'=>$value,
