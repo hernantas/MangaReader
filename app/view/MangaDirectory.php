@@ -4,7 +4,7 @@
         <a href="<?php echo baseUrl(); ?>manga/<?php echo $row->friendly_name; ?>">
             <div>
                 <?php $res = page()->manga->getImage($row->id); ?>
-                <img src="<?php echo page()->image->getContentResize($mangapath . '/' .
+                <img src="<?php echo page()->image->getContentCrop($mangapath . '/' .
                     $res->first()->manga_name . '/' .
                     $res->first()->chapter_name . '/' .
                     $res->first()->name, 208,208); ?>" />
