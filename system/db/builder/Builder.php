@@ -38,7 +38,13 @@
 
         protected function fieldQuote($field)
         {
-            if (strpos($field, '.') !== false)
+            if ($field === '*' ||
+                strpos($field, '(') !== false ||
+                strpos($field, ' as ') !== false)
+            {
+                return trim($field);
+            }
+            elseif (strpos($field, '.') !== false)
             {
                 $ex = explode ('.', $field);
                 $ex[0] = trim($ex[0]);
@@ -48,14 +54,6 @@
                     return "`$ex[0]`.$ex[1]";
                 }
                 return "`$ex[0]`.`$ex[1]`";
-            }
-            else if ($field === '*' ||
-                strpos($field, 'avg') === 0 ||
-                strpos($field, 'count') === 0 ||
-                strpos($field, 'max') === 0 ||
-                strpos($field, 'min') === 0)
-            {
-                return trim($field);
             }
             $field = trim($field);
             return "`$field`";
