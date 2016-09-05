@@ -63,6 +63,19 @@
                     ->update('`rankings`=`rankings`+1');
             }
         }
+
+        public function getMangaF($name)
+        {
+            $result = $this->db->table('manga')->where('friendly_name', $name)
+                ->limit(0,1)->get();
+            return $result->first();
+        }
+
+        public function getChapters($id)
+        {
+            return $this->db->table('manga_chapter')->where('id_manga', $id)
+                ->get();
+        }
     }
 
 ?>

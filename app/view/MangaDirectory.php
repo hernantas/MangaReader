@@ -1,7 +1,7 @@
 <div class="clearfix">
     <?php while ($row = $mangalist->row()): ?>
     <div class="panel card">
-        <a href="<?php echo baseUrl(); ?>manga/chapter/<?php echo $row->friendly_name; ?>">
+        <a href="<?php echo baseUrl(); ?>manga/<?php echo $row->friendly_name; ?>">
             <div>
                 <?php $res = page()->manga->getImage($row->id); ?>
                 <img src="<?php echo page()->image->getContentResize($mangapath . '/' .
