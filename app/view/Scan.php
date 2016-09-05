@@ -40,4 +40,7 @@
     <div class="warp warning_debug">
 
     </div>
+    <div class="warp info_debug">
+
+    </div>
 </div>

@@ -8,24 +8,30 @@ function checkStatusScan()
         method: "POST",
         url: baseUrl+"admin/scan/status"
     }).done(function(msg) {
-        // $(".info_debug").html("<div>"+msg+"</div>");
-
-        var data = $.parseJSON(msg);
-        if (data.result != "done")
+        try
         {
-            scan_timer += parseFloat(data.time);
-            scan_counter++;
-            $(".time_debug").html("<div>Duration: "+scan_timer.toFixed(2)+"s</div>");
-            $(".time_debug").append("<div>Average: "+(scan_timer/scan_counter).toFixed(2)+"s</div>");
-            for (var i = 0; i < data.warning.length; i++)
+            var data = $.parseJSON(msg);
+            if (data.result != "done")
             {
-                $(".warning_debug").append("<div><b>Warning: </b>"+data.warning[i]+"</div>");
+                scan_timer += parseFloat(data.time);
+                scan_counter++;
+                $(".time_debug").html("<div>Duration: "+scan_timer.toFixed(2)+"s</div>");
+                $(".time_debug").append("<div>Average: "+(scan_timer/scan_counter).toFixed(2)+"s</div>");
+                for (var i = 0; i < data.warning.length; i++)
+                {
+                    $(".warning_debug").append("<div><b>Warning: </b>"+data.warning[i]+"</div>");
+                }
+                checkStatusScan();
             }
-            checkStatusScan();
+            else
+            {
+                $(".loader").html("<h3>Scan Completed</h3>");
+            }
         }
-        else
+        catch(err)
         {
-            $(".loader").html("<h3>Scan Completed</h3>");
+            $(".loader").remove();
+            $(".info_debug").html("<div>"+msg+"</div>");
         }
     });
 }
