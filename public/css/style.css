@@ -507,7 +507,7 @@ input[type="submit"]:active, input[type="button"]:active
 
 .container
 {
-    width: 800px;
+    width: 880px;
     margin: 0 auto;
 }
 
@@ -806,3 +806,36 @@ input[type="submit"]:active, input[type="button"]:active
     width: auto;
     margin-right: 5px;
 }
+
+.body .card
+{
+    float: left;
+    margin-left: 10px;
+}
+
+.body .card a
+{
+    display: block;
+    width: 208px;
+    color: #000;
+}
+.body .card a:hover
+{
+    background-color: #f0f0f0;
+}
+
+.body .card .tag
+{
+    font-size: 0.75em;
+    background-color: #7f8c8d;
+    color: #FFF;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.body .card .tag.red { background-color: #c0392b; }
+.body .card .tag.blue { background-color: #3498db; }
+.body .card .tag.green { background-color: #2ecc71; }
+.body .card .tag.orange { background-color: #f39c12; }
+.body .card .tag.purple { background-color: #8e44ad; }
+.body .card .tag.black { background-color: #34495e; }
