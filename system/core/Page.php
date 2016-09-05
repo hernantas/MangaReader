@@ -24,7 +24,14 @@
                     if (!class_exists($class) ||
                         !method_exists($class, $router->method))
                     {
-                        $e404 = true;
+                        if (!method_exists($class, 'route'))
+                        {
+                            $e404 = true;
+                        }
+                        else
+                        {
+                            $router->method = 'route';
+                        }
                     }
                 }
                 else
