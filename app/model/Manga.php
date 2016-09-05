@@ -29,6 +29,19 @@
                 ->get("manga_image.name, manga.name as manga_name, manga_chapter.name as chapter_name");
         }
 
+        public function getImages($idManga, $idChapter, $start, $limit)
+        {
+            return $this->db->table('manga_image')->where('id_manga', $idManga)
+                ->where('id_chapter', $idChapter)->limit($start, $limit)->get();
+        }
+
+        public function getImageCount($idManga, $idChapter)
+        {
+            $result = $this->db->table('manga_image')->where('id_manga', $idManga)
+                ->where('id_chapter', $idChapter)->get('count(id) as cnt');
+            return $result->first()->cnt;
+        }
+
         public function addReadCount($id)
         {
             $this->db->table('manga')->where('id', $id)
@@ -75,6 +88,13 @@
         {
             return $this->db->table('manga_chapter')->where('id_manga', $id)
                 ->get();
+        }
+
+        public function getChapterF($fname)
+        {
+            $result = $this->db->table('manga_chapter')->where('friendly_name', $fname)
+                ->limit(0,1)->get();
+            return $result->first();
         }
     }
 
