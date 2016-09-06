@@ -84,8 +84,10 @@
                         ->update(['rankings'=>$above->rankings]);
                     // Switch Ranking
                     $this->db->table('manga')
-                        ->where('id', $above->id)
-                        ->update(['rankings', $current->rankings]);
+                        ->where('id', '!=', $current->id)
+                        ->where('rankings', '>=', $above->rankings)
+                        ->where('rankings', '<', $current->rankings)
+                        ->update(['rankings', $above->rankings]);
                 }
             }
         }
