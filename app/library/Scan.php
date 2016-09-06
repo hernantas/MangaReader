@@ -125,6 +125,7 @@
                 }
             }
 
+            $this->updateLength++;
             $this->addToUpdate[] = $id;
         }
 
