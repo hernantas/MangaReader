@@ -121,8 +121,15 @@
 
             // Generate Prev Link
             $pI = $curI;
-            $pImageCount = $page > $this->pageLimit ? $page - $this->pageLimit : $page;
+            $pImageCount = $page >= $this->pageLimit ? $page - $this->pageLimit : $page;
             $prevLink = "manga/$fmanga";
+
+            if ($pImageCount >= $this->pageLimit)
+            {
+                $prevLink = "manga/$fmanga/chapter/$chapter->friendly_name";
+                $prevLink .= "/page/".($pImageCount+1);
+                echo "$pImageCount";
+            }
 
             if ($pI === 0 && $page != 0)
             {
@@ -224,6 +231,8 @@
 
             $this->load->layout('Fresh', [
                 'simpleMode'=>true,
+                'readMode'=>true,
+                'additionalJs'=>['read'],
                 'title'=>$this->mangalib->nameFix($chapter->name, $manga->name)
             ]);
         }
