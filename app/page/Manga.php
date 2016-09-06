@@ -43,7 +43,7 @@
 
         public function hot()
         {
-            $this->display('Hot Manga', 'rankings');
+            $this->display('Hot Manga', 'views');
         }
 
         public function latest()
