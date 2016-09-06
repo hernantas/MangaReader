@@ -87,7 +87,7 @@
                         ->where('id', '!=', $current->id)
                         ->where('rankings', '>=', $above->rankings)
                         ->where('rankings', '<', $current->rankings)
-                        ->update(['rankings', $above->rankings]);
+                        ->update(['rankings'=>$above->rankings]);
                 }
             }
         }
