@@ -41,6 +41,7 @@
         public function where($field, $vo1, $vo2='')
         {
             if (strcasecmp("=", $vo1) === 0 ||
+                strcasecmp("!=", $vo1) === 0 ||
                 strcasecmp(">", $vo1) === 0 ||
                 strcasecmp(">=", $vo1) === 0 ||
                 strcasecmp("<", $vo1) === 0 ||
