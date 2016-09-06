@@ -10,6 +10,8 @@
 
         private $addToScan = array();
         private $scanLength = 0;
+
+        private $updateMark = array();
         private $addToUpdate = array();
         private $updateLength = 0;
 
@@ -117,16 +119,15 @@
 
         private function addUpdate($id)
         {
-            foreach ($this->addToUpdate as $update)
+            if (isset($this->updateMark[$id]))
             {
-                if ($update === $id)
-                {
-                    return false;
-                }
+                return false;
             }
 
+            $this->updateMark[$id] = true;
             $this->updateLength++;
             $this->addToUpdate[] = $id;
+            return true;
         }
 
         private function scanManga($mangas)
@@ -238,9 +239,9 @@
                 }
                 else
                 {
-                    $this->scanWarning[] = "There is duplicate/almost similar".
-                        " manga chapter name '$new[1]' and '$chp->name'." .
-                        " Please remove one of them since having them both may cause issues.";
+                    $this->scanWarning[] = "Found almost identical/duplicate manga chapter name:".
+                        "<ul><li>$new[1]</li><li>$chp->name</li></ul>" .
+                        "Please remove one of them since having them both may cause issues.";
                 }
             }
 
