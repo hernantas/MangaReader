@@ -36,12 +36,12 @@
                     'text'=>'Manga Directory'
                 ],
                 [
-                    'url'=>'manga/directory/hot',
+                    'url'=>'manga/hot',
                     'img'=>'hot48.png',
                     'text'=>'Popular Manga'
                 ],
                 [
-                    'url'=>'manga/directory/latest',
+                    'url'=>'manga/latest',
                     'img'=>'news48.png',
                     'text'=>'Latest Updated'
                 ]

@@ -5,7 +5,7 @@
     {
         private $pageLimit = 10;
 
-        public function directory()
+        private function display($title, $sort)
         {
             $this->load->model('Manga');
             $this->load->library('Date');
@@ -22,7 +22,7 @@
                 $curPage = $page;
             }
 
-            $result = $this->manga->getList($curPage-1);
+            $result = $this->manga->getList($curPage-1, $sort);
 
             $this->load->storeView('MangaDirectory', [
                 'mangalist'=>$result,
@@ -32,18 +32,23 @@
             ]);
 
             $this->load->layout('Fresh', [
-                'title'=>'Directory'
+                'title'=>$title
             ]);
+        }
+
+        public function directory()
+        {
+            $this->display('Manga Directory', 'friendly_name');
         }
 
         public function hot()
         {
-
+            $this->display('Hot Manga', 'rankings');
         }
 
         public function latest()
         {
-
+            $this->display('Latest Updated', 'update_at');
         }
 
         private function chapter()
