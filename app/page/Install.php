@@ -121,6 +121,7 @@
                 $table->int('id_manga')->index();
                 $table->int('id_chapter')->index();
                 $table->int('page');
+                $table->int('update_at');
             });
             $this->auth->install();
         }
