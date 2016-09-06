@@ -50,31 +50,43 @@
             $current = $this->db->table('manga')->where('id', $id)
                 ->get()->first();
 
-            $above = $this->db->table('manga')->order('rankings', false)
-                ->limit(0,1)->where('rankings','<', $current->rankings)->get();
+            if ($current->rankings === '0')
+            {
+                // Place at the last of rank
+                $lastRank =  $this->db->table('manga')
+                    ->order('rankings', false)
+                    ->limit(0,1)
+                    ->get();
+                $rank = 1;
+                if (!$lastRank->isEmpty())
+                {
+                    $rank = $lastRank->first()->rankings + 1;
+                }
 
-            if ($above->isEmpty())
-            {
                 $this->db->table('manga')->where('id', $id)
-                    ->update(['rankings'=>'1']);
-                $this->db->table('manga')->where('id', '!=', $id)
-                    ->where('rankings', '>=', 1)
-                    ->update('`rankings`=`rankings`+1');
-            }
-            elseif ($current->rankings === '0')
-            {
-                // Find placement
-                $this->db->table('manga')->where('id', $id)
-                    ->update(['rankings'=>$above->first()->rankings+1]);
+                    ->update(['rankings'=>$rank]);
             }
             else
             {
-                $this->db->table('manga')->where('id', $id)
-                    ->update(['rankings'=>$above->first()->rankings+1]);
-                $this->db->table('manga')->where('id', '!=', $id)
-                    ->where('rankings', '>=', $above->first()->rankings+1)
-                    ->where('rankings', '<', $current->rankings)
-                    ->update('`rankings`=`rankings`+1');
+                // Find rankings above this
+                $above = $this->db->table('manga')
+                    ->limit(0,1)
+                    ->where('rankings', $current->rankings-1)
+                    ->where('views', '<=', $current->views)
+                    ->get();
+
+                // If there is above this and views is less than this
+                if (!$above->isEmpty())
+                {
+                    $above = $above->first();
+                    // Update ranking to the above
+                    $this->db->table('manga')->where('id', $id)
+                        ->update(['rankings'=>$above->rankings]);
+                    // Switch Ranking
+                    $this->db->table('manga')
+                        ->where('id', $above->id)
+                        ->update(['rankings', $current->rankings]);
+                }
             }
         }
 
