@@ -13,17 +13,7 @@
                 <b><?php echo $row->name; ?></b>
             </div>
             <div class="warp">
-                <?php if ($row->completed === '1'): ?>
-                    <span class="tag black">completed</span>
-                <?php endif; ?>
-                <?php if ((int)$row->rankings < 100 && $row->rankings != '0'): ?>
-                    <span class="tag red">hot</span>
-                <?php endif; ?>
-                <?php if (time()-(int)$row->added_at < 604800): ?>
-                    <span class="tag orange">new</span>
-                <?php elseif (time()-(int)$row->update_at < 604800): ?>
-                    <span class="tag orange">updated</span>
-                <?php endif; ?>
+                <?php $this->view('MangaTag', ['manga'=>$row]); ?>
             </div>
             <div class="warp">
                 <div>
