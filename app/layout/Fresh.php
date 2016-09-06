@@ -13,7 +13,7 @@
         <?php endforeach; ?>
     <?php endif; ?>
 </head>
-<body>
+<body <?php echo isset($readMode) ? 'class="read"' : ''; ?>>
     <div class="header <?php echo !isset($simpleMode) ? 'hasnav' : '' ?>">
         <div class="container">
             <div class="title">
@@ -37,8 +37,7 @@
         <?php $this->view('Navigation'); ?>
     <?php endif; ?>
 
-    <div class="body <?php echo !isset($simpleMode) ? 'hasnav' : '' ?>
-        <?php echo isset($readMode) ? 'read' : ''; ?>">
+    <div class="body <?php echo !isset($simpleMode) ? 'hasnav' : '' ?>">
         <div <?php echo (!isset($readMode) ? 'class="container"' : '') ?>>
             <?php $this->view('Message');  ?>
             <?php $this->fetchView(); ?>

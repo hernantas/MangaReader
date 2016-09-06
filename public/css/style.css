@@ -438,6 +438,13 @@ textarea {
 body
 {
     line-height: 1.5em;
+    background: #E8ECEF;
+}
+
+
+body.read
+{
+    background: #282A36;
 }
 
 a
@@ -686,18 +693,12 @@ input[type="submit"]:active, input[type="button"]:active
 .body
 {
     padding-top: 70px;
-    background: #E8ECEF;
     padding-bottom: 25px;
 }
 
 .body.hasnav
 {
     margin-left: 64px;
-}
-
-.body.read
-{
-    background: #282A36;
 }
 
 .body a:hover
