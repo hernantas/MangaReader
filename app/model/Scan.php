@@ -86,7 +86,7 @@
                 $item[0] = $this->db->escape($item[0]);
                 $item[1] = $this->db->escape($item[1]);
 
-                $build .= "('', '".($item[0])."', '".($item[1])."', '".time()."', '".time()."', '0', '0', '0',  '1')";
+                $build .= "('', '".($item[0])."', '".($item[1])."', '".time()."', '".time()."', '0', '0', '1')";
             }
             $this->db->query("INSERT INTO `manga` VALUES $build");
         }

@@ -87,7 +87,6 @@
                 $table->int('update_at');
                 $table->int('views');
                 $table->int('rankings');
-                $table->bool('completed');
                 $table->bool('exists');
             });
             $this->db->schema->create('manga_chapter', function ($table)
@@ -106,6 +105,13 @@
                 $table->int('id_chapter')->index();
                 $table->string('name');
                 $table->int('page');
+            });
+            $this->db->schema->create('manga_option', function ($table)
+            {
+                $table->increment('id');
+                $table->int('id_manga')->index();
+                $table->string('option_key');
+                $table->string('option_value');
             });
             $this->db->schema->create('manga_scan', function ($table)
             {
