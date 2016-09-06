@@ -40,20 +40,19 @@
 
         public function where($field, $vo1, $vo2='')
         {
-            switch ($vo1)
+            if (strcasecmp("=", $vo1) === 0 ||
+                strcasecmp(">", $vo1) === 0 ||
+                strcasecmp(">=", $vo1) === 0 ||
+                strcasecmp("<", $vo1) === 0 ||
+                strcasecmp("<=", $vo1) === 0 ||
+                strcasecmp("LIKE", $vo1) === 0)
             {
-                case '=':
-                case '>':
-                case '>=':
-                case '<':
-                case '<=':
-                case 'LIKE':
-                    $vo2 = $this->db->escape($vo2);
-                    break;
-                default:
-                    $vo2 = $this->db->escape($vo1);
-                    $vo1 = '=';
-                    break;
+                $vo2 = $this->db->escape($vo2);
+            }
+            else
+            {
+                $vo2 = $this->db->escape($vo1);
+                $vo1 = '=';
             }
 
             $this->addCond($this->conds, $this->fieldQuote($field), $vo1, $this->valueQuote($vo2));
@@ -62,20 +61,19 @@
 
         public function whereOr($field, $vo1, $vo2='')
         {
-            switch ($vo1)
+            if (strcasecmp("=", $vo1) === 0 ||
+                strcasecmp(">", $vo1) === 0 ||
+                strcasecmp(">=", $vo1) === 0 ||
+                strcasecmp("<", $vo1) === 0 ||
+                strcasecmp("<=", $vo1) === 0 ||
+                strcasecmp("LIKE", $vo1) === 0)
             {
-                case '=':
-                case '>':
-                case '>=':
-                case '<':
-                case '<=':
-                case 'LIKE':
-                    $vo2 = "'".$this->db->escape($vo2)."'";
-                    break;
-                default:
-                    $vo2 = "'".$this->db->escape($vo1)."'";
-                    $vo1 = '=';
-                    break;
+                $vo2 = $this->db->escape($vo2);
+            }
+            else
+            {
+                $vo2 = $this->db->escape($vo1);
+                $vo1 = '=';
             }
 
             $this->addCond($this->conds, $this->fieldQuote($field), $vo1, $vo2, 'OR');
