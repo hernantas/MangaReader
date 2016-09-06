@@ -21,10 +21,17 @@
             return baseUrl().$this->savePath.$name.'.'.$type;
         }
 
+        public function getContent64($path)
+        {
+            $type = pathinfo ($path, PATHINFO_EXTENSION);
+            $image = $this->createNewImage($type, $path);
+            return $this->output64($type, $image);
+        }
+
         public function getContentCrop($path, $width, $height)
         {
             $type = pathinfo ($path, PATHINFO_EXTENSION);
-            $name = md5($path . $width . $height);
+            $name = md5($path . $width . $height . 'crop');
 
             if (file_exists(BASE_PATH.$this->savePath.$name.'.'.$type))
             {
@@ -71,6 +78,23 @@
             {
                 imagepng($img, $output);
             }
+        }
+
+        private function output64($type, $img)
+        {
+            ob_start();
+            if ($type==='jpg' || $type==='jpeg')
+            {
+                $type = 'jpeg';
+                imagejpeg($img);
+            }
+            else if ($type==='png')
+            {
+                imagepng($img);
+            }
+            $output = ob_get_contents();
+            ob_end_clean();
+            return 'data:image/' . $type . ';base64,' . base64_encode($output);
         }
     }
 
