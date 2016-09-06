@@ -36,7 +36,10 @@
             <?php if ($p[0]==$curpage): ?>
                 <b class="empty">
             <?php elseif ($p[0] != '...'): ?>
-                <a href="<?php echo baseUrl().'manga/directory/page/'.$p[1]; ?>">
+                <a href="<?php echo baseUrl().
+                    page()->router->class . '/' .
+                    page()->router->method . '/' .
+                    "page/$p[1]"; ?>">
             <?php else: ?>
                 <span class="empty">
             <?php endif; ?>
