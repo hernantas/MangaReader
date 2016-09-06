@@ -889,7 +889,8 @@ input[type="submit"]:active, input[type="button"]:active
     background-color: #7f8c8d;
     color: #FFF;
     padding: 5px;
-    border-radius: 3px;
+    border-radius: 5px;
+    margin-right: 5px;
 }
 
 .body .tag.red { background-color: #c0392b; }
