@@ -127,8 +127,7 @@
             if ($pImageCount >= $this->pageLimit)
             {
                 $prevLink = "manga/$fmanga/chapter/$chapter->friendly_name";
-                $prevLink .= "/page/".($pImageCount+1);
-                echo "$pImageCount";
+                if ($pImageCount > 0) $prevLink .= "/page/".($pImageCount+1);
             }
 
             if ($pI === 0 && $page != 0)
