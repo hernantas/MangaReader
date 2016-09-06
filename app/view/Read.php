@@ -33,7 +33,7 @@
         <?php elseif ($i==($count-1)): ?>
             <a href="<?php echo baseUrl().$nextLink; ?>">
         <?php endif; ?>
-        <img src="<?php echo page()->image->getContent64($path . '/' .
+        <img class="img_flex" src="<?php echo page()->image->getContent64($path . '/' .
             $manga->name . '/' . $image->chapter . '/' . $image->name); ?>" />
         <?php if ($i==0 || $i==($count-1)): ?>
             </a>
