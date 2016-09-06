@@ -65,6 +65,7 @@
             }
 
             natsort($order);
+            $order = array_reverse($order);
 
             $this->load->storeView('MangaChapter', [
                 'manga'=>$manga,
@@ -87,10 +88,14 @@
             $fmanga = $this->uri->segment(2);
             $manga = $this->manga->getMangaF($fmanga);
 
-            $result = $this->manga->getChapters($manga->id);
-            while ($row = $result->row())
+            $res = $this->manga->getChapters($manga->id);
+            $chapters = array();
+            while ($row = $res->row())
             {
-                $order[] = $this->mangalib->nameFix($row->name, $manga->name);
+                $fixName = $this->mangalib->nameFix($row->name, $manga->name);
+                $order[] = $fixName;
+                $chapters[$this->mangalib->toFriendlyName($fixName)] =
+                    $row;
             }
 
             natsort($order);
@@ -107,6 +112,7 @@
                     $curI = $i;
                 }
             }
+            $curFChapter = $order[$curI];
 
             // Get start page
             $page = 0;
@@ -221,6 +227,9 @@
 
             $this->load->storeView('Read', [
                 'manga'=>$manga,
+                'chapters'=>$chapters,
+                'chapterOrder'=>$order,
+                'chapterCurrent'=>$curFChapter,
                 'path'=>$cfg['path'],
                 'images'=>$images,
                 'prevLink'=>$prevLink,
