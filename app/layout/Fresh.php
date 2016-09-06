@@ -31,13 +31,14 @@
             <?php endif; ?>
         </div>
     </div>
-    
+
     <?php if (!isset($simpleMode)): ?>
         <?php $this->view('Navigation'); ?>
     <?php endif; ?>
 
-    <div class="body">
-        <div class="container">
+    <div class="body <?php echo isset($readMode) ? 'read' : ''; ?>">
+
+        <div <?php echo (!isset($readMode) ? 'class="container"' : '') ?>>
             <?php $this->view('Message');  ?>
             <?php $this->fetchView(); ?>
         </div>

@@ -437,7 +437,6 @@ textarea {
 
 body
 {
-    background: #E8ECEF;
     line-height: 1.5em;
 }
 
@@ -681,8 +680,14 @@ input[type="submit"]:active, input[type="button"]:active
 
 .body
 {
-    height: 1500px;
     padding-top: 70px;
+    background: #E8ECEF;
+    padding-bottom: 25px;
+}
+
+.body.read
+{
+    background: #282A36;
 }
 
 .body a:hover
