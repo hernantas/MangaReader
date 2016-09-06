@@ -83,6 +83,20 @@
             ]);
         }
 
+        private function addHistory($idManga, $idChapter, $page)
+        {
+            $this->load->model('Manga');
+            if ($this->auth->isLoggedIn())
+            {
+                $idUser = $this->auth->getUserId();
+
+                if ($this->manga->addHistory($idUser, $idManga, $idChapter, $page))
+                {
+                    $this->manga->addReadCount($idManga);
+                }
+            }
+        }
+
         private function read($fchapter)
         {
             $this->load->model('Manga');
@@ -129,6 +143,8 @@
             $chapter = $this->manga->getChapterF($order[$curI]);
             $prevChapter = $chapter;
             $nextChapter = $chapter;
+
+            $this->addHistory($manga->id, $chapter->id, $page+1);
 
             // Generate Prev Link
             $pI = $curI;

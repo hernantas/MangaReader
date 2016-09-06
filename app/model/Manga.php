@@ -78,6 +78,32 @@
             }
         }
 
+        public function addHistory($idUser, $idManga, $idChapter, $page)
+        {
+            $result = $this->db->table('user_history')->limit(0,1)
+                ->where('id_user', $idUser)
+                ->where('id_manga', $idManga)
+                ->where('id_chapter', $idChapter)
+                ->get();
+            if ($result->isEmpty())
+            {
+                // Insert new history
+                $this->db->table('user_history')
+                    ->insert(['', $idUser, $idManga, $idChapter, $page, time()]);
+                return true;
+            }
+
+            // Update last
+            $history = $result->first();
+            $this->db->table('user_history')->limit(0,1)
+                ->where('id_user', $idUser)
+                ->where('id_manga', $idManga)
+                ->where('id_chapter', $idChapter)
+                ->update(['page'=>$page, 'update_at'=>time()]);
+
+            return ($history->update_at < (time()-3600));
+        }
+
         public function getMangaF($name)
         {
             $result = $this->db->table('manga')->where('friendly_name', $name)
