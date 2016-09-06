@@ -23,3 +23,7 @@
         <?php $i++; ?>
     </div>
 <?php endforeach; ?>
+<script type="text/javascript">
+    var prevPage = "<?php echo baseUrl().$prevLink; ?>";
+    var nextPage = "<?php echo baseUrl().$nextLink; ?>";
+</script>
