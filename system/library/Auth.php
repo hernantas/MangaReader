@@ -126,6 +126,10 @@
             {
                 $this->userOption = page()->authuser->getOption($this->getUserId());
             }
+            else
+            {
+                $this->userOption = array();
+            }
 
             return isset($this->userOption[$optionKey]) ? $this->userOption[$optionKey] :
                 $default;
