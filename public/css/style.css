@@ -506,7 +506,7 @@ input[type="submit"]:active, input[type="button"]:active
 
 .container
 {
-    width: 880px;
+    width: 660px;
     margin: 0 auto;
 }
 
@@ -549,6 +549,11 @@ input[type="submit"]:active, input[type="button"]:active
     background: #31BACD;
     box-shadow: 0 0px 10px rgba(0,0,0,0.5);
     z-index: 9999;
+}
+
+.header.hasnav
+{
+    margin-left: 64px;
 }
 
 .header .title
@@ -683,6 +688,11 @@ input[type="submit"]:active, input[type="button"]:active
     padding-top: 70px;
     background: #E8ECEF;
     padding-bottom: 25px;
+}
+
+.body.hasnav
+{
+    margin-left: 64px;
 }
 
 .body.read

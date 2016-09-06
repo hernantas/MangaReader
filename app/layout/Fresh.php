@@ -6,6 +6,7 @@
     <?php echo css('style'); ?>
     <?php echo jsutility(); ?>
     <?php echo js('jquery-3.1.0.min'); ?>
+    <?php echo js('layout'); ?>
     <?php if (isset($additionalJs)): ?>
         <?php foreach ($additionalJs as $js): ?>
             <?php echo js($js); ?>
@@ -13,7 +14,7 @@
     <?php endif; ?>
 </head>
 <body>
-    <div class="header">
+    <div class="header <?php echo !isset($simpleMode) ? 'hasnav' : '' ?>">
         <div class="container">
             <div class="title">
                 <a href="<?php echo baseUrl(); ?>">
@@ -36,8 +37,8 @@
         <?php $this->view('Navigation'); ?>
     <?php endif; ?>
 
-    <div class="body <?php echo isset($readMode) ? 'read' : ''; ?>">
-
+    <div class="body <?php echo !isset($simpleMode) ? 'hasnav' : '' ?>
+        <?php echo isset($readMode) ? 'read' : ''; ?>">
         <div <?php echo (!isset($readMode) ? 'class="container"' : '') ?>>
             <?php $this->view('Message');  ?>
             <?php $this->fetchView(); ?>
