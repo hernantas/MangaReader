@@ -810,10 +810,6 @@ input[type="submit"]:active, input[type="button"]:active
     text-align: center;
 }
 
-.body .single div
-{
-}
-
 .body div.center
 {
     display: table;
@@ -855,11 +851,6 @@ input[type="submit"]:active, input[type="button"]:active
 .body .single input
 {
     width: 250px;
-}
-
-.body .single input[type="password"]
-{
-    width: 220px;
 }
 
 .body .single input[type="checkbox"],
