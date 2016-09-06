@@ -101,7 +101,7 @@
                 ->where('id_chapter', $idChapter)
                 ->update(['page'=>$page, 'update_at'=>time()]);
 
-            return ($history->update_at < (time()-3600));
+            return ($history->update_at < (time()-86400));
         }
 
         public function getMangaF($name)
