@@ -7,7 +7,9 @@
         {
             $this->load->storeView('Uninstall');
 
-            $this->load->layout('Fresh');
+            $this->load->layout('Fresh', [
+                'title'=>'Uninstall'
+            ]);
         }
 
         public function warning()
@@ -29,7 +31,9 @@
             $this->load->storeView('Uninstall', [
                 'alternative'=>true
             ]);
-            $this->load->layout('Fresh');
+            $this->load->layout('Fresh', [
+                'title'=>'Uninstall'
+            ]);
         }
     }
 ?>
