@@ -42,11 +42,27 @@
         </div>
     </div>
     <div class="panel">
-        <div class="warp center">
-            <?php echo inputButton('Begin Reading', 'alt w250'); ?>
-        </div>
+        <?php if ($history->isEmpty()): ?>
+            <div class="warp center">
+                <a href="<?php echo baseUrl()."manga/$manga->name/chapter/".
+                    $chapters[end($order)]->friendly_name.'/'; ?>"><?php
+                    echo inputButton('Begin Reading', 'alt w250'); ?></a>
+            </div>
+        <?php else: ?>
+            <div class="warp center">
+                <a href="<?php echo baseUrl()."manga/$manga->name/chapter/".
+                    $chapters[$history->first()->chapter]->friendly_name.'/'; ?>"><?php
+                    echo inputButton('Continue Reading', 'alt w250'); ?></a>
+            </div>
+        <?php endif; ?>
+        <?php if (page()->auth->getUserOption('privilege') == 'admin'): ?>
+            <div class="warp center">
+                <a href="<?php echo baseUrl()."manga/$manga->name/mark/completed"?>"><?php
+                    echo inputButton('Mark as Completed', 'alt w250'); ?></a>
+            </div>
+        <?php endif; ?>
     </div>
     <?php if (page()->auth->isLoggedIn()): ?>
-        <?php $this->view('History', ['manga'=>$manga]); ?>
+        <?php $this->view('History', ['history'=>$history]); ?>
     <?php endif; ?>
 </div>

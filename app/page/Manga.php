@@ -72,10 +72,14 @@
             natsort($order);
             $order = array_reverse($order);
 
+            $history = $this->manga->getMangaHistory(
+                $this->auth->getUserId(), $manga->id);
+
             $this->load->storeView('MangaChapter', [
                 'manga'=>$manga,
                 'chapters'=>$chapters,
-                'order'=>$order
+                'order'=>$order,
+                'history'=>$history
             ]);
 
             $this->load->layout('Fresh', [
