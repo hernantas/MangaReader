@@ -43,8 +43,9 @@
             <?php else: ?>
                 <span class="empty">
             <?php endif; ?>
-            <?php echo $p[0]; ?>
 
+            <?php echo $p[0]; ?>
+            
             <?php if ($p[0]==$curpage): ?>
                 </b>
             <?php elseif ($p[0] != '...'): ?>
