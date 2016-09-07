@@ -46,3 +46,5 @@ Please email me at hernantas@gmail.com
 Next Version
 ------------
 At the next version this application will be more faster (at my system it's up to 4x faster) & more stable. I have my college and jobs so don't expect the next version come fast and i can't really set ETA. If you want to try you can get it from development branch
+
+If you want to see the progress, you can use it on [development branch](https://github.com/hernantas/MangaReader/tree/development). 
