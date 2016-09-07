@@ -1,9 +1,10 @@
 
 var imgWidth = new Array();
+var imagePadding = 100;
 
 function imageWidth()
 {
-    var width = $(window).width() - fixedPadding;
+    var width = $(window).width() - imagePadding;
     $(".img_flex").each(function(index)
     {
         if (width != $(this).width())
