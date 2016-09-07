@@ -796,6 +796,11 @@ input[type="submit"]:active, input[type="button"]:active
     padding-right: 10px;
 }
 
+.body .panel.left
+{
+    float: left;
+}
+
 .body .single
 {
     display: table;
@@ -848,7 +853,7 @@ input[type="submit"]:active, input[type="button"]:active
     color: #B02621;
 }
 
-.body .single input
+.body .single input, input.w250
 {
     width: 250px;
 }
@@ -863,7 +868,8 @@ input[type="submit"]:active, input[type="button"]:active
 .body .card
 {
     float: left;
-    margin-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .body .card a
@@ -922,4 +928,22 @@ input[type="submit"]:active, input[type="button"]:active
 {
     display: block;
     padding: 5px 10px;
+}
+
+.body .panlist
+{
+    float: left;
+    width: 100%;
+}
+
+.body .panlist .panel
+{
+    margin-right: 320px;
+}
+
+.body .paninfo
+{
+    float: right;
+    width: 300px;
+    margin-left: -300px;
 }
