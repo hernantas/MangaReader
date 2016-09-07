@@ -18,6 +18,23 @@
                 ->get("count(manga.id) as cnt")->first()->cnt;
         }
 
+        public function findManga($search, $page=0)
+        {
+            return $this->db->table('manga')
+                ->join('manga_chapter','manga.id', 'manga_chapter.id_manga')
+                ->order('manga.friendly_name')->limit($page*36, 36)
+                ->where('manga.name', 'LIKE', "%$search%")
+                ->group('manga.id')
+                ->get("manga.*, count(manga.id) as cnt");
+        }
+
+        public function getSearchCount($search)
+        {
+            return $this->db->table('manga')
+                ->where('manga.name', 'LIKE', "%$search%")
+                ->get("count(manga.id) as cnt")->first()->cnt;
+        }
+
         public function getImage($id)
         {
             return $this->db->table('manga_image')
