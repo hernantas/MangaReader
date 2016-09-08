@@ -67,7 +67,7 @@
             $current = $this->db->table('manga')->where('id', $id)
                 ->get()->first();
 
-            if ($current->rankings === '0')
+            if (strcmp($current->rankings, '0') === 0)
             {
                 // Place at the last of rank
                 $lastRank =  $this->db->table('manga')
@@ -89,6 +89,7 @@
                 $above = $this->db->table('manga')
                     ->limit(0,1)
                     ->where('rankings', $current->rankings-1)
+                    ->where('rankings', '!=', '0')
                     ->where('views', '<=', $current->views)
                     ->get();
 
