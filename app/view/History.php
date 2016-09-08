@@ -1,6 +1,10 @@
 <div class="panel <?php echo (isset($single)?'single':''); ?>">
     <div class="warp">
-        <b>My Reading History</b>
+        <?php if (isset($single)): ?>
+            <b>Last Read</b>
+        <?php else: ?>
+            <b>My Reading History</b>
+        <?php endif; ?>
     </div>
     <div class="<?php echo (isset($single)?'':'warp'); ?>">
     <?php while ($row = $history->row()): ?>
