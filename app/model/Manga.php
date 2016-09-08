@@ -138,10 +138,27 @@
         public function getUserHistory($idUser, $page=0, $limit=100)
         {
             return $this->db->table('user_history')
-                ->where('id_user', $idUser)
-                ->order('update_at', false)
+                ->join('manga', 'manga.id', 'user_history.id_manga')
+                ->join('manga_chapter', 'manga_chapter.id', 'user_history.id_chapter')
+                ->where('user_history.id_user', $idUser)
+                ->order('user_history.update_at', false)
                 ->limit($page*$limit, $limit)
-                ->get();
+                ->get(
+                    'manga.name as manga, manga.friendly_name as fmanga'.
+                    ', manga_chapter.name as chapter, manga_chapter.friendly_name as fchapter'.
+                    ', user_history.update_at'
+                );
+        }
+
+        public function getUserManga($idUser, $page, $limit=36)
+        {
+            return $this->db->table('user_history')
+                ->join('manga', 'manga.id', 'user_history.id_manga')
+                ->where('user_history.id_user', $idUser)
+                ->order('user_history.update_at', false)
+                ->group('user_history.id_manga')
+                ->limit($page*$limit, $limit)
+                ->get('manga.*');
         }
 
         public function getMangaHistory($idUser, $idManga)
