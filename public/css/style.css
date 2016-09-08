@@ -879,6 +879,10 @@ input[type="submit"]:active, input[type="button"]:active
     height: 418px;
     color: #000;
 }
+.body .card.mini a
+{
+    height: auto;
+}
 .body .card a:hover
 {
     background-color: #f0f0f0;
