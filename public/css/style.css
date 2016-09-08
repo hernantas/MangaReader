@@ -936,14 +936,14 @@ input[type="submit"]:active, input[type="button"]:active
     width: 100%;
 }
 
-.body .panlist .panel
+.body .panlist .flex
 {
-    margin-right: 320px;
+    margin-right: 330px;
 }
 
 .body .paninfo
 {
     float: right;
-    width: 300px;
-    margin-left: -300px;
+    width: 320px;
+    margin-left: -320px;
 }

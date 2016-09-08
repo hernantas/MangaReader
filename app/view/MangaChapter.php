@@ -1,14 +1,15 @@
 <div class="panlist">
-    <div class="panel">
-        <div class="warp">
-            <h2><?php echo $manga->name; ?></h2>
+    <div class="flex">
+        <div class="panel">
+            <div class="warp">
+                <h2><?php echo $manga->name; ?></h2>
+            </div>
         </div>
-    </div>
-    <div class="panel">
-        <div class="warp">
-            <b>Chapters:</b>
-        </div>
-        <div>
+        <div class="panel">
+            <div class="warp">
+                <b>Chapters:</b>
+            </div>
+            <div>
             <?php foreach($order as $ord): ?>
                 <?php $chapter = $chapters[$ord]; ?>
                 <div class="list">
@@ -23,6 +24,7 @@
                     </a>
                 </div>
             <?php endforeach; ?>
+            </div>
         </div>
     </div>
 </div>
