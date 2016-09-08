@@ -69,7 +69,7 @@
                     [
                         'url'=>'user/history',
                         'img'=>'paper48.png',
-                        'text'=>'History'
+                        'text'=>'My History'
                     ],
                     [
                         'url'=>'user/signout',
