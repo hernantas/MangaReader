@@ -73,7 +73,7 @@
             <?php endif; ?>
         <?php endif; ?>
     </div>
-    <?php if (page()->auth->isLoggedIn()): ?>
+    <?php if (page()->auth->isLoggedIn() && !$history->isEmpty()): ?>
         <?php $this->view('History', ['history'=>$history]); ?>
     <?php endif; ?>
 </div>
