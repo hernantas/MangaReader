@@ -2,6 +2,7 @@
 var fixedWidth = 220;
 var minWidth = 660;
 var fixedPadding = 100;
+var delayResize = null;
 
 function layoutWidth()
 {
@@ -16,10 +17,16 @@ function layoutWidth()
     }
 }
 
+function layoutResize()
+{
+    clearTimeout(delayResize);
+    delayResize = setTimeout(layoutWidth, 250);
+}
+
 $(document).ready(function() {
     layoutWidth();
 
     $(window).resize(function(){
-        layoutWidth();
+        layoutResize();
     });
 });
