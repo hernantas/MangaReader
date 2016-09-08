@@ -56,7 +56,8 @@
                 $vo1 = '=';
             }
 
-            $this->addCond($this->conds, $this->fieldQuote($field), $vo1, $this->valueQuote($vo2));
+            $this->addCond($this->conds, $this->fieldQuote($field),
+                $vo1, $this->valueQuote($vo2));
             return $this;
         }
 
@@ -77,7 +78,8 @@
                 $vo1 = '=';
             }
 
-            $this->addCond($this->conds, $this->fieldQuote($field), $vo1, $vo2, 'OR');
+            $this->addCond($this->conds, $this->fieldQuote($field),
+                $vo1, $this->valueQuote($vo2), 'OR');
 
             return $this;
         }
