@@ -196,6 +196,39 @@
                 ->limit(0,1)->get();
             return $result->first();
         }
+
+        public function setOption($id, $key, $value)
+        {
+            $result = $this->db->table('manga_option')
+                ->where('id_manga', $id)
+                ->where('option_key', $key)
+                ->get();
+            if ($result->isEmpty())
+            {
+                $this->db->table('manga_option')
+                    ->insert(['', $id, $key, $value]);
+            }
+            else
+            {
+                $this->db->table('manga_option')
+                    ->where('id_manga', $id)
+                    ->where('option_key', $key)
+                    ->update(['option_value'=>$value]);
+            }
+        }
+
+        public function getOption($id, $key)
+        {
+            $result = $this->db->table('manga_option')
+                ->where('id_manga', $id)
+                ->where('option_key', $key)
+                ->get();
+            if ($result->isEmpty())
+            {
+                return false;
+            }
+            return $result->first()->option_value;
+        }
     }
 
 ?>
