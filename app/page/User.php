@@ -16,8 +16,10 @@
 
             $cfg = $this->config->loadInfo('Manga');
 
-            $mangas = $this->manga->getUserManga($this->auth->getUserId(), 0, 36);
-            $history = $this->manga->getUserHistory($this->auth->getUserId());
+            $mangas = $this->manga->getUserManga(
+                $this->auth->getUserId(), 0, 36);
+            $history = $this->manga->getUserHistory(
+                $this->auth->getUserId(), 0, 31);
 
             $this->load->storeView('User', [
                 'mangas'=>$mangas,
