@@ -268,11 +268,35 @@
             ]);
         }
 
+        private function mark($mark)
+        {
+            $this->load->model('Manga');
+            $manga = $this->manga->getMangaF($this->uri->segment(2));
+
+            if ($this->auth->getUserOption('privilege') === 'admin')
+            {
+                if (strcasecmp($mark, 'completed') === 0)
+                {
+                    $this->manga->setOption($manga->id, 'status', 'completed');
+                }
+                elseif (strcasecmp($mark, 'ongoing') === 0)
+                {
+                    $this->manga->setOption($manga->id, 'status', 'ongoing');
+                }
+            }
+
+            $this->router->redirect('manga/'.$this->uri->segment(2));
+        }
+
         public function route()
         {
             if (($chapter = $this->uri->pair('chapter')) !== false)
             {
                 $this->read($chapter);
+            }
+            elseif (($mark = $this->uri->pair('mark')) !== false)
+            {
+                $this->mark($mark);
             }
             else
             {

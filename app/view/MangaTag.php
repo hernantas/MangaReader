@@ -1,3 +1,6 @@
+<?php if (page()->manga->getOption($manga->id, 'status')==='completed'): ?>
+    <span class="tag black">completed</span>
+<?php endif; ?>
 <?php if ((int)$manga->rankings < 100 && $manga->rankings != '0'): ?>
     <span class="tag red">hot</span>
 <?php endif; ?>

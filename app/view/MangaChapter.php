@@ -31,8 +31,10 @@
 <div class="paninfo">
     <div class="panel">
         <div class="warp">
-            <div><b>Rank:</b> <?php echo $manga->rankings; ?></div>
-            <div><b>Views:</b> <?php echo $manga->views; ?> times</div>
+            <div><b>Rank:</b>
+                <?php echo ($manga->rankings==='0'?'No Rank':$manga->rankings); ?></div>
+            <div><b>Views:</b>
+                <?php echo ($manga->views==='0'?'No one read this yet':$manga->views.' times'); ?></div>
         </div>
         <div class="warp">
             <div class="desc">
@@ -46,22 +48,29 @@
     <div class="panel">
         <?php if ($history->isEmpty()): ?>
             <div class="warp center">
-                <a href="<?php echo baseUrl()."manga/$manga->name/chapter/".
+                <a href="<?php echo baseUrl()."manga/$manga->friendly_name/chapter/".
                     $chapters[end($order)]->friendly_name.'/'; ?>"><?php
                     echo inputButton('Begin Reading', 'alt w250'); ?></a>
             </div>
         <?php else: ?>
             <div class="warp center">
-                <a href="<?php echo baseUrl()."manga/$manga->name/chapter/".
+                <a href="<?php echo baseUrl()."manga/$manga->friendly_name/chapter/".
                     $chapters[$history->first()->chapter]->friendly_name.'/'; ?>"><?php
                     echo inputButton('Continue Reading', 'alt w250'); ?></a>
             </div>
         <?php endif; ?>
         <?php if (page()->auth->getUserOption('privilege') == 'admin'): ?>
+            <?php if (page()->manga->getOption($manga->id, 'status')==='completed'): ?>
             <div class="warp center">
-                <a href="<?php echo baseUrl()."manga/$manga->name/mark/completed"?>"><?php
-                    echo inputButton('Mark as Completed', 'alt w250'); ?></a>
+                <a href="<?php echo baseUrl()."manga/$manga->friendly_name/mark/ongoing"?>"><?php
+                echo inputButton('Mark as Ongoing', 'alt w250'); ?></a>
             </div>
+            <?php else: ?>
+            <div class="warp center">
+                <a href="<?php echo baseUrl()."manga/$manga->friendly_name/mark/completed"?>"><?php
+                echo inputButton('Mark as Completed', 'alt w250'); ?></a>
+            </div>
+            <?php endif; ?>
         <?php endif; ?>
     </div>
     <?php if (page()->auth->isLoggedIn()): ?>
