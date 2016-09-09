@@ -18,6 +18,7 @@
             if (strpos($name, "Ch.")===0)
 			{
 				$name = substr($name, 3);
+                $name = str_replace(' Read Online', '', $name);
 				return $manga . " " .$name;
 			}
 
