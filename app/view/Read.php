@@ -22,7 +22,7 @@
                 <a href="<?php echo baseUrl().'manga/'.$manga->friendly_name; ?>">
                     <?php echo $manga->name; ?></a>
                 \
-                <?php echo $image->chapter; ?>
+                <?php echo page()->mangalib->nameFix($image->chapter, $manga->name);  ?>
             </h3>
         </div>
         <?php $lastChapter = $image->fchapter; ?>
