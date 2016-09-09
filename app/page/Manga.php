@@ -8,6 +8,7 @@
         private function display($title, $sort, $search=false)
         {
             $this->load->model('Manga');
+            $this->load->library('Manga', 'MangaLib');
             $this->load->library('Date');
             $this->load->library('Image');
             $this->load->helper('Paging');

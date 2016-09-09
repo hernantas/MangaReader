@@ -16,7 +16,7 @@
                     <a href="<?php echo baseUrl().'manga/'.$manga->friendly_name.'/chapter/'.$chapter->friendly_name; ?>"
                         class="clearfix">
                         <div class="left hwarp">
-                            <?php echo $ord; ?>
+                            <?php echo page()->mangalib->nameFix($chapter->name, $manga->name); ?>
                         </div>
                         <div class="right desc">
                             <?php echo page()->date->relative($chapter->added_at); ?>
