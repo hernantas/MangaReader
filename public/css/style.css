@@ -665,7 +665,7 @@ input[type="submit"]:active, input[type="button"]:active
 .navigation a .text
 {
     color: rgba(255, 255, 255, 0.5);
-    padding-top: 16px;
+    padding-top: 12px;
     padding-left: 50px;
     font-size: 0.9em;
     display: none;
@@ -950,4 +950,17 @@ input[type="submit"]:active, input[type="button"]:active
     float: right;
     width: 320px;
     margin-left: -320px;
+}
+
+.body .feed-item
+{
+    margin-left: 10px;
+    float: left;
+    width: 320px;
+}
+
+.body .feed-item .title
+{
+    font-weight: bold;
+    color: #333;
 }

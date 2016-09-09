@@ -5,11 +5,17 @@
     {
         public function index()
         {
-            $this->load->storeView('Home',[
-                'word' => 'Date Today: ' . date('d-m-y')
-            ]);
+            $this->load->model('Manga');
+            $this->load->library('Manga', 'MangaLib');
 
-            $this->load->layout('Fresh');
+            $feed = $this->manga->getFeed();
+            $this->load->storeView('Newsfeed', ['feed'=>$feed]);
+
+            $this->load->layout('Fresh', [
+                'additionalJs'=>[
+                    'newsfeed'
+                ]
+            ]);
         }
     }
 
