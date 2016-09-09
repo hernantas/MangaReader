@@ -43,15 +43,15 @@
 
         public function startScan()
         {
-            $mangas = scandir($this->mangaPath);
+            $mangas = new \FilesystemIterator($this->mangaPath,
+                \FilesystemIterator::SKIP_DOTS);
 
             $scan = array();
             foreach ($mangas as $manga)
             {
-                if ($manga != '.' && $manga != '..' &&
-                    is_dir($this->mangaPath . '/' . $manga))
+                if ($manga->isDir())
                 {
-                    $scan[] = [$manga];
+                    $scan[] = [$manga->getFilename()];
                 }
             }
 
@@ -149,14 +149,14 @@
                     $existsManga[] = $fmanga;
                 }
 
-                $chapterDirs = scandir($this->mangaPath . '/' . $manga);
+                $chapterDirs = new \FilesystemIterator($this->mangaPath . '/' . $manga,
+                   \FilesystemIterator::SKIP_DOTS);
 
                 foreach ($chapterDirs as $chapter)
                 {
-                    if ($chapter != '.' && $chapter != '..' &&
-                        is_dir($this->mangaPath . '/' . $manga . '/' . $chapter))
+                    if ($chapter->isDir())
                     {
-                        $this->addScan([$manga, $chapter]);
+                        $this->addScan([$manga, $chapter->getFilename()]);
                     }
                 }
             }
@@ -213,8 +213,7 @@
                     else
                     {
                         $this->scanWarning[] = "Found almost identical/duplicate manga chapter name:".
-                            "<ul><li>$chapter</li><li>$chp->name</li></ul>" .
-                            "Please remove one of them since having them both may cause issues.";
+                            "<ul><li>$chapter</li><li>$chp->name</li></ul>";
                     }
                 }
             }
@@ -240,8 +239,7 @@
                 else
                 {
                     $this->scanWarning[] = "Found almost identical/duplicate manga chapter name:".
-                        "<ul><li>$new[1]</li><li>$chp->name</li></ul>" .
-                        "Please remove one of them since having them both may cause issues.";
+                        "<ul><li>$new[1]</li><li>$chp->name</li></ul>";
                 }
             }
 
@@ -250,24 +248,21 @@
             foreach ($scChapter as $chapter)
             {
                 $imgCount = $this->model->countImage($chapter[0], $chapter[1]);
-                $imgDirs = scandir($this->mangaPath . '/' . $chapter[2] . '/' . $chapter[3]);
+                $imgs = new \FilesystemIterator($this->mangaPath.
+                    '/'.$chapter[2].'/'.$chapter[3], \FilesystemIterator::SKIP_DOTS);
+                $fileCount = iterator_count($imgs);
 
-                $count = 0;
-                $newImageData = array();
-                $page = 0;
-                foreach ($imgDirs as $img)
-                {
-                    if ($img != '.' && $img != '..' &&
-                        is_file($this->mangaPath . '/' . $chapter[2] . '/' . $chapter[3] . '/' . $img))
-                    {
-                        $newImageData[] = [$chapter[0], $chapter[1], $img, ++$page];
-                    }
-                }
-                $count += $page;
-
-                if ($count != $imgCount)
+                if ($fileCount != $imgCount)
                 {
                     $removeImage[] = [$chapter[0], $chapter[1]];
+
+                    $newImageData = array();
+                    $page = 0;
+                    foreach ($imgs as $img)
+                    {
+                        $newImageData[] = [$chapter[0], $chapter[1], $img->getFilename(), ++$page];
+                    }
+
                     $newImage = array_merge($newImage, $newImageData);
                 }
             }
