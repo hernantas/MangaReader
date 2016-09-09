@@ -110,6 +110,11 @@
             $this->pos = 0;
         }
 
+        public function position()
+        {
+            return $this->pos;
+        }
+
         /**
          * Get query result per row, or get single string at current row if
          * column is used
