@@ -5,38 +5,24 @@
     {
         public function nameFix($name, $manga)
         {
-            // Batoto Rename type 1
+            // Batoto Rename type 1 (Vol. with Ch.)
+			if ($pos = (strpos($name,"Vol.")) === 0)
+            {
+                $pos = strpos($name, "Ch.");
+				$name = substr($name, $pos+3);
+                $name = str_replace(' Read Online', '', $name);
+				return $manga . " " . $name;
+			}
+
+            // Batoto Rename type 2 (Ch.)
             if (strpos($name, "Ch.")===0)
 			{
-				if ($name == "")
-                {
-					return $name;
-				}
-                else
-                {
-					$name = trim($name, 3);
-					return $manga . " " .$name;
-				}
+				$name = substr($name, 3);
+				return $manga . " " .$name;
 			}
 
-            // Batoto Rename type 2
-			if (strpos($name,"Vol.") !== false)
-            {
-				$name = substr($name,6);
-				if ($manga == "")
-                {
-                    return $name;
-                }
-				else
-                {
-					$pos = strpos($name, "Ch.");
-					$name = substr($name, $pos+3);
-					return $manga . " " .$name;
-				}
-			}
-
-			// Rename for Mangafox
-			if (strpos($name,"Volume") !== false)
+            // Rename for Mangafox
+            if (strpos($name,'Volume') === 0)
             {
 				$pos = strpos($name, "-");
 				return substr($name,$pos+1);
