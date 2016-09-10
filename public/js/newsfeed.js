@@ -86,8 +86,7 @@ function getFeed()
             "method": "POST",
             url: baseUrl+"home/feed",
             data: {
-                'page': feed,
-                'nofeed': $(".body .container .feed").length
+                'page': feed
             }
         }).done(function(msg) {
             msg = $.trim(msg);
@@ -106,18 +105,7 @@ function getFeed()
             }
             else
             {
-                if ($(".body .container .feed").length)
-                {
-                    $(".body .container .feed").append(msg);
-                }
-                else
-                {
-                    $(".body .container").append(msg);
-                    $(".load-more").click(function()
-                    {
-                        getFeed();
-                    });
-                }
+                $(".body .container .feed").append(msg);
                 feedResize();
             }
         });
@@ -129,5 +117,10 @@ $( document ).ready(function()
     getFeed();
     $(window).resize(function() {
         feedResize();
+    });
+
+    $(".load-more").click(function()
+    {
+        getFeed();
     });
 });

@@ -5,6 +5,7 @@
     {
         public function index()
         {
+            $this->load->storeView('FeedContainer');
             $this->load->layout('Fresh', [
                 'additionalJs'=>[
                     'newsfeed'
@@ -18,9 +19,8 @@
             $feed = 0;
 
             $page = (int)$this->input->post('page', 0);
-            $nofeed = $this->input->post('nofeed');
             $feed = $this->manga->getFeed($page);
-            
+
             if ($feed->isEmpty())
             {
                 if ($this->manga->hasFeed($page))
@@ -39,7 +39,6 @@
                 $cfg = $this->config->loadInfo('Manga');
                 $this->load->view('Newsfeed', [
                     'feed'=>$feed,
-                    'nofeed'=>$nofeed,
                     'mangapath'=>$cfg['path']
                 ]);
             }

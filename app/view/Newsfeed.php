@@ -1,6 +1,3 @@
-<?php if (!isset($nofeed) || $nofeed==='0'): ?>
-<div class="clearfix feed">
-<?php endif; ?>
 <?php $limit = 0; ?>
 <?php while ($row = $feed->row()): ?>
     <?php if ($limit++ > 25) {break;} ?>
@@ -49,12 +46,3 @@
         </div>
     </div>
 <?php endwhile; ?>
-<?php if (!isset($nofeed) || $nofeed==='0'): ?>
-    <?php echo inputSubmit('Load More...', 'load-more hidden'); ?>
-    <div class="panel load-loading">
-        <div class="center">
-            <img src="<?php echo baseUrl(); ?>public/img/ripple.gif" />
-        </div>
-    </div>
-</div>
-<?php endif; ?>
