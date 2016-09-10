@@ -206,10 +206,10 @@
             $this->db->query("UPDATE `manga_image` set `exists`='1' WHERE $build");
         }
 
-        public function removeDeleted()
+        public function removeDeleted($limitManga=200, $limitChapter=100)
         {
             $result = $this->db->table('manga')->where('exists', '0')
-                ->order('id')->limit(0,200)->get();
+                ->order('id')->limit(0,$limitManga)->get();
             if (!$result->isEmpty())
             {
                 // Delete manga only (prevent Execution Timeout),
@@ -224,7 +224,7 @@
             }
 
             $result = $this->db->table('manga_chapter')
-                ->where('exists', '0')->order('id')->limit(0,100)->get();
+                ->where('exists', '0')->order('id')->limit(0,$limitChapter)->get();
 
             if (!$result->isEmpty())
             {

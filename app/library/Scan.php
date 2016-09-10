@@ -61,11 +61,12 @@
 
         public function flushScan()
         {
-            $result = $this->model->currentScan(200);
+            page()->config->setDefaultInfo('Manga', ['scanMaxPerRequest'=>200]);
+            $cfg = page()->config->loadInfo('Manga');
+            $result = $this->model->currentScan($cfg['scanMaxPerRequest']);
 
             $mangas = array();
             $chapters = array();
-
             $removeScan = array();
 
             while ($current = $result->row())
@@ -276,7 +277,13 @@
 
         public function cleanUp()
         {
-            return $this->model->removeDeleted();
+            page()->config->setDefaultInfo('Manga', [
+                'scanMaxMangaRemoved'=>200,
+                'scanMaxChapterRemoved'=>100
+            ]);
+            $cfg = page()->config->loadInfo('Manga');
+            return $this->model->removeDeleted((int)$cfg['scanMaxMangaRemoved'],
+                (int)$cfg['scanMaxChapterRemoved']);
         }
     }
 
