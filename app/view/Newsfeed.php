@@ -1,7 +1,9 @@
 <?php if (!isset($nofeed) || $nofeed==='0'): ?>
 <div class="clearfix feed">
 <?php endif; ?>
+<?php $limit = 0; ?>
 <?php while ($row = $feed->row()): ?>
+    <?php if ($limit++ > 25) {break;} ?>
     <div class="panel feed-item">
         <div class="warp">
             <a href="<?php echo baseUrl().'manga/'.$row->fmanga; ?>" class="title">

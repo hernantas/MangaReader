@@ -62,10 +62,10 @@ function feedConstruct()
 
     var highest = getHighestColumn();
     $(".load-more").css("position", "absolute");
-    $(".load-loading").css("position", "absolute");
     $(".load-more").css("top", columnHeight[highest]);
-    $(".load-loading").css("top", columnHeight[highest]);
     $(".load-more").show();
+    $(".load-loading").css("position", "absolute");
+    $(".load-loading").css("top", columnHeight[highest]);
     $(".load-loading").hide();
 }
 
