@@ -13,8 +13,10 @@
             $this->load->library('Image');
             $this->load->helper('Paging');
 
+            $this->config->setDefaultInfo('Manga', ['directoryMangaMax'=>36]);
             $cfg = $this->config->loadInfo('Manga');
             $count = $this->manga->getCount();
+            $maxManga = $cfg['directoryMangaMax'];
 
             $curPage = 1;
             if (($page = $this->uri->pair('page')) !== false)
@@ -25,7 +27,7 @@
             $result = null;
             if ($search === false)
             {
-                $result = $this->manga->getList($curPage-1, $sort);
+                $result = $this->manga->getList($curPage-1, $sort, $maxManga);
             }
             else
             {
@@ -33,7 +35,7 @@
                 $count = $this->manga->getSearchCount($search);
             }
 
-            $maxPage = $count / 36;
+            $maxPage = $count / $maxManga;
             $this->load->storeView('MangaDirectory', [
                 'mangalist'=>$result,
                 'mangapath'=>$cfg['path'],
@@ -128,7 +130,10 @@
             $this->load->library('Manga', 'MangaLib');
             $this->load->library('Image');
 
+            $this->config->setDefaultInfo('Manga', ['readMaxImage'=>10]);
+
             $cfg = $this->config->loadInfo('Manga');
+            $this->pageLimit = $cfg['readMaxImage'];
             $fmanga = $this->uri->segment(2);
             $manga = $this->manga->getMangaF($fmanga);
 

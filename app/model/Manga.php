@@ -3,11 +3,11 @@
 
     class Manga
     {
-        public function getList($page=0, $sort='friendly_name')
+        public function getList($page=0, $sort='friendly_name', $limit=36)
         {
             return $this->db->table('manga')
                 ->join('manga_chapter','manga.id', 'manga_chapter.id_manga')
-                ->order('manga.friendly_name')->limit($page*36, 36)
+                ->order('manga.friendly_name')->limit($page*$limit, $limit)
                 ->group('manga.id')->order($sort, ($sort=='friendly_name'))
                 ->get("manga.*, count(manga.id) as cnt");
         }
