@@ -34,7 +34,13 @@
             </div>
         </div>
         <div>
-
+            <?php $res = page()->manga->getImages($row->idmanga, $row->id, 0, 2); ?>
+            <?php while ($img = $res->row()): ?>
+            <img src="<?php echo page()->image->getContentCrop($mangapath . '/' .
+                $row->manga . '/' .
+                $row->name . '/' .
+                $img->name, 157,157); ?>" />
+            <?php endwhile; ?>
         </div>
     </div>
 <?php endwhile; ?>
