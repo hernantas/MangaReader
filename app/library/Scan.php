@@ -273,6 +273,11 @@
                 $this->model->addImage($newImage);
             }
         }
+
+        public function cleanUp()
+        {
+            return $this->model->removeDeleted();
+        }
     }
 
 ?>

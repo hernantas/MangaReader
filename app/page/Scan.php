@@ -38,42 +38,56 @@
         public function status()
         {
             $this->load->library('Scan');
+            $status = "failure";
 
+            $startTime = microtime(true);
             if (!$this->scan->isScanEmpty())
             {
-                $startTime = microtime(true);
                 $this->scan->flushScan();
-                $duration = microtime(true) - $startTime;
-
-                $warningI = 0;
-
-                echo "{";
-                echo "\"result\": \"success\",";
-                echo "\"warning\": [";
-                if (count($this->scan->getScanWarning()) > 0)
-                {
-                    $first = true;
-                    foreach ($this->scan->getScanWarning() as $warning)
-                    {
-                        if ($first)
-                        {
-                            echo "\"$warning\"";
-                            $first = false;
-                        }
-                        else
-                        {
-                            echo ", \"$warning\"";
-                        }
-                    }
-                }
-                echo "],";
-                echo "\"time\": \"$duration\"";
-                echo "}";
+                $status = "success";
             }
             else
             {
-                echo "{\"result\": \"done\"}";
+                if ($this->scan->cleanUp())
+                {
+                    $status = "success";
+                }
+                else
+                {
+                    $status = "done";
+                }
             }
+            $duration = microtime(true) - $startTime;
+
+            $warningI = 0;
+
+            echo "{";
+            echo "\"result\": \"$status\",";
+            echo "\"warning\": [";
+            if (count($this->scan->getScanWarning()) > 0)
+            {
+                $first = true;
+                foreach ($this->scan->getScanWarning() as $warning)
+                {
+                    if ($first)
+                    {
+                        echo "\"$warning\"";
+                        $first = false;
+                    }
+                    else
+                    {
+                        echo ", \"$warning\"";
+                    }
+                }
+            }
+            echo "],";
+            echo "\"time\": \"$duration\"";
+            echo "}";
+        }
+
+        private function cleanup()
+        {
+
         }
     }
 

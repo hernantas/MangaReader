@@ -208,8 +208,55 @@
 
         public function removeDeleted()
         {
-            $this->db->table('manga')->where('exists', '0')->delete();
-            $this->db->table('manga_chapter')->where('exists', '0')->delete();
+            $result = $this->db->table('manga')->where('exists', '0')
+                ->order('id')->limit(0,200)->get();
+            if (!$result->isEmpty())
+            {
+                // Delete manga only (prevent Execution Timeout),
+                // chapter will be deleted next
+                $query = $this->db->table('manga');
+                while ($row = $result->row())
+                {
+                    $query->whereOr('id', $row->id);
+                }
+                $query->delete();
+                return true;
+            }
+
+            $result = $this->db->table('manga_chapter')
+                ->where('exists', '0')->order('id')->limit(0,100)->get();
+
+            if (!$result->isEmpty())
+            {
+                // Delete manga chapter
+                $chapter = $this->db->table('manga_chapter');
+                while ($row = $result->row())
+                {
+                    $chapter->whereOr('id', $row->id);
+                }
+                $chapter->delete();
+
+                // Delete chapter image
+                $result->reset();
+                $image = $this->db->table('manga_image');
+                while ($row = $result->row())
+                {
+                    $image->whereOr('id_chapter', $row->id);
+                }
+                $image->delete();
+
+                // Delete user history
+                $result->reset();
+                $history = $this->db->table('user_history');
+                while ($row = $result->row())
+                {
+                    $history->whereOr('id_chapter', $row->id);
+                }
+                $history->delete();
+                return true;
+            }
+
+            return false;
         }
     }
 ?>
