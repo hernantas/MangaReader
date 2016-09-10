@@ -10,6 +10,8 @@
 
         public function profile()
         {
+            $this->auth->requireLogin();
+
             $this->load->model('Manga');
             $this->load->library('Manga', 'MangaLib');
             $this->load->library('Image');
@@ -35,6 +37,8 @@
 
         public function history()
         {
+            $this->auth->requireLogin();
+            
             $this->load->model('Manga');
             $this->load->library('Manga', 'MangaLib');
             $this->load->library('Date');
