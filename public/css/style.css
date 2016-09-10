@@ -598,6 +598,11 @@ input[type="submit"]:active, input[type="button"]:active
     border-radius: 3px;
 }
 
+.header .search input[type="text"]
+{
+    width: 90%;
+}
+
 .header .search input[type="search"]:hover
 {
     background: rgba(255,255,255, 0.1);
