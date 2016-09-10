@@ -1,6 +1,9 @@
 docs/
-app/log/
-app/info/
-public/img_cache/
+app/log/*
+!app/log/index.html
+app/info/*
+!app/info/index.html
+public/img_cache/*
+!public/img_cache/index.html
 app/config/Encryption.php
 app/config/Auth.php
