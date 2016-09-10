@@ -136,6 +136,48 @@
         }
 
         /**
+         * Used for setting default value of configuration.
+         *
+         * @param  string $name   Configuration name
+         * @param  array $config  Default configuration data
+         */
+        public function setDefault($name, $config)
+        {
+            $cfg = $this->load($name);
+            $changed = false;
+            foreach ($config as $key=>$val)
+            {
+                if (!isset($cfg[$key]))
+                {
+                    $cfg[$key]=$val;
+                    $changed = true;
+                }
+            }
+            if ($changed) $this->save($name, $cfg);
+        }
+
+        /**
+         * Used for setting default value of configuration info.
+         *
+         * @param  string $name   Configuration info name
+         * @param  array $config  Default configuration data
+         */
+        public function setDefaultInfo($name, $config)
+        {
+            $cfg = $this->loadInfo($name);
+            $changed = false;
+            foreach ($config as $key=>$val)
+            {
+                if (!isset($cfg[$key]))
+                {
+                    $cfg[$key]=$val;
+                    $changed = true;
+                }
+            }
+            if ($changed) $this->saveInfo($name, $cfg);
+        }
+
+        /**
          * Actual method to write config to the file
          *
          * @param  string $name   Config file name
