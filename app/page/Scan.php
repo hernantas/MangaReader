@@ -93,11 +93,6 @@
             echo "\"time\": \"$duration\"";
             echo "}";
         }
-
-        private function cleanup()
-        {
-
-        }
     }
 
 ?>
