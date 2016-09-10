@@ -18,6 +18,7 @@
 
         public function hasUser($username='')
         {
+            $result = null;
             if ($username === '')
             {
                 $result = $this->db->table('user')->limit(0,1)->get();
@@ -36,7 +37,7 @@
             $this->db->table('user')->insert(['',$username, $hashPass]);
 
             $id = $this->getId($username);
-            if (!$emptyUser)
+            if (!$hasUser)
             {
                 $this->setOption($id, 'privilege', 'admin');
             }
