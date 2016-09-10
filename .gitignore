@@ -1,0 +1,6 @@
+docs/
+app/log/
+app/info/
+public/img_cache/
+app/config/Encryption.php
+app/config/Auth.php
