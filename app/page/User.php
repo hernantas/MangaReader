@@ -40,7 +40,7 @@
             $this->load->library('Date');
 
             $history = $this->manga->getUserHistory(
-                $this->auth->getUserId(), 0, 31);
+                $this->auth->getUserId(), 0, 100);
 
             $this->load->storeView('History', [
                 'history'=>$history,
