@@ -14,7 +14,7 @@
                 <?php echo (isset($single)?'class="clearfix"':''); ?>>
             <?php if (isset($single)): ?>
                 <div class="left hwarp">
-                    <?php echo $row->chapter; ?>
+                    <?php echo page()->mangalib->nameFix($row->chapter, $row->manga); ?>
                 </div>
                 <div class="right desc">
                     <?php echo page()->date->relative($row->update_at); ?>
