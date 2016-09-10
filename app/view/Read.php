@@ -17,13 +17,15 @@
 ?>
 <?php foreach ($images as $image): ?>
     <?php if ($lastChapter != $image->fchapter): ?>
-        <div class="single panel">
-            <h3 class="hwarp">
-                <a href="<?php echo baseUrl().'manga/'.$manga->friendly_name; ?>">
-                    <?php echo $manga->name; ?></a>
-                \
-                <?php echo page()->mangalib->nameFix($image->chapter, $manga->name);  ?>
-            </h3>
+        <div class="container">
+            <div class="single panel">
+                <h3 class="hwarp">
+                    <a href="<?php echo baseUrl().'manga/'.$manga->friendly_name; ?>">
+                        <?php echo $manga->name; ?></a>
+                    \
+                    <?php echo page()->mangalib->nameFix($image->chapter, $manga->name);  ?>
+                </h3>
+            </div>
         </div>
         <?php $lastChapter = $image->fchapter; ?>
     <?php endif; ?>
