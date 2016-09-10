@@ -7,6 +7,13 @@
 
         public function index()
         {
+            $this->auth->requireLogin();
+
+            if ($this->auth->getUserOption('privilege') != 'admin')
+            {
+                $this->router->redirect('');
+            }
+
             $this->load->library('Scan');
 
             $this->load->storeView('Scan',[
@@ -24,10 +31,12 @@
             // $this->db->query("TRUNCATE TABLE `manga`");
             // $this->db->query("TRUNCATE TABLE `manga_chapter`");
             // $this->db->query("TRUNCATE TABLE `manga_image`");
+            $this->auth->requireLogin();
 
             $this->load->library('Scan');
 
-            if ($this->scan->isScanEmpty())
+            if ($this->scan->isScanEmpty() &&
+                $this->auth->getUserOption('privilege') == 'admin')
             {
                 $this->scan->startScan();
             }
