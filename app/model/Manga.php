@@ -230,11 +230,20 @@
             return $result->first()->option_value;
         }
 
+        public function hasFeed($index=0)
+        {
+            return !$this->db->table('manga_chapter')
+                ->where('manga_chapter.added_at', '<=', time()-($index*86400))
+                ->limit(0,1)
+                ->get()->isEmpty();
+        }
+
         public function getFeed($index=0)
         {
             return $this->db->table('manga_chapter')
                 ->join('manga', 'manga.id', 'manga_chapter.id_manga')
                 ->where('manga_chapter.added_at', '>', time()-(($index+1)*86400))
+                ->where('manga_chapter.added_at', '<=', time()-($index*86400))
                 ->order('manga_chapter.added_at', false)
                 ->get('manga_chapter.*, manga.id as idmanga, manga.name as manga, manga.friendly_name as fmanga');
         }

@@ -1,4 +1,6 @@
+<?php if (!isset($nofeed) || $nofeed==='0'): ?>
 <div class="clearfix feed">
+<?php endif; ?>
 <?php while ($row = $feed->row()): ?>
     <div class="panel feed-item">
         <div class="warp">
@@ -39,9 +41,18 @@
             <img src="<?php echo page()->image->getContentCrop($mangapath . '/' .
                 $row->manga . '/' .
                 $row->name . '/' .
-                $img->name, 157,157); ?>" />
+                $img->name,
+                ($res->count()>1?157:314),($res->count()>1?157:314)); ?>" />
             <?php endwhile; ?>
         </div>
     </div>
 <?php endwhile; ?>
+<?php if (!isset($nofeed) || $nofeed==='0'): ?>
+    <?php echo inputSubmit('Load More...', 'load-more hidden'); ?>
+    <div class="panel load-loading">
+        <div class="center">
+            <img src="<?php echo baseUrl(); ?>public/img/ripple.gif" />
+        </div>
+    </div>
 </div>
+<?php endif; ?>

@@ -20,7 +20,7 @@ function layoutWidth()
 function layoutResize()
 {
     clearTimeout(delayResize);
-    delayResize = setTimeout(layoutWidth, 250);
+    delayResize = setTimeout(layoutWidth, 100);
 }
 
 $(document).ready(function() {

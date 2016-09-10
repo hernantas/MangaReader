@@ -952,11 +952,16 @@ input[type="submit"]:active, input[type="button"]:active
     margin-left: -320px;
 }
 
+.body .feed
+{
+}
+
 .body .feed-item
 {
     margin-left: 10px;
     float: left;
     width: 320px;
+    display: none;
 }
 
 .body .feed-item .title
@@ -973,4 +978,24 @@ input[type="submit"]:active, input[type="button"]:active
 .body .feed-item .content a:hover
 {
     color: #03AD89;
+}
+
+.body .feed .load-more
+{
+    width: 100%;
+    background-color: #FFF;
+    border-color: #cacaca;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.body .feed .load-more:hover
+{
+    background-color: #f0f0f0;
+}
+
+.body .feed .load-loading
+{
+    width: 100%;
+    margin-bottom: 20px;
 }
