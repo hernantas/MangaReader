@@ -52,6 +52,13 @@
                     $chapters[end($order)]->friendly_name.'/'; ?>"><?php
                     echo inputButton('Begin Reading', 'alt w250'); ?></a>
             </div>
+        <?php elseif (count($chapters)==count($markHistory) &&
+            $history->first()->fchapter == $chapters[reset($order)]->friendly_name): ?>
+            <div class="warp center">
+                <a href="<?php echo baseUrl()."manga/$manga->friendly_name/chapter/".
+                    $chapters[end($order)]->friendly_name.'/'; ?>"><?php
+                    echo inputButton('Read Again', 'alt w250'); ?></a>
+            </div>
         <?php else: ?>
             <div class="warp center">
                 <a href="<?php echo baseUrl()."manga/$manga->friendly_name/chapter/".
