@@ -16,6 +16,7 @@
 
         public function import0()
         {
+            $this->load->library("Manga", "MangaLib");
             $timeStart = microtime(true);
             $dbname = $this->input->post('dbname');
             $page = $this->input->post('page', 0);
@@ -26,9 +27,9 @@
                 $cfg = $this->config->loadInfo('DB');
             }
 
-            $mangaLimit = 1;
-            $chapterLimit = 1;
-            $historyLimit = 1;
+            $mangaLimit = 10;
+            $chapterLimit = 10;
+            $historyLimit = 10;
 
             $this->db->database($dbname);
             $manga = $this->db->table('manga_name')
@@ -53,7 +54,8 @@
 
             while ($row = $manga->row())
             {
-                $this->db->table('manga')->where('name', 'LIKE', "$row->name")
+                $name = $this->mangalib->toFriendlyName($row->name);
+                $this->db->table('manga')->where('friendly_name', "$name")
                     ->limit(0,1)
                     ->update([
                         'added_at'=>$row->add_time,
@@ -63,10 +65,12 @@
 
             while ($row = $chapter->row())
             {
+                $mangaName = $this->mangalib->toFriendlyName($row->manga);
+                $chapterName = $this->mangalib->toFriendlyNameFix($row->chapter, $row->manga);
                 $this->db->table('manga_chapter')
                     ->join('manga', 'manga.id', 'manga_chapter.id_manga')
-                    ->where('manga.name', 'LIKE', "$row->manga")
-                    ->where('manga_chapter.name', 'LIKE', "$row->chapter")
+                    ->where('manga_chapter.friendly_name', "$chapterName")
+                    ->where('manga.friendly_name', "$mangaName")
                     ->limit(0,1)
                     ->update([
                         'manga_chapter.added_at'=>$row->date_add
@@ -80,10 +84,13 @@
                 $users = $this->db->table('user')->where('name', 'LIKE', $row->username)
                     ->get();
                 if ($users->isEmpty()) continue;
+
+                $mangaName = $this->mangalib->toFriendlyName($row->manga);
+                $chapterName = $this->mangalib->toFriendlyNameFix($row->chapter, $row->manga);
                 $mangas = $this->db->table('manga')
                     ->join('manga_chapter', 'manga_chapter.id_manga', 'manga.id')
-                    ->where('manga_chapter.name', 'LIKE', "$row->chapter")
-                    ->where('manga.name', 'LIKE', "$row->manga")
+                    ->where('manga_chapter.friendly_name', "$chapterName")
+                    ->where('manga.friendly_name', "$mangaName")
                     ->limit(0,1)
                     ->get('manga.id as idmanga, manga_chapter.id as idchapter');
                 if ($mangas->isEmpty()) continue;
