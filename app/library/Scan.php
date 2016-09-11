@@ -4,8 +4,11 @@
     class Scan
     {
         private $mangaPath;
-        private $model = null;
+        private $maxScanPerBatch = 200;
+        private $maxRemovedManga = 200;
+        private $maxRemovedChapter = 100;
 
+        private $model = null;
         private $scanWarning = array();
 
         private $addToScan = array();
@@ -21,9 +24,20 @@
             page()->load->library('Manga');
             $this->model =& page()->scanmodel;
 
-            $cfg = page()->config->loadInfo('Manga');
+            page()->config->setDefaultInfo('Manga', [
+                'scanMaxPerRequest'=>200,
+                'scanMaxMangaRemoved'=>200,
+                'scanMaxChapterRemoved'=>100
+            ]);
+        }
 
+        private function loadConfig()
+        {
+            $cfg = page()->config->loadInfo('Manga');
             $this->mangaPath = $cfg['path'];
+            $this->maxScanPerBatch = $cfg['scanMaxPerRequest'];
+            $this->maxRemovedManga = $cfg['scanMaxMangaRemoved'];
+            $this->maxRemovedChapter = $cfg['scanMaxChapterRemoved'];
         }
 
         public function path()
@@ -61,9 +75,7 @@
 
         public function flushScan()
         {
-            page()->config->setDefaultInfo('Manga', ['scanMaxPerRequest'=>200]);
-            $cfg = page()->config->loadInfo('Manga');
-            $result = $this->model->currentScan($cfg['scanMaxPerRequest']);
+            $result = $this->model->currentScan($this->maxScanPerBatch);
 
             $mangas = array();
             $chapters = array();
@@ -277,13 +289,8 @@
 
         public function cleanUp()
         {
-            page()->config->setDefaultInfo('Manga', [
-                'scanMaxMangaRemoved'=>200,
-                'scanMaxChapterRemoved'=>100
-            ]);
-            $cfg = page()->config->loadInfo('Manga');
-            return $this->model->removeDeleted((int)$cfg['scanMaxMangaRemoved'],
-                (int)$cfg['scanMaxChapterRemoved']);
+            return $this->model->removeDeleted($this->maxRemovedManga,
+                $this->maxRemovedChapter);
         }
     }
 
