@@ -8,7 +8,9 @@
 
 <div class="clearfix">
     <?php while ($row = $mangalist->row()): ?>
-    <div class="panel card">
+    <?php $histCount = page()->manga->getHistoryCount(page()->auth->getUserId(),
+        $row->id); ?>
+    <div class="panel card <?php echo ($row->cnt == $histCount) ? 'faded' : ''; ?>">
         <a href="<?php echo baseUrl(); ?>manga/<?php echo $row->friendly_name; ?>">
             <div>
                 <?php $res = page()->manga->getImage($row->id); ?>

@@ -97,12 +97,19 @@
 
             $history = $this->manga->getMangaHistory(
                 $this->auth->getUserId(), $manga->id);
+            $markHistory = array();
+            while ($row = $history->row())
+            {
+                $markHistory[$row->fchapter] = true;
+            }
 
+            $history->reset();
             $this->load->storeView('MangaChapter', [
                 'manga'=>$manga,
                 'chapters'=>$chapters,
                 'order'=>$order,
-                'history'=>$history
+                'history'=>$history,
+                'markHistory'=>$markHistory
             ]);
 
             $this->load->layout('Fresh', [

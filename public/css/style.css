@@ -779,6 +779,11 @@ input[type="submit"]:active, input[type="button"]:active
     border-bottom: 1px solid #e3e3e3;
 }
 
+.body .panel .list.faded
+{
+    background-color: #f0f0f0;
+}
+
 .body .panel .list a
 {
     padding: 5px 10px;
@@ -787,7 +792,7 @@ input[type="submit"]:active, input[type="button"]:active
 
 .body .panel .list a:hover
 {
-    background-color: #f0f0f0;
+    background-color: #f5f5f5;
 }
 
 .body .panel .list .left
@@ -890,12 +895,18 @@ input[type="submit"]:active, input[type="button"]:active
 }
 .body .card a:hover
 {
+    background-color: #f5f5f5;
+    text-decoration: none;
+}
+
+.body .card.faded
+{
     background-color: #f0f0f0;
 }
 
-.body .card a:hover
+.body .card.faded img
 {
-    text-decoration: none;
+    opacity: 0.5;
 }
 
 .body .tag
@@ -983,6 +994,19 @@ input[type="submit"]:active, input[type="button"]:active
 .body .feed-item .content a:hover
 {
     color: #03AD89;
+}
+
+.body .feed-item .footer
+{
+    background: #f5f5f5;
+    font-size: 0.8em;
+    padding: 5px 25px;
+}
+
+.body .feed-item .footer a
+{
+    color: #333;
+    padding-right: 5px;
 }
 
 .body .feed .load-more

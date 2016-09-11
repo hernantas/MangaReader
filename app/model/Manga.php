@@ -177,6 +177,14 @@
                 );
         }
 
+        public function getHistoryCount($idUser, $idManga)
+        {
+            return $this->db->table('user_history')
+                ->where('id_user', $idUser)
+                ->where('id_manga', $idManga)
+                ->get('count(id) as cnt')->first()->cnt;
+        }
+
         public function getMangaF($name)
         {
             $result = $this->db->table('manga')->where('friendly_name', $name)

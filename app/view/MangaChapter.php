@@ -12,7 +12,7 @@
             <div>
             <?php foreach($order as $ord): ?>
                 <?php $chapter = $chapters[$ord]; ?>
-                <div class="list">
+                <div class="list <?php echo isset($markHistory[$chapter->friendly_name]) ? 'faded' : ''; ?>">
                     <a href="<?php echo baseUrl().'manga/'.$manga->friendly_name.'/chapter/'.$chapter->friendly_name; ?>"
                         class="clearfix">
                         <div class="left hwarp">
