@@ -48,5 +48,11 @@
             $name = trim($name);
             return strtolower(str_replace(' ', '_', $name));
         }
+
+        public function toFriendlyNameFix($chapter, $manga)
+        {
+            $name = $this->nameFix($chapter, $manga);
+            return $this->toFriendlyName($name);
+        }
     }
 ?>
