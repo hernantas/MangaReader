@@ -48,6 +48,7 @@
                 strcasecmp("<=", $vo1) === 0 ||
                 strcasecmp("LIKE", $vo1) === 0)
             {
+                if (strcasecmp("LIKE", $vo1)===0) $vo1 = " $vo1 ";
                 $vo2 = $this->db->escape($vo2);
             }
             else
