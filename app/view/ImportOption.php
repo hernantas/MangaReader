@@ -11,14 +11,39 @@
         </div>
     </div>
 </div>
+<div class="hidden">
+    <div class="single panel data-progress">
+        <div class="center">
+            <img src="<?php echo baseUrl(); ?>public/img/ripple.gif" />
+        </div>
+        <div class="data-time warp">
 
-<div class="single panel">
-    <h3>Export Partial</h3>
-    <div>
-        Only export some part of database such as user history, manga and chapter added/updated time.
-        User account must still be created and manga/chapter must be scanned again before importing this export.
+        </div>
     </div>
-    <div class="warp center">
-        <a href="<?php echo baseUrl(); ?>admin/import/export"><?php echo inputSubmit('Export'); ?></a>
+</div>
+<div class="data-action">
+    <div class="single panel">
+        <h3>Import from v0.x</h3>
+        <div class="warp">
+            Import data from pervious version 0.x
+        </div>
+        <div class="warp center">
+            <?php echo inputText('dbname', 'Database name', 'Manga', false, 'import0Text'); ?>
+        </div>
+        <div class="warp center">
+            <?php echo inputSubmit('Import', 'import0'); ?>
+        </div>
+    </div>
+
+
+    <div class="single panel">
+        <h3>Export Partial</h3>
+        <div class="warp">
+            Only export some part of database such as user history, manga and chapter added/updated time.
+            User account must still be created and manga/chapter must be scanned again before importing this export.
+        </div>
+        <div class="warp center">
+            <a href="<?php echo baseUrl(); ?>admin/import/export"><?php echo inputSubmit('Export'); ?></a>
+        </div>
     </div>
 </div>

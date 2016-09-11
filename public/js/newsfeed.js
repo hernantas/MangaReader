@@ -83,11 +83,8 @@ function getFeed()
         $(".load-loading").show();
         feedLoading = true;
         $.ajax({
-            "method": "POST",
-            url: baseUrl+"home/feed",
-            data: {
-                'page': feed
-            }
+            method: "POST",
+            url: baseUrl+"home/feed"
         }).done(function(msg) {
             msg = $.trim(msg);
             feed++;

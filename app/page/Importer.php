@@ -7,8 +7,100 @@
         {
             $this->load->storeView('ImportOption');
             $this->load->layout('Fresh', [
-                'title'=>'Import/Export'
+                'title'=>'Import/Export',
+                'additionalJs'=>[
+                    'import'
+                ]
             ]);
+        }
+
+        public function import0()
+        {
+            $timeStart = microtime(true);
+            $dbname = $this->input->post('dbname');
+            $page = $this->input->post('page', 0);
+
+            $cfg = $this->config->load('DB');
+            if ($cfg === false)
+            {
+                $cfg = $this->config->loadInfo('DB');
+            }
+
+            $mangaLimit = 1;
+            $chapterLimit = 1;
+            $historyLimit = 1;
+
+            $this->db->database($dbname);
+            $manga = $this->db->table('manga_name')
+                ->limit($page*$mangaLimit, $mangaLimit)
+                ->get('name, add_time, last_update');
+            $chapter = $this->db->table('manga_chapter')
+                ->join('manga_name', 'manga_name.id', 'manga_chapter.id_manga')
+                ->order('manga_name.id')
+                ->limit($page*$chapterLimit, $chapterLimit)
+                ->get('manga_name.name as manga, manga_chapter.name as chapter'.
+                    ', manga_chapter.date_add');
+            $history = $this->db->table('history')
+                ->join('manga_name', 'manga_name.id', 'history.id_manga')
+                ->join('manga_chapter', 'manga_chapter.id', 'history.id_chapter')
+                ->join('user', 'user.id', 'history.user')
+                ->order('manga_name.id')
+                ->limit($page*$historyLimit, $historyLimit)
+                ->get('manga_name.name as manga, manga_chapter.name as chapter'.
+                    ', user.username, history.time');
+
+            $this->db->database($cfg['database']);
+
+            while ($row = $manga->row())
+            {
+                $this->db->table('manga')->where('name', 'LIKE', "$row->name")
+                    ->limit(0,1)
+                    ->update([
+                        'added_at'=>$row->add_time,
+                        'update_at'=>$row->last_update
+                    ]);
+            }
+
+            while ($row = $chapter->row())
+            {
+                $this->db->table('manga_chapter')
+                    ->join('manga', 'manga.id', 'manga_chapter.id_manga')
+                    ->where('manga.name', 'LIKE', "$row->manga")
+                    ->where('manga_chapter.name', 'LIKE', "$row->chapter")
+                    ->limit(0,1)
+                    ->update([
+                        'manga_chapter.added_at'=>$row->date_add
+                    ]);
+            }
+
+            $this->load->model('Manga');
+
+            while ($row = $history->row())
+            {
+                $users = $this->db->table('user')->where('name', 'LIKE', $row->username)
+                    ->get();
+                if ($users->isEmpty()) continue;
+                $mangas = $this->db->table('manga')
+                    ->join('manga_chapter', 'manga_chapter.id_manga', 'manga.id')
+                    ->where('manga_chapter.name', 'LIKE', "$row->chapter")
+                    ->where('manga.name', 'LIKE', "$row->manga")
+                    ->limit(0,1)
+                    ->get('manga.id as idmanga, manga_chapter.id as idchapter');
+                if ($mangas->isEmpty()) continue;
+
+                if ($this->manga->addHistory(
+                    $users->first()->id,
+                    $mangas->first()->idmanga,
+                    $mangas->first()->idchapter, '1'))
+                {
+                    $this->manga->addReadCount($mangas->first()->idmanga);
+                }
+            }
+
+            echo '{'.
+                '"result": "'.(($manga->isEmpty() && $chapter->isEmpty() && $history->isEmpty()) ? 'done' : 'success') . '",' .
+                '"time": '.(microtime(true) - $timeStart) .
+            '}';
         }
 
         public function export()
