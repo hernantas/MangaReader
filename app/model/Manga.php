@@ -40,7 +40,6 @@
             return $this->db->table('manga_image')
                 ->join('manga','manga.id', 'manga_image.id_manga')
                 ->join('manga_chapter','manga_chapter.id', 'manga_image.id_chapter')
-                ->where('manga.id', 'manga_chapter.id_manga')
                 ->where('manga.id', $id)
                 ->where('manga_image.page', '1')
                 ->order('manga_image.id')->limit(0, 1)->group('manga_image.id')
