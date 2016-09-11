@@ -1,4 +1,3 @@
-docs/
 app/log/*
 !app/log/index.html
 app/info/*
