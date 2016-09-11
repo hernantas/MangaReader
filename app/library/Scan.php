@@ -29,6 +29,7 @@
                 'scanMaxMangaRemoved'=>200,
                 'scanMaxChapterRemoved'=>100
             ]);
+            $this->loadConfig();
         }
 
         private function loadConfig()
@@ -38,11 +39,6 @@
             $this->maxScanPerBatch = $cfg['scanMaxPerRequest'];
             $this->maxRemovedManga = $cfg['scanMaxMangaRemoved'];
             $this->maxRemovedChapter = $cfg['scanMaxChapterRemoved'];
-        }
-
-        public function path()
-        {
-            return $this->mangaPath;
         }
 
         public function getScanWarning()
