@@ -61,12 +61,6 @@
 
         protected function valueQuote($value)
         {
-            $dotPos = strpos($value, '.');
-            if ($dotPos !== false && $dotPos > 0 && $dotPos < strlen($value)
-                && strpos($value, ' ') === false)
-            {
-                return $this->fieldQuote($value);
-            }
             $value = trim($value);
             return "'$value'";
         }
