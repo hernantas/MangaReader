@@ -58,6 +58,11 @@
                             'text'=>'Scan Directory'
                         ],
                         [
+                            'url'=>'admin/import',
+                            'img'=>'box48.png',
+                            'text'=>'Import/Export Data'
+                        ],
+                        [
                             'url'=>'admin/uninstall',
                             'img'=>'destruct48.png',
                             'text'=>'Uninstall'
