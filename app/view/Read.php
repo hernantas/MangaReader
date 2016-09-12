@@ -26,6 +26,9 @@
                     <?php echo page()->mangalib->nameFix($image->chapter, $manga->name);  ?>
                 </h3>
             </div>
+            <div class="single panel data-progress">
+                <img src="<?php echo baseUrl(); ?>public/img/ripple.gif" />
+            </div>
         </div>
         <?php $lastChapter = $image->fchapter; ?>
     <?php endif; ?>

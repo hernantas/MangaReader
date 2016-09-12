@@ -20,6 +20,7 @@ function imageWidth()
         }
         $(this).show();
     });
+    $(".data-progress").remove();
 }
 
 $(document).ready(function() {
