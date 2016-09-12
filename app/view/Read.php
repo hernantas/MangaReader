@@ -35,8 +35,8 @@
         <?php elseif ($i==($count-1)): ?>
             <a href="<?php echo baseUrl().$nextLink; ?>">
         <?php endif; ?>
-        <img class="img_flex" src="<?php echo page()->image->getContent64($path . '/' .
-            $manga->name . '/' . $image->chapter . '/' . $image->name); ?>" />
+        <?php $img =  page()->image->getContent64($path . '/' . $manga->name . '/' . $image->chapter . '/' . $image->name); ?>
+        <img class="img_flex hidden" src="<?php echo $img['img']; ?>" width="<?php echo $img['width'] ?>" />
         <?php if ($i==0 || $i==($count-1)): ?>
             </a>
         <?php endif; ?>
