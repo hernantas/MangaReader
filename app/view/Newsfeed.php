@@ -20,7 +20,7 @@
                 <?php endif; ?>
                 <?php if ($maxCount < 9): ?>
                     <div>
-                        <a href="<?php echo baseUrl().$nrow->fmanga.'/chapter/'.$nrow->friendly_name ?>">
+                        <a href="<?php echo baseUrl().'manga/'.$nrow->fmanga.'/chapter/'.$nrow->friendly_name ?>">
                             <?php echo page()->mangalib->nameFix($nrow->name, $nrow->manga); ?>
                         </a>
                     </div>
