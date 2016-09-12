@@ -7,7 +7,7 @@ function imageWidth()
     var width = $(window).width() - imagePadding;
     $(".img_flex").each(function(index)
     {
-        if (width != $(this).width())
+        if (width != imgWidth[index])
         {
             if (width < imgWidth[index])
             {
@@ -18,6 +18,7 @@ function imageWidth()
                 $(this).width(imgWidth[index]);
             }
         }
+        $(this).show();
     });
 }
 
@@ -33,7 +34,7 @@ $(document).ready(function() {
 
     $(".img_flex").each(function(index)
     {
-        imgWidth.push($(this).width());
+        imgWidth.push($(this).attr("width"));
     });
     imageWidth();
     $(window).resize(function(){

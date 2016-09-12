@@ -24,8 +24,13 @@
         public function getContent64($path)
         {
             $type = pathinfo ($path, PATHINFO_EXTENSION);
+            list($width, $height) = getimagesize($path);
             $image = $this->createNewImage($type, $path);
-            return $this->output64($type, $image);
+            return [
+                'img'=>$this->output64($type, $image),
+                'width'=>$width,
+                'height'=>$height
+            ];
         }
 
         public function getContentCrop($path, $width, $height)
