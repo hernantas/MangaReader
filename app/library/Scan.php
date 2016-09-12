@@ -261,7 +261,12 @@
                     '/'.$chapter[2].'/'.$chapter[3], \FilesystemIterator::SKIP_DOTS);
                 $fileCount = iterator_count($imgs);
 
-                if ($fileCount != $imgCount)
+                if ($fileCount === 0)
+                {
+                    $this->scanWarning[] = "Found empty manga chapter(s):".
+                        "<ul><li>$chapter[3]</li></ul>";
+                }
+                elseif ($fileCount != $imgCount)
                 {
                     $removeImage[] = [$chapter[0], $chapter[1]];
 
