@@ -48,8 +48,10 @@
 
         public function getImages($idManga, $idChapter, $start, $limit)
         {
-            return $this->db->table('manga_image')->where('id_manga', $idManga)
-                ->where('id_chapter', $idChapter)->limit($start, $limit)->get();
+            return $this->db->table('manga_image')
+                ->where('id_manga', $idManga)
+                ->where('id_chapter', $idChapter)
+                ->limit($start, $limit)->get();
         }
 
         public function getImageCount($idManga, $idChapter)
