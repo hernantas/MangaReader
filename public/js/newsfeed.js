@@ -84,7 +84,10 @@ function getFeed()
         feedLoading = true;
         $.ajax({
             method: "POST",
-            url: baseUrl+"home/feed"
+            url: baseUrl+"home/feed",
+            data: {
+                page: feed
+            }
         }).done(function(msg) {
             msg = $.trim(msg);
             feed++;
@@ -92,7 +95,6 @@ function getFeed()
 
             if (msg=="1")
             {
-                console.log(feed);
                 getFeed();
             }
             else if (msg=="0")
