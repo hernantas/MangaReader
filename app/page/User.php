@@ -31,7 +31,10 @@
             ]);
 
             $this->load->layout('Fresh', [
-                'title'=>'My Reading History'
+                'title'=>'My Reading History',
+                'additionalJs'=>[
+                    'cardsorter'
+                ]
             ]);
         }
 

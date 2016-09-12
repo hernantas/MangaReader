@@ -45,7 +45,10 @@
             ]);
 
             $this->load->layout('Fresh', [
-                'title'=>$title
+                'title'=>$title,
+                'additionalJs'=>[
+                    'cardsorter'
+                ]
             ]);
         }
 

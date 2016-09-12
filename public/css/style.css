@@ -880,13 +880,13 @@ input[type="submit"]:active, input[type="button"]:active
     float: left;
     margin-left: 5px;
     margin-right: 5px;
+    display: none;
 }
 
 .body .card a
 {
     display: block;
     width: 208px;
-    height: 418px;
     color: #000;
 }
 .body .card.mini a
