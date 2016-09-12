@@ -211,6 +211,7 @@
             $result = $this->db->table('manga_option')
                 ->where('id_manga', $id)
                 ->where('option_key', $key)
+                ->limit(0,1)
                 ->get();
             if ($result->isEmpty())
             {
@@ -222,6 +223,7 @@
                 $this->db->table('manga_option')
                     ->where('id_manga', $id)
                     ->where('option_key', $key)
+                    ->limit(0,1)
                     ->update(['option_value'=>$value]);
             }
         }
@@ -231,6 +233,7 @@
             $result = $this->db->table('manga_option')
                 ->where('id_manga', $id)
                 ->where('option_key', $key)
+                ->limit(0,1)
                 ->get();
             if ($result->isEmpty())
             {
