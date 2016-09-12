@@ -238,6 +238,35 @@
             return $result->isEmpty() ? false : $result->first()->option_value;
         }
 
+        public function setTags($id, $tagString)
+        {
+            $tags = explode(',', $tagString);
+            $count = count($tags);
+            $sTags = '';
+            for ($i = 0; $i < $count; $i++)
+            {
+                if ($sTags !== '') $sTags .= ', ';
+                $sTags .= trim($tags[$i]);
+            }
+            $this->setOption($id, 'manga_tags', $sTags);
+        }
+
+        public function getTags($id)
+        {
+            $opt = $this->getOption($id, 'manga_tags');
+            if ($opt === false)
+            {
+                return array();
+            }
+            $tags = explode(',', $tagString);
+            $count = count($tags);
+            for ($i = 0; $i < $count; $i++)
+            {
+                $tags[$i] = trim($tags[$i]);
+            }
+            return $tags;
+        }
+
         public function hasFeed($index=0)
         {
             return !$this->db->table('manga_chapter')
