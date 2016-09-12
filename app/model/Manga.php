@@ -235,11 +235,7 @@
                 ->where('option_key', $key)
                 ->limit(0,1)
                 ->get();
-            if ($result->isEmpty())
-            {
-                return false;
-            }
-            return $result->first()->option_value;
+            return $result->isEmpty() ? false : $result->first()->option_value;
         }
 
         public function hasFeed($index=0)
