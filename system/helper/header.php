@@ -63,6 +63,14 @@
         }
     }
 
+    if (!function_exists('favicon'))
+    {
+        function favicon($name='favicon')
+        {
+            return '<link rel="shortcut icon" type="image/png" href="'.baseUrl().'public/img/'.$name.'.ico" />';
+        }
+    }
+
     if (!function_exists('css'))
     {
         /**
