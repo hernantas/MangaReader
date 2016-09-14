@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" lang="en" />
+    <?php echo favicon(); ?>
     <?php echo headerTitle('Media', isset($title) ? $title : ''); ?>
     <?php echo css('style'); ?>
     <?php echo jsutility(); ?>
