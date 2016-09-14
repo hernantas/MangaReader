@@ -91,7 +91,8 @@
                     ->limit(0,1)
                     ->where('rankings', $current->rankings-1)
                     ->where('rankings', '!=', '0')
-                    ->where('views', '<=', $current->views)
+                    ->where('views', '>=', $current->views)
+                    ->order('views', false)
                     ->get();
 
                 // If there is above this and views is less than this
