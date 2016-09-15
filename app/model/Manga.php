@@ -110,6 +110,8 @@
                         ->update('`rankings`=`rankings`+1');
                 }
             }
+            // Use following query to fix ranking:
+            //  set@rownum=0; UPDATE manga SET `manga`.`rankings`= @rownum:=(@rownum+1) WHERE `manga`.`views` != 0 ORDER BY `manga`.`views` DESC
         }
 
         public function addHistory($idUser, $idManga, $idChapter, $page)
