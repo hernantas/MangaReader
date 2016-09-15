@@ -220,6 +220,14 @@
                     $query->whereOr('id', $row->id);
                 }
                 $query->delete();
+
+                // Delete Manga Option
+                $query = $this->db->table('manga_option');
+                while ($row = $result->row())
+                {
+                    $query->whereOr('id_manga', $row->id);
+                }
+                $query->delete();
                 return true;
             }
 
