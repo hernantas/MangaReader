@@ -215,13 +215,13 @@
                 }
                 else
                 {
-                    if (strcasecmp($chp->name, $chapter) == 0)
+                    if (strcasecmp($chp->name, $chapter) === 0)
                     {
                         $scChapter[] = [$id, $chp->id, $manga, $chapter];
                     }
                     else
                     {
-                        $this->scanWarning[] = "Found almost identical/duplicate manga chapter name:".
+                        $this->scanWarning[] = "Found almost identical/duplicate chapters:".
                             "<ul><li>$chapter</li><li>$chp->name</li></ul>";
                     }
                 }
@@ -247,7 +247,7 @@
                 }
                 else
                 {
-                    $this->scanWarning[] = "Found almost identical/duplicate manga chapter name:".
+                    $this->scanWarning[] = "Found almost identical/duplicate chapters:".
                         "<ul><li>$new[1]</li><li>$chp->name</li></ul>";
                 }
             }
