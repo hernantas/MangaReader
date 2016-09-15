@@ -202,9 +202,16 @@
                 }
                 else
                 {
-                    $id = $this->model->getMangaF($fmanga)->id;
+                    $dataManga = $this->model->getMangaF($fmanga);
+                    $id = $dataManga->id;
                     $lastId = $id;
                     $lastFManga = $fmanga;
+
+                    if (strcasecmp($dataManga->name, $manga) !== 0)
+                    {
+                        $this->scanWarning[] = "Found almost identical/duplicate manga:".
+                            "<ul><li>$dataManga->name</li><li>$manga</li></ul>";
+                    }
                 }
 
                 $chp = $this->model->getChapterF($id, $fchapter);
