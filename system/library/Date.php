@@ -26,7 +26,7 @@
                     if($diff < 7200) return '1 hour ago';
                     if($diff < 86400) return floor($diff / 3600) . ' hours ago';
                 }
-                if($day_diff == 1) return 'Yesterday';
+                if($day_diff == 1) return 'yesterday';
                 if($day_diff < 7) return $day_diff . ' days ago';
                 if($day_diff < 31) return ceil($day_diff / 7) . ' weeks ago';
                 if($day_diff < 60) return 'last month';
@@ -43,7 +43,7 @@
                     if($diff < 7200) return 'in an hour';
                     if($diff < 86400) return 'in ' . floor($diff / 3600) . ' hours';
                 }
-                if($day_diff == 1) return 'Tomorrow';
+                if($day_diff == 1) return 'tomorrow';
                 if($day_diff < 4) return date('l', $timestamp);
                 if($day_diff < 7 + (7 - date('w'))) return 'next week';
                 if(ceil($day_diff / 7) < 4) return 'in ' . ceil($day_diff / 7) . ' weeks';
