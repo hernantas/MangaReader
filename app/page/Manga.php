@@ -196,7 +196,7 @@
                 $prevLink = "manga/$fmanga/chapter/$chapter->friendly_name";
                 if ($pImageCount > 0)
                 {
-                    $prevLink .= "/pages/".(($pImageCount-$this->pageLimit)+1);
+                    $prevLink .= "/page/".(($pImageCount-$this->pageLimit)+1);
                 }
             }
             else
