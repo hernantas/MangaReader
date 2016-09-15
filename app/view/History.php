@@ -20,7 +20,7 @@
                     <?php echo page()->date->relative($row->update_at); ?>
                 </div>
             <?php else: ?>
-                <?php echo $row->chapter;?>
+                <?php echo page()->mangalib->nameFix($row->chapter, $row->manga); ?>
             <?php endif; ?>
             </a>
         </div>
