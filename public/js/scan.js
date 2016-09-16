@@ -1,13 +1,13 @@
 
 var scan_timer = 0;
 var scan_counter = 0;
-var doc_title;
+var doc_title = " - Media";
 
 function addTime(time)
 {
     scan_timer += parseFloat(time);
     scan_counter++;
-    document.title = scan_timer.toFixed(2)+"s "+doc_title;
+    document.title = "Scan "+scan_timer.toFixed(2)+"s"+doc_title;
     $(".time_debug").html("<div>Duration: "+scan_timer.toFixed(2)+"s</div>");
     $(".time_debug").append("<div>Average: "+(scan_timer/scan_counter).toFixed(2)+"s</div>");
 }
@@ -33,6 +33,7 @@ function checkStatusScan()
             else
             {
                 $(".loader").html("<h3>Scan Completed</h3>");
+                document.title = "Scan Completed"+doc_title;
             }
         }
         catch(err)
@@ -43,8 +44,8 @@ function checkStatusScan()
     });
 }
 
-$(document).ready(function() {
-    doc_title = document.title;
+$(document).ready(function()
+{
     if (!$(".scan_start").length)
     {
         checkStatusScan();
