@@ -67,7 +67,7 @@
             $typestring = '';
             if ($type == IMAGETYPE_JPEG)
             {
-                $typeString = 'jpeg';
+                $typeString = 'jpg';
             }
         	elseif ($type == IMAGETYPE_PNG)
             {
