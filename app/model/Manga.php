@@ -89,9 +89,9 @@
                 // Find rankings above this
                 $above = $this->db->table('manga')
                     ->limit(0,1)
-                    ->where('rankings', $current->rankings-1)
                     ->where('rankings', '!=', '0')
-                    ->where('views', '>=', $current->views)
+                    ->where('rankings', '<', $current->rankings)
+                    ->where('views', '<', $current->views)
                     ->order('views', false)
                     ->get();
 
