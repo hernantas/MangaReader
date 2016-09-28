@@ -84,11 +84,13 @@
                 $chapter = $current->chapter;
                 $image = $current->image;
 
-                if ($chapter === '' && $image === '')
+                if ($chapter === '' && $image === '' &&
+                    file_exists($this->mangaPath . '/' . $manga))
                 {
                     $mangas[] = $manga;
                 }
-                elseif ($image === '')
+                elseif ($image === '' &&
+                    file_exists($this->mangaPath . '/' . $manga . '/' . $chapter))
                 {
                     $chapters[] = [$manga, $chapter,
                         page()->manga->toFriendlyName($manga),
