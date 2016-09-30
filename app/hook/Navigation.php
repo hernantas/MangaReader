@@ -72,11 +72,6 @@
 
                 $nav[] = [
                     [
-                        'url'=>'user/history',
-                        'img'=>'paper48.png',
-                        'text'=>'My History'
-                    ],
-                    [
                         'url'=>'user/signout',
                         'img'=>'leave48.png',
                         'text'=>'Sign Out'
