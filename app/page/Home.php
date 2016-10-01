@@ -16,32 +16,12 @@
         public function feed()
         {
             $this->load->model('Manga');
-            $feed = 0;
-
+            $this->load->library('Manga', 'MangaLib');
+            $this->load->library('Image');
+            
             $page = (int)$this->input->post('page', 0);
-            $feed = $this->manga->getFeed($page);
-
-            if ($feed->isEmpty())
-            {
-                if ($this->manga->hasFeed($page))
-                {
-                    echo "1";
-                }
-                else
-                {
-                    echo "0";
-                }
-            }
-            else
-            {
-                $this->load->library('Manga', 'MangaLib');
-                $this->load->library('Image');
-                $cfg = $this->config->loadInfo('Manga');
-                $this->load->view('Newsfeed', [
-                    'feed'=>$feed,
-                    'mangapath'=>$cfg['path']
-                ]);
-            }
+            $data['feed'] = $this->manga->getFeed($page);
+            echo json_encode($data, JSON_PARTIAL_OUTPUT_ON_ERROR);
         }
     }
 

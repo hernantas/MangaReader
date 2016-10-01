@@ -977,7 +977,6 @@ input[type="submit"]:active, input[type="button"]:active
     margin-left: 10px;
     float: left;
     width: 320px;
-    display: none;
 }
 
 .body .feed-item .title

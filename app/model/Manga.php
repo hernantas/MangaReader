@@ -270,22 +270,75 @@
             return $tags;
         }
 
-        public function hasFeed($index=0)
-        {
-            return !$this->db->table('manga_chapter')
-                ->where('manga_chapter.added_at', '<=', time()-($index*86400))
-                ->limit(0,1)
-                ->get()->isEmpty();
-        }
-
         public function getFeed($index=0)
         {
-            return $this->db->table('manga_chapter')
-                ->join('manga', 'manga.id', 'manga_chapter.id_manga')
-                ->where('manga_chapter.added_at', '>', time()-(($index+1)*86400))
-                ->where('manga_chapter.added_at', '<=', time()-($index*86400))
-                ->order('manga_chapter.added_at', false)
-                ->get('manga_chapter.*, manga.id as idmanga, manga.name as manga, manga.friendly_name as fmanga');
+            $cfg = page()->config->loadInfo('Manga');
+            $times = $this->db->table('manga_chapter')
+                ->order('added_at', false)
+                ->group('id_manga')
+                ->limit($index*12, 12)
+                ->get('id_manga, added_at');
+            $data = array();
+            while ($time = $times->row())
+            {
+                $query = $this->db->table('manga_chapter')
+                    ->join('manga', 'manga.id', 'manga_chapter.id_manga')
+                    ->order('manga_chapter.added_at', false)
+                    ->limit(0, 11)
+                    ->where('manga.id', $time->id_manga)
+                    ->where('manga_chapter.added_at', $time->added_at)
+                    ->get('manga_chapter.*, manga.id as idmanga, manga.name as manga, manga.friendly_name as fmanga');
+                $result = array();
+                $manga = '';
+                $fmanga = '';
+                $more = false;
+                $count = 0;
+                $imgs = array();
+                while ($row = $query->row())
+                {
+                    if ($count === 0)
+                    {
+                        // Get images
+                        $thumbs = $this->getImages($row->idmanga, $row->id, 0, 2);
+
+                        while ($thumb = $thumbs->row())
+                        {
+                            $size = ($thumbs->count()>1?157:314);
+                            $img = page()->image->getContentCrop($cfg['path'] . '/' .
+                                $row->manga . '/' .
+                                $row->name . '/' .
+                                $thumb->name,
+                                $size, $size);
+                            $imgs[] = [
+                                'path'=>$img,
+                                'size'=>$size
+                            ];
+                        }
+                    }
+
+                    $manga = $row->manga;
+                    $fmanga = $row->fmanga;
+                    $row->name = page()->mangalib->nameFix($row->name, $row->manga);
+                    if ($count < 10)
+                    {
+                        $result[] = $row;
+                    }
+                    else
+                    {
+                        $more = true;
+                    }
+                    $count++;
+                }
+
+                $data[] = [
+                    'name'=>$manga,
+                    'fname'=>$fmanga,
+                    'data'=>$result,
+                    'imgs'=>$imgs,
+                    'more'=>$more
+                ];
+            }
+            return $data;
         }
     }
 

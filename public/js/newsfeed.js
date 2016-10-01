@@ -2,7 +2,8 @@
 var columnWidth = 330;
 var columnHeight = new Array();
 var delayFeed = null;
-var feed = 0;
+var feedPage = 0;
+var feedList = new Array();
 var feedLoading = false;
 
 function refillColumn()
@@ -48,7 +49,7 @@ function feedConstruct()
 
     $(".feed").css('position', 'relative');
 
-    $(".feed-item").each(function(index) {
+    $(feedList).each(function(index) {
         var id = getShortestColumn();
         var height = $(this).outerHeight() + 15;
 
@@ -61,18 +62,78 @@ function feedConstruct()
     });
 
     var highest = getHighestColumn();
-    $(".load-more").css("position", "absolute");
-    $(".load-more").css("top", columnHeight[highest]);
-    $(".load-more").show();
-    $(".load-loading").css("position", "absolute");
-    $(".load-loading").css("top", columnHeight[highest]);
-    $(".load-loading").hide();
+    var btnMore = $(".load-more");
+    var btnLoading = $(".load-loading");
+    btnMore.css("position", "absolute");
+    btnMore.css("top", columnHeight[highest]);
+    btnMore.show();
+    btnLoading.css("position", "absolute");
+    btnLoading.css("top", columnHeight[highest]);
+    btnLoading.hide();
 }
 
 function feedResize()
 {
     clearTimeout(delayFeed);
     delayFeed = setTimeout(feedConstruct, 250);
+}
+
+function createFeed()
+{
+    var container = $("<div class=\"panel feed-item\"><div class=\"warp\"></div></div>");
+    var title = $("<a class=\"title\"></a>");
+    var content = $("<div class=\"warp content\"></div>");
+    var img = $("<div></div>");
+    var footer = $("<div class=\"footer\"></div>");
+    container = container.children(0);
+    container.append(title);
+    container.append(content);
+    container = container.parent();
+    container.append(img);
+    container.append(footer);
+    return {
+        'container': container,
+        'title': title,
+        'content': content,
+        'img': img,
+        'footer': footer
+    };
+}
+
+function createFromJson(data)
+{
+    var elemFeed = $(".feed");
+    var feeds = data.feed;
+    $.each(feeds, function(i, feed)
+    {
+        var newFeed = createFeed();
+
+        newFeed.title.attr('href', baseUrl+"manga/"+feed.fname);
+        newFeed.title.html(feed.name);
+
+        $.each(feed.data, function(i, chapter) {
+            newFeed.content.append($("<div><a href=\""+baseUrl+"manga/"+feed.fname+"/chapter/"+
+                chapter.friendly_name+"\">"+chapter.name+"</a></div>"));
+        });
+
+        if (feed.more == true)
+        {
+            newFeed.content.append($("<div>[<a href=\""+baseUrl+"manga/"+feed.fname+"\">more...</a>]</div>"));
+        }
+
+        $.each(feed.imgs, function(i, img)
+        {
+            newFeed.img.append("<img src=\""+img.path+"\" height=\""+img.size+"\" width=\""+img.size+"\" />");
+        });
+
+        var optAllChapter = $("<a href=\""+baseUrl+"manga/"+feed.fname+"\">All Chapters</a>");
+        newFeed.footer.append(optAllChapter);
+
+        elemFeed.append(newFeed.container);
+        feedList.push(newFeed.container);
+    });
+
+    feedConstruct();
 }
 
 function getFeed()
@@ -86,27 +147,22 @@ function getFeed()
             method: "POST",
             url: baseUrl+"home/feed",
             data: {
-                page: feed
+                page: feedPage
             }
         }).done(function(msg) {
             msg = $.trim(msg);
-            feed++;
+            feedPage++;
             feedLoading = false;
-
-            if (msg=="1")
+            var data;
+            try
             {
-                getFeed();
+                data = $.parseJSON(msg);
             }
-            else if (msg=="0")
+            catch (e)
             {
-                $(".load-more").hide();
-                $(".load-loading").hide();
+                console.log(e);
             }
-            else
-            {
-                $(".body .container .feed").append(msg);
-                feedResize();
-            }
+            createFromJson(data);
         });
     }
 }
