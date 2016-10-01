@@ -11,7 +11,7 @@
             <img src="<?php echo page()->image->getContentCrop($mangapath . '/' .
                 $res->first()->manga_name . '/' .
                 $res->first()->chapter_name . '/' .
-                $res->first()->name, 208,208); ?>" />
+                $res->first()->name, 208,208); ?>" width="208" height="208" />
             <div class="warp">
                 <b><?php echo $row->name; ?></b>
             </div>
