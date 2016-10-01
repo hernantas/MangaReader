@@ -184,6 +184,14 @@
         {
             return $this->item($this->dataLength-1, $column, $default);
         }
+
+        /**
+         * Free the result and restore the memory to be used for different things.
+         */
+        public function free()
+        {
+            unset($this);
+        }
     }
 
 ?>
