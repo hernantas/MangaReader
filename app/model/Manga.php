@@ -288,7 +288,7 @@
                     ->limit(0, 11)
                     ->where('manga.id', $time->id_manga)
                     ->where('manga_chapter.added_at', '<=', $time->biggest_time)
-                    ->where('manga_chapter.added_at', '>', $time->biggest_time-604800)
+                    ->where('manga_chapter.added_at', '>', $time->week*86400)
                     ->get('manga_chapter.*, manga.id as idmanga, manga.name as manga, manga.friendly_name as fmanga');
                 $result = array();
                 $manga = '';
