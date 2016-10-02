@@ -283,8 +283,10 @@
             $data = array();
             while ($time = $times->row())
             {
-                $sql = "SELECT `manga_chapter`.*, `user_history`.`update_at` as history, `manga`.`id` as idmanga, `manga`.`name` as manga, `manga`.`friendly_name` as fmanga ".
-                    "FROM `manga_chapter` LEFT JOIN `user_history` ON `manga_chapter`.`id`=`user_history`.`id_chapter`, `manga`".
+                $sql = "SELECT `manga_chapter`.*, `ushistory`.`update_at` as history, `manga`.`id` as idmanga, `manga`.`name` as manga, `manga`.`friendly_name` as fmanga ".
+                    "FROM `manga_chapter` LEFT JOIN ".
+                        "(SELECT * FROM `user_history` WHERE `user_history`.`id_user`=".page()->auth->getUserid().") as ushistory".
+                        " ON `manga_chapter`.`id`=`ushistory`.`id_chapter`, `manga`".
                     "WHERE `manga_chapter`.`id_manga`=`manga`.`id` ".
                         "AND `manga_chapter`.`id_manga`=$time->id_manga ".
                         "AND `manga_chapter`.`added_at`<=$time->biggest_time ".
