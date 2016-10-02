@@ -274,10 +274,11 @@
         {
             $cfg = page()->config->loadInfo('Manga');
             $times = $this->db->table('manga_chapter')
-                ->order('added_at', false)
+                ->order('biggest_time', false)
+                ->group('week')
                 ->group('id_manga')
                 ->limit($index*12, 12)
-                ->get('id_manga, added_at');
+                ->get('id_manga, MAX(`added_at`) as biggest_time, FLOOR(`added_at`/86400) as week');
             $data = array();
             while ($time = $times->row())
             {
@@ -286,7 +287,8 @@
                     ->order('manga_chapter.added_at', false)
                     ->limit(0, 11)
                     ->where('manga.id', $time->id_manga)
-                    ->where('manga_chapter.added_at', $time->added_at)
+                    ->where('manga_chapter.added_at', '<=', $time->biggest_time)
+                    ->where('manga_chapter.added_at', '>', $time->biggest_time-604800)
                     ->get('manga_chapter.*, manga.id as idmanga, manga.name as manga, manga.friendly_name as fmanga');
                 $result = array();
                 $manga = '';
