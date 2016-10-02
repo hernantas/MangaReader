@@ -56,7 +56,6 @@ function feedConstruct()
         $(this).css("position", "absolute");
         $(this).css("left", id*columnWidth);
         $(this).css("top", columnHeight[id]);
-        $(this).show();
 
         columnHeight[id] += height;
     });
