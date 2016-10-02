@@ -114,6 +114,11 @@
             return -1;
         }
 
+        public function hasUserOption($optionKey)
+        {
+            return ($this->getUserOption($optionKey, false) !== false);
+        }
+
         public function getUserOption($optionKey, $default='')
         {
             if ($this->userOption !== false)
