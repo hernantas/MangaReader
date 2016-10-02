@@ -995,9 +995,19 @@ input[type="submit"]:active, input[type="button"]:active
     color: #333;
 }
 
-.body .feed-item .content a:hover
+.body .feed-item:hover .content a
 {
     color: #03AD89;
+}
+
+.body .feed-item div.mark_readed
+{
+    text-decoration: line-through;
+}
+
+.body .feed-item img.mark_readed
+{
+    opacity: 0.75;
 }
 
 .body .feed-item .footer

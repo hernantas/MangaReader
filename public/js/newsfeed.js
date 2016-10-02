@@ -115,9 +115,19 @@ function createFromJson(data)
 
         newFeed.date.html(feed.date);
 
+        var readedCount = 0;
+        var chapterCount = 0;
+
         $.each(feed.data, function(i, chapter) {
-            newFeed.content.append($("<div><a href=\""+baseUrl+"manga/"+feed.fname+"/chapter/"+
-                chapter.friendly_name+"\">"+chapter.name+"</a></div>"));
+            var newList = $("<div><a href=\""+baseUrl+"manga/"+feed.fname+"/chapter/"+
+                chapter.friendly_name+"\">"+chapter.name+"</a></div>");
+            if (chapter.history == true)
+            {
+                newList.addClass("mark_readed");
+                readedCount++;
+            }
+            chapterCount++;
+            newFeed.content.append(newList);
         });
 
         if (feed.more == true)
@@ -127,7 +137,12 @@ function createFromJson(data)
 
         $.each(feed.imgs, function(i, img)
         {
-            newFeed.img.append("<img src=\""+img.path+"\" height=\""+img.size+"\" width=\""+img.size+"\" />");
+            var newImage = $("<img src=\""+img.path+"\" height=\""+img.size+"\" width=\""+img.size+"\" />");
+            if (chapterCount == readedCount)
+            {
+                newImage.addClass("mark_readed");
+            }
+            newFeed.img.append(newImage);
         });
 
         var optAllChapter = $("<a href=\""+baseUrl+"manga/"+feed.fname+"\">All Chapters</a>");

@@ -283,14 +283,13 @@
             $data = array();
             while ($time = $times->row())
             {
-                $query = $this->db->table('manga_chapter')
-                    ->join('manga', 'manga.id', 'manga_chapter.id_manga')
-                    ->order('manga_chapter.added_at', false)
-                    ->limit(0, 11)
-                    ->where('manga.id', $time->id_manga)
-                    ->where('manga_chapter.added_at', '<=', $time->biggest_time)
-                    ->where('manga_chapter.added_at', '>', $time->week*86400)
-                    ->get('manga_chapter.*, manga.id as idmanga, manga.name as manga, manga.friendly_name as fmanga');
+                $sql = "SELECT `manga_chapter`.*, `user_history`.`update_at` as history, `manga`.`id` as idmanga, `manga`.`name` as manga, `manga`.`friendly_name` as fmanga ".
+                    "FROM `manga_chapter` LEFT JOIN `user_history` ON `manga_chapter`.`id`=`user_history`.`id_chapter`, `manga`".
+                    "WHERE `manga_chapter`.`id_manga`=`manga`.`id` ".
+                        "AND `manga_chapter`.`id_manga`=$time->id_manga ".
+                        "AND `manga_chapter`.`added_at`<=$time->biggest_time ".
+                        "AND `manga_chapter`.`added_at`>".($time->week*86400)." LIMIT 0,11";
+                $query = $this->db->query($sql);
                 $result = array();
                 $manga = '';
                 $fmanga = '';
@@ -323,7 +322,12 @@
                     $manga = $row->manga;
                     $fmanga = $row->fmanga;
                     $date = $row->added_at;
+
+                    // Fix name before added to array
                     $row->name = page()->mangalib->nameFix($row->name, $row->manga);
+                    // Fix history before added to array
+                    $row->history = ($row->history!==null);
+
                     if ($count < 10)
                     {
                         $result[] = $row;
