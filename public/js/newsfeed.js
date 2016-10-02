@@ -81,11 +81,13 @@ function createFeed()
 {
     var container = $("<div class=\"panel feed-item\"><div class=\"warp\"></div></div>");
     var title = $("<a class=\"title\"></a>");
+    var date = $("<div class=\"desc\"></div>");
     var content = $("<div class=\"warp content\"></div>");
     var img = $("<div></div>");
     var footer = $("<div class=\"footer\"></div>");
     container = container.children(0);
     container.append(title);
+    container.append(date);
     container.append(content);
     container = container.parent();
     container.append(img);
@@ -93,6 +95,7 @@ function createFeed()
     return {
         'container': container,
         'title': title,
+        'date': date,
         'content': content,
         'img': img,
         'footer': footer
@@ -109,6 +112,8 @@ function createFromJson(data)
 
         newFeed.title.attr('href', baseUrl+"manga/"+feed.fname);
         newFeed.title.html(feed.name);
+
+        newFeed.date.html(feed.date);
 
         $.each(feed.data, function(i, chapter) {
             newFeed.content.append($("<div><a href=\""+baseUrl+"manga/"+feed.fname+"/chapter/"+

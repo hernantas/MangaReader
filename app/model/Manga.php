@@ -279,6 +279,7 @@
                 ->group('id_manga')
                 ->limit($index*12, 12)
                 ->get('id_manga, MAX(`added_at`) as biggest_time, FLOOR(`added_at`/86400) as week');
+
             $data = array();
             while ($time = $times->row())
             {
@@ -293,6 +294,7 @@
                 $result = array();
                 $manga = '';
                 $fmanga = '';
+                $date = 0;
                 $more = false;
                 $count = 0;
                 $imgs = array();
@@ -320,6 +322,7 @@
 
                     $manga = $row->manga;
                     $fmanga = $row->fmanga;
+                    $date = $row->added_at;
                     $row->name = page()->mangalib->nameFix($row->name, $row->manga);
                     if ($count < 10)
                     {
@@ -335,6 +338,7 @@
                 $data[] = [
                     'name'=>$manga,
                     'fname'=>$fmanga,
+                    'date'=>page()->date->relative($date),
                     'data'=>$result,
                     'imgs'=>$imgs,
                     'more'=>$more

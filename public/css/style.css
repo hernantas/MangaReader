@@ -985,6 +985,11 @@ input[type="submit"]:active, input[type="button"]:active
     color: #333;
 }
 
+.body .feed-item .desc
+{
+    font-size: 0.8em;
+}
+
 .body .feed-item .content a
 {
     color: #333;
