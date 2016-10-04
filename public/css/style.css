@@ -1005,9 +1005,14 @@ input[type="submit"]:active, input[type="button"]:active
     text-decoration: line-through;
 }
 
+.body .feed-item div.mark_readed a
+{
+    color: #999;
+}
+
 .body .feed-item img.mark_readed
 {
-    opacity: 0.75;
+    opacity: 0.65;
 }
 
 .body .feed-item .footer
