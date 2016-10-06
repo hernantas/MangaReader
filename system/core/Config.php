@@ -54,6 +54,18 @@
         }
 
         /**
+         * Check if config exists or not
+         *
+         * @param  string $name Config name
+         *
+         * @return bool         True if config is exists, false otherwise.
+         */
+        public function isExists($name)
+        {
+            return file_exists(APP_PATH . 'config/'.$name.'.php');
+        }
+
+        /**
          * Load configuration info. Configuration info is config that shouldn't
          * be modified by user and only be used for code information
          *
@@ -83,18 +95,6 @@
         public function saveInfo($name, $config)
         {
             $this->write($name, $config, true);
-        }
-
-        /**
-         * Check if config exists or not
-         *
-         * @param  string $name Config name
-         *
-         * @return bool         True if config is exists, false otherwise.
-         */
-        public function isExists($name)
-        {
-            return file_exists(APP_PATH . 'config/'.$name.'.php');
         }
 
         /**
