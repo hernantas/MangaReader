@@ -67,6 +67,11 @@
             $this->write('------------------------- [New User Request] -------------------------');
         }
 
+        /**
+         * Write message to the log file.
+         *
+         * @param  string $message Message to be writen
+         */
         private function write($message)
         {
             fwrite($this->fileHandler, '['.date('H:i:s').'] '.$message.PHP_EOL);
