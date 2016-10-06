@@ -64,7 +64,9 @@
         private function getImageData($path)
         {
             list($width, $height, $type) = getimagesize($path);
-            $typestring = '';
+
+            $typeString = '';
+
             if ($type == IMAGETYPE_JPEG)
             {
                 $typeString = 'jpg';
@@ -77,6 +79,7 @@
             {
                 $typeString = 'gif';
             }
+
             return [
                 'width'=>$width,
                 'height'=>$height,
