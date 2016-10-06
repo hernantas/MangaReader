@@ -77,9 +77,16 @@
             fwrite($this->fileHandler, '['.date('H:i:s').'] '.$message.PHP_EOL);
         }
 
-        public function display($message, $prefix='')
+        /**
+         * Write message to be displayed on the user browser
+         *
+         * @param  string $message Message to be displayed
+         * @param  string $prefix  Message prefix (will be bold)
+         * @param  string $suffix  Message prefix (will be bold)
+         */
+        public function display($message, $prefix='', $suffix='')
         {
-            echo ($prefix!==''?"<b>$prefix: </b>":'') . $message . '<br />';
+            echo ($prefix!==''?"<b>$prefix: </b>":'') . $message . ($suffix!==''?"<b>$suffix: </b>":'') . '<br />';
         }
 
         public function info($message, $source='')
