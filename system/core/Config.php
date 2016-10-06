@@ -32,7 +32,7 @@
          */
         public function load($name)
         {
-            if (!$this->has($name))
+            if (!$this->exists($name))
             {
                 return false;
             }
@@ -64,7 +64,7 @@
          */
         public function loadInfo($name)
         {
-            if (!$this->hasInfo($name))
+            if (!$this->infoExists($name))
             {
                 return false;
             }
@@ -92,7 +92,7 @@
          *
          * @return bool         True if config is exists, false otherwise.
          */
-        public function has($name)
+        public function exists($name)
         {
             return file_exists(APP_PATH . 'config/'.$name.'.php');
         }
@@ -104,7 +104,7 @@
          *
          * @return bool         True if config is exists, false otherwise.
          */
-        public function hasInfo($name)
+        public function infoExists($name)
         {
             return file_exists(APP_PATH . 'info/'.$name.'.php');
         }
