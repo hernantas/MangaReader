@@ -122,7 +122,12 @@
                     $changed = true;
                 }
             }
-            if ($changed) $this->save($name, $cfg);
+
+            if ($changed)
+            {
+                $this->save($name, $cfg);
+            }
+
             return $cfg;
         }
 
@@ -227,7 +232,12 @@
                     $changed = true;
                 }
             }
-            if ($changed) $this->saveInfo($name, $cfg);
+            if ($changed)
+            {
+                $this->saveInfo($name, $cfg);
+            }
+
+            return $cfg;
         }
 
         /**
