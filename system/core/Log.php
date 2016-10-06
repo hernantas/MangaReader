@@ -3,11 +3,30 @@
 
     class Log
     {
+        /**
+         * Config to determine if log type should be writen to the file.
+         *
+         * @var array
+         */
         private $canWrite = array();
+
+        /**
+         * Config to determine if log type should be display to the user browser or not.
+         *
+         * @var array
+         */
         private $canDisplay = array();
 
+        /**
+         * Resource for Log File handler
+         *
+         * @var Resource
+         */
         private $fileHandler = null;
 
+        /**
+         * Load configuration and open log file
+         */
         public function __construct()
         {
             $this->loadConfig();
