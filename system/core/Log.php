@@ -10,31 +10,40 @@
 
         public function __construct()
         {
+            $this->loadConfig();
+            $this->open();
+        }
+
+        /**
+         * Load log configuration
+         */
+        private function loadConfig()
+        {
             $config =& loadClass('Config', 'Core');
-            $cfg = $config->load('Log');
+            $cfg = $config->setDefault("Log", [
+                'info' => true,
+                'warning' => true,
+                'error'=>true,
+                'infoDisplay' => false,
+                'warningDisplay' => true,
+                'errorDisplay'=>true
+            ]);
 
-            if ($cfg === false)
-            {
-                // Generate template config
-                $cfg = [
-                    'info' => true,
-                    'warning' => true,
-                    'error'=>true,
-                    'infoDisplay' => false,
-                    'warningDisplay' => true,
-                    'errorDisplay'=>true
-                ];
-                $config->save('Log', $cfg);
-            }
+            $this->canWrite['info'] = $cfg['info'];
+            $this->canWrite['warning'] = $cfg['warning'];
+            $this->canWrite['error'] = $cfg['error'];
 
-            $this->canWrite['info'] = isset($cfg['info']) ? $cfg['info'] : true;
-            $this->canWrite['warning'] = isset($cfg['warning']) ? $cfg['warning'] : true;
-            $this->canWrite['error'] = isset($cfg['error']) ? $cfg['error'] : true;
+            $this->canDisplay['info'] = $cfg['infoDisplay'];
+            $this->canDisplay['warning'] = $cfg['warningDisplay'];
+            $this->canDisplay['error'] = $cfg['errorDisplay'];
+        }
 
-            $this->canDisplay['info'] = isset($cfg['infoDisplay']) ? $cfg['infoDisplay'] : false;
-            $this->canDisplay['warning'] = isset($cfg['warningDisplay']) ? $cfg['warningDisplay'] : false;
-            $this->canDisplay['error'] = isset($cfg['errorDisplay']) ? $cfg['errorDisplay'] : false;
-
+        /**
+         * Open log file. Log name is based on y-m-d date format with extension of log.
+         * Will create if not exists.
+         */
+        private function open()
+        {
             $this->fileHandler = fopen(APP_PATH.'log/'.date('y-m-d').'.log', "a+");
             $this->write('------------------------- [New User Request] -------------------------');
         }
