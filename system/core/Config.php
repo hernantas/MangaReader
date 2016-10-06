@@ -28,7 +28,7 @@
          * @param  string $name Config name
          *
          * @return bool|array   FALSE if failed to load configuration or configuration
-         *                      as array.
+         *                      as an array.
          */
         public function load($name)
         {
@@ -43,7 +43,7 @@
         }
 
         /**
-         * Safe Array Configuration to a config file.
+         * Store configuration array to the config file.
          *
          * @param  string $name   Config name
          * @param  array  $config Config array
@@ -51,6 +51,27 @@
         public function save($name, $config)
         {
             $this->write($name, $config);
+        }
+
+        /**
+         * Get config value by key in config file.
+         *
+         * @param  string $name    Config file name
+         * @param  string $key     Config Key name
+         * @param  string $default Default Value
+         *
+         * @return string          Config Value
+         */
+        public function get($name, $key, $default=false)
+        {
+            $config = $this->load($name);
+
+            if ($config === false)
+            {
+                return $default;
+            }
+
+            return isset($config[$key]) ? $config[$key] : $default;
         }
 
         /**
@@ -63,6 +84,46 @@
         public function isExists($name)
         {
             return file_exists(APP_PATH . 'config/'.$name.'.php');
+        }
+
+        /**
+         * Remove configuration if exists. This can't be undone
+         *
+         * @param  string $name Config name
+         */
+        public function remove($name)
+        {
+            if ($this->isExists($name))
+            {
+                unlink(APP_PATH . 'config/'.$name.'.php');
+            }
+        }
+
+        /**
+         * Set default value of configuration settings. If config key is already exists,
+         * will automatically skip since it already have value. Will also store the config
+         * to the config file if $save is set to TRUE.
+         *
+         * @param  string $name     Configuration name
+         * @param  array  $config   Default configuration data
+         * @param  bool   $save     If set to true, save the config to config file.
+         *
+         * @return array            Return newest (with default value added) configuration array
+         */
+        public function setDefault($name, $config, $save=true)
+        {
+            $cfg = $this->load($name);
+            $changed = false;
+            foreach ($config as $key=>$val)
+            {
+                if (!isset($cfg[$key]))
+                {
+                    $cfg[$key]=$val;
+                    $changed = true;
+                }
+            }
+            if ($changed) $this->save($name, $cfg);
+            return $cfg;
         }
 
         /**
@@ -110,16 +171,24 @@
         }
 
         /**
-         * Remove configuration if exists. This can't be undone
+         * Get configuration by key in the config file.
          *
-         * @param  string $name Config name
+         * @param  string $name    Config file name
+         * @param  string $key     Config Key name
+         * @param  string $default Default Value
+         *
+         * @return string          Config Value
          */
-        public function remove($name)
+        public function getInfo($name, $key, $default=false)
         {
-            if ($this->isExists($name))
+            $config = $this->loadInfo($name);
+
+            if ($config === false)
             {
-                unlink(APP_PATH . 'config/'.$name.'.php');
+                return $default;
             }
+
+            return isset($config[$key]) ? $config[$key] : $default;
         }
 
         /**
@@ -136,33 +205,17 @@
         }
 
         /**
-         * Used for setting default value of configuration.
+         * Set default value of config info. If config key is already exists,
+         * will automatically skip since it already have value. Will also store the config
+         * to the config file if $save is set to TRUE.
          *
-         * @param  string $name   Configuration name
-         * @param  array $config  Default configuration data
-         */
-        public function setDefault($name, $config)
-        {
-            $cfg = $this->load($name);
-            $changed = false;
-            foreach ($config as $key=>$val)
-            {
-                if (!isset($cfg[$key]))
-                {
-                    $cfg[$key]=$val;
-                    $changed = true;
-                }
-            }
-            if ($changed) $this->save($name, $cfg);
-        }
-
-        /**
-         * Used for setting default value of configuration info.
+         * @param  string $name     Configuration info name
+         * @param  array $config    Default configuration data
+         * @param  bool   $save     If set to true, save the config to config file.
          *
-         * @param  string $name   Configuration info name
-         * @param  array $config  Default configuration data
+         * @return array            Return newest (with default value added) configuration array
          */
-        public function setDefaultInfo($name, $config)
+        public function setDefaultInfo($name, $config, $save=true)
         {
             $cfg = $this->loadInfo($name);
             $changed = false;
@@ -213,7 +266,8 @@
         }
 
         /**
-         * Write Array to the config file.
+         * Write Array to the config file in beautiful way (with tab, etc to make it
+         * more readable).
          *
          * @param  object $handler File Handler
          * @param  array  $arr     Array to be written to config file
@@ -257,27 +311,6 @@
             }
             fwrite($handler, PHP_EOL . str_repeat("\t", $offset) .
                 ']' . ($offset==1?';':''));
-        }
-
-        /**
-         * Get configuration by key in config file.
-         *
-         * @param  string $name    Config file name
-         * @param  string $key     Config Key name
-         * @param  string $default Default Value
-         *
-         * @return string          Config Value
-         */
-        public function get($name, $key, $default=false)
-        {
-            $config = $this->load($name);
-
-            if ($config === false)
-            {
-                return $default;
-            }
-
-            return isset($config[$key]) ? $config[$key] : $default;
         }
     }
 
