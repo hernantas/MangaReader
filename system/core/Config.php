@@ -32,7 +32,7 @@
          */
         public function load($name)
         {
-            if (!$this->exists($name))
+            if (!$this->isExists($name))
             {
                 return false;
             }
@@ -64,7 +64,7 @@
          */
         public function loadInfo($name)
         {
-            if (!$this->infoExists($name))
+            if (!$this->isInfoExists($name))
             {
                 return false;
             }
@@ -92,7 +92,7 @@
          *
          * @return bool         True if config is exists, false otherwise.
          */
-        public function exists($name)
+        public function isExists($name)
         {
             return file_exists(APP_PATH . 'config/'.$name.'.php');
         }
@@ -104,7 +104,7 @@
          *
          * @return bool         True if config is exists, false otherwise.
          */
-        public function infoExists($name)
+        public function isInfoExists($name)
         {
             return file_exists(APP_PATH . 'info/'.$name.'.php');
         }
@@ -116,7 +116,7 @@
          */
         public function remove($name)
         {
-            if ($this->has($name))
+            if ($this->isExists($name))
             {
                 unlink(APP_PATH . 'config/'.$name.'.php');
             }
@@ -129,7 +129,7 @@
          */
         public function removeInfo($name)
         {
-            if ($this->hasInfo($name))
+            if ($this->isInfoExists($name))
             {
                 unlink(APP_PATH . 'info/'.$name.'.php');
             }
