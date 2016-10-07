@@ -5,6 +5,9 @@
 		"error" => true,
 		"infoDisplay" => false,
 		"warningDisplay" => true,
-		"errorDisplay" => true
+		"errorDisplay" => true,
+		"infoTrace" => true,
+		"warningTrace" => true,
+		"errorTrace" => true
 	];
 ?>
