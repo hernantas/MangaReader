@@ -198,31 +198,6 @@
             return false;
         }
 
-        public function hasPackage($vendor, $package)
-        {
-            return (file_exists($vendor.'/'.$package.'/'));
-        }
-
-        public function getAllFiles($vendor, $package)
-        {
-            $arr = array();
-            if ($this->hasPackage($vendor, $package))
-            {
-                $filelist = scandir($vendor.'/Migrate/');
-                foreach ($filelist as $file)
-                {
-                    $info = pathinfo($vendor.'/Migrate/'.$file);
-
-                    if (!$this->inIgnoreNames($info['filename']) &&
-                        $info['extension'] == 'php')
-                    {
-                        $arr[] = $info['filename'];
-                    }
-                }
-            }
-            return $arr;
-        }
-
         /**
          * Get current vendor list
          *
