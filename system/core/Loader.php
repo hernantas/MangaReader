@@ -107,6 +107,14 @@
             }
         }
 
+        /**
+         * Load library class
+         *
+         * @param  string $name    Library name
+         * @param  string $altName Alternative name to be added to page property
+         *
+         * @return bool            True if library is exists and successfully loaded, false otherwise
+         */
         public function library($name, $altName='')
         {
             return $this->loadClass($name, 'Library', $altName);
