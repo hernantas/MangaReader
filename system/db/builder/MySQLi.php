@@ -16,6 +16,7 @@
             $this->order = '';
             $this->lim = '';
             $this->grp = '';
+            $this->resetData();
         }
 
         public function table($table)
@@ -49,38 +50,38 @@
                 strcasecmp("LIKE", $vo1) === 0)
             {
                 if (strcasecmp("LIKE", $vo1)===0) $vo1 = " $vo1 ";
-                $vo2 = $this->db->escape($vo2);
             }
             else
             {
-                $vo2 = $this->db->escape($vo1);
+                $vo2 = $vo1;
                 $vo1 = '=';
             }
 
-            $this->addCond($this->conds, $this->fieldQuote($field),
-                $vo1, $this->valueQuote($vo2));
+            $key = $this->addData('where', $vo2);
+            $this->addCond($this->conds, $this->fieldQuote($field), $vo1, $key);
             return $this;
         }
 
         public function whereOr($field, $vo1, $vo2='')
         {
             if (strcasecmp("=", $vo1) === 0 ||
+                strcasecmp("!=", $vo1) === 0 ||
                 strcasecmp(">", $vo1) === 0 ||
                 strcasecmp(">=", $vo1) === 0 ||
                 strcasecmp("<", $vo1) === 0 ||
                 strcasecmp("<=", $vo1) === 0 ||
                 strcasecmp("LIKE", $vo1) === 0)
             {
-                $vo2 = $this->db->escape($vo2);
+                if (strcasecmp("LIKE", $vo1)===0) $vo1 = " $vo1 ";
             }
             else
             {
-                $vo2 = $this->db->escape($vo1);
+                $vo2 = $vo1;
                 $vo1 = '=';
             }
 
-            $this->addCond($this->conds, $this->fieldQuote($field),
-                $vo1, $this->valueQuote($vo2), 'OR');
+            $key = $this->addData('where', $vo2);
+            $this->addCond($this->conds, $this->fieldQuote($field), $vo1, $key, 'OR');
 
             return $this;
         }
@@ -105,6 +106,15 @@
             }
 
             $tables = $this->tbl;
+
+            if ($this->bindCount > 0)
+            {
+                return $this->db->bind("SELECT $fields FROM $tables" .
+                    ($this->conds!==''?' WHERE '.$this->conds:'') .
+                    ($this->grp!==''?' GROUP BY '.$this->grp:'') .
+                    ($this->order!==''?' '.$this->order:'') .
+                    ($this->lim!==''?' '.$this->lim:''), $this->bindData);
+            }
 
             return $this->db->query("SELECT $fields FROM $tables" .
                 ($this->conds!==''?' WHERE '.$this->conds:'') .
