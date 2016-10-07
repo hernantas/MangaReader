@@ -33,7 +33,6 @@
                 $build .= "('', '".($item[0])."', '".($item[1])."', '".($item[2])."')";
             }
             $this->db->query("INSERT INTO `manga_scan` VALUES $build");
-            // $this->db->table('manga_scan')->insert(['', $manga, $chapter, $img]);
         }
 
         public function currentScan($limit)
