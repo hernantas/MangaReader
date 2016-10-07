@@ -133,6 +133,14 @@
             return $this->loadFile($name, 'Layout', $data);
         }
 
+        /**
+         * Load model class
+         *
+         * @param  string $name    Model name
+         * @param  string $altName Alternative name to be added to the page
+         *
+         * @return bool            True if model is exists and successfully loaded, false otherwise
+         */
         public function model($name, $altName='')
         {
             if ($this->loadClass($name, 'Model', $altName))
