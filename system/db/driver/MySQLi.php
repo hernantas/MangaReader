@@ -62,20 +62,12 @@
             foreach ($data as $key=>$val)
             {
                 $dataType = $this->getValueType($val);
-
-                if ($dataType == \PDO::PARAM_STR)
-                {
-                    $stmt->bindParam(":$key", $val, $dataType, strlen($val));
-                }
-                else
-                {
-                    $stmt->bindParam(":$key", $val, $dataType);
-                }
-
+                $stmt->bindValue(":$key", $val, $dataType);
             }
             $stmt->execute();
 
             $result = new \DB\Result($sql, $this->fetchAll($stmt), $stmt->errorInfo()[2]);
+            $stmt = null;
             return $result;
         }
 
@@ -86,16 +78,7 @@
             foreach ($data as $key=>$val)
             {
                 $dataType = $this->getValueType($val);
-
-                if ($dataType == \PDO::PARAM_STR)
-                {
-                    $stmt->bindParam($count, $val, $dataType, strlen($val));
-                }
-                else
-                {
-                    $stmt->bindParam($count, $val, $dataType);
-                }
-
+                $stmt->bindValue($count, $val, $dataType);
                 $count++;
 
             }
