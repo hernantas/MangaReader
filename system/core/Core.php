@@ -14,11 +14,10 @@
     $router =& loadClass('Router', 'Core');
 
     $db =& loadClass('DB', 'db');
-    
+
     $page =& loadClass('Page', 'Core');
     $curPage =& $page->getInstance();
     $method = $router->method;
-
 
     $loader->autoload();
     $curPage->$method();
