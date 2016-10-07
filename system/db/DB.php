@@ -92,18 +92,7 @@
                 return false;
             }
 
-            $con = $this->driver->connect($host, $user, $password);
-
-            if ($con !== true)
-            {
-                logError($con);
-                return false;
-            }
-            else
-            {
-                logInfo("Successfully connect to database host '$host'");
-                return true;
-            }
+            return $this->driver->connect($host, $user, $password);
         }
 
         /**
@@ -120,17 +109,8 @@
                 logError('No driver is used at the moment.');
                 return false;
             }
-            
+
             $db = $this->driver->database($name, $forceCreate);
-
-            if ($db !== true)
-            {
-                $this->dbError = $db;
-                logError($db);
-                return false;
-            }
-
-            return true;
         }
 
         /**
