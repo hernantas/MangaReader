@@ -19,6 +19,8 @@
         public function addScan($list)
         {
             $build = '';
+            $data = array();
+            $row = 0;
             foreach ($list as $item)
             {
                 if ($build !== '')
@@ -26,13 +28,13 @@
                     $build .= ', ';
                 }
 
-                $item[0] = $this->db->escape($item[0]);
-                $item[1] = isset($item[1]) ? $this->db->escape($item[1]) : '';
-                $item[2] = isset($item[2]) ? $this->db->escape($item[2]) : '';
-
-                $build .= "('', '".($item[0])."', '".($item[1])."', '".($item[2])."')";
+                $build .= "('', :col_".$row."_1, :col_".$row."_2, :col_".$row."_3)";
+                $data["col_".$row."_1"] = $item[0];
+                $data["col_".$row."_2"] = isset($item[1]) ? $item[1] : '';
+                $data["col_".$row."_3"] = isset($item[2]) ? $item[2] : '';
+                $row++;
             }
-            $this->db->query("INSERT INTO `manga_scan` VALUES $build");
+            $this->db->bind("INSERT INTO `manga_scan` VALUES $build", $data);
         }
 
         public function currentScan($limit)
@@ -75,6 +77,8 @@
         public function addManga($list)
         {
             $build = '';
+            $data = array();
+            $row = 0;
             foreach ($list as $item)
             {
                 if ($build !== '')
@@ -82,12 +86,12 @@
                     $build .= ', ';
                 }
 
-                $item[0] = $this->db->escape($item[0]);
-                $item[1] = $this->db->escape($item[1]);
-
-                $build .= "('', '".($item[0])."', '".($item[1])."', '".time()."', '".time()."', '0', '0', '1')";
+                $build .= "('', :col_".$row."_1, :col_".$row."_2, '".time()."', '".time()."', '0', '0', '1')";
+                $data["col_".$row."_1"] = $item[0];
+                $data["col_".$row."_2"] = $item[1];
+                $row++;
             }
-            $this->db->query("INSERT INTO `manga` VALUES $build");
+            $this->db->bind("INSERT INTO `manga` VALUES $build", $data);
         }
 
         public function setExistsManga($list)
@@ -127,6 +131,8 @@
         public function addChapter($list)
         {
             $build = '';
+            $data = array();
+            $row = 0;
             foreach ($list as $item)
             {
                 if ($build !== '')
@@ -134,12 +140,13 @@
                     $build .= ', ';
                 }
 
-                $item[0] = $item[0];
-                $item[1] = $this->db->escape($item[1]);
-                $item[2] = $this->db->escape($item[2]);
-                $build .= "('', '".($item[0])."', '".($item[1])."', '".($item[2])."', '".time()."', '1')";
+                $build .= "('', :col_".$row."_1, :col_".$row."_2, :col_".$row."_3, '".time()."', '1')";
+                $data["col_".$row."_1"] = $item[0];
+                $data["col_".$row."_2"] = $item[1];
+                $data["col_".$row."_3"] = $item[2];
+                $row++;
             }
-            $this->db->query("INSERT INTO `manga_chapter` VALUES $build");
+            $this->db->bind("INSERT INTO `manga_chapter` VALUES $build", $data);
         }
 
         public function setExistsChapter($list)
@@ -164,20 +171,28 @@
         public function removeImage($list)
         {
             $build = '';
+            $data = array();
+            $row = 0;
             foreach ($list as $item)
             {
                 if ($build !== '')
                 {
                     $build .= ' OR ';
                 }
-                $build .= "(`id_manga`='$item[0]' AND `id_chapter`='$item[1]')";
+
+                $build .= "(`id_manga`=:col_".$row."_1 AND `id_chapter`=:col_".$row."_2)";
+                $data["col_".$row."_1"] = $item[0];
+                $data["col_".$row."_2"] = $item[1];
+                $row++;
             }
-            $this->db->query("DELETE FROM `manga_image` WHERE $build");
+            $this->db->bind("DELETE FROM `manga_image` WHERE $build", $data);
         }
 
         public function addImage($list)
         {
             $build = '';
+            $data = array();
+            $row = 0;
             foreach ($list as $item)
             {
                 if ($build !== '')
@@ -185,24 +200,14 @@
                     $build .= ', ';
                 }
 
-                $build .= "('', '$item[0]', '$item[1]', '$item[2]', '$item[3]')";
+                $build .= "('', :col_".$row."_1, :col_".$row."_2, :col_".$row."_3, :col_".$row."_4)";
+                $data["col_".$row."_1"] = $item[0];
+                $data["col_".$row."_2"] = $item[1];
+                $data["col_".$row."_3"] = $item[2];
+                $data["col_".$row."_4"] = $item[3];
+                $row++;
             }
-            $this->db->query("INSERT INTO `manga_image` VALUES ".$build);
-        }
-
-        public function setExistsImage($list)
-        {
-            $build = '';
-            foreach ($list as $item)
-            {
-                if ($build !== '')
-                {
-                    $build .= ' AND ';
-                }
-
-                $build .= "(`id_manga`='$item[0]' OR `id_chapter`='$item[1]')";
-            }
-            $this->db->query("UPDATE `manga_image` set `exists`='1' WHERE $build");
+            $this->db->bind("INSERT INTO `manga_image` VALUES ".$build, $data);
         }
 
         public function removeDeleted($limitManga=200, $limitChapter=100)
