@@ -20,6 +20,17 @@
 
         public function __construct()
         {
+            $this->loadConfig();
+            $this->routing();
+
+            logInfo("Route to '$this->class' class with '$this->method' method");
+        }
+
+        /**
+         * Load configuration
+         */
+        private function loadConfig()
+        {
             $config =& loadClass('Config', 'Core');
             $cfg = $config->load('Routing');
 
@@ -30,10 +41,6 @@
                     $this->addRoute($key, $value);
                 }
             }
-
-            $this->routing();
-
-            logInfo("Route to '$this->class' class with '$this->method' method");
         }
 
         /**
