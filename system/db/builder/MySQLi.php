@@ -128,18 +128,18 @@
             $values = '';
             foreach ($array as $val)
             {
-                $val = $this->db->escape($val);
+                $key = $this->addData('insert', $val);
                 if ($values === '')
                 {
-                    $values = "'$val'";
+                    $values = "$key";
                 }
                 else
                 {
-                    $values .= ", '$val'";
+                    $values .= ", $key";
                 }
             }
 
-            return $this->db->query("INSERT INTO $this->tbl VALUES ($values)");
+            return $this->db->bind("INSERT INTO $this->tbl VALUES ($values)", $this->bindData);
         }
 
         public function update($array)
@@ -149,14 +149,15 @@
             {
                 foreach ($array as $key=>$val)
                 {
-                    $val = $this->db->escape($val);
+                    $bKey = $this->addData($key, $val);
+
                     if ($pair === '')
                     {
-                        $pair = $this->fieldQuote($key)."='$val'";
+                        $pair = $this->fieldQuote($key)."=$bKey";
                     }
                     else
                     {
-                        $pair .= ", ".$this->fieldQuote($key)."='$val'";
+                        $pair .= ", ".$this->fieldQuote($key)."=$bKey";
                     }
                 }
             }
@@ -165,15 +166,15 @@
                 $pair = $array;
             }
 
-            return $this->db->query("UPDATE $this->tbl SET $pair".
-                ($this->conds!==''?' WHERE '.$this->conds:''));
+            return $this->db->bind("UPDATE $this->tbl SET $pair".
+                ($this->conds!==''?' WHERE '.$this->conds:''), $this->bindData);
         }
 
         public function delete()
         {
-            return $this->db->query("DELETE FROM $this->tbl".
+            return $this->db->bind("DELETE FROM $this->tbl".
                 ($this->conds!==''?' WHERE '.$this->conds:'') .
-                ($this->order!==''?' '.$this->order:''));
+                ($this->order!==''?' '.$this->order:''), $this->bindData);
         }
 
         public function order($field, $asc=true)
