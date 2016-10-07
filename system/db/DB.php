@@ -31,7 +31,7 @@
 
             if ($cfg !== false)
             {
-                $this->selectDriver($cfg['driver']);
+                if (isset($cfg['driver'])) $this->selectDriver($cfg['driver']);
                 $this->connect($cfg['host'], $cfg['username'], $cfg['password']);
                 $this->database($cfg['database']);
             }
@@ -88,7 +88,7 @@
         {
             if ($this->driver === null)
             {
-                logError('Please select your database driver first');
+                logError('No driver is used at the moment.');
                 return false;
             }
 
@@ -115,6 +115,12 @@
          */
         public function database($name, $forceCreate=false)
         {
+            if ($this->driver === null)
+            {
+                logError('No driver is used at the moment.');
+                return false;
+            }
+            
             $db = $this->driver->database($name, $forceCreate);
 
             if ($db !== true)
