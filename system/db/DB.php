@@ -147,11 +147,11 @@
 
             if ($this->result[$sql]->isError())
             {
-                logError("Execute query '".$this->result[$sql]->error()."' with error");
+                logError("Execute query '".$this->result[$sql]->error()."' with error", 3);
             }
             else
             {
-                logInfo("Execute query '$this->result[$sql]->error()' successfully");
+                logInfo("Execute query '".$this->result[$sql]->syntax()."' successfully, return ".$this->result[$sql]->count(). " result", 3);
             }
 
             return $this->result[$sql];
@@ -171,11 +171,11 @@
 
             if ($this->result[$sql]->isError())
             {
-                logError("Execute query '".$this->result[$sql]->error()."' with error");
+                logError("Execute query '".$this->result[$sql]->syntax()."' with error ".$this->result[$sql]->error(), 3);
             }
             else
             {
-                logInfo("Execute query '$this->result[$sql]->error()' successfully");
+                logInfo("Execute query '".$this->result[$sql]->syntax()."' successfully, return ".$this->result[$sql]->count(). " result", 3);
             }
 
             return $this->result[$sql];
