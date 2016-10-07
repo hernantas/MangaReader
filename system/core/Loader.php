@@ -212,7 +212,7 @@
             }
             else
             {
-                logError("Failed to load $package class '$name'", 'Loader');
+                logError("Failed to load $package class '$name'");
             }
             return false;
         }

@@ -88,7 +88,7 @@
         {
             if ($this->driver === null)
             {
-                logError('Please select your database driver first', 'DB');
+                logError('Please select your database driver first');
                 return false;
             }
 
@@ -96,7 +96,7 @@
 
             if ($con !== true)
             {
-                logError($con, 'DB');
+                logError($con);
                 return false;
             }
             else
@@ -120,7 +120,7 @@
             if ($db !== true)
             {
                 $this->dbError = $db;
-                logError($db, 'DB');
+                logError($db);
                 return false;
             }
 

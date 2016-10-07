@@ -111,7 +111,7 @@
         {
             if (!isset($option['type']))
             {
-                logError('No type input', 'Helper Form');
+                logError('No type input');
                 return '';
             }
 
