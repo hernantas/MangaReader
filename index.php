@@ -66,14 +66,18 @@
     switch ($environment)
     {
         case 'development':
-        case 'testing':
-            error_reporting(E_ALL);
+            error_reporting(-1);
             break;
 
+        case 'testing':
         case 'release':
-        default:
-            error_reporting(0);
+            error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT & ~E_USER_NOTICE & ~E_USER_DEPRECATED);
             break;
+
+        default:
+            header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
+            echo 'The application environment isn\'t correctly configured.';
+            exit(1); // EXIT_ERROR
     }
 
     /**
