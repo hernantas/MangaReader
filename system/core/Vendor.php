@@ -169,14 +169,13 @@
         }
 
         /**
-         * Find vendor for specific file name and it's package
+         * Find vendor for a file that reside on it package
          *
          * @param  string $package   Package name
          * @param  string $name      File name (name only without extension)
          * @param  string $extension File extension (default: php)
          *
-         * @return string            Vendor name if File and package exists or
-         *                           return all vendor available otherwise.
+         * @return string|bool       Vendor name if File and package exists or false otherwise
          */
         public function find($package, $name, $extension='php')
         {
