@@ -50,16 +50,6 @@
             $this->data = $data;
             $this->dataLength = count($data);
             $this->err = $error;
-
-            if ($error === '')
-            {
-                logInfo('Execute Query: "'.$sql.'" with success, returning '.$this->dataLength.' results.');
-            }
-            else
-            {
-                logWarning('Execute Query: "'.$sql.'" with error.');
-                logWarning('Query Error: "'.$error.'"');
-            }
         }
 
         public function isError()

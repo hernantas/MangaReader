@@ -163,6 +163,15 @@
                 $this->result[$sql] = $this->driver->query($sql);
             }
 
+            if ($this->result[$sql]->isError())
+            {
+                logError("Execute query '".$this->result[$sql]->error()."' with error");
+            }
+            else
+            {
+                logInfo("Execute query '$this->result[$sql]->error()' successfully");
+            }
+
             return $this->result[$sql];
         }
 
