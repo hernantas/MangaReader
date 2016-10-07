@@ -49,7 +49,7 @@
             $this->sql = $sql;
             $this->data = $data;
             $this->dataLength = count($data);
-            $this->err = $error;
+            $this->err = trim($error);
         }
 
         public function isError()
