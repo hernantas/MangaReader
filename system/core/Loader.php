@@ -23,6 +23,9 @@
          */
         private $loadedClass = array();
 
+        /**
+         * Begin autoload class that in autoload config
+         */
         public function autoload()
         {
             $config =& loadClass('Config', 'Core');
