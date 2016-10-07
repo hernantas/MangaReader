@@ -100,7 +100,7 @@
          */
         public function display($message, $prefix='', $suffix='')
         {
-            echo ($prefix!==''?"<b>$prefix: </b>":'') . $message . ($suffix!==''?"<b>$suffix: </b>":'') . '<br />';
+            echo ($prefix!==''?"<b>$prefix: </b>":'') . $message . ($suffix!==''?" <b>$suffix</b>":'') . '<br />';
         }
 
         /**
