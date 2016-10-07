@@ -89,6 +89,12 @@
             echo ($prefix!==''?"<b>$prefix: </b>":'') . $message . ($suffix!==''?"<b>$suffix: </b>":'') . '<br />';
         }
 
+        /**
+         * Log message info
+         *
+         * @param  string $message Info message
+         * @param  string $source  Message source, to help pinpoint message location
+         */
         public function info($message, $source='')
         {
             if ($this->canWrite['info'])
@@ -101,6 +107,12 @@
             }
         }
 
+        /**
+         * Log message warning
+         *
+         * @param  string $message Warning message
+         * @param  string $source  Message source, to help pinpoint message location
+         */
         public function warning($message, $source='')
         {
             if ($this->canWrite['warning'])
@@ -113,6 +125,12 @@
             }
         }
 
+        /**
+         * Log message error
+         *
+         * @param  string $message Error message
+         * @param  string $source  Message source, to help pinpoint message location
+         */
         public function error($message, $source='')
         {
             if ($this->canWrite['error'])
