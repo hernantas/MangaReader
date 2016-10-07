@@ -135,7 +135,7 @@
 
     if (!function_exists('logInfo'))
     {
-        function logInfo($message)
+        function logInfo($message, $skip=2)
         {
             static $log = null;
 
@@ -144,13 +144,13 @@
                 $log =& loadClass('Log', 'Core');
             }
 
-            $log->info($message,1,2);
+            $log->info($message,1,$skip);
         }
     }
 
     if (!function_exists('logWarning'))
     {
-        function logWarning($message)
+        function logWarning($message, $skip=2)
         {
             static $log = null;
 
@@ -159,13 +159,13 @@
                 $log =& loadClass('Log', 'Core');
             }
 
-            $log->warning($message,1,2);
+            $log->warning($message,1,$skip);
         }
     }
 
     if (!function_exists('logError'))
     {
-        function logError($message)
+        function logError($message, $skip=2)
         {
             static $log = null;
 
@@ -174,7 +174,7 @@
                 $log =& loadClass('Log', 'Core');
             }
 
-            $log->error($message,1,2);
+            $log->error($message,1,$skip);
         }
     }
 ?>
