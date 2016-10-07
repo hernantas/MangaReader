@@ -175,6 +175,14 @@
             }
         }
 
+        /**
+         * Generate backtrace string
+         *
+         * @param  int $start Skipped part of tracing call
+         * @param  int $depth Depth of tracing
+         *
+         * @return string     Tracing call as string
+         */
         private function getBacktrace($start, $depth)
         {
             $trace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, $depth+$start);
