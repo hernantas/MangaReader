@@ -93,7 +93,7 @@
         /**
          * Get URL Segment
          *
-         * @param  string $index   Segment index (1-x)
+         * @param  string $index   Segment index start from 1
          * @param  string $default Default value (false by default)
          *
          * @return string          URL Segment at index or default value if not exists.
@@ -154,7 +154,7 @@
         }
 
         /**
-         * Get Subdirectory where web is placed.
+         * Get relative path to the project directory (where index.php is located).
          *
          * @return string Subdir name
          */
