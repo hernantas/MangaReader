@@ -203,6 +203,8 @@
          * @param  string $name    Class name
          * @param  string $package Package name where file class is located
          * @param  string $altName Alternative name to be used in the page
+         *
+         * @return bool            Return true when successfully load class, false otherwise
          */
         private function loadClass($name, $package='library', $altName='')
         {
