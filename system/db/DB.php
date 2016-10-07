@@ -136,7 +136,7 @@
         {
             if (count($data) > 0)
             {
-                $this->result[$sql] = $this->driver->bind($sql, $data);
+                $this->result[$sql] = $this->driver->bindAuto($sql, $data);
             }
             else
             {
