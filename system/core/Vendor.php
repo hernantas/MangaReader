@@ -53,18 +53,12 @@
          */
         private function generateConfig()
         {
-            //$list = $this->listFilePackage();
-            //$this->vendorFiles = $list['vendor'];
-            //$this->packFiles = $list['package'];
-
             $vendors = $this->listDirFile(BASE_PATH)['directories'];
             $this->vendors = $vendors;
 
             $config =& loadClass('Config', 'Core');
             $config->save('Vendor', [
                 'vendors'=>$vendors
-                //, 'vendorfile'=>$list['vendor']
-                //, 'packagefile'=>$list['package']
             ]);
         }
 
@@ -94,8 +88,6 @@
                 $pos = strpos($path, '/');
                 $package = substr($path, $pos+1);
                 $vendor = substr($path, 0, $pos);
-
-                // $file = $info['filename'];
 
                 if ($file !== '')
                 {
