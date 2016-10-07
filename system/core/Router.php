@@ -15,7 +15,18 @@
          */
         private $route = array();
 
+        /**
+         * Routed page class name to be called
+         *
+         * @var string
+         */
         public $class = '';
+
+        /**
+         * Routed method class name to be called
+         *
+         * @var string
+         */
         public $method = '';
 
         public function __construct()
@@ -90,6 +101,11 @@
             $this->method = isset($urls[1])?$urls[1]:'index';
         }
 
+        /**
+         * Redirect user browser to the relative path of the host
+         *
+         * @param  string $page Page direction
+         */
         public function redirect($page)
         {
             $uri =& loadClass('Uri', 'Core');
