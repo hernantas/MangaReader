@@ -46,7 +46,6 @@
          */
         public function bind($sql, $data=[]);
 
-        public function escape($string);
     }
 
 ?>
