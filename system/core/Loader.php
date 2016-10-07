@@ -33,7 +33,9 @@
 
             if ($cfg !== false)
             {
+                logInfo('Begin Autoload');
                 $this->loadConfig($cfg);
+                logInfo('End of Autoload');
             }
         }
 
@@ -44,7 +46,6 @@
          */
         private function loadConfig($config)
         {
-            logInfo('Begin Autoload');
             foreach ($config as $key=>$arr)
             {
                 if (is_array($arr))
@@ -59,7 +60,6 @@
                     $this->$key($arr);
                 }
             }
-            logInfo('End of Autoload');
         }
 
         /**
