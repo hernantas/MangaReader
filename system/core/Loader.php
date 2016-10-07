@@ -135,9 +135,14 @@
 
         public function model($name, $altName='')
         {
-            $this->loadClass($name, 'Model', $altName);
-            $lname = $altName === '' ? strtolower($name) : strtolower($altName);
-            page()->model->$lname->db =& loadClass('DB', 'DB');
+            if ($this->loadClass($name, 'Model', $altName))
+            {
+                $lname = $altName === '' ? strtolower($name) : strtolower($altName);
+                page()->model->$lname->db =& loadClass('DB', 'DB');
+
+                return true;
+            }
+            return false;
         }
 
         /**
