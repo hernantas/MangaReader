@@ -18,6 +18,13 @@
         private $canDisplay = array();
 
         /**
+         * Config to determine if log type should generate backtrace or not
+         *
+         * @var array
+         */
+        private $canTrace = array();
+
+        /**
          * Resource for Log File handler
          *
          * @var Resource
@@ -45,16 +52,23 @@
                 'error'=>true,
                 'infoDisplay' => false,
                 'warningDisplay' => true,
-                'errorDisplay'=>true
+                'errorDisplay'=>true,
+                'infoTrace'=>true,
+                'warningTrace'=>true,
+                'errorTrace'=>true
             ]);
 
-            $this->canWrite['info'] = $cfg['info'];
+            $this->canWrite['info']    = $cfg['info'];
             $this->canWrite['warning'] = $cfg['warning'];
-            $this->canWrite['error'] = $cfg['error'];
+            $this->canWrite['error']   = $cfg['error'];
 
-            $this->canDisplay['info'] = $cfg['infoDisplay'];
+            $this->canDisplay['info']    = $cfg['infoDisplay'];
             $this->canDisplay['warning'] = $cfg['warningDisplay'];
-            $this->canDisplay['error'] = $cfg['errorDisplay'];
+            $this->canDisplay['error']   = $cfg['errorDisplay'];
+
+            $this->canTrace['info']    = $cfg['infoTrace'];
+            $this->canTrace['warning'] = $cfg['warningTrace'];
+            $this->canTrace['error']   = $cfg['errorTrace'];
         }
 
         /**
@@ -93,17 +107,23 @@
          * Log message info
          *
          * @param  string $message Info message
-         * @param  string $source  Message source, to help pinpoint message location
+         * @param  int    $depth   Max backtrace depth to be written to log file
+         * @param  int    $start   Skip the start of the backtrace (don't need to trace log call)
          */
-        public function info($message, $source='')
+        public function info($message, $depth=1, $start=1)
         {
+            $trace = "";
+            if ($this->canTrace['info'])
+            {
+                $trace = '['.$this->getBacktrace($start, $depth).']';
+            }
             if ($this->canWrite['info'])
             {
-                $this->write(($source!==''?$source.': ':'').$message);
+                $this->write("$message $trace");
             }
             if ($this->canDisplay['info'])
             {
-                $this->display($message, 'Info');
+                $this->display($message, 'Info', $trace);
             }
         }
 
@@ -111,17 +131,23 @@
          * Log message warning
          *
          * @param  string $message Warning message
-         * @param  string $source  Message source, to help pinpoint message location
+         * @param  int    $depth   Max backtrace depth to be written to log file
+         * @param  int    $start   Skip the start of the backtrace (don't need to trace log call)
          */
-        public function warning($message, $source='')
+        public function warning($message, $depth=1, $start=1)
         {
+            $trace = "";
+            if ($this->canTrace['info'])
+            {
+                $trace = '['.$this->getBacktrace($start, $depth).']';
+            }
             if ($this->canWrite['warning'])
             {
-                $this->write('Warning'.($source!==''?' at '.$source:'').': '.$message);
+                $this->write("$message $trace");
             }
             if ($this->canDisplay['warning'])
             {
-                $this->display($message, 'Warning');
+                $this->display($message, 'Warning', $trace);
             }
         }
 
@@ -129,18 +155,42 @@
          * Log message error
          *
          * @param  string $message Error message
-         * @param  string $source  Message source, to help pinpoint message location
+         * @param  int    $depth   Max backtrace depth to be written to log file
+         * @param  int    $start   Skip the start of the backtrace (don't need to trace log call)
          */
-        public function error($message, $source='')
+        public function error($message, $depth=1, $start=1)
         {
+            $trace = "";
+            if ($this->canTrace['info'])
+            {
+                $trace = '['.$this->getBacktrace($start, $depth).']';
+            }
             if ($this->canWrite['error'])
             {
-                $this->write('Error'.($source!==''?' at '.$source:'').': '.$message);
+                $this->write("$message $trace");
             }
             if ($this->canDisplay['error'])
             {
-                $this->display($message, 'Error');
+                $this->display($message, 'Error', $trace);
             }
+        }
+
+        private function getBacktrace($start, $depth)
+        {
+            $trace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, $depth+$start);
+
+            $traceMessage = "";
+
+            for ($i=$start; $i<$depth+$start;$i++)
+            {
+                if ($traceMessage !== "")
+                {
+                    $traceMessage .= ", ";
+                }
+                $traceMessage .= "in ".$trace[$i]['file']." at line ".$trace[$i]['line'];
+            }
+
+            return $traceMessage;
         }
     }
 ?>
