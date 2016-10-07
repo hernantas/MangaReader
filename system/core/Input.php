@@ -9,7 +9,8 @@
     class Input
     {
         /**
-         * Check if input $_GET is exists
+         * Check if input $_GET is exists. If $name is empty, check if user send
+         * $_GET input instead
          *
          * @param  string $name Input name
          *
@@ -38,7 +39,8 @@
         }
 
         /**
-         * Check if input $_POST is exists
+         * Check if input $_POST is exists. If $name is empty, check if user send
+         * $_POST input instead
          *
          * @param  string $name Input name
          *
@@ -50,7 +52,7 @@
             {
                 return !empty($_POST);
             }
-            
+
             return isset($_POST[$name]);
         }
 
@@ -68,7 +70,8 @@
         }
 
         /**
-         * Check if input $_REQUEST is exists
+         * Check if input $_REQUEST is exists. If $name is empty, check if user send
+         * $_REQUEST input instead
          *
          * @param  string $name Input name
          *
