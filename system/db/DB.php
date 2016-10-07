@@ -157,9 +157,7 @@
             return $this->result[$sql];
         }
 
-        public function escape($string)
         {
-            return $this->driver->escape($string);
         }
 
         public function table($tables)
