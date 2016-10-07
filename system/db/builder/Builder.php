@@ -26,6 +26,7 @@
 
         protected function addData($key, $val)
         {
+            $key = str_replace(".", "_", $key);
             if (!isset($this->bindCount[$key])) $this->bindCount[$key] = 0;
 
             $bindKey = $key.($this->bindCount[$key] > 0 ? '_'.$this->bindCount[$key] : '');
