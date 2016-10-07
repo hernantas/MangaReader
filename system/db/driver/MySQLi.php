@@ -9,43 +9,40 @@
      */
     class MySQLi implements IDriver
     {
-        private $mysqli;
+        private $pdo = null;
 
-        public function connect($host, $user, $password)
+        public function connect($host, $username, $password)
         {
-            @$this->mysqli = new \mysqli($host, $user, $password);
-
-            if (@$this->mysqli->errno > 0)
+            try
             {
-                return ($this->mysqli->error);
+                $this->pdo = new \PDO("mysql:host=$host;", $username, $password, [ \PDO::ATTR_ERRMODE, \PDO::ERRMODE_SILENT]);
             }
-            elseif (!@$this->mysqli->ping())
+            catch (\PDOException $e)
             {
-                return "Can't connect to database host '$host'";
+                logError($e->getMessage());
+                return false;
             }
 
+            logInfo("Successfully connect to database host '$host'");
             return true;
         }
 
         public function database($name, $forceCreate=false)
         {
-            $this->mysqli->select_db($name);
-
-            if ($this->mysqli->errno > 0)
+            if ($forceCreate)
             {
-                if ($forceCreate)
-                {
-                    $res = $this->mysqli->query("CREATE DATABASE $name");
+                $this->pdo->query("CREATE DATABASE IF NOT EXISTS $name");
+            }
 
-                    if ($this->mysqli->errno > 0)
-                    {
-                        return ($this->mysqli->error);
-                    }
-                    $this->mysqli->select_db($name);
-                }
-                else
+            $affected = $this->pdo->exec("USE $name");
+            if ($affected === false)
+            {
+                $err = $this->pdo->errorInfo();
+
+                if ($err[0] !== '00000' || $err[0] !== '01000')
                 {
-                    return ($this->mysqli->error);
+                    logError("Unknown database '$name'");
+                    return false;
                 }
             }
             return true;
@@ -53,92 +50,77 @@
 
         public function query($sql)
         {
-            $res = $this->mysqli->query($sql);
-            $result = null;
-
-            if ($this->mysqli->errno > 0)
-            {
-                $result = new \DB\Result($sql, array(), $this->mysqli->error);
-            }
-            else if ($res === true)
-            {
-                $result = new \DB\Result($sql, []);
-            }
-            else
-            {
-                $data = array();
-                while ($row = $res->fetch_object())
-                {
-                    $data[] = $row;
-                }
-                $result = new \DB\Result($sql, $data);
-
-                $res->free();
-            }
-
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            $result = new \DB\Result($sql, $this->fetchAll($stmt), $stmt->errorInfo()[2]);
             return $result;
         }
 
         public function bind($sql, $data=[])
         {
-            $this->fixBindData($data);
-
-            $prep = $this->mysqli->prepare($sql);
-            $ref = new \ReflectionClass('mysqli_stmt');
-            $method = $ref->getMethod("bind_param");
-            $method->invokeArgs($prep,$data);
-            $prep->execute();
-
-            $newData = array();
-            if (($metadata = $prep->result_metadata()) !== null)
+            $stmt = $this->pdo->prepare($sql);
+            foreach ($data as $key=>$val)
             {
-                // Have data
-                $fields = array();
-                $values = array();
+                $dataType = $this->getValueType($val);
 
-                while ($field = mysqli_fetch_field($metadata))
+                if ($dataType == \PDO::PARAM_STR)
                 {
-                    $fields[] = $field->name;
-                    $values[] = null;
+                    $stmt->bindParam(":$key", $val, $dataType, strlen($val));
+                }
+                else
+                {
+                    $stmt->bindParam(":$key", $val, $dataType);
                 }
 
-                $fieldCount = count($fields);
-                $method = $ref->getMethod('bind_result');
-                $method->invokeArgs($prep, $values);
-
-                while ($prep->fetch())
-                {
-                    $row = new \stdClass();
-                    for ($i = 0; $i < $fieldCount; $i++)
-                    {
-                        $row->$fields[$i] = $values[$i];
-                    }
-                    $newData[] = $row;
-                }
             }
+            $stmt->execute();
 
-            $prep->close();
-            return new \DB\Result($sql, $newData);
+            $result = new \DB\Result($sql, $this->fetchAll($stmt), $stmt->errorInfo()[2]);
+            return $result;
         }
 
-        private function fixBindData(&$data)
+        public function bindAuto($sql, $data=array())
         {
-            $type = '';
-            $count = count($data);
-            for($i = 0; $i < $count; $i++)
+            $stmt = $this->pdo->prepare($sql);
+            $count = 1;
+            foreach ($data as $key=>$val)
             {
-                if (is_int($data[$i])) $type .= 'i';
-                elseif (is_double($data[$i]) || is_float($data[$i])) $type .= 'd';
-                else $type .= 's';
+                $dataType = $this->getValueType($val);
 
-                $data[$i] = & $data[$i];
+                if ($dataType == \PDO::PARAM_STR)
+                {
+                    $stmt->bindParam($count, $val, $dataType, strlen($val));
+                }
+                else
+                {
+                    $stmt->bindParam($count, $val, $dataType);
+                }
+
+                $count++;
+
             }
-            array_unshift($data, $type);
+            $stmt->execute();
+
+            $result = new \DB\Result($sql, $this->fetchAll($stmt), $stmt->errorInfo()[2]);
+            return $result;
         }
 
-        public function escape($string)
+        private function fetchAll($stmt)
         {
-            return $this->mysqli->escape_string($string);
+            $data = array();
+            while ($row = $stmt->fetch(\PDO::FETCH_OBJ))
+            {
+                $data[] = $row;
+            }
+            return $data;
+        }
+
+        private function getValueType($val)
+        {
+            if (is_bool($val)) return \PDO::PARAM_BOOL;
+            if (is_null($val)) return \PDO::PARAM_NULL;
+            if (is_int($val)) return \PDO::PARAM_INT;
+            return \PDO::PARAM_STR;
         }
     }
 
