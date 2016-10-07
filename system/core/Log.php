@@ -95,8 +95,8 @@
          * Write message to be displayed on the user browser
          *
          * @param  string $message Message to be displayed
-         * @param  string $prefix  Message prefix (will be bold)
-         * @param  string $suffix  Message prefix (will be bold)
+         * @param  string $prefix  Message prefix (added bold tag)
+         * @param  string $suffix  Message prefix (added bold tag)
          */
         public function display($message, $prefix='', $suffix='')
         {
