@@ -8,12 +8,31 @@
      */
     abstract class Builder
     {
+        protected $bindData = array();
+        protected $bindCount = array();
+
         abstract public function reset();
         abstract public function table($tables);
         abstract public function join($table, $field1, $field2);
         abstract public function where($field, $vo1, $vo2='');
         abstract public function whereOr($field, $vo1, $vo2='');
         abstract public function get($field='*');
+
+        protected function resetData()
+        {
+            $this->bindData = array();
+            $this->bindCount = array();
+        }
+
+        protected function addData($key, $val)
+        {
+            if (!isset($this->bindCount[$key])) $this->bindCount[$key] = 0;
+
+            $bindKey = $key.'_'.$this->bindCount[$key];
+            $this->bindData[$bindKey] = $val;
+            $this->bindCount[$key]++;
+            return ":$bindKey";
+        }
 
         protected function splitToArr($s, $delim=',')
         {
