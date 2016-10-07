@@ -46,6 +46,7 @@
          */
         public function bind($sql, $data=[]);
 
+        public function bindAuto($sql, $data=array());
     }
 
 ?>
