@@ -41,7 +41,7 @@
         }
 
         /**
-         * Load log configuration
+         * Load log configuration and set default value for config
          */
         private function loadConfig()
         {
