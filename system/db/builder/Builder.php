@@ -28,7 +28,7 @@
         {
             if (!isset($this->bindCount[$key])) $this->bindCount[$key] = 0;
 
-            $bindKey = $key.'_'.$this->bindCount[$key];
+            $bindKey = $key.($this->bindCount[$key] > 0 ? '_'.$this->bindCount[$key] : '');
             $this->bindData[$bindKey] = $val;
             $this->bindCount[$key]++;
             return ":$bindKey";
