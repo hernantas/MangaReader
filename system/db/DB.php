@@ -157,7 +157,28 @@
             return $this->result[$sql];
         }
 
+        /**
+         * Perform query syntax with data. Data must have key to be binded to the SQL
+         *
+         * @param  string $sql  SQL syntax
+         * @param  array  $data Data that need to be binded to performed SQL
+         *
+         * @return \DB\Result     Database result
+         */
+        public function bind($sql, $data)
         {
+            $this->result[$sql] = $this->driver->bind($sql, $data);
+
+            if ($this->result[$sql]->isError())
+            {
+                logError("Execute query '".$this->result[$sql]->error()."' with error");
+            }
+            else
+            {
+                logInfo("Execute query '$this->result[$sql]->error()' successfully");
+            }
+
+            return $this->result[$sql];
         }
 
         public function table($tables)
