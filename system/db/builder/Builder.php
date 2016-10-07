@@ -55,6 +55,13 @@
             return $s;
         }
 
+        /**
+         * Automatically quote table field
+         *
+         * @param  string $field Field name
+         *
+         * @return string        Quoted field
+         */
         protected function fieldQuote($field)
         {
             if ($field === '*' ||
