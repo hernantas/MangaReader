@@ -33,7 +33,7 @@
 
             $this->routing();
 
-            logInfo("Route to '$this->class' class with '$this->method' method", 'Router');
+            logInfo("Route to '$this->class' class with '$this->method' method");
         }
 
         /**

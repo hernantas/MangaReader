@@ -22,7 +22,7 @@
                 return $data;
             }
 
-            logInfo("Found handler to modify $type data for \"$name\"", 'Hook');
+            logInfo("Found handler to modify $type data for \"$name\"");
 
             $newData = $this->hook[$name]->$type($data);
             return is_array($newData) ? array_merge($data, $newData) : $data;

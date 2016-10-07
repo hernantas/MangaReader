@@ -74,7 +74,7 @@
 
                     static::$instance->load =& static::$instance->loader;
 
-                    logInfo("'".substr($name, 6)."' page is loaded.", 'Page');
+                    logInfo("'".substr($name, 6)."' page is loaded.");
                 }
                 else
                 {

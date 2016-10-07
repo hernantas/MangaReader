@@ -61,7 +61,7 @@
         {
             $this->parse();
 
-            logInfo("User request page '$this->urlString'", "URI");
+            logInfo("User request page '$this->urlString'");
         }
 
         /**

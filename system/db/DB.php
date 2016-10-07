@@ -101,7 +101,7 @@
             }
             else
             {
-                logInfo("Successfully connect to database host '$host'", 'DB');
+                logInfo("Successfully connect to database host '$host'");
                 return true;
             }
         }

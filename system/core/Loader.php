@@ -41,7 +41,7 @@
          */
         private function loadConfig($config)
         {
-            logInfo('Begin Autoload', 'Loader');
+            logInfo('Begin Autoload');
             foreach ($config as $key=>$arr)
             {
                 if (is_array($arr))
@@ -56,7 +56,7 @@
                     $this->$key($arr);
                 }
             }
-            logInfo('End of Autoload', 'Loader');
+            logInfo('End of Autoload');
         }
 
         /**
@@ -162,12 +162,12 @@
             {
                 extract($data);
                 include ($vendor . '/' . $package . '/' . $name . '.php');
-                logInfo("Successfully load $package file \"$name.php\"", 'Loader');
+                logInfo("Successfully load $package file \"$name.php\"");
                 return true;
             }
             else
             {
-                logError("Failed to load $package file \"$name.php\"", 'Loader');
+                logError("Failed to load $package file \"$name.php\"");
             }
 
             return false;
@@ -205,7 +205,7 @@
                 {
                     page()->$altName =& loadClass($name, $package, $vendor);
                 }
-                logInfo("Successfully load $rPackage class '$rName'", 'Loader');
+                logInfo("Successfully load $rPackage class '$rName'");
 
                 $this->loadedClass[$package.'/'.$name] = true;
                 return true;
