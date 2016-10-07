@@ -125,12 +125,14 @@
 
         /**
          * Perform query syntax. Support data binding and should be used if passing
-         * user inputed data to database.
+         * user inputed data to database. Use DB::bind if want to bind data with key
          *
          * @param  string $sql  SQL syntax
          * @param  array  $data Data that need to be binded to performed SQL
          *
          * @return \DB\Result     Database result
+         *
+         * @see DB::bind
          */
         public function query($sql, $data=[])
         {
