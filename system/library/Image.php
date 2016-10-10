@@ -3,8 +3,19 @@
 
     class Image
     {
+        /**
+         * Path to temporary directory to save generated image
+         *
+         * @var string
+         */
         private $savePath = 'public/img_cache/';
 
+        /**
+         * Send image data to the user browser. Becarefull when using this method
+         * since if you send any data previous to this will cause image to be corrupted.
+         *
+         * @param  string $path Image
+         */
         public function getContent($path)
         {
             $info = $this->getImageData($path);
@@ -16,11 +27,17 @@
             }
 
             $image = $this->createNewImage($info['type'], $path);
-            $this->output($info['type'], $image, BASE_PATH.$this->savePath.$name.'.'.$info['typeString']);
+            $this->output($info['type'], $image);
             imagedestroy($image);
-            return baseUrl().$this->savePath.$name.'.'.$info['typeString'];
         }
 
+        /**
+         * Get image content as base 64
+         *
+         * @param  string $path Image to load
+         *
+         * @return string       Base64 image content
+         */
         public function getContent64($path)
         {
             $info = $this->getImageData($path);
@@ -32,6 +49,16 @@
             ];
         }
 
+        /**
+         * Create new image from original but cropped, save it to temp directory
+         * and return the new cropped image path.
+         *
+         * @param  string $path   Image to load
+         * @param  int    $width  Image width cropped size
+         * @param  int    $height Image height cropped size
+         *
+         * @return string         New cropped image path
+         */
         public function getContentCrop($path, $width, $height)
         {
             $info = $this->getImageData($path);
@@ -55,12 +82,19 @@
                 $oldWidth * $ratio, $oldHeight * $ratio, $oldWidth, $oldHeight);
             // imagecopy($cropedImage, $resizedImage, 0, 0, $width, $height, $oldWidth * $ratio, $oldHeight * $ratio);
 
-            $this->output($info['type'], $newImage, BASE_PATH.$this->savePath.$name.'.'.$info['typeString']);
+            $this->outputFile($info['type'], $newImage, BASE_PATH.$this->savePath.$name.'.'.$info['typeString']);
             imagedestroy($newImage);
             imagedestroy($image);
             return baseUrl().$this->savePath.$name.'.'.$info['typeString'];
         }
 
+        /**
+         * Get image properties
+         *
+         * @param  string $path Image path
+         *
+         * @return string       Image resource
+         */
         private function getImageData($path)
         {
             list($width, $height, $type) = getimagesize($path);
@@ -88,6 +122,14 @@
             ];
         }
 
+        /**
+         * Create image resource from actual image
+         *
+         * @param  string $type Image type
+         * @param  string $path Image path to load
+         *
+         * @return resource     Image resource
+         */
         private function createNewImage($type, $path)
         {
             $image = null;
@@ -108,7 +150,13 @@
             return $image;
         }
 
-        private function output($type, $img, $output)
+        /**
+         * Send image data to the user browser.
+         *
+         * @param  int      $type Image type
+         * @param  resource $img  Image resource
+         */
+        private function output($type, $img)
         {
             switch ($type)
             {
@@ -124,6 +172,37 @@
             }
         }
 
+        /**
+         * Create image file based on image data
+         *
+         * @param  int      $type   Image type
+         * @param  resource $img    Image resource
+         * @param  string   $output Output file name
+         */
+        private function outputFile($type, $img, $output)
+        {
+            switch ($type)
+            {
+                case IMAGETYPE_JPEG:
+                    imagejpeg($img, $output);
+                    break;
+                case IMAGETYPE_PNG:
+                    imagepng($img, $output);
+                    break;
+                case IMAGETYPE_GIF:
+                    imagegif($img, $output);
+                    break;
+            }
+        }
+
+        /**
+         * Convert image to the base64 string
+         *
+         * @param  int      $type Image type
+         * @param  resource $img  Image resource
+         *
+         * @return string         Base64 image data
+         */
         private function output64($type, $img)
         {
             ob_start();
