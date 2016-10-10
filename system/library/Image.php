@@ -19,13 +19,6 @@
         public function getContent($path)
         {
             $info = $this->getImageData($path);
-            $name = md5($path);
-
-            if (file_exists(BASE_PATH.$this->savePath.$name.'.'.$info['typeString']))
-            {
-                return baseUrl().$this->savePath.$name.'.'.$info['typeString'];
-            }
-
             $image = $this->createNewImage($info['type'], $path);
             $this->output($info['type'], $image);
             imagedestroy($image);
