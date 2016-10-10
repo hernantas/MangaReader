@@ -73,7 +73,6 @@
 
             imagecopyresampled($newImage, $image, 0, 0, 0, 0,
                 $oldWidth * $ratio, $oldHeight * $ratio, $oldWidth, $oldHeight);
-            // imagecopy($cropedImage, $resizedImage, 0, 0, $width, $height, $oldWidth * $ratio, $oldHeight * $ratio);
 
             $this->outputFile($info['type'], $newImage, BASE_PATH.$this->savePath.$name.'.'.$info['typeString']);
             imagedestroy($newImage);
