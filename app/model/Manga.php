@@ -202,9 +202,11 @@
                 ->get();
         }
 
-        public function getChapterF($fname)
+        public function getChapterF($idManga, $fname)
         {
-            $result = $this->db->table('manga_chapter')->where('friendly_name', $fname)
+            $result = $this->db->table('manga_chapter')
+                ->where('id_manga', $idManga)
+                ->where('friendly_name', $fname)
                 ->limit(0,1)->get();
             return $result->first();
         }

@@ -180,7 +180,7 @@
                 $page = $pair-1;
             }
 
-            $chapter = $this->manga->getChapterF($order[$curI]);
+            $chapter = $this->manga->getChapterF($manga->id, $order[$curI]);
             $prevChapter = $chapter;
             $nextChapter = $chapter;
 
@@ -204,7 +204,7 @@
                 while ($pI > 0 && $pImageCount < $this->pageLimit)
                 {
                     $pI--;
-                    $prevChapter = $this->manga->getChapterF(
+                    $prevChapter = $this->manga->getChapterF($manga->id,
                         $this->mangalib->toFriendlyName($order[$pI]));
                     $maxImage = $this->manga->getImageCount($prevChapter->id_manga,
                         $prevChapter->id);
@@ -251,7 +251,7 @@
                     if ($curI < $count)
                     {
                         // There is still chapters
-                        $nextChapter = $this->manga->getChapterF(
+                        $nextChapter = $this->manga->getChapterF($manga->id, 
                             $this->mangalib->toFriendlyName($order[$curI]));
                         $nextLink = "manga/$fmanga/chapter/$nextChapter->friendly_name";
                     }
