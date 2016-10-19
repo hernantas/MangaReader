@@ -28,6 +28,15 @@
                 $name = str_replace('Chapter', $manga, $name);
 				return $name;
 			}
+<<<<<<< HEAD
+            elseif (strpos($name, "#")===0)
+			{
+                // Rename Type 2
+                $name = str_replace('#', $manga, $name);
+				return $name;
+			}
+=======
+>>>>>>> 44a3dfba23baa4606b3146026345fd2af327fcac
 
             // Rename for Mangafox
             if (strpos($name,'Volume') === 0)
