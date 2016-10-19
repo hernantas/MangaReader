@@ -22,6 +22,13 @@
 				return $manga . " " .$name;
 			}
 
+            // MangaSee Rename
+            if (strpos($name, "Chapter")===0)
+			{
+                $name = str_replace('Chapter', $manga, $name);
+				return $name;
+			}
+
             // Rename for Mangafox
             if (strpos($name,'Volume') === 0)
             {
