@@ -122,6 +122,11 @@
             }
         }
 
+        public function reset()
+        {
+            $this->model->reset();
+        }
+
         private function addScan($array)
         {
             $this->addToScan[] = $array;

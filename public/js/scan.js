@@ -12,6 +12,16 @@ function addTime(time)
     $(".time_debug").append("<div>Average: "+(scan_timer/scan_counter).toFixed(2)+"s</div>");
 }
 
+function resetScan()
+{
+    $.ajax({
+        method: "POST",
+        url: baseUrl+"admin/scan/reset"
+    }).done(function(msg) {
+
+    });
+}
+
 function checkStatusScan()
 {
     $.ajax({
@@ -40,6 +50,8 @@ function checkStatusScan()
         {
             $(".loader").remove();
             $(".info_debug").html("<div>"+msg+"</div>");
+            console.log(err);
+            resetScan();
         }
     });
 }

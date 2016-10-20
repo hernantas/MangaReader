@@ -6,6 +6,7 @@
         'admin/import/import0'=>'importer/import0',
         'admin/import/export'=>'importer/export',
         'admin/import'=>'importer',
+        'admin/scan/reset'=>'scan/reset',
         'admin/scan/status'=>'scan/status',
         'admin/scan/start'=>'scan/start',
         'admin/scan'=>'scan',

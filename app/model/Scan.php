@@ -13,6 +13,11 @@
         {
             $this->db->table('manga')->update(['exists'=>'0']);
             $this->db->table('manga_chapter')->update(['exists'=>'0']);
+            $this->reset();
+        }
+
+        public function reset()
+        {
             $this->db->query('TRUNCATE TABLE `manga_scan`');
         }
 

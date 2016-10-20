@@ -93,6 +93,12 @@
             echo "\"time\": \"$duration\"";
             echo "}";
         }
+
+        public function reset()
+        {
+            $this->load->library('Scan');
+            $this->scan->reset();
+        }
     }
 
 ?>
