@@ -154,25 +154,41 @@
             foreach ($mangas as $manga)
             {
                 $fmanga = page()->manga->toFriendlyName($manga);
+                $dataManga = $this->model->getMangaF($fmanga);
+                $duplicate = false;
 
-                if (!$this->model->hasMangaF($fmanga))
+                if ($dataManga !== false)
+                {
+                    if (strcmp($dataManga->name, $manga) === 0)
+                    {
+                        // Manga exists and has same name
+                        $existsManga[] = $fmanga;
+                    }
+                    else
+                    {
+                        // Manga exists but name is different
+                        $this->scanWarning[] = "Found almost identical/duplicate manga:".
+                            "<ul><li>$dataManga->name</li><li>$manga</li></ul>";
+                        $duplicate = true;
+                    }
+                }
+                else
                 {
                     // Insert new manga
                     $newManga[] = [$manga, $fmanga];
                 }
-                else
-                {
-                    $existsManga[] = $fmanga;
-                }
 
-                $chapterDirs = new \FilesystemIterator($this->mangaPath . '/' . $manga,
-                   \FilesystemIterator::SKIP_DOTS);
-
-                foreach ($chapterDirs as $chapter)
+                if (!$duplicate)
                 {
-                    if ($chapter->isDir())
+                    $chapterDirs = new \FilesystemIterator($this->mangaPath . '/' . $manga,
+                    \FilesystemIterator::SKIP_DOTS);
+
+                    foreach ($chapterDirs as $chapter)
                     {
-                        $this->addScan([$manga, $chapter->getFilename()]);
+                        if ($chapter->isDir())
+                        {
+                            $this->addScan([$manga, $chapter->getFilename()]);
+                        }
                     }
                 }
             }
@@ -213,12 +229,6 @@
                     $id = $dataManga->id;
                     $lastId = $id;
                     $lastFManga = $fmanga;
-
-                    if (strcasecmp($dataManga->name, $manga) !== 0)
-                    {
-                        $this->scanWarning[] = "Found almost identical/duplicate manga:".
-                            "<ul><li>$dataManga->name</li><li>$manga</li></ul>";
-                    }
                 }
 
                 $chp = $this->model->getChapterF($id, $fchapter);
@@ -229,13 +239,13 @@
                 }
                 else
                 {
-                    if (strcasecmp($chp->name, $chapter) === 0)
+                    if (strcmp($chp->name, $chapter) === 0)
                     {
                         $scChapter[] = [$id, $chp->id, $manga, $chapter];
                     }
                     else
                     {
-                        $this->scanWarning[] = "Found almost identical/duplicate chapters:".
+                        $this->scanWarning[] = "Found almost identical/duplicate '$manga' chapters:".
                             "<ul><li>$chapter</li><li>$chp->name</li></ul>";
                     }
                 }
