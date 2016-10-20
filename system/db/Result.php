@@ -137,7 +137,7 @@
          * @return array|string             First row on Query result or single string if
          *                                  column is used
          */
-        public function first($column='', $default='')
+        public function first($column='', $default=false)
         {
             return $this->item(0, $column, $default);
         }
@@ -151,7 +151,7 @@
          *
          * @return array            Row on query result
          */
-        public function item($pos, $column='', $default='')
+        public function item($pos, $column='', $default=false)
         {
             $row = isset($this->data[$pos]) ? $this->data[$pos] : false;
             if ($column === '')
@@ -170,7 +170,7 @@
          * @return array|string     Last row on Query result or single string if
          *                          column is used
          */
-        public function last($column='', $default='')
+        public function last($column='', $default=false)
         {
             return $this->item($this->dataLength-1, $column, $default);
         }
