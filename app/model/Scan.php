@@ -44,7 +44,7 @@
 
         public function currentScan($limit)
         {
-            $result = $this->db->table('manga_scan')->limit(0,$limit)->order('id')->get();
+            $result = $this->db->table('manga_scan')->limit(0,$limit)->order('id', 'desc')->get();
             return $result;
         }
 
