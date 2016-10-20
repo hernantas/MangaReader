@@ -179,7 +179,7 @@
 
         public function order($field, $asc=true)
         {
-            $this->order = "ORDER BY ".$this->fieldQuote($field)." ".($asc || strcasecmp($asc, 'asc')===0?'ASC':'DESC');
+            $this->order = "ORDER BY ".$this->fieldQuote($field)." ".($asc===true || strcasecmp($asc, 'asc')===0?'ASC':'DESC');
             return $this;
         }
 
