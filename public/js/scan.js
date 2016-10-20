@@ -36,7 +36,7 @@ function checkStatusScan()
                 addTime(data.time);
                 for (var i = 0; i < data.warning.length; i++)
                 {
-                    $(".warning_debug").append("<div><b>Warning: </b>"+data.warning[i]+"</div>");
+                    $(".warning_debug").prepend("<div><b>Warning: </b>"+data.warning[i]+"</div>");
                 }
                 checkStatusScan();
             }
