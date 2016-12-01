@@ -231,6 +231,7 @@
                 $query->delete();
 
                 // Delete Manga Option
+                $result->reset();
                 $query = $this->db->table('manga_option');
                 while ($row = $result->row())
                 {
