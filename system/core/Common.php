@@ -19,7 +19,7 @@
 
             $package = str_replace('/', '\\', strtolower($package));
             $name = strtolower($name);
-            $class = $package.'\\'.$name;
+            $class = '\\'.$package.'\\'.$name;
 
             if (isset($instance[$class]))
             {
@@ -37,7 +37,6 @@
                 exit(-1);
             }
 
-            $class = str_replace('/', '\\', "\\$class");
             if (class_exists($class, false) === false)
             {
                 echo ('Class '.$class.' is not exists.');
