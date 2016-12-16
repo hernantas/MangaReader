@@ -26,19 +26,20 @@
                 return $instance[$class];
             }
 
-            $fileFound = false;
             $vendor = rtrim(strtolower($vendor), '/') . '/';
-
             if (file_exists($vendor . $package . '/' . $name . '.php'))
             {
                 include ($vendor . $package . '/' . $name . '.php');
-                $fileFound = true;
+            }
+            else
+            {
+                echo "File \"$name\" can't be found on any \"$package\" package.";
+                exit(-1);
             }
 
-            $class = str_replace('/', '\\', $class);
-            if ($fileFound === false || class_exists($class) === false)
+            if (class_exists($class, false) === false)
             {
-                echo ('Can\'t find class "'.$name.'" at "'.$package.'" package.');
+                echo ('Class '.$class.' is not exists.');
                 exit(-1);
             }
 
