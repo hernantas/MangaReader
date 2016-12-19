@@ -101,5 +101,5 @@
     /**
      * Begin Bootstraping neccessary file.
      */
-    require(SYSTEM_PATH . 'core/Core.php');
+    require(SYSTEM_PATH . 'core/core.php');
 ?>

@@ -33,7 +33,7 @@
                     $build .= ', ';
                 }
 
-                $build .= "('', :col_".$row."_1, :col_".$row."_2, :col_".$row."_3)";
+                $build .= "(NULL, :col_".$row."_1, :col_".$row."_2, :col_".$row."_3)";
                 $data["col_".$row."_1"] = $item[0];
                 $data["col_".$row."_2"] = isset($item[1]) ? $item[1] : '';
                 $data["col_".$row."_3"] = isset($item[2]) ? $item[2] : '';
@@ -91,7 +91,7 @@
                     $build .= ', ';
                 }
 
-                $build .= "('', :col_".$row."_1, :col_".$row."_2, '".time()."', '".time()."', '0', '0', '1')";
+                $build .= "(NULL, :col_".$row."_1, :col_".$row."_2, '".time()."', '".time()."', '0', '0', '1')";
                 $data["col_".$row."_1"] = $item[0];
                 $data["col_".$row."_2"] = $item[1];
                 $row++;
@@ -145,7 +145,7 @@
                     $build .= ', ';
                 }
 
-                $build .= "('', :col_".$row."_1, :col_".$row."_2, :col_".$row."_3, '".time()."', '1')";
+                $build .= "(NULL, :col_".$row."_1, :col_".$row."_2, :col_".$row."_3, '".time()."', '1')";
                 $data["col_".$row."_1"] = $item[0];
                 $data["col_".$row."_2"] = $item[1];
                 $data["col_".$row."_3"] = $item[2];
@@ -205,7 +205,7 @@
                     $build .= ', ';
                 }
 
-                $build .= "('', :col_".$row."_1, :col_".$row."_2, :col_".$row."_3, :col_".$row."_4)";
+                $build .= "(NULL, :col_".$row."_1, :col_".$row."_2, :col_".$row."_3, :col_".$row."_4)";
                 $data["col_".$row."_1"] = $item[0];
                 $data["col_".$row."_2"] = $item[1];
                 $data["col_".$row."_3"] = $item[2];

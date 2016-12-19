@@ -125,7 +125,7 @@
             {
                 // Insert new history
                 $this->db->table('user_history')
-                    ->insert(['', $idUser, $idManga, $idChapter, $page, time()]);
+                    ->insert([NULL, $idUser, $idManga, $idChapter, $page, time()]);
                 return true;
             }
 
@@ -162,6 +162,7 @@
                 ->where('user_history.id_user', $idUser)
                 ->order('user_history.update_at', false)
                 ->group('user_history.id_manga')
+                ->group('user_history.update_at')
                 ->limit($page*$limit, $limit)
                 ->get('manga.*');
         }
@@ -221,7 +222,7 @@
             if ($result->isEmpty())
             {
                 $this->db->table('manga_option')
-                    ->insert(['', $id, $key, $value]);
+                    ->insert([NULL, $id, $key, $value]);
             }
             else
             {
