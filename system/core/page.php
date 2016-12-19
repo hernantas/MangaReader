@@ -19,7 +19,7 @@
 
                 if ($vend !== false)
                 {
-                    include ($vend . '/Page/' . $router->class . '.php');
+                    include ($vend . '/page/' . $router->class . '.php');
 
                     if (!class_exists($class) ||
                         !method_exists($class, $router->method))
@@ -49,7 +49,7 @@
 
                     if ($vendor !== false)
                     {
-                        include ($vendor . '/Page/' . $router->class . '.php');
+                        include ($vendor . '/page/' . $router->class . '.php');
 
                         if (class_exists($class) && method_exists($class, $router->method))
                         {

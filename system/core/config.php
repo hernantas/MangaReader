@@ -32,6 +32,7 @@
          */
         public function load($name)
         {
+            $name = strtolower($name);
             if (!$this->isExists($name))
             {
                 return false;
@@ -83,7 +84,7 @@
          */
         public function isExists($name)
         {
-            return file_exists(APP_PATH . 'config/'.$name.'.php');
+            return file_exists(APP_PATH . 'config/'.strtolower($name).'.php');
         }
 
         /**
@@ -147,7 +148,7 @@
                 return false;
             }
 
-            $config = include (APP_PATH . 'info/'.$name.'.php');
+            $config = include (APP_PATH . 'info/'.strtolower($name).'.php');
             $this->info[$name] = $config;
             return $config;
         }
@@ -172,7 +173,7 @@
          */
         public function isInfoExists($name)
         {
-            return file_exists(APP_PATH . 'info/'.$name.'.php');
+            return file_exists(APP_PATH . 'info/'.strtolower($name).'.php');
         }
 
         /**
@@ -250,6 +251,7 @@
         private function write($name, $config, $info=false)
         {
             $fp = null;
+            $name = strtolower($name);
 
             if ($info)
             {
@@ -265,13 +267,14 @@
             fwrite($fp, '<?php' . PHP_EOL);
             if ($info)
             {
-                fwrite($fp, "\t// This file or directory should be ignored if using version control." . PHP_EOL);
-                fwrite($fp, "\t// Config Info Generated At: " . date('d-M-Y H:i:s') . PHP_EOL . PHP_EOL);
+              fwrite($fp, "\t// This file or directory should be ignored if using version control." . PHP_EOL);
+              fwrite($fp, "\t// Config Info Generated At: " . date('d-M-Y H:i:s') . PHP_EOL . PHP_EOL);
             }
 
             fwrite($fp, "\treturn ");
             $this->writeArray($fp, $config);
             fwrite($fp, PHP_EOL . '?>');
+            fflush($fp);
             fclose($fp);
         }
 

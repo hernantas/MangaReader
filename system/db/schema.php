@@ -1,7 +1,7 @@
 <?php
     namespace DB;
 
-    include (SYSTEM_PATH.'db/Blueprint.php');
+    include (SYSTEM_PATH.'db/blueprint.php');
 
     class Schema
     {
@@ -23,7 +23,7 @@
 
             if (!is_array($list))
             {
-                include ($list . '/DB/Schema/'.$name.'.php');
+                include ($list . '/db/schema/'.$name.'.php');
                 $class = '\\DB\\Schema\\'.$name;
 
                 if (class_exists($class))

@@ -60,9 +60,6 @@
                 }
             }
 
-            // Resave config info incase progress order is empty
-            $this->config->saveInfo('Setup', $state);
-
             if (isset($notDone[0]))
             {
                 $ex = explode('/', $notDone[0]);

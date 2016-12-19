@@ -185,7 +185,7 @@
             if ($vendor !== false)
             {
                 extract($data);
-                include ($vendor . '/' . $package . '/' . $name . '.php');
+                include (strtolower($vendor . '/' . $package . '/' . $name . '.php'));
                 logInfo("Successfully load $package file \"$name.php\"");
                 return true;
             }

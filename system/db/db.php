@@ -1,11 +1,11 @@
 <?php
     namespace DB;
 
-    include (SYSTEM_PATH . 'db/Result.php');
-    include (SYSTEM_PATH . 'db/builder/Builder.php');
-    include (SYSTEM_PATH . 'db/driver/IDriver.php');
-    include (SYSTEM_PATH . 'db/Schema.php');
-    include (SYSTEM_PATH . 'db/schema/ISchema.php');
+    include (SYSTEM_PATH . 'db/result.php');
+    include (SYSTEM_PATH . 'db/builder/builder.php');
+    include (SYSTEM_PATH . 'db/driver/idriver.php');
+    include (SYSTEM_PATH . 'db/schema.php');
+    include (SYSTEM_PATH . 'db/schema/ischema.php');
 
     class DB
     {
@@ -47,10 +47,11 @@
         {
             $vendor =& loadClass('Vendor', 'Core');
             $vend = $vendor->find('DB/'.$type, $name);
+            $type = strtolower($type);
 
             if ($vend !== false)
             {
-                include ($vend . '/DB/'.$type.'/'.$name.'.php');
+                include ($vend . '/db/'.$type.'/'.$name.'.php');
                 $class = '\\DB\\'.$type.'\\'.$name;
 
                 if (class_exists($class))

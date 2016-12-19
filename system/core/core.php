@@ -1,6 +1,6 @@
 <?php
 
-    require (SYSTEM_PATH . 'core/Common.php');
+    require (SYSTEM_PATH . 'core/common.php');
 
     $config =& loadClass('Config', 'Core');
     $log =& loadClass('Log', 'Core');

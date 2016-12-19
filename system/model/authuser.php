@@ -34,7 +34,7 @@
         {
             $hasUser = $this->hasUser();
             $hashPass = page()->encryption->hashPassword($password);
-            $this->db->table('user')->insert(['',$username, $hashPass]);
+            $this->db->table('user')->insert([NULL,$username, $hashPass]);
 
             $id = $this->getId($username);
             if (!$hasUser)
@@ -54,7 +54,7 @@
 
             if ($result->isEmpty())
             {
-                $this->db->table('user_option')->insert(['', $idUser, $key, $val]);
+                $this->db->table('user_option')->insert([NULL, $idUser, $key, $val]);
             }
             else
             {
@@ -93,7 +93,7 @@
         public function addSession($username, $hashedToken)
         {
             $id = $this->getId($username);
-            $result = $this->db->table('user_session')->insert(['', $id, $hashedToken, time()]);
+            $result = $this->db->table('user_session')->insert([NULL, $id, $hashedToken, time()]);
             return !$result->isError();
         }
 
