@@ -4,5 +4,5 @@ app/info/*
 !app/info/index.html
 public/img_cache/*
 !public/img_cache/index.html
-app/config/Encryption.php
-app/config/Auth.php
+app/config/encryption.php
+app/config/auth.php
