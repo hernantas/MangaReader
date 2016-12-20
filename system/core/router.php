@@ -111,7 +111,7 @@
             $uri =& loadClass('Uri', 'Core');
             $url = $uri->baseUrl().strtolower($page);
             header('location: '.$url);
-            logInfo("Router: Redirect user to $url");
+            logInfo("Router: Redirect to $url");
             exit();
         }
 
