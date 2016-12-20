@@ -33,6 +33,12 @@
         public function load($name)
         {
             $name = strtolower($name);
+
+            if (isset($this->cache[$name]))
+            {
+                return $this->cache[$name];
+            }
+
             if (!$this->isExists($name))
             {
                 return false;
@@ -143,12 +149,19 @@
          */
         public function loadInfo($name)
         {
+            $name = strtolower($name);
+
+            if (isset($this->info[$name]))
+            {
+                return $this->info[$name];
+            }
+
             if (!$this->isInfoExists($name))
             {
                 return false;
             }
 
-            $config = include (APP_PATH . 'info/'.strtolower($name).'.php');
+            $config = include (APP_PATH . 'info/'.$name.'.php');
             $this->info[$name] = $config;
             return $config;
         }
