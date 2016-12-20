@@ -107,6 +107,11 @@
             }
         }
 
+        public function clearView($storage='content')
+        {
+            $this->storageView[$storage] = array();
+        }
+
         /**
          * Load library class
          *
