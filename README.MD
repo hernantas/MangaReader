@@ -5,19 +5,7 @@ Is web based application that can manage your manga collection and provide onlin
 
 This web is for Manga that placed on folder that has structure like this:
 
-    Folder
-    |-- Manga 1
-    |    |-- Chapter 1
-    |    |-- Chapter 2
-    |    |-- Chapter 3
-    |-- Manga 2
-    |    |-- Chapter 1
-    |    |-- Chapter 2
-    |    |-- Chapter 3
-    |-- Manga 3
-    |    |-- Chapter 1
-    |    |-- Chapter 2
-    |    |-- Chapter 3
+![Manga Directory](http://i.imgur.com/Z9qxn5A.png)
 
 Feature(s)
 ----------
@@ -25,6 +13,12 @@ Feature(s)
 2. Easy to manage manga, chapter and your reading history. It will tell you if there's new chapter, new manga and it will keep track which chapter you have or haven't read yet.
 3. Support multiple user account. You can create as many account as you want. Useful if you have many people in your house that want to have it own reading history.
 4. Since this was web application, that mean you can access it with multiple device such as mobile phone, tablets, etc. As long as it has supported web browser.
+
+Screenshots
+-----------
+
+![Manga Newsfeed](http://i.imgur.com/DdQ7iU1.png)
+![Manga Directory](http://i.imgur.com/2CCKHwG.png)
 
 Requirements
 ------------
