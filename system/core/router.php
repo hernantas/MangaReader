@@ -106,7 +106,7 @@
          *
          * @param  string $page Page direction
          */
-        public function redirect($page)
+        public function redirect($page='')
         {
             $uri =& loadClass('Uri', 'Core');
             $url = $uri->baseUrl().strtolower($page);
