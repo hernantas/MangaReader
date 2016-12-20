@@ -26,10 +26,19 @@ Feature(s)
 3. Support multiple user account. You can create as many account as you want. Useful if you have many people in your house that want to have it own reading history.
 4. Since this was web application, that mean you can access it with multiple device such as mobile phone, tablets, etc. As long as it has supported web browser.
 
+Requirements
+------------
+1. Web server that support PHP 5.5.0 or greater.
+2. Web server that allow .htaccess to override
+3. PHP Extension enabled such as:
+    - mcrypt
+    - PDO & PDO Mysql
+4. Mysql Server
+
 Installation
 ------------
 1. Make sure you have web server that support PHP 5.5.0 or greater & mysql server installed and running on your computer (or maybe your local server). If you are using windows, you can install XAMPP or WAMPP.
-2. Extract zip file and place it at your web server. (ex: "xampp/htdocs/" if using XAMPP, or "wampp/www/" if using WAMPP)
+2. Extract zip file and place it at your web server. (ex: "xampp/htdocs/" if using XAMPP, or "wampp/www/" if using WAMPP) or "/var/www" on linux based OS
 3. Access it via your web broser. For example if you name your folder mangareader and place it htdocs, you can access it via localhost/mangareader
 4. Follow the installation guide when you open the web for the first time.
 5. Have fun.
