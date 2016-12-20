@@ -6,13 +6,16 @@
         public function index()
         {
             $this->setup->installOnly();
+            $this->load->storeView('InstallWelcome');
 
             if ($this->input->hasPost())
             {
                 if ($this->input->hasPost('agree'))
                 {
                     $this->setup->finish();
-                    $this->router->redirect();
+                    $this->router->delayedRedirect('', 2);
+                    $this->load->clearView();
+                    $this->load->storeView('installredirect');
                 }
                 else
                 {
@@ -20,8 +23,6 @@
                         to the license.");
                 }
             }
-
-            $this->load->storeView('InstallWelcome');
 
             $this->load->layout('Fresh', [
                 'simpleMode'=>true,
@@ -32,12 +33,7 @@
         public function database()
         {
             $this->setup->installOnly();
-
-            if ($this->config->isExists('DB') || $this->config->isInfoExists('DB'))
-            {
-                $this->setup->finish();
-                $this->router->redirect();
-            }
+            $this->load->storeView('InstallDatabase');
 
             if ($this->input->hasPost())
             {
@@ -63,12 +59,18 @@
                     $this->createTable();
 
                     $this->setup->finish();
-                    $this->router->redirect("user/signup");
-                    // $this->db->schema->create();
+                    $this->router->delayedRedirect("user/signup");
+                    $this->load->clearView();
+                    $this->load->storeView('installredirect');
                 }
             }
-
-            $this->load->storeView('InstallDatabase');
+            elseif ($this->config->isExists('DB') || $this->config->isInfoExists('DB'))
+            {
+                $this->setup->finish();
+                $this->router->delayedRedirect('', 2);
+                $this->load->clearView();
+                $this->load->storeView('installredirect');
+            }
 
             $this->load->layout('Fresh', [
                 'simpleMode'=>true,
@@ -134,6 +136,9 @@
 
         public function path()
         {
+            $this->setup->installOnly();
+            $this->load->storeView('InstallPath');
+
             if ($this->input->hasPost())
             {
                 $path = $this->input->post('path');
@@ -145,7 +150,9 @@
                             'path'=>$path
                         ]);
                         $this->setup->finish();
-                        $this->router->redirect();
+                        $this->router->delayedRedirect('', 2);
+                        $this->load->clearView();
+                        $this->load->storeView('installredirect');
                     }
                     else
                     {
@@ -157,8 +164,6 @@
                     $this->message->error('Path must not empty.');
                 }
             }
-
-            $this->load->storeView('InstallPath');
 
             $this->load->layout('Fresh', [
                 'simpleMode'=>true,
