@@ -102,7 +102,8 @@
         }
 
         /**
-         * Redirect user browser to the relative path of the host
+         * Redirect user browser to the relative path of the host. Require to not
+         * display anything to browser before.
          *
          * @param  string $page Page direction
          */
