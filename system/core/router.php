@@ -114,6 +114,21 @@
             logInfo("Router: Redirect user to $url");
             exit();
         }
+
+        /**
+         * Redirect user browser to the relative path of the host with delay.
+         * Require to not display anything to browser before.
+         *
+         * @param  string $page  Page direction
+         * @param  int    $delay Delay in second
+         */
+        public function delayedRedirect($page='', $delay=2)
+        {
+            $uri =& loadClass('Uri', 'Core');
+            $url = $uri->baseUrl().strtolower($page);
+            header("refresh:$delay; url=$url");
+            logInfo("Router: Redirect to $url with $delay second delay");
+        }
     }
 
 ?>
