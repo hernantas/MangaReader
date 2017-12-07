@@ -6,8 +6,25 @@
         public function index()
         {
             $this->setup->installOnly();
-            $this->load->storeView('InstallWelcome');
 
+            if ($this->config->canWrite())
+            {
+                $this->welcomePage();
+            }
+            else
+            {
+                $this->warningPage();
+            }
+            
+            $this->load->layout('Fresh', [
+                'simpleMode'=>true,
+                'title'=>'Welcome'
+            ]);
+        }
+
+        private function welcomePage()
+        {
+            $this->load->storeView('InstallWelcome');
             if ($this->input->hasPost())
             {
                 if ($this->input->hasPost('agree'))
@@ -23,11 +40,13 @@
                         to the license.");
                 }
             }
+        }
 
-            $this->load->layout('Fresh', [
-                'simpleMode'=>true,
-                'title'=>'Welcome'
-            ]);
+        private function warningPage() 
+        {
+            $warning = [];
+            if (!$this->config->canWrite()) $warning[] = "Cannot write config file. Please change directory permission first.";
+            $this->load->storeView("installReqWarn", ["warning"=>$warning]);
         }
 
         public function database()
