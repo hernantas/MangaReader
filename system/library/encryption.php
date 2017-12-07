@@ -45,7 +45,7 @@
          */
         public function createKey($size=16, $raw=false)
         {
-            $iv = mcrypt_create_iv($size, MCRYPT_DEV_URANDOM);
+            $iv = random_bytes($size);
             if ($raw)
             {
                 return $iv;
