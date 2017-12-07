@@ -88,7 +88,10 @@
          */
         private function write($message)
         {
-            fwrite($this->fileHandler, '['.date('H:i:s').'] '.$message.PHP_EOL);
+            if ($this->isActive()) 
+            {
+                fwrite($this->fileHandler, '['.date('H:i:s').'] '.$message.PHP_EOL);
+            }
         }
 
         /**
