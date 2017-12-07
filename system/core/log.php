@@ -200,5 +200,15 @@
 
             return $traceMessage;
         }
+
+        /**
+         * Check if config is active
+         * 
+         * @return bool     True if could write/read into log file, false otherwise
+         */
+        public function isActive() 
+        {
+            return ($this->fileHandler !== false && $this->fileHandler !== null);
+        }
     }
 ?>
