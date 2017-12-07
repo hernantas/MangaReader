@@ -263,6 +263,8 @@
          */
         private function write($name, $config, $info=false)
         {
+            if (!$this->canWrite()) return false;
+
             $fp = null;
             $name = strtolower($name);
 
