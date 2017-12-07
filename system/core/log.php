@@ -77,7 +77,12 @@
          */
         private function open()
         {
-            $this->fileHandler = fopen(APP_PATH.'log/'.date('y-m-d').'.log', "a+");
+            $path = APP_PATH . 'log/';
+            if (is_writeable($path)) 
+            {
+                $this->fileHandler = fopen($path . date('y-m-d') . '.log', "a+");
+            }
+
             $this->write('------------------------- [New User Request] -------------------------');
         }
 
