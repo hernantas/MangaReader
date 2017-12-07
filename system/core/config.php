@@ -338,6 +338,16 @@
             fwrite($handler, PHP_EOL . str_repeat("\t", $offset) .
                 ']' . ($offset==1?';':''));
         }
+
+        /**
+         * Check if config directory could be written.
+         * 
+         * @return bool True when config directory can be written, false otherwise
+         */
+        public function canWrite() 
+        {
+            return is_writeable(APP_PATH . 'info/') && is_writeable(APP_PATH . 'config/');
+        }
     }
 
 ?>
