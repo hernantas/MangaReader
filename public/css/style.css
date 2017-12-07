@@ -733,6 +733,10 @@ input[type="submit"]:active, input[type="button"]:active
     margin-bottom: 20px;
 }
 
+.body .panel .panel {
+    margin-bottom: 0;
+}
+
 .body .panel .warp
 {
     padding: 10px 20px;
