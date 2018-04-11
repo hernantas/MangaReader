@@ -46,7 +46,7 @@
         {
             $warning = [];
             if (!$this->config->canWrite()) $warning[] = "Cannot write config file. Please change directory permission first.";
-            $this->load->storeView("installReqWarn", ["warning"=>$warning]);
+            $this->load->storeView("installrequirewarn", ["warning"=>$warning]);
         }
 
         public function database()
