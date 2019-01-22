@@ -36,6 +36,18 @@ Installation
 
 **Note:** Make sure you allow htaccess on your web server. XAMPP enable by default, but if you must enable it manually [See this article.](http://stackoverflow.com/questions/4321990/htaccess-not-working-on-wamp)
 
+Installation (IIS10 on Azure)
+------------
+**Warning: The project was not designed to run online. It contains bugs. Use by your own risk**
+1. Create an App Service on Azure Portal.
+2. Configure your App Service to run with PHP 7.2 and upload your files to `wwwroot` directory.
+3. Remove all Default documents in App Service configurations, and leave just `index.php`.
+4. Create a Mysql Database (You can do it also on Azure, searching for mysql).
+5. If you created your Mysql Database on Azure, disable SSL mandatory connection and allow to Azure Services connect to database, inside Configurations/Security menu.
+6. Access it via your web broser. Site URL is displayed on General Info page after on App Service Page
+7. Follow the installation guide when you open the web for the first time.
+8. Have fun.
+
 Feature Request, Bug/Issue report
 ----------------
 If you encounter any bug or error, please use issues page to report any bug you found.
